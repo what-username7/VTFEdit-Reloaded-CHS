@@ -27,10 +27,10 @@ using namespace System;
 
 namespace VTFEdit
 {
-	__gc class CVTFFileUtility
+	public ref class CVTFFileUtility
 	{
 	public:
-		static SVTFCreateOptions GetCreateOptions(CVTFOptions *Options)
+		static SVTFCreateOptions GetCreateOptions(CVTFOptions ^ Options)
 		{
 			SVTFCreateOptions VTFCreateOptions;
 
@@ -43,7 +43,7 @@ namespace VTFEdit
 					VTFCreateOptions.uiVersion[0] = Convert::ToUInt32(Options->Version->Substring(0, Options->Version->IndexOf('.')));
 					VTFCreateOptions.uiVersion[1] = Convert::ToUInt32(Options->Version->Substring(Options->Version->IndexOf('.') + 1));
 				}
-				catch(Exception *)
+				catch(Exception ^)
 				{
 					VTFCreateOptions.uiVersion[0] = VTF_MAJOR_VERSION;
 					VTFCreateOptions.uiVersion[1] = VTF_MINOR_VERSION;
@@ -88,7 +88,7 @@ namespace VTFEdit
 			return VTFCreateOptions;
 		}
 
-		static bool CreateResources(CVTFOptions *Options, VTFLib::CVTFFile *pVTFFile)
+		static bool CreateResources(CVTFOptions ^ Options, VTFLib::CVTFFile *pVTFFile)
 		{
 			bool bResult = true;
 

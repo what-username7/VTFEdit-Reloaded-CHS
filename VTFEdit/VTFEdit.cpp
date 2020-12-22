@@ -35,13 +35,13 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
 	if(vlGetVersion() != VL_VERSION)
 	{
-		MessageBox::Show(S"Invalid VTFLib.dll version number.", Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		MessageBox::Show("Invalid VTFLib.dll version number.", Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		return 1;
 	}
 
 	if(hlGetInteger(HL_VERSION) != HL_VERSION_NUMBER)
 	{
-		MessageBox::Show(S"Invalid HLLib.dll version number.", Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+		MessageBox::Show("Invalid HLLib.dll version number.", Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 		return 1;
 	}
 
@@ -58,7 +58,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	ilGenImages(1, &uiImage);
 	ilBindImage(uiImage);
 
-	Application::Run(new VTFEdit::CVTFEdit());
+	Application::Run(gcnew VTFEdit::CVTFEdit());
 
 	// Shutdown DevIL.
 	ilDeleteImages(1, &uiImage);

@@ -25,10 +25,10 @@ using namespace System;
 
 namespace VTFEdit
 {
-	__gc class CUtility
+	public ref class CUtility
 	{
 	public:
-		static void StringToCharPointer(String *sString, char *cString, int iLength)
+		static void StringToCharPointer(String ^ sString, char *cString, int iLength)
 		{
 			char *cTemp;
 

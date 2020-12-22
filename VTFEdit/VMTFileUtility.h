@@ -39,27 +39,27 @@ enum EToken
 
 namespace VTFEdit
 {
-	__gc class CVMTFileUtility
+	public ref class CVMTFileUtility
 	{
 	public:
-		static System::String *GetTexturePathFromSystemPath(System::String *sTexture)
+		static System::String ^ GetTexturePathFromSystemPath(System::String ^ sTexture)
 		{
 			if(sTexture->Length == 0)
-				return S"";
+				return "";
 
-			System::String *sExtension = S".vtf";
-			System::String *sMaterials = S"materials";
+			System::String ^ sExtension = ".vtf";
+			System::String ^ sMaterials = "materials";
 
 			sTexture = sTexture->Trim();
-			sTexture = sTexture->Replace(S"\\", S"/");
-			sTexture = sTexture->Replace(S"//", S"/");
+			sTexture = sTexture->Replace("\\", "/");
+			sTexture = sTexture->Replace("//", "/");
 			if(sTexture->Length >= 4 && String::Compare(sTexture, sTexture->Length - sExtension->Length, sExtension, 0, sExtension->Length, true) == 0)
 			{
 				sTexture = sTexture->Substring(0, sTexture->Length - sExtension->Length);
 				sTexture = sTexture->Trim();
 			}
 
-			int index = sTexture->IndexOf(S":");
+			int index = sTexture->IndexOf(":");
 			if(index != -1)
 			{
 				sTexture = sTexture->Substring(index + 1);
@@ -74,12 +74,12 @@ namespace VTFEdit
 				}
 			}
 
-			while(sTexture->StartsWith(S"/"))
+			while(sTexture->StartsWith("/"))
 			{
 				sTexture = sTexture->Substring(1);
 			}
 
-			while(sTexture->EndsWith(S"/"))
+			while(sTexture->EndsWith("/"))
 			{
 				sTexture = sTexture->Substring(0, sTexture->Length - 1);
 			}
@@ -87,21 +87,21 @@ namespace VTFEdit
 			return sTexture;
 		}
 
-		static bool CreateDefaultMaterial(System::String *sVTFFile, System::String *sShader)
+		static bool CreateDefaultMaterial(System::String ^ sVTFFile, System::String ^ sShader)
 		{
 			return CVMTFileUtility::CreateDefaultMaterial(sVTFFile, sShader, false);
 		}
 
-		static bool CreateDefaultMaterial(System::String *sVTFFile, System::String *sShader, bool bHasAlpha)
+		static bool CreateDefaultMaterial(System::String ^ sVTFFile, System::String ^ sShader, bool bHasAlpha)
 		{
-			System::String *sVMTFile = sVTFFile;
+			System::String ^ sVMTFile = sVTFFile;
 
-			if(sVMTFile->Length < 4 || String::Compare(sVMTFile, sVMTFile->Length - 4, S".vtf", 0, 4, true) != 0)
+			if(sVMTFile->Length < 4 || String::Compare(sVMTFile, sVMTFile->Length - 4, ".vtf", 0, 4, true) != 0)
 			{
 				return false;
 			}
 
-			sVMTFile = String::Concat(sVMTFile->Substring(0, sVMTFile->Length - 4), S".vmt");
+			sVMTFile = String::Concat(sVMTFile->Substring(0, sVMTFile->Length - 4), ".vmt");
 
 			if(System::IO::File::Exists(sVMTFile))
 			{
@@ -116,7 +116,7 @@ namespace VTFEdit
 			VMTFile.Create(cTemp0);
 			System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cTemp0);
 
-			cTemp0 = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(S"$basetexture").ToPointer();
+			cTemp0 = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi("$basetexture").ToPointer();
 			cTemp1 = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(CVMTFileUtility::GetTexturePathFromSystemPath(sVTFFile)).ToPointer();
 			VMTFile.GetRoot()->AddStringNode(cTemp0, cTemp1);
 			System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cTemp1);
@@ -124,7 +124,7 @@ namespace VTFEdit
 
 			if(bHasAlpha)
 			{
-				cTemp0 = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(S"$translucent").ToPointer();
+				cTemp0 = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi("$translucent").ToPointer();
 				VMTFile.GetRoot()->AddIntegerNode(cTemp0, 1);
 				System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cTemp0);
 			}
@@ -137,7 +137,7 @@ namespace VTFEdit
 		}
 
 		// Stores token information.
-		__gc class CToken
+		ref class CToken
 		{
 		private:
 			EToken eToken;
@@ -152,10 +152,10 @@ namespace VTFEdit
 			}
 
 			// Copy a token.
-			CToken(const CToken &Token)
+			CToken(const CToken ^ Token)
 			{
-				this->eToken = Token.eToken;
-				this->cChar = Token.cChar;
+				this->eToken = Token->eToken;
+				this->cChar = Token->cChar;
 			}
 
 		public:
@@ -194,20 +194,20 @@ namespace VTFEdit
 		};
 
 		// Tokenizes single byte tokens.
-		__gc class CByteTokenizer
+		ref class CByteTokenizer
 		{
 		private:
 			int iIndex;
 			int iStart;
 			int iEnd;
-			String *Text;
+			String ^ Text;
 
 		private:
-			CToken *CurrentToken;
-			CToken *NextToken;
+			CToken ^ CurrentToken;
+			CToken ^ NextToken;
 
 		public:
-			CByteTokenizer(String *Text, int iStart, int iEnd) : iIndex(0), iStart(iStart), iEnd(iEnd), Text(Text), CurrentToken(0), NextToken(0)
+			CByteTokenizer(String ^ Text, int iStart, int iEnd) : iIndex(0), iStart(iStart), iEnd(iEnd), Text(Text), CurrentToken(nullptr), NextToken(nullptr)
 			{
 				this->GetNextToken();
 			}
@@ -227,11 +227,11 @@ namespace VTFEdit
 
 				if(this->iIndex == this->iEnd + 1 || this->iIndex == this->Text->Length)
 				{
-					this->NextToken = new CToken(TOKEN_EOF, '\0', this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_EOF, '\0', this->iIndex);
 					return;
 				}
 
-				cChar = (char)this->Text->Chars[this->iIndex];
+				cChar = (char)this->Text[this->iIndex];
 
 				// If a special char was specified, only return TOKEN_CHAR tokens
 				// unless the special char was found in which case return a
@@ -240,11 +240,11 @@ namespace VTFEdit
 				{
 					if(cChar == cSpecial)
 					{
-						this->NextToken = new CToken(TOKEN_SPECIAL, cChar, this->iIndex);
+						this->NextToken = gcnew CToken(TOKEN_SPECIAL, cChar, this->iIndex);
 						return;
 					}
 
-					this->NextToken = new CToken(TOKEN_CHAR, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_CHAR, cChar, this->iIndex);
 
 					this->iIndex++;
 					return;
@@ -252,31 +252,31 @@ namespace VTFEdit
 				
 				if(cChar == '\r' || cChar == '\n')
 				{
-					this->NextToken = new CToken(TOKEN_NEWLINE, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_NEWLINE, cChar, this->iIndex);
 				}
 				else if(isspace(cChar))
 				{
-					this->NextToken = new CToken(TOKEN_WHITESPACE, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_WHITESPACE, cChar, this->iIndex);
 				}
 				else if(cChar == '/')
 				{
-					this->NextToken = new CToken(TOKEN_FORWARD_SLASH, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_FORWARD_SLASH, cChar, this->iIndex);
 				}
 				else if(cChar == '\"')
 				{
-					this->NextToken = new CToken(TOKEN_QUOTE, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_QUOTE, cChar, this->iIndex);
 				}
 				else if(cChar == '{')
 				{
-					this->NextToken = new CToken(TOKEN_OPEN_BRACE, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_OPEN_BRACE, cChar, this->iIndex);
 				}
 				else if(cChar == '}')
 				{
-					this->NextToken = new CToken(TOKEN_CLOSE_BRACE, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_CLOSE_BRACE, cChar, this->iIndex);
 				}
 				else
 				{
-					this->NextToken = new CToken(TOKEN_CHAR, cChar, this->iIndex);
+					this->NextToken = gcnew CToken(TOKEN_CHAR, cChar, this->iIndex);
 				}
 
 				this->iIndex++;
@@ -284,15 +284,15 @@ namespace VTFEdit
 
 		public:
 			// Get the current token and return the next one.
-			CToken *Next()
+			CToken ^ Next()
 			{
 				return this->Next('\0');
 			}
 
-			CToken *Next(char cSpecial)
+			CToken ^ Next(char cSpecial)
 			{
 				this->CurrentToken = this->NextToken;
-				this->NextToken = 0;
+				this->NextToken = nullptr;
 
 				if(cSpecial && this->CurrentToken)
 				{
@@ -305,52 +305,44 @@ namespace VTFEdit
 			}
 
 			// Get the curret token.
-			CToken *Peek()
+			CToken ^ Peek()
 			{
 				return this->NextToken;
 			}
 		};
 
 		// Tokenizes multi byte tokens.
-		__gc class CSyntaxHilighter
+		ref class CSyntaxHilighter
 		{
 		private:
-			bool bEnabled;
-			String *sOldText;
-			System::Windows::Forms::RichTextBox *TextBox;
+			String ^ sOldText;
+			System::Windows::Forms::RichTextBox ^ TextBox;
 
 		public:
-			CSyntaxHilighter(System::Windows::Forms::RichTextBox *TextBox) : bEnabled( false), sOldText(S""), TextBox(TextBox)
+			CSyntaxHilighter(System::Windows::Forms::RichTextBox ^ TextBox) : sOldText(""), TextBox(TextBox)
 			{
+				Enabled = false;
 			}
 
 		public:
-			__property bool get_Enabled()
-			{
-				return this->bEnabled;
-			}
-
-			__property void set_Enabled(bool bEnabled)
-			{
-				this->bEnabled = bEnabled;
-			}
+			property bool Enabled;
 
 			void Purge()
 			{
-				sOldText = S"";
+				sOldText = "";
 			}
 
 			void Process()
 			{
-				if (!this->bEnabled)
+				if (!this->Enabled)
 					return;
 
-				String *sNewText = TextBox->Text;
+				String ^ sNewText = TextBox->Text;
 				int iStart = 0, iEnd = sNewText->Length - 1, iLength;
 
 				for(int i = 0; i < sNewText->Length && i < this->sOldText->Length; i++)
 				{
-					if(sNewText->Chars[i] != this->sOldText->Chars[i])
+					if(sNewText[i] != this->sOldText[i])
 					{
 						break;
 					}
@@ -360,7 +352,7 @@ namespace VTFEdit
 
 				for(int i = 0; i < sNewText->Length && i < this->sOldText->Length; i++)
 				{
-					if(sNewText->Chars[sNewText->Length - 1 - i] != this->sOldText->Chars[sOldText->Length - 1 - i])
+					if(sNewText[sNewText->Length - 1 - i] != this->sOldText[sOldText->Length - 1 - i])
 					{
 						break;
 					}
@@ -373,17 +365,17 @@ namespace VTFEdit
 				if (iEnd < iStart)
 					iEnd = iStart;
 
-				while (iStart > 0 && (char)sNewText->Chars[iStart] != '\r' && (char)sNewText->Chars[iStart] != '\n')
+				while (iStart > 0 && (char)sNewText[iStart] != '\r' && (char)sNewText[iStart] != '\n')
 				{
 					iStart--;
 				}
 
-				while(iEnd < sNewText->Length - 1 && (char)sNewText->Chars[iEnd] != '\r' && (char)sNewText->Chars[iEnd] != '\n')
+				while(iEnd < sNewText->Length - 1 && (char)sNewText[iEnd] != '\r' && (char)sNewText[iEnd] != '\n')
 				{
 					iEnd++;
 				}
 
-				CByteTokenizer *ByteTokenizer = new CByteTokenizer(sNewText, iStart, iEnd);
+				CByteTokenizer ^ ByteTokenizer = gcnew CByteTokenizer(sNewText, iStart, iEnd);
 
 				this->sOldText = sNewText;
 
@@ -397,7 +389,7 @@ namespace VTFEdit
 				POINT ScrollLocation;
 				SendMessage(Handle, EM_GETSCROLLPOS, 0, (LPARAM)&ScrollLocation);
 
-				System::Drawing::Font *BoldFont = new System::Drawing::Font(this->TextBox->Font, System::Drawing::FontStyle::Bold);
+				System::Drawing::Font ^ BoldFont = gcnew System::Drawing::Font(this->TextBox->Font, System::Drawing::FontStyle::Bold);
 
 				int iSelectionStart = this->TextBox->SelectionStart;
 				int iSelectionLength = this->TextBox->SelectionLength;
@@ -408,7 +400,7 @@ namespace VTFEdit
 				this->TextBox->SelectionColor = System::Drawing::Color::Black;
 				this->TextBox->SelectionFont = this->TextBox->Font;
 
-				CToken *Token;
+				CToken ^ Token;
 				//int iStart, iLength;
 
 				while(true)
