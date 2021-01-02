@@ -4915,11 +4915,11 @@ namespace VTFEdit
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.NormalFormat = ", Convert::ToInt32(this->Options->NormalFormat).ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.AlphaFormat = ", Convert::ToInt32(this->Options->AlphaFormat).ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.TextureType = ", this->Options->TextureType.ToString()));
+				ConfigFile->WriteLine(System::String::Concat("VTFOptions.sRGB = ", this->Options->sRGB.ToString()));
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.Resize = ", this->Options->ResizeImage.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.ResizeMethod = ", Convert::ToInt32(this->Options->ResizeMethod).ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.ResizeFilter = ", Convert::ToInt32(this->Options->ResizeFilter).ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.ResizeSharpenFilter = ", Convert::ToInt32(this->Options->ResizeSharpenFilter).ToString()));
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.ResizeClamp = ", this->Options->ResizeClamp.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.ResizeClampWidth = ", this->Options->ResizeClampWidth.ToString()));
@@ -4927,14 +4927,6 @@ namespace VTFEdit
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.GenerateMipmaps = ", this->Options->GenerateMipmaps.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.MipmapFilter = ", Convert::ToInt32(this->Options->MipmapFilter).ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.MipmapSharpenFilter = ", Convert::ToInt32(this->Options->MipmapSharpenFilter).ToString()));
-
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.GenerateNormalMap = ", this->Options->ConvertToNormalMap.ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.KernelFilter = ", Convert::ToInt32(this->Options->KernelFilter).ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.HeightConversionMethod = ", Convert::ToInt32(this->Options->HeightConversionMethod).ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.AlphaResult = ", Convert::ToInt32(this->Options->AlphaResult).ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.NormalScale = ", this->Options->NormalScale.ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.NormalWrap = ", this->Options->NormalWrap.ToString()));
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.Version = ", this->Options->Version));
 
@@ -4942,21 +4934,12 @@ namespace VTFEdit
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.GenerateThumbnail = ", this->Options->GenerateThumbnail.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.GenerateSphereMap = ", this->Options->GenerateSphereMap.ToString()));
 
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.DXTQuality = ", Convert::ToInt32(this->Options->DXTQuality).ToString()));
-
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.CorrectGamma = ", this->Options->CorrectGamma.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.GammaCorrection = ", this->Options->GammaCorrection.ToString()));
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.LuminanceWeightR = ", this->Options->LuminanceWeightR.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.LuminanceWeightG = ", this->Options->LuminanceWeightG.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.LuminanceWeightB = ", this->Options->LuminanceWeightB.ToString()));
-
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.UnsharpenMaskRadius = ", this->Options->UnsharpenMaskRadius.ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.UnsharpenMaskAmount = ", this->Options->UnsharpenMaskAmount.ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.UnsharpenMaskThreshold = ", this->Options->UnsharpenMaskThreshold.ToString()));
-
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.XSharpenStrength = ", this->Options->XSharpenStrength.ToString()));
-				ConfigFile->WriteLine(System::String::Concat("VTFOptions.XSharpenThreshold = ", this->Options->XSharpenThreshold.ToString()));
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.CreateLODControlResource = ", this->Options->CreateLODControlResource.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.LODControlClampU = ", this->Options->LODControlClampU.ToString()));
@@ -5153,6 +5136,10 @@ namespace VTFEdit
 						{
 							this->Options->TextureType = Convert::ToInt32(sVal);
 						}
+						else if(System::String::Compare(sArg, "VTFOptions.sRGB", true) == 0)
+						{
+							this->Options->sRGB = Convert::ToByte(sVal);
+						}
 
 						else if(System::String::Compare(sArg, "VTFOptions.Resize", true) == 0)
 						{
@@ -5165,10 +5152,6 @@ namespace VTFEdit
 						else if(System::String::Compare(sArg, "VTFOptions.ResizeFilter", true) == 0)
 						{
 							this->Options->ResizeFilter = (VTFMipmapFilter)Convert::ToInt32(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.ResizeSharpenFilter", true) == 0)
-						{
-							this->Options->ResizeSharpenFilter = (VTFSharpenFilter)Convert::ToInt32(sVal);
 						}
 						else if(System::String::Compare(sArg, "VTFOptions.ResizeClamp", true) == 0)
 						{
@@ -5191,35 +5174,6 @@ namespace VTFEdit
 						{
 							this->Options->MipmapFilter = (VTFMipmapFilter)Convert::ToInt32(sVal);
 						}
-						else if(System::String::Compare(sArg, "VTFOptions.MipmapSharpenFilter", true) == 0)
-						{
-							this->Options->MipmapSharpenFilter = (VTFSharpenFilter)Convert::ToInt32(sVal);
-						}
-
-						else if(System::String::Compare(sArg, "VTFOptions.GenerateNormalMap", true) == 0)
-						{
-							this->Options->ConvertToNormalMap = Convert::ToByte(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.KernelFilter", true) == 0)
-						{
-							this->Options->KernelFilter = (VTFKernelFilter)Convert::ToInt32(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.HeightConversionMethod", true) == 0)
-						{
-							this->Options->HeightConversionMethod = (VTFHeightConversionMethod)Convert::ToInt32(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.AlphaResult", true) == 0)
-						{
-							this->Options->AlphaResult = (VTFNormalAlphaResult)Convert::ToInt32(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.NormalScale", true) == 0)
-						{
-							this->Options->NormalScale = Convert::ToSingle(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.NormalWrap", true) == 0)
-						{
-							this->Options->NormalWrap = Convert::ToByte(sVal);
-						}
 
 						else if(System::String::Compare(sArg, "VTFOptions.Version", true) == 0)
 						{
@@ -5237,11 +5191,6 @@ namespace VTFEdit
 						else if(System::String::Compare(sArg, "VTFOptions.GenerateSphereMap", true) == 0)
 						{
 							this->Options->GenerateSphereMap = Convert::ToByte(sVal);
-						}
-
-						else if(System::String::Compare(sArg, "VTFOptions.DXTQuality", true) == 0)
-						{
-							this->Options->DXTQuality = (VTFDXTQuality)Convert::ToInt32(sVal);
 						}
 
 						else if(System::String::Compare(sArg, "VTFOptions.CorrectGamma", true) == 0)
@@ -5264,28 +5213,6 @@ namespace VTFEdit
 						else if(System::String::Compare(sArg, "VTFOptions.LuminanceWeightB", true) == 0)
 						{
 							this->Options->LuminanceWeightB = Convert::ToSingle(sVal);
-						}
-
-						else if(System::String::Compare(sArg, "VTFOptions.UnsharpenMaskRadius", true) == 0)
-						{
-							this->Options->UnsharpenMaskRadius = Convert::ToSingle(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.UnsharpenMaskAmount", true) == 0)
-						{
-							this->Options->UnsharpenMaskAmount = Convert::ToSingle(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.UnsharpenMaskThreshold", true) == 0)
-						{
-							this->Options->UnsharpenMaskThreshold = Convert::ToSingle(sVal);
-						}
-
-						else if(System::String::Compare(sArg, "VTFOptions.XSharpenStrength", true) == 0)
-						{
-							this->Options->XSharpenStrength = Convert::ToSingle(sVal);
-						}
-						else if(System::String::Compare(sArg, "VTFOptions.XSharpenThreshold", true) == 0)
-						{
-							this->Options->XSharpenThreshold = Convert::ToSingle(sVal);
 						}
 
 						else if(System::String::Compare(sArg, "VTFOptions.CreateLODControlResource", true) == 0)

@@ -138,13 +138,6 @@ namespace VTFLib
 	extern vlSingle sFP16HDRShift;
 	extern vlSingle sFP16HDRGamma;
 
-	extern vlSingle sUnsharpenRadius;
-	extern vlSingle sUnsharpenAmount;
-	extern vlSingle sUnsharpenThreshold;
-
-	extern vlSingle sXSharpenStrength;
-	extern vlSingle sXSharpenThreshold;
-
 	extern vlUInt uiVMTParseMode;
 }
 
@@ -174,13 +167,6 @@ typedef enum tagVTFLibOption
 	VTFLIB_FP16_HDR_KEY,
 	VTFLIB_FP16_HDR_SHIFT,
 	VTFLIB_FP16_HDR_GAMMA,
-
-	VTFLIB_UNSHARPEN_RADIUS,
-	VTFLIB_UNSHARPEN_AMOUNT,
-	VTFLIB_UNSHARPEN_THRESHOLD,
-
-	VTFLIB_XSHARPEN_STRENGTH,
-	VTFLIB_XSHARPEN_THRESHOLD,
 
 	VTFLIB_VMT_PARSE_MODE
 } VTFLibOption;

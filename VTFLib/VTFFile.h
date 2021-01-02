@@ -70,7 +70,6 @@ typedef struct tagSVTFCreateOptions
 
 	vlBool bMipmaps;									//!< Generate MIPmaps. (Space is always allocated.)
 	VTFMipmapFilter MipmapFilter;						//!< MIP map re-size filter.
-	VTFSharpenFilter MipmapSharpenFilter;				//!< MIP map sharpen filter.
 
 	vlBool bThumbnail;									//!< Generate thumbnail image.
 	vlBool bReflectivity;								//!< Compute image reflectivity.
@@ -78,7 +77,6 @@ typedef struct tagSVTFCreateOptions
 	vlBool bResize;										//!< Resize the input image.
 	VTFResizeMethod ResizeMethod;						//!< New size compution method.
 	VTFMipmapFilter ResizeFilter;						//!< Re-size filter.
-	VTFSharpenFilter ResizeSharpenFilter;				//!< Sharpen filter.
 	vlUInt uiResizeWidth;								//!< New width after re-size if method is RESIZE_SET.
 	vlUInt uiResizeHeight;								//!< New height after re-size if method is RESIZE_SET.
 
@@ -89,18 +87,8 @@ typedef struct tagSVTFCreateOptions
 	vlBool bGammaCorrection;							//!< Gamma correct input image.
 	vlSingle sGammaCorrection;							//!< Gamma correction to apply.
 
-	vlBool bNormalMap;									//!< Convert input image to a normal map.
-	VTFKernelFilter KernelFilter;						//!< Normal map generation kernel.
-	VTFHeightConversionMethod HeightConversionMethod;	//!< Method or determining height from input image during normal map creation.
-	VTFNormalAlphaResult NormalAlphaResult;				//!< How to handle output image alpha channel, post normal map creation.
-	vlByte bNormalMinimumZ;								//!< Minimum normal Z value.
-	vlSingle sNormalScale;								//!< Normal map scale.
-	vlBool bNormalWrap;									//!< Wrap the normal map.
-	vlBool bNormalInvertX;								//!< Invert the normal X component.
-	vlBool bNormalInvertY;								//!< Invert the normal Y component.
-	vlBool bNormalInvertZ;								//!< Invert the normal Z component.
-
 	vlBool bSphereMap;									//!< Generate a sphere map for six faced environment maps.
+	vlBool bSRGB;										//!< Texture is in the SRGB color space.
 } SVTFCreateOptions;
 #pragma pack()
 
@@ -474,30 +462,28 @@ namespace VTFLib
 		//! Generate MIP maps from the main image data.
 		/*!
 			Generates MIP maps for the image down to 1 x 1 pixel using the data in
-			MIP level 0 as the source. Unless otherwise specified, a standard box
-			filter with no sharpening is used during compression.
+			MIP level 0 as the source.
 
 			\param MipmapFilter is the reduction filter to use (default Box).
-			\param SharpenFilter is the sharpening filter to use (default none).
+			\param bSRGB is whether we are generating mips for color data or not.
 			\return true on sucessful creation, otherwise false.
 		*/
-		vlBool GenerateMipmaps(VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
+		vlBool GenerateMipmaps(VTFMipmapFilter MipmapFilter, vlBool bSRGB);
 
 		//! Generate MIP maps from a specific face and frame.
 		/*!
 			Generates MIP maps for the image down to 1 x 1 pixel using the data in
-			the given face and frame as the source. Unless otherwise specified, a
-			standard box filter with no sharpening is used during compression.
+			the given face and frame as the source.
 
 			\param uiFace is the face index to use.
 			\param uiFrame is the frame index to use.
 			\param MipmapFilter is the reduction filter to use (default Box).
-			\param SharpenFilter is the sharpening filter to use (default none).
+			\param bSRGB is whether we are generating mips for color data or not.
 			\note Frames start at index 0 for the first frame. Faces start at index 0
 			for the first face. Cubemaps have 6 faces, others only 1.
 			\return true on sucessful creation, otherwise false.
 		*/
-		vlBool GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
+		vlBool GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter, vlBool bSRGB);
 
 		//! Generate a thumbnail image.
 		/*!
@@ -507,7 +493,7 @@ namespace VTFLib
 			\return true on sucessful creation, otherwise false.
 			\see SetThumbnailData()
 		*/
-		vlBool GenerateThumbnail();
+		vlBool GenerateThumbnail(vlBool bSRGB);
 
 		//! Convert image to a normal map.
 		/*!
@@ -670,26 +656,6 @@ namespace VTFLib
 		*/
 		static vlBool Convert(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat SourceFormat, VTFImageFormat DestFormat);
 
-		//! Convert an image to a normal map.
-		/*!
-			Converts image data stored in RGBA8888 format to a normal map.
-
-			\param lpSourceRGBA8888 is a pointer to the source image data in RGBA8888 format.
-			\param lpDestRGBA8888 is a pointer to the buffer for the converted data.
-			\param uiWidth is the width of the source image in pixels.
-			\param uiHeight is the height of the source image in pixels.
-			\param KernelFilter is the kernel filter to use (default 3x3).
-			\param HeightConversionMethod is the method of determining the height data from the source (default average RGB).
-			\param NormalAlphaResult is how the alpha channel should be handled post processing (defaul make 100% opaque).
-			\param bMinimumZ is the minimum normal Z value (default 0).
-			\param sScale is the normal map height scale (default 2).
-			\param bWrap sets whether the normal map should be tileable (default false).
-			\param bInvertX sets if the normal map should be flipped along its X axis (default false).
-			\param bInvertY sets if the normal map should be flipped along its Y axis (default false).
-			\return true on sucessful conversion, otherwise false.
-		*/
-		static vlBool ConvertToNormalMap(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiWidth, vlUInt uiHeight, VTFKernelFilter KernelFilter = KERNEL_FILTER_3X3, VTFHeightConversionMethod HeightConversionMethod = HEIGHT_CONVERSION_METHOD_AVERAGE_RGB, VTFNormalAlphaResult NormalAlphaResult = NORMAL_ALPHA_RESULT_WHITE, vlByte bMinimumZ = 0, vlSingle sScale = 2.0f, vlBool bWrap = vlFalse, vlBool bInvertX = vlFalse, vlBool bInvertY = vlFalse, vlBool bInvertZ = vlFalse);
-
 		//! Re-sizes an image.
 		/*!
 			Re-sizes an image in RGBA8888 format to the given dimensions using the specified filters.
@@ -701,10 +667,10 @@ namespace VTFLib
 			\param uiDestWidth is the width of the destination image in pixels.
 			\param uiDestHeight is the height of the destination image in pixels.
 			\param ResizeFilter is the image reduction filter to use (default triangle).
-			\param SharpenFilter is the image sharpening filter to use (default none).
+			\param bRGB is whether we are generating mips for color data or not.
 			\return true on sucessful re-size, otherwise false.
 		*/
-		static vlBool Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter = MIPMAP_FILTER_TRIANGLE, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
+		static vlBool Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter, vlBool bSRGB);
 
 	private:
 		

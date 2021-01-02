@@ -594,7 +594,7 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 				{
 					lpNewImageDataRGBA8888[i] = new vlByte[this->ComputeImageSize(uiNewWidth, uiNewHeight, 1, IMAGE_FORMAT_RGBA8888)];
 
-					if(!this->Resize(lpImageDataRGBA8888[i], lpNewImageDataRGBA8888[i], uiWidth, uiHeight, uiNewWidth, uiNewHeight, VTFCreateOptions.ResizeFilter, VTFCreateOptions.ResizeSharpenFilter))
+					if(!this->Resize(lpImageDataRGBA8888[i], lpNewImageDataRGBA8888[i], uiWidth, uiHeight, uiNewWidth, uiNewHeight, VTFCreateOptions.ResizeFilter, VTFCreateOptions.bSRGB))
 					{
 						throw 0;
 					}
@@ -634,47 +634,6 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 			}
 		}
 
-		// Convert the image data to a normal map.
-		if(VTFCreateOptions.bNormalMap && uiFaces == 1)
-		{
-			// Guess some flags the user probably wants...
-			if(VTFCreateOptions.KernelFilter == KERNEL_FILTER_DUDV)
-			{
-				//if(this->Header->Version[0] < VTF_MAJOR_VERSION || (this->Header->Version[0] == VTF_MAJOR_VERSION && this->Header->Version[1] <= VTF_MINOR_VERSION_MIN_RESOURCE))
-				//{
-				//	this->Header->Flags |= TEXTUREFLAGS_DEPRECATED_PREMULTCOLORBYONEOVERMIPLEVEL | TEXTUREFLAGS_DEPRECATED_NORMALTODUDV;
-				//}
-			}
-			else
-			{
-				this->Header->Flags |= TEXTUREFLAGS_NORMAL;
-			}
-
-			// Note: used to use a destination buffer, now just modifies the input data.
-
-			//vlByte *lpImageDataNormalMap = new vlByte[this->ComputeImageSize(this->Header->Width, this->Header->Height, IMAGE_FORMAT_RGBA8888)];
-
-			for(vlUInt i = 0; i < uiFrames; i++)
-			{
-				for(vlUInt j = 0; j < uiFaces; j++)
-				{
-					for(vlUInt k = 0; k < uiSlices; k++)
-					{
-						if(!this->ConvertToNormalMap(lpImageDataRGBA8888[i + j + k], 0/*lpImageDataNormalMap*/, this->Header->Width, this->Header->Height, VTFCreateOptions.KernelFilter, VTFCreateOptions.HeightConversionMethod, VTFCreateOptions.NormalAlphaResult, VTFCreateOptions.bNormalMinimumZ, VTFCreateOptions.sNormalScale, VTFCreateOptions.bNormalWrap, VTFCreateOptions.bNormalInvertX, VTFCreateOptions.bNormalInvertY, VTFCreateOptions.bNormalInvertZ))
-						{
-							//delete []lpImageDataNormalMap;
-
-							throw 0;
-						}
-
-						//memcpy(lpImageDataRGBA8888[i + j], lpImageDataNormalMap, this->ComputeImageSize(this->Header->Width, this->Header->Height, IMAGE_FORMAT_RGBA8888));
-					}
-				}
-			}
-
-			//delete []lpImageDataNormalMap;
-		}
-
 		// Generate mipmaps off source image.
 		if(VTFCreateOptions.bMipmaps && this->Header->MipCount != 1)
 		{
@@ -701,7 +660,7 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 							if (!stbir_resize_uint8_generic(
 								pSource, this->Header->Width, this->Header->Height, 0,
 								temp.data(), usWidth, usHeight, 0,
-								4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, STBIR_COLORSPACE_LINEAR, NULL))
+								4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, VTFCreateOptions.bSRGB ? STBIR_COLORSPACE_SRGB : STBIR_COLORSPACE_LINEAR, NULL))
 							{
 								throw 0;
 							}
@@ -735,7 +694,7 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 		// Generate thumbnail off mipmaps.
 		if(VTFCreateOptions.bThumbnail)
 		{
-			if(!this->GenerateThumbnail())
+			if(!this->GenerateThumbnail(VTFCreateOptions.bSRGB))
 			{
 				throw 0;
 			}
@@ -1981,7 +1940,7 @@ vlVoid *CVTFFile::SetResourceData(vlUInt uiType, vlUInt uiSize, vlVoid *lpData)
 // GenerateMipmaps()
 // Generate mipmaps from the first mipmap level.
 //
-vlBool CVTFFile::GenerateMipmaps(VTFMipmapFilter MipmapFilter, VTFSharpenFilter SharpenFilter)
+vlBool CVTFFile::GenerateMipmaps(VTFMipmapFilter MipmapFilter, vlBool bSRGB)
 {
 	if(!this->IsLoaded())
 		return vlFalse;
@@ -1996,7 +1955,7 @@ vlBool CVTFFile::GenerateMipmaps(VTFMipmapFilter MipmapFilter, VTFSharpenFilter 
 	{
 		for(vlUInt j = 0; j < uiFaceCount; j++)
 		{
-			if(!this->GenerateMipmaps(i, j, MipmapFilter, SharpenFilter))
+			if(!this->GenerateMipmaps(i, j, MipmapFilter, bSRGB))
 			{
 				return vlFalse;
 			}
@@ -2010,7 +1969,7 @@ vlBool CVTFFile::GenerateMipmaps(VTFMipmapFilter MipmapFilter, VTFSharpenFilter 
 // GenerateMipmaps()
 // Generate mipmaps from the first mipmap level of the specified frame and face.
 //
-vlBool CVTFFile::GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter, VTFSharpenFilter SharpenFilter)
+vlBool CVTFFile::GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter, vlBool bSRGB)
 {
 	if(!this->IsLoaded())
 		return vlFalse;
@@ -2029,8 +1988,6 @@ vlBool CVTFFile::GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter 
 	}
 
 	assert(MipmapFilter >= 0 && MipmapFilter < MIPMAP_FILTER_COUNT);
-
-	assert(SharpenFilter >= 0 && SharpenFilter < SHARPEN_FILTER_COUNT);
 
 	if(this->Header->MipCount == 1)
 	{
@@ -2067,22 +2024,6 @@ vlBool CVTFFile::GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter 
 	Options.mipMapGeneration = kGenerateMipMaps;
 
 	Options.mipFilterType = (nvMipFilterTypes)MipmapFilter;
-
-	// Setup sharpen filter.
-	if(SharpenFilter != MAX_MIP_MAPS)
-	{
-		Options.sharpenFilterType = (nvSharpenFilterTypes)SharpenFilter;
-		Options.sharpening_passes_per_mip_level[0] = 0;
-		for(vlUInt k = 1; k < MAX_MIP_MAPS; k++)
-		{
-			Options.sharpening_passes_per_mip_level[k] = 1;
-		}
-		Options.unsharp_data.radius32F = sUnsharpenRadius;
-		Options.unsharp_data.amount32F = sUnsharpenAmount;
-		Options.unsharp_data.threshold32F = sUnsharpenThreshold;
-		Options.xsharp_data.strength32F = sXSharpenStrength;
-		Options.xsharp_data.threshold32F = sXSharpenThreshold;
-	}
 
 	// Set the format.
 	switch(uiDXTQuality)
@@ -2174,7 +2115,7 @@ vlBool CVTFFile::GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter 
 // We should have a mipmap that matches the thumbnail size.  This function finds it and
 // copies it over to the mipmap data, converting it if need be.
 //
-vlBool CVTFFile::GenerateThumbnail()
+vlBool CVTFFile::GenerateThumbnail(vlBool bSRGB)
 {
 	if(!this->IsLoaded())
 		return vlFalse;
@@ -2228,7 +2169,7 @@ vlBool CVTFFile::GenerateThumbnail()
 		return vlFalse;
 	}
 
-	if(!CVTFFile::Resize(lpImageData, lpThumbnailImageData, this->Header->Width, this->Header->Height, this->Header->LowResImageWidth, this->Header->LowResImageHeight, MIPMAP_FILTER_CATROM))
+	if(!CVTFFile::Resize(lpImageData, lpThumbnailImageData, this->Header->Width, this->Header->Height, this->Header->LowResImageWidth, this->Header->LowResImageHeight, MIPMAP_FILTER_CATROM, bSRGB))
 	{
 		delete []lpImageData;
 		delete []lpThumbnailImageData;
@@ -2309,15 +2250,6 @@ vlBool CVTFFile::GenerateNormalMap(vlUInt uiFrame, VTFKernelFilter KernelFilter,
 
 	// Will hold normal image data.
 	//vlByte *lpDest = new vlByte[this->ComputeImageSize(this->Header->Width, this->Header->Height, IMAGE_FORMAT_RGBA8888)];
-
-	// Convert it to a normal map.
-	if(!this->ConvertToNormalMap(lpSource, 0/*lpDest*/, this->Header->Width, this->Header->Height, KernelFilter, HeightConversionMethod, NormalAlphaResult))
-	{
-		delete []lpSource;
-		//delete []lpDest;
-
-		return vlFalse;
-	}
 
 	//delete []lpSource;
 
@@ -3547,62 +3479,14 @@ vlBool CVTFFile::Convert(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUIn
 	return vlFalse;
 }
 
-//
-// ConvertToNormalMap()
-// Convert source data (in format RGBA8888) to a normal map.  If dest data is null then the
-// result is copied back into the source data.
-//
-vlBool CVTFFile::ConvertToNormalMap(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiWidth, vlUInt uiHeight, VTFKernelFilter KernelFilter, VTFHeightConversionMethod HeightConversionMethod, VTFNormalAlphaResult NormalAlphaResult, vlByte bMinimumZ, vlSingle sScale, vlBool bWrap, vlBool bInvertX, vlBool bInvertY, vlBool bInvertZ)
-{
-	assert(KernelFilter >= 0 && KernelFilter < KERNEL_FILTER_COUNT);
-	assert(HeightConversionMethod >= 0 && HeightConversionMethod < HEIGHT_CONVERSION_METHOD_COUNT);
-	assert(NormalAlphaResult >= 0 && NormalAlphaResult < NORMAL_ALPHA_RESULT_COUNT);
-
-#ifdef USE_NVDXT
-	nvCompressionOptions Options = nvCompressionOptions();
-
-	SNVCompressionUserData UserData = SNVCompressionUserData(lpDestRGBA8888 != 0 ? lpDestRGBA8888 : lpSourceRGBA8888, IMAGE_FORMAT_RGBA8888);
-
-	// Don't generate mipmaps.
-	Options.mipMapGeneration = kNoMipMaps;
-
-	// Set normal map options.
-	Options.normalMap.bEnableNormalMapConversion = true;
-	Options.normalMap.filterKernel = (nvNormalMapFilters)(KERNEL_FILTER_BASE + (vlInt)KernelFilter);
-	Options.normalMap.heightConversionMethod = (nvHeightConversionMethods)(HEIGHT_CONVERSION_METHOD_BASE + (vlInt)HeightConversionMethod);
-	Options.normalMap.alphaResult = (nvAlphaResult)(NORMAL_ALPHA_RESULT_BASE + (vlInt)NormalAlphaResult);
-	Options.normalMap.minz = bMinimumZ;
-	Options.normalMap.scale = sScale;
-	Options.normalMap.bWrap = bWrap;
-	Options.normalMap.bInvertX = bInvertX;
-	Options.normalMap.bInvertY = bInvertY;
-	Options.normalMap.bInvertZ = bInvertZ;
-//	Options.normalMap.bSignedOutput = KernelFilter == KERNEL_FILTER_DUDV;	// Normal maps seem to be signed in Source, DuDv maps don't.
-	Options.normalMap.bNormalMapSwapRGB = true;	// Our input is RGB but the output is still BGR unless we set this.
-
-	// Set the format.
-	Options.textureFormat = k8888;
-	Options.bSwapRB = true;
-
-	// The UserData struct gets passed to our callback.
-	Options.user_data = &UserData;
-
-	return nvDXTCompressWrapper(lpSourceRGBA8888, uiWidth, uiHeight, &Options, NVWriteCallback);
-#else
-	LastError.Set("NVDXT support required for CVTFFile::ConvertToNormalMap().");
-	return vlFalse;
-#endif
-}
-
-vlBool CVTFFile::Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter, VTFSharpenFilter SharpenFilter)
+vlBool CVTFFile::Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter, vlBool bSRGB)
 {
 	assert(ResizeFilter >= 0 && ResizeFilter < MIPMAP_FILTER_COUNT);
-	assert(SharpenFilter >= 0 && SharpenFilter < SHARPEN_FILTER_COUNT);
 
 	if (!stbir_resize_uint8_generic(
 		lpSourceRGBA8888, uiSourceWidth, uiSourceHeight, 0,
 		lpDestRGBA8888, uiDestWidth, uiDestHeight, 0,
-		4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, STBIR_COLORSPACE_LINEAR, NULL))
+		4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, bSRGB ? STBIR_COLORSPACE_SRGB : STBIR_COLORSPACE_LINEAR, NULL))
 	{
 		LastError.Set("Error resizing image.");
 		return vlFalse;

@@ -53,7 +53,6 @@ namespace VTFEdit
 			VTFCreateOptions.bResize = Options->ResizeImage;
 			VTFCreateOptions.ResizeMethod = Options->ResizeMethod;
 			VTFCreateOptions.ResizeFilter = Options->ResizeFilter;
-			VTFCreateOptions.ResizeSharpenFilter = Options->ResizeSharpenFilter;
 			VTFCreateOptions.bResizeClamp = Options->ResizeClamp;
 			VTFCreateOptions.uiResizeClampWidth = Options->ResizeClampWidth;
 			VTFCreateOptions.uiResizeClampHeight = Options->ResizeClampHeight;
@@ -61,29 +60,14 @@ namespace VTFEdit
 			VTFCreateOptions.sGammaCorrection = Options->GammaCorrection;
 			VTFCreateOptions.bMipmaps = Options->GenerateMipmaps;
 			VTFCreateOptions.MipmapFilter = Options->MipmapFilter;
-			VTFCreateOptions.MipmapSharpenFilter = Options->MipmapSharpenFilter;
-			VTFCreateOptions.bNormalMap = Options->ConvertToNormalMap;
-			VTFCreateOptions.KernelFilter = Options->KernelFilter;
-			VTFCreateOptions.HeightConversionMethod = Options->HeightConversionMethod;
-			VTFCreateOptions.NormalAlphaResult = Options->AlphaResult;
-			VTFCreateOptions.sNormalScale = Options->NormalScale;
-			VTFCreateOptions.bNormalWrap = Options->NormalWrap;
 			VTFCreateOptions.bThumbnail = Options->GenerateThumbnail;
 			VTFCreateOptions.bReflectivity = Options->ComputeReflectivity;
 			VTFCreateOptions.bSphereMap = Options->GenerateSphereMap;
-
-			vlSetInteger(VTFLIB_DXT_QUALITY, Options->DXTQuality);
+			VTFCreateOptions.bSRGB = Options->sRGB;
 
 			vlSetFloat(VTFLIB_LUMINANCE_WEIGHT_R, Options->LuminanceWeightR);
 			vlSetFloat(VTFLIB_LUMINANCE_WEIGHT_G, Options->LuminanceWeightG);
 			vlSetFloat(VTFLIB_LUMINANCE_WEIGHT_B, Options->LuminanceWeightB);
-
-			vlSetFloat(VTFLIB_UNSHARPEN_RADIUS, Options->UnsharpenMaskRadius);
-			vlSetFloat(VTFLIB_UNSHARPEN_AMOUNT, Options->UnsharpenMaskAmount);
-			vlSetFloat(VTFLIB_UNSHARPEN_THRESHOLD, Options->UnsharpenMaskThreshold);
-
-			vlSetFloat(VTFLIB_XSHARPEN_STRENGTH, Options->XSharpenStrength);
-			vlSetFloat(VTFLIB_XSHARPEN_THRESHOLD, Options->XSharpenThreshold);
 
 			return VTFCreateOptions;
 		}

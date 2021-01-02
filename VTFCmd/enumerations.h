@@ -24,11 +24,6 @@ VTFImageFormat StringToImageFormat(const vlChar *cString);
 VTFImageFlag StringToImageFlag(const vlChar *cString);
 
 VTFMipmapFilter StringToMipmapFilter(const vlChar *cString);
-VTFSharpenFilter StringToSharpenFilter(const vlChar *cString);
-
-VTFKernelFilter StringToKernelFilter(const vlChar *cString);
-VTFHeightConversionMethod StringToHeightConversionMethod(const vlChar *cString);
-VTFNormalAlphaResult StringToNormalAlphaResult(const vlChar *cString);
 
 VTFResizeMethod StringToResizeMethod(const vlChar *cString);
 

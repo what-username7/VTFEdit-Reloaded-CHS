@@ -55,8 +55,6 @@ extern "C" {
 
 typedef enum tagVTFLibOption
 {
-	VTFLIB_DXT_QUALITY = 0,
-
 	VTFLIB_LUMINANCE_WEIGHT_R,
 	VTFLIB_LUMINANCE_WEIGHT_G,
 	VTFLIB_LUMINANCE_WEIGHT_B,
@@ -72,13 +70,6 @@ typedef enum tagVTFLibOption
 	VTFLIB_FP16_HDR_KEY,
 	VTFLIB_FP16_HDR_SHIFT,
 	VTFLIB_FP16_HDR_GAMMA,
-
-	VTFLIB_UNSHARPEN_RADIUS,
-	VTFLIB_UNSHARPEN_AMOUNT,
-	VTFLIB_UNSHARPEN_THRESHOLD,
-
-	VTFLIB_XSHARPEN_STRENGTH,
-	VTFLIB_XSHARPEN_THRESHOLD,
 
 	VTFLIB_VMT_PARSE_MODE
 } VTFLibOption;
@@ -206,73 +197,6 @@ typedef enum tagVTFMipmapFilter
 	MIPMAP_FILTER_COUNT
 } VTFMipmapFilter;
 
-typedef enum tagVTFSharpenFilter
-{
-	SHARPEN_FILTER_NONE = 0,
-	SHARPEN_FILTER_NEGATIVE,
-	SHARPEN_FILTER_LIGHTER,
-	SHARPEN_FILTER_DARKER,
-	SHARPEN_FILTER_CONTRASTMORE,
-	SHARPEN_FILTER_CONTRASTLESS,
-	SHARPEN_FILTER_SMOOTHEN,
-	SHARPEN_FILTER_SHARPENSOFT,
-	SHARPEN_FILTER_SHARPENMEDIUM,
-	SHARPEN_FILTER_SHARPENSTRONG,
-	SHARPEN_FILTER_FINDEDGES,
-	SHARPEN_FILTER_CONTOUR,
-	SHARPEN_FILTER_EDGEDETECT,
-	SHARPEN_FILTER_EDGEDETECTSOFT,
-	SHARPEN_FILTER_EMBOSS,
-	SHARPEN_FILTER_MEANREMOVAL,
-	SHARPEN_FILTER_UNSHARP,
-	SHARPEN_FILTER_XSHARPEN,
-	SHARPEN_FILTER_WARPSHARP,
-	SHARPEN_FILTER_COUNT
-} VTFSharpenFilter;
-
-typedef enum tagDXTQuality
-{
-	DXT_QUALITY_LOW = 0,
-	DXT_QUALITY_MEDIUM,
-	DXT_QUALITY_HIGH,
-	DXT_QUALITY_HIGHEST,
-	DXT_QUALITY_COUNT
-} VTFDXTQuality;
-
-typedef enum tagVTFKernelFilter
-{
-	KERNEL_FILTER_4X = 0,
-	KERNEL_FILTER_3X3,
-	KERNEL_FILTER_5X5,
-	KERNEL_FILTER_7X7,
-	KERNEL_FILTER_9X9,
-	KERNEL_FILTER_DUDV,
-	KERNEL_FILTER_COUNT
-} VTFKernelFilter;
-
-typedef enum tagVTFHeightConversionMethod
-{
-	HEIGHT_CONVERSION_METHOD_ALPHA = 0,
-	HEIGHT_CONVERSION_METHOD_AVERAGE_RGB,
-	HEIGHT_CONVERSION_METHOD_BIASED_RGB,
-	HEIGHT_CONVERSION_METHOD_RED,
-	HEIGHT_CONVERSION_METHOD_GREEN,
-	HEIGHT_CONVERSION_METHOD_BLUE,
-	HEIGHT_CONVERSION_METHOD_MAX_RGB,
-	HEIGHT_CONVERSION_METHOD_COLORSPACE,
-	//HEIGHT_CONVERSION_METHOD_NORMALIZE,
-	HEIGHT_CONVERSION_METHOD_COUNT
-} VTFHeightConversionMethod;
-
-typedef enum tagVTFNormalAlphaResult
-{
-	NORMAL_ALPHA_RESULT_NOCHANGE = 0,
-	NORMAL_ALPHA_RESULT_HEIGHT,
-	NORMAL_ALPHA_RESULT_BLACK,
-	NORMAL_ALPHA_RESULT_WHITE,
-	NORMAL_ALPHA_RESULT_COUNT
-} VTFNormalAlphaResult;
-
 typedef enum tagVTFResizeMethod
 {
     RESIZE_NEAREST_POWER2 = 0,
@@ -347,7 +271,6 @@ typedef struct tagSVTFCreateOptions
 
 	vlBool bMipmaps;									//!< Generate MIPmaps. (Space is always allocated.)
 	VTFMipmapFilter MipmapFilter;						//!< MIP map re-size filter.
-	VTFSharpenFilter MipmapSharpenFilter;				//!< MIP map sharpen filter.
 
 	vlBool bThumbnail;									//!< Generate thumbnail image.
 	vlBool bReflectivity;								//!< Compute image reflectivity.
@@ -355,7 +278,6 @@ typedef struct tagSVTFCreateOptions
 	vlBool bResize;										//!< Resize the input image.
 	VTFResizeMethod ResizeMethod;						//!< New size compution method.
 	VTFMipmapFilter ResizeFilter;						//!< Re-size filter.
-	VTFSharpenFilter ResizeSharpenFilter;				//!< Sharpen filter.
 	vlUInt uiResizeWidth;								//!< New width after re-size if method is RESIZE_SET.
 	vlUInt uiResizeHeight;								//!< New height after re-size if method is RESIZE_SET.
 
@@ -366,18 +288,8 @@ typedef struct tagSVTFCreateOptions
 	vlBool bGammaCorrection;							//!< Gamma correct input image.
 	vlSingle sGammaCorrection;							//!< Gamma correction to apply.
 
-	vlBool bNormalMap;									//!< Convert input image to a normal map.
-	VTFKernelFilter KernelFilter;						//!< Normal map generation kernel.
-	VTFHeightConversionMethod HeightConversionMethod;	//!< Method or determining height from input image during normal map creation.
-	VTFNormalAlphaResult NormalAlphaResult;				//!< How to handle output image alpha channel, post normal map creation.
-	vlByte bNormalMinimumZ;								//!< Minimum normal Z value.
-	vlSingle sNormalScale;								//!< Normal map scale.
-	vlBool bNormalWrap;									//!< Wrap the normal map.
-	vlBool bNormalInvertX;								//!< Invert the normal X component.
-	vlBool bNormalInvertY;								//!< Invert the normal Y component.
-	vlBool bNormalInvertZ;								//!< Invert the normal Z component.
-
 	vlBool bSphereMap;									//!< Generate a sphere map for six faced environment maps.
+	vlBool bSRGB;										//!< Texture is in the SRGB color space.
 } SVTFCreateOptions;
 
 typedef struct tagSVTFTextureLODControlResource
@@ -566,13 +478,10 @@ VTFLIB_API vlVoid *vlImageSetResourceData(vlUInt uiType, vlUInt uiSize, vlVoid *
 // Helper routines.
 //
 
-VTFLIB_API vlBool vlImageGenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter, VTFSharpenFilter SharpenFilter);
-VTFLIB_API vlBool vlImageGenerateAllMipmaps(VTFMipmapFilter MipmapFilter, VTFSharpenFilter SharpenFilter);
+VTFLIB_API vlBool vlImageGenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter);
+VTFLIB_API vlBool vlImageGenerateAllMipmaps(VTFMipmapFilter MipmapFilter);
 
-VTFLIB_API vlBool vlImageGenerateThumbnail();
-
-VTFLIB_API vlBool vlImageGenerateNormalMap(vlUInt uiFrame, VTFKernelFilter KernelFilter, VTFHeightConversionMethod HeightConversionMethod, VTFNormalAlphaResult NormalAlphaResult);
-VTFLIB_API vlBool vlImageGenerateAllNormalMaps(VTFKernelFilter KernelFilter, VTFHeightConversionMethod HeightConversionMethod, VTFNormalAlphaResult NormalAlphaResult);
+VTFLIB_API vlBool vlImageGenerateThumbnail(vlBool bSRGB);
 
 VTFLIB_API vlBool vlImageGenerateSphereMap();
 
@@ -596,9 +505,7 @@ VTFLIB_API vlBool vlImageConvertFromRGBA8888(vlByte *lpSource, vlByte *lpDest, v
 
 VTFLIB_API vlBool vlImageConvert(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat SourceFormat, VTFImageFormat DestFormat);
 
-VTFLIB_API vlBool vlImageConvertToNormalMap(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiWidth, vlUInt uiHeight, VTFKernelFilter KernelFilter, VTFHeightConversionMethod HeightConversionMethod, VTFNormalAlphaResult NormalAlphaResult, vlByte bMinimumZ, vlSingle sScale, vlBool bWrap, vlBool bInvertX, vlBool bInvertY);
-
-VTFLIB_API vlBool vlImageResize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter, VTFSharpenFilter SharpenFilter);
+VTFLIB_API vlBool vlImageResize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter);
 
 VTFLIB_API vlVoid vlImageCorrectImageGamma(vlByte *lpImageDataRGBA8888, vlUInt uiWidth, vlUInt uiHeight, vlSingle sGammaCorrection);
 VTFLIB_API vlVoid vlImageComputeImageReflectivity(vlByte *lpImageDataRGBA8888, vlUInt uiWidth, vlUInt uiHeight, vlSingle *sX, vlSingle *sY, vlSingle *sZ);
@@ -933,13 +840,10 @@ namespace VTFLib
 		vlVoid *SetResourceData(vlUInt uiType, vlUInt uiSize, vlVoid *lpData);
 
 	public:
-		vlBool GenerateMipmaps(VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
-		vlBool GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
+		vlBool GenerateMipmaps(VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX);
+		vlBool GenerateMipmaps(vlUInt uiFace, vlUInt uiFrame, VTFMipmapFilter MipmapFilter = MIPMAP_FILTER_BOX);
 
-		vlBool GenerateThumbnail();
-
-		vlBool GenerateNormalMap(VTFKernelFilter KernelFilter = KERNEL_FILTER_3X3, VTFHeightConversionMethod HeightConversionMethod = HEIGHT_CONVERSION_METHOD_AVERAGE_RGB, VTFNormalAlphaResult NormalAlphaResult = NORMAL_ALPHA_RESULT_WHITE);
-		vlBool GenerateNormalMap(vlUInt uiFrame, VTFKernelFilter KernelFilter = KERNEL_FILTER_3X3, VTFHeightConversionMethod HeightConversionMethod = HEIGHT_CONVERSION_METHOD_AVERAGE_RGB, VTFNormalAlphaResult NormalAlphaResult = NORMAL_ALPHA_RESULT_WHITE);
+		vlBool GenerateThumbnail(vlBool bSRGB);
 
 		vlBool GenerateSphereMap();
 
@@ -964,9 +868,7 @@ namespace VTFLib
 		static vlBool ConvertFromRGBA8888(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat DestFormat);
 		static vlBool Convert(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat SourceFormat, VTFImageFormat DestFormat);
 
-		static vlBool ConvertToNormalMap(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiWidth, vlUInt uiHeight, VTFKernelFilter KernelFilter = KERNEL_FILTER_3X3, VTFHeightConversionMethod HeightConversionMethod = HEIGHT_CONVERSION_METHOD_AVERAGE_RGB, VTFNormalAlphaResult NormalAlphaResult = NORMAL_ALPHA_RESULT_WHITE, vlByte bMinimumZ = 0, vlSingle sScale = 2.0f, vlBool bWrap = vlFalse, vlBool bInvertX = vlFalse, vlBool bInvertY = vlFalse);
-
-		static vlBool Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter = MIPMAP_FILTER_TRIANGLE, VTFSharpenFilter SharpenFilter = SHARPEN_FILTER_NONE);
+		static vlBool Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt uiSourceWidth, vlUInt uiSourceHeight, vlUInt uiDestWidth, vlUInt uiDestHeight, VTFMipmapFilter ResizeFilter, vlBool bSRGB);
 
 	private:
 		static vlBool DecompressDXT1(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight);

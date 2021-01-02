@@ -44,13 +44,6 @@ namespace VTFLib
 	vlSingle sFP16HDRShift = 0.0f;
 	vlSingle sFP16HDRGamma = 2.25f;
 
-	vlSingle sUnsharpenRadius = 2.0f;
-	vlSingle sUnsharpenAmount = 0.5f;
-	vlSingle sUnsharpenThreshold = 0.0f;
-
-	vlSingle sXSharpenStrength = 255.0f;
-	vlSingle sXSharpenThreshold = 255.0f;
-
 	vlUInt uiVMTParseMode = PARSE_MODE_LOOSE;
 }
 
@@ -247,18 +240,6 @@ VTFLIB_API vlSingle vlGetFloat(VTFLibOption Option)
 
 	case VTFLIB_FP16_HDR_KEY:
 		return sFP16HDRKey;
-
-	case VTFLIB_UNSHARPEN_RADIUS:
-		return sUnsharpenRadius;
-	case VTFLIB_UNSHARPEN_AMOUNT:
-		return sUnsharpenAmount;
-	case VTFLIB_UNSHARPEN_THRESHOLD:
-		return sUnsharpenThreshold;
-
-	case VTFLIB_XSHARPEN_STRENGTH:
-		return sXSharpenStrength;
-	case VTFLIB_XSHARPEN_THRESHOLD:
-		return sXSharpenThreshold;
 	}
 
 	return 0.0f;
@@ -292,37 +273,6 @@ VTFLIB_API vlVoid vlSetFloat(VTFLibOption Option, vlSingle sValue)
 		break;
 	case VTFLIB_FP16_HDR_GAMMA:
 		sFP16HDRGamma = sValue;
-		break;
-
-	case VTFLIB_UNSHARPEN_RADIUS:
-		if(sValue <= 0.0f)
-			sValue = 2.0f;
-		sUnsharpenRadius = sValue;
-		break;
-	case VTFLIB_UNSHARPEN_AMOUNT:
-		if(sValue <= 0.0f)
-			sValue = 0.5f;
-		sUnsharpenAmount = sValue;
-		break;
-	case VTFLIB_UNSHARPEN_THRESHOLD:
-		if(sValue < 0.0f)
-			sValue = 0.0f;
-		sUnsharpenThreshold = sValue;
-		break;
-
-	case VTFLIB_XSHARPEN_STRENGTH:
-		if(sValue < 0.0f)
-			sValue = 0.0f;
-		if(sValue > 255.0f)
-			sValue = 255.0f;
-		sXSharpenStrength = sValue;
-		break;
-	case VTFLIB_XSHARPEN_THRESHOLD:
-		if(sValue < 0.0f)
-			sValue = 0.0f;
-		if(sValue > 255.0f)
-			sValue = 255.0f;
-		sXSharpenThreshold = sValue;
 		break;
 	}
 }
