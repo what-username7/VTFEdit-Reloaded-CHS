@@ -2617,7 +2617,7 @@ namespace VTFEdit
 		private: System::String^ GetAppDataFolder()
 		{
 			System::String ^pDirectory = Environment::GetFolderPath(Environment::SpecialFolder::LocalApplicationData);
-			pDirectory = IO::Path::Combine(pDirectory, "Nem's Tools");
+			pDirectory = IO::Path::Combine(pDirectory, "Frog Co");
 			pDirectory = IO::Path::Combine(pDirectory, Application::ProductName);
 
 			if(!IO::Directory::Exists(pDirectory))
