@@ -51,11 +51,6 @@ Correct vtfcmd usage:
  -gcorrection <single>    (Gamma correction to use.)
  -nomipmaps               (Don't generate mipmaps.)
  -mfilter <string>        (Mipmap filter to use.)
- -normal                  (Convert input file to normal map.)
- -nkernel <string>        (Normal map generation kernel to use.)
- -nheight <string>        (Normal map height calculation to use.)
- -nalpha <string>         (Normal map alpha result to set.)
- -nscale <single>         (Normal map scale to use.)
  -nwrap                   (Wrap the normal map for tiled textures.)
  -bumpscale <single>      (Engine bump mapping scale to use.)
  -nothumbnail             (Don't generate thumbnail image.)
@@ -70,10 +65,18 @@ Correct vtfcmd usage:
 
 Example vtfcmd usage:
 vtfcmd.exe -file "C:\texture1.bmp" -file "C:\texture2.bmp" -format "dxt1"
-vtfcmd.exe -file "C:\texture.bmp" -format "bgr888" -normal -postfix "normal_"
 vtfcmd.exe -folder "C:\input\*.tga" -output "C:\output" -recurse -pause
 vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 ```
+
+## VTFEdit Reloaded Changelog
+
+  v2.0.0
+  - Migrated to using AMD Compressonator for DXT compression.
+  - Fix the green tinge when exporting textures
+  - Respect sRGB-ness when generating mipmaps and resizing.
+  - Ported to using the latest CLR and VS 2019.
+  - Removed crufty sharpening filters (no longer needed with proper sRGB)
 
 ## Library Changelog
 
