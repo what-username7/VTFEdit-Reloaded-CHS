@@ -76,9 +76,10 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdparty\lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)\VTFLib\$(Platform)\$(Configuration)\VTFLib.dll" "$(TargetDir)"
-copy "$(SolutionDir)\VTFLib\$(Platform)\$(Configuration)\VTFLib.pdb" "$(TargetDir)"
-copy "$(SolutionDir)\..\..\bin\x64\DevIL.dll" "$(TargetDir)"</Command>
+      <Command>copy "$(SolutionDir)VTFLib\$(Platform)\$(Configuration)\VTFLib.dll" "$(TargetDir)"
+copy "$(SolutionDir)VTFLib\$(Platform)\$(Configuration)\VTFLib.pdb" "$(TargetDir)"
+copy "$(SolutionDir)..\..\thirdparty\bin\DevIL.dll" "$(TargetDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,8 +109,8 @@ copy "$(SolutionDir)\..\..\bin\x64\DevIL.dll" "$(TargetDir)"</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdparty\lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)\VTFLib\$(Platform)\$(Configuration)\VTFLib.dll" "$(TargetDir)"
-copy "$(SolutionDir)\..\..\thirdparty\bin\DevIL.dll" "$(TargetDir)"
+      <Command>copy "$(SolutionDir)VTFLib\$(Platform)\$(Configuration)\VTFLib.dll" "$(TargetDir)"
+copy "$(SolutionDir)..\..\thirdparty\bin\DevIL.dll" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
