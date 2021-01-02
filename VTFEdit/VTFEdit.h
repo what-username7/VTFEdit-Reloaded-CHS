@@ -767,7 +767,7 @@ namespace VTFEdit
 			this->pnlFileName->AutoSize = System::Windows::Forms::StatusBarPanelAutoSize::Spring;
 			this->pnlFileName->MinWidth = 100;
 			this->pnlFileName->Name = L"pnlFileName";
-			this->pnlFileName->Width = 581;
+			this->pnlFileName->Width = 577;
 			// 
 			// pnlInfo1
 			// 
@@ -975,7 +975,7 @@ namespace VTFEdit
 			this->tabImage->Controls->Add(this->grpFlags);
 			this->tabImage->Location = System::Drawing::Point(4, 25);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(251, 567);
+			this->tabImage->Size = System::Drawing::Size(251, 481);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -1173,7 +1173,7 @@ namespace VTFEdit
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFlags->Location = System::Drawing::Point(10, 277);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(230, 273);
+			this->grpFlags->Size = System::Drawing::Size(230, 187);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1186,7 +1186,7 @@ namespace VTFEdit
 			this->lstFlags->CheckOnClick = true;
 			this->lstFlags->Location = System::Drawing::Point(10, 18);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(211, 225);
+			this->lstFlags->Size = System::Drawing::Size(211, 137);
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
 			// 
@@ -1197,7 +1197,7 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpFileInfo);
 			this->tabInfo->Location = System::Drawing::Point(4, 25);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(251, 567);
+			this->tabInfo->Size = System::Drawing::Size(251, 481);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1529,7 +1529,7 @@ namespace VTFEdit
 			this->tabResources->Controls->Add(this->grpResourceInfo);
 			this->tabResources->Location = System::Drawing::Point(4, 25);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(251, 567);
+			this->tabResources->Size = System::Drawing::Size(251, 481);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1542,7 +1542,7 @@ namespace VTFEdit
 			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpResources->Location = System::Drawing::Point(10, 83);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(230, 467);
+			this->grpResources->Size = System::Drawing::Size(230, 381);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1554,7 +1554,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treResources->Location = System::Drawing::Point(10, 18);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(211, 440);
+			this->treResources->Size = System::Drawing::Size(211, 354);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1922,7 +1922,7 @@ namespace VTFEdit
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Menu = this->mnuMain;
 			this->Name = L"CVTFEdit";
-			this->Text = L"VTFEdit";
+			this->Text = L"VTFEdit Reloaded";
 			this->Closing += gcnew System::ComponentModel::CancelEventHandler(this, &CVTFEdit::CVTFEdit_Closing);
 			this->Load += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Load);
 			this->Move += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Move);

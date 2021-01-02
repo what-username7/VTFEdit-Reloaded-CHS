@@ -40,15 +40,18 @@ namespace VTFEdit
 
 	private: System::Windows::Forms::Button ^ btnOK;
 	private: System::Windows::Forms::GroupBox ^ grpAbout;
-	private: System::Windows::Forms::Label ^ lblLines;
+
 	private: System::Windows::Forms::Label ^ lblLanguage;
-	private: System::Windows::Forms::Label ^ lblDate;
+
 	private: System::Windows::Forms::Label ^ lblAuthor;
 	private: System::Windows::Forms::LinkLabel ^ lnkNemsTools;
 	private: System::Windows::Forms::PictureBox ^ picIcon;
 	private: System::Windows::Forms::LinkLabel ^ lnkWunderboy;
-	private: System::Windows::Forms::Label ^ lblVTFLibVersion;
+
 	private: System::Windows::Forms::Label ^ lblVTFEditVersion;
+	private: System::Windows::Forms::Label^ lblVTFLibVersion;
+	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+
 
 	private:
 		/// <summary>
@@ -62,148 +65,144 @@ namespace VTFEdit
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Resources::ResourceManager ^ resources = gcnew System::Resources::ResourceManager(VTFEdit::CAbout::typeid);
-			this->btnOK = gcnew System::Windows::Forms::Button();
-			this->grpAbout = gcnew System::Windows::Forms::GroupBox();
-			this->lblVTFLibVersion = gcnew System::Windows::Forms::Label();
-			this->lnkWunderboy = gcnew System::Windows::Forms::LinkLabel();
-			this->lblLines = gcnew System::Windows::Forms::Label();
-			this->lblLanguage = gcnew System::Windows::Forms::Label();
-			this->lblDate = gcnew System::Windows::Forms::Label();
-			this->lblAuthor = gcnew System::Windows::Forms::Label();
-			this->lblVTFEditVersion = gcnew System::Windows::Forms::Label();
-			this->lnkNemsTools = gcnew System::Windows::Forms::LinkLabel();
-			this->picIcon = gcnew System::Windows::Forms::PictureBox();
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(CAbout::typeid));
+			this->btnOK = (gcnew System::Windows::Forms::Button());
+			this->grpAbout = (gcnew System::Windows::Forms::GroupBox());
+			this->lnkWunderboy = (gcnew System::Windows::Forms::LinkLabel());
+			this->lblLanguage = (gcnew System::Windows::Forms::Label());
+			this->lblAuthor = (gcnew System::Windows::Forms::Label());
+			this->lblVTFEditVersion = (gcnew System::Windows::Forms::Label());
+			this->lnkNemsTools = (gcnew System::Windows::Forms::LinkLabel());
+			this->picIcon = (gcnew System::Windows::Forms::PictureBox());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->lblVTFLibVersion = (gcnew System::Windows::Forms::Label());
 			this->grpAbout->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picIcon))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnOK
 			// 
 			this->btnOK->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnOK->Location = System::Drawing::Point(104, 200);
-			this->btnOK->Name = "btnOK";
-			this->btnOK->Size = System::Drawing::Size(80, 23);
+			this->btnOK->Location = System::Drawing::Point(299, 251);
+			this->btnOK->Name = L"btnOK";
+			this->btnOK->Size = System::Drawing::Size(309, 26);
 			this->btnOK->TabIndex = 0;
-			this->btnOK->Text = "&OK";
+			this->btnOK->Text = L"&OK";
 			this->btnOK->Click += gcnew System::EventHandler(this, &CAbout::btnOK_Click);
 			// 
 			// grpAbout
 			// 
 			this->grpAbout->Controls->Add(this->lblVTFLibVersion);
+			this->grpAbout->Controls->Add(this->btnOK);
+			this->grpAbout->Controls->Add(this->linkLabel1);
 			this->grpAbout->Controls->Add(this->lnkWunderboy);
-			this->grpAbout->Controls->Add(this->lblLines);
 			this->grpAbout->Controls->Add(this->lblLanguage);
-			this->grpAbout->Controls->Add(this->lblDate);
 			this->grpAbout->Controls->Add(this->lblAuthor);
 			this->grpAbout->Controls->Add(this->lblVTFEditVersion);
 			this->grpAbout->Controls->Add(this->lnkNemsTools);
 			this->grpAbout->Controls->Add(this->picIcon);
 			this->grpAbout->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpAbout->Location = System::Drawing::Point(8, 8);
-			this->grpAbout->Name = "grpAbout";
-			this->grpAbout->Size = System::Drawing::Size(272, 184);
+			this->grpAbout->Location = System::Drawing::Point(10, 9);
+			this->grpAbout->Name = L"grpAbout";
+			this->grpAbout->Size = System::Drawing::Size(629, 288);
 			this->grpAbout->TabIndex = 1;
 			this->grpAbout->TabStop = false;
-			// 
-			// lblVTFLibVersion
-			// 
-			this->lblVTFLibVersion->Location = System::Drawing::Point(68, 40);
-			this->lblVTFLibVersion->Name = "lblVTFLibVersion";
-			this->lblVTFLibVersion->Size = System::Drawing::Size(136, 16);
-			this->lblVTFLibVersion->TabIndex = 0;
 			// 
 			// lnkWunderboy
 			// 
 			this->lnkWunderboy->LinkColor = System::Drawing::Color::Black;
-			this->lnkWunderboy->Location = System::Drawing::Point(16, 160);
-			this->lnkWunderboy->Name = "lnkWunderboy";
-			this->lnkWunderboy->Size = System::Drawing::Size(88, 16);
+			this->lnkWunderboy->Location = System::Drawing::Point(502, 184);
+			this->lnkWunderboy->Name = L"lnkWunderboy";
+			this->lnkWunderboy->Size = System::Drawing::Size(106, 18);
 			this->lnkWunderboy->TabIndex = 6;
 			this->lnkWunderboy->TabStop = true;
-			this->lnkWunderboy->Text = "wunderboy.org";
+			this->lnkWunderboy->Text = L"wunderboy.org";
 			this->lnkWunderboy->VisitedLinkColor = System::Drawing::Color::Black;
 			this->lnkWunderboy->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &CAbout::lnkWunderboy_LinkClicked);
 			// 
-			// lblLines
-			// 
-			this->lblLines->Location = System::Drawing::Point(68, 136);
-			this->lblLines->Name = "lblLine";
-			this->lblLines->Size = System::Drawing::Size(136, 16);
-			this->lblLines->TabIndex = 5;
-			this->lblLines->Text = "Lines: 9,003";
-			// 
 			// lblLanguage
 			// 
-			this->lblLanguage->Location = System::Drawing::Point(68, 120);
-			this->lblLanguage->Name = "lblLanguage";
-			this->lblLanguage->Size = System::Drawing::Size(136, 16);
+			this->lblLanguage->Location = System::Drawing::Point(284, 96);
+			this->lblLanguage->Name = L"lblLanguage";
+			this->lblLanguage->Size = System::Drawing::Size(163, 19);
 			this->lblLanguage->TabIndex = 4;
-			this->lblLanguage->Text = "Written In: C++";
-			// 
-			// lblDate
-			// 
-			this->lblDate->Location = System::Drawing::Point(68, 104);
-			this->lblDate->Name = "lblDate";
-			this->lblDate->Size = System::Drawing::Size(136, 16);
-			this->lblDate->TabIndex = 3;
-			this->lblDate->Text = "Date: July 25, 2011";
+			this->lblLanguage->Text = L"Written In: C++";
 			// 
 			// lblAuthor
 			// 
-			this->lblAuthor->Location = System::Drawing::Point(68, 72);
-			this->lblAuthor->Name = "lblAuthor";
-			this->lblAuthor->Size = System::Drawing::Size(136, 32);
+			this->lblAuthor->Location = System::Drawing::Point(284, 59);
+			this->lblAuthor->Name = L"lblAuthor";
+			this->lblAuthor->Size = System::Drawing::Size(346, 37);
 			this->lblAuthor->TabIndex = 2;
-			this->lblAuthor->Text = "Author: Neil Jedrzejewski && Ryan Gregg";
+			this->lblAuthor->Text = L"Author: Joshua Ashton, Neil Jedrzejewski && Ryan Gregg";
 			// 
 			// lblVTFEditVersion
 			// 
-			this->lblVTFEditVersion->Location = System::Drawing::Point(68, 56);
-			this->lblVTFEditVersion->Name = "lblVTFEditVersion";
-			this->lblVTFEditVersion->Size = System::Drawing::Size(136, 16);
+			this->lblVTFEditVersion->Location = System::Drawing::Point(393, 31);
+			this->lblVTFEditVersion->Name = L"lblVTFEditVersion";
+			this->lblVTFEditVersion->Size = System::Drawing::Size(126, 18);
 			this->lblVTFEditVersion->TabIndex = 1;
-			this->lblVTFEditVersion->Text = "VTFEdit Version: 1.3.3";
+			this->lblVTFEditVersion->Text = L"VTFEdit Reloaded Version: 2.0.0";
 			// 
 			// lnkNemsTools
 			// 
 			this->lnkNemsTools->LinkColor = System::Drawing::Color::Black;
-			this->lnkNemsTools->Location = System::Drawing::Point(176, 160);
-			this->lnkNemsTools->Name = "lnkNemsTool";
-			this->lnkNemsTools->Size = System::Drawing::Size(88, 16);
+			this->lnkNemsTools->Location = System::Drawing::Point(296, 184);
+			this->lnkNemsTools->Name = L"lnkNemsTools";
+			this->lnkNemsTools->Size = System::Drawing::Size(106, 18);
 			this->lnkNemsTools->TabIndex = 7;
 			this->lnkNemsTools->TabStop = true;
-			this->lnkNemsTools->Text = "nemesis.twl.net";
+			this->lnkNemsTools->Text = L"nemesis.twl.net";
 			this->lnkNemsTools->VisitedLinkColor = System::Drawing::Color::Black;
 			this->lnkNemsTools->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &CAbout::lnkNemsTools_LinkClicked);
 			// 
 			// picIcon
 			// 
-			this->picIcon->Image = (safe_cast<System::Drawing::Image ^ >(resources->GetObject("picIcon.Image")));
-			this->picIcon->Location = System::Drawing::Point(8, 16);
-			this->picIcon->Name = "picIcon";
-			this->picIcon->Size = System::Drawing::Size(32, 32);
+			this->picIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picIcon.Image")));
+			this->picIcon->Location = System::Drawing::Point(10, 18);
+			this->picIcon->Name = L"picIcon";
+			this->picIcon->Size = System::Drawing::Size(268, 259);
 			this->picIcon->TabIndex = 0;
 			this->picIcon->TabStop = false;
+			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->Location = System::Drawing::Point(418, 139);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(64, 29);
+			this->linkLabel1->TabIndex = 8;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"froggi.es";
+			this->linkLabel1->VisitedLinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &CAbout::linkLabel1_LinkClicked);
+			// 
+			// lblVTFLibVersion
+			// 
+			this->lblVTFLibVersion->Location = System::Drawing::Point(453, 96);
+			this->lblVTFLibVersion->Name = L"lblVTFLibVersion";
+			this->lblVTFLibVersion->Size = System::Drawing::Size(163, 19);
+			this->lblVTFLibVersion->TabIndex = 2;
 			// 
 			// CAbout
 			// 
 			this->AcceptButton = this->btnOK;
-			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
-			this->ClientSize = System::Drawing::Size(288, 232);
-			this->Controls->Add(this->btnOK);
+			this->AutoScaleBaseSize = System::Drawing::Size(6, 15);
+			this->ClientSize = System::Drawing::Size(641, 311);
 			this->Controls->Add(this->grpAbout);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
-			this->Icon = (safe_cast <System::Drawing::Icon ^ >(resources->GetObject("$this.Icon")));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
-			this->Name = "CAbout";
+			this->Name = L"CAbout";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = "About VTFEdit";
+			this->Text = L"About VTFEdit Reloaded";
 			this->grpAbout->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picIcon))->EndInit();
 			this->ResumeLayout(false);
 
-		}		
+		}
 
 		private: System::Void lnkWunderboy_LinkClicked(System::Object ^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs ^ e)
 		{
@@ -233,5 +232,17 @@ namespace VTFEdit
 		{
 			this->Close();
 		}
-	};
+
+		private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e)
+		{
+			try
+			{
+				System::Diagnostics::Process::Start("https://froggi.es");
+			}
+			catch(Exception ^)
+			{
+
+			}
+		}
+};
 }
