@@ -68,14 +68,14 @@ namespace VTFEdit
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(CAbout::typeid));
 			this->btnOK = (gcnew System::Windows::Forms::Button());
 			this->grpAbout = (gcnew System::Windows::Forms::GroupBox());
+			this->lblVTFLibVersion = (gcnew System::Windows::Forms::Label());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->lnkWunderboy = (gcnew System::Windows::Forms::LinkLabel());
 			this->lblLanguage = (gcnew System::Windows::Forms::Label());
 			this->lblAuthor = (gcnew System::Windows::Forms::Label());
 			this->lblVTFEditVersion = (gcnew System::Windows::Forms::Label());
 			this->lnkNemsTools = (gcnew System::Windows::Forms::LinkLabel());
 			this->picIcon = (gcnew System::Windows::Forms::PictureBox());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
-			this->lblVTFLibVersion = (gcnew System::Windows::Forms::Label());
 			this->grpAbout->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picIcon))->BeginInit();
 			this->SuspendLayout();
@@ -83,9 +83,9 @@ namespace VTFEdit
 			// btnOK
 			// 
 			this->btnOK->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnOK->Location = System::Drawing::Point(299, 251);
+			this->btnOK->Location = System::Drawing::Point(299, 239);
 			this->btnOK->Name = L"btnOK";
-			this->btnOK->Size = System::Drawing::Size(309, 26);
+			this->btnOK->Size = System::Drawing::Size(309, 38);
 			this->btnOK->TabIndex = 0;
 			this->btnOK->Text = L"&OK";
 			this->btnOK->Click += gcnew System::EventHandler(this, &CAbout::btnOK_Click);
@@ -108,12 +108,31 @@ namespace VTFEdit
 			this->grpAbout->TabIndex = 1;
 			this->grpAbout->TabStop = false;
 			// 
+			// lblVTFLibVersion
+			// 
+			this->lblVTFLibVersion->Location = System::Drawing::Point(453, 96);
+			this->lblVTFLibVersion->Name = L"lblVTFLibVersion";
+			this->lblVTFLibVersion->Size = System::Drawing::Size(163, 19);
+			this->lblVTFLibVersion->TabIndex = 2;
+			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->Location = System::Drawing::Point(418, 139);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(84, 29);
+			this->linkLabel1->TabIndex = 8;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"froggi.es";
+			this->linkLabel1->VisitedLinkColor = System::Drawing::Color::Black;
+			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &CAbout::linkLabel1_LinkClicked);
+			// 
 			// lnkWunderboy
 			// 
 			this->lnkWunderboy->LinkColor = System::Drawing::Color::Black;
-			this->lnkWunderboy->Location = System::Drawing::Point(502, 184);
+			this->lnkWunderboy->Location = System::Drawing::Point(490, 184);
 			this->lnkWunderboy->Name = L"lnkWunderboy";
-			this->lnkWunderboy->Size = System::Drawing::Size(106, 18);
+			this->lnkWunderboy->Size = System::Drawing::Size(118, 33);
 			this->lnkWunderboy->TabIndex = 6;
 			this->lnkWunderboy->TabStop = true;
 			this->lnkWunderboy->Text = L"wunderboy.org";
@@ -122,7 +141,7 @@ namespace VTFEdit
 			// 
 			// lblLanguage
 			// 
-			this->lblLanguage->Location = System::Drawing::Point(284, 96);
+			this->lblLanguage->Location = System::Drawing::Point(284, 120);
 			this->lblLanguage->Name = L"lblLanguage";
 			this->lblLanguage->Size = System::Drawing::Size(163, 19);
 			this->lblLanguage->TabIndex = 4;
@@ -132,15 +151,15 @@ namespace VTFEdit
 			// 
 			this->lblAuthor->Location = System::Drawing::Point(284, 59);
 			this->lblAuthor->Name = L"lblAuthor";
-			this->lblAuthor->Size = System::Drawing::Size(346, 37);
+			this->lblAuthor->Size = System::Drawing::Size(346, 61);
 			this->lblAuthor->TabIndex = 2;
 			this->lblAuthor->Text = L"Author: Joshua Ashton, Neil Jedrzejewski && Ryan Gregg";
 			// 
 			// lblVTFEditVersion
 			// 
-			this->lblVTFEditVersion->Location = System::Drawing::Point(393, 31);
+			this->lblVTFEditVersion->Location = System::Drawing::Point(333, 22);
 			this->lblVTFEditVersion->Name = L"lblVTFEditVersion";
-			this->lblVTFEditVersion->Size = System::Drawing::Size(126, 18);
+			this->lblVTFEditVersion->Size = System::Drawing::Size(245, 27);
 			this->lblVTFEditVersion->TabIndex = 1;
 			this->lblVTFEditVersion->Text = L"VTFEdit Reloaded Version: 2.0.0";
 			// 
@@ -149,7 +168,7 @@ namespace VTFEdit
 			this->lnkNemsTools->LinkColor = System::Drawing::Color::Black;
 			this->lnkNemsTools->Location = System::Drawing::Point(296, 184);
 			this->lnkNemsTools->Name = L"lnkNemsTools";
-			this->lnkNemsTools->Size = System::Drawing::Size(106, 18);
+			this->lnkNemsTools->Size = System::Drawing::Size(130, 33);
 			this->lnkNemsTools->TabIndex = 7;
 			this->lnkNemsTools->TabStop = true;
 			this->lnkNemsTools->Text = L"nemesis.twl.net";
@@ -165,31 +184,13 @@ namespace VTFEdit
 			this->picIcon->TabIndex = 0;
 			this->picIcon->TabStop = false;
 			// 
-			// linkLabel1
-			// 
-			this->linkLabel1->LinkColor = System::Drawing::Color::Black;
-			this->linkLabel1->Location = System::Drawing::Point(418, 139);
-			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(64, 29);
-			this->linkLabel1->TabIndex = 8;
-			this->linkLabel1->TabStop = true;
-			this->linkLabel1->Text = L"froggi.es";
-			this->linkLabel1->VisitedLinkColor = System::Drawing::Color::Black;
-			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &CAbout::linkLabel1_LinkClicked);
-			// 
-			// lblVTFLibVersion
-			// 
-			this->lblVTFLibVersion->Location = System::Drawing::Point(453, 96);
-			this->lblVTFLibVersion->Name = L"lblVTFLibVersion";
-			this->lblVTFLibVersion->Size = System::Drawing::Size(163, 19);
-			this->lblVTFLibVersion->TabIndex = 2;
-			// 
 			// CAbout
 			// 
 			this->AcceptButton = this->btnOK;
-			this->AutoScaleBaseSize = System::Drawing::Size(6, 15);
+			this->AutoScaleBaseSize = System::Drawing::Size(8, 19);
 			this->ClientSize = System::Drawing::Size(641, 311);
 			this->Controls->Add(this->grpAbout);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;

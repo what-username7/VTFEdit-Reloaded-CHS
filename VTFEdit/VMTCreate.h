@@ -111,67 +111,67 @@ namespace VTFEdit
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			System::Resources::ResourceManager ^  resources = gcnew System::Resources::ResourceManager(VTFEdit::CVMTCreate::typeid);
-			this->grpTextures = gcnew System::Windows::Forms::GroupBox();
-			this->btnNormalTexture = gcnew System::Windows::Forms::Button();
-			this->txtNormalTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblNormalTexture = gcnew System::Windows::Forms::Label();
-			this->btnDuDvTexture = gcnew System::Windows::Forms::Button();
-			this->txtDuDvTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblDuDvTexture = gcnew System::Windows::Forms::Label();
-			this->btnBumpTexture2 = gcnew System::Windows::Forms::Button();
-			this->txtBumpTexture2 = gcnew System::Windows::Forms::TextBox();
-			this->lblBumpTexture2 = gcnew System::Windows::Forms::Label();
-			this->btnBaseTexture2 = gcnew System::Windows::Forms::Button();
-			this->txtBaseTexture2 = gcnew System::Windows::Forms::TextBox();
-			this->lblBaseTexture2 = gcnew System::Windows::Forms::Label();
-			this->btnToolTexture = gcnew System::Windows::Forms::Button();
-			this->txtToolTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblToolTexture = gcnew System::Windows::Forms::Label();
-			this->btnDetailTexture = gcnew System::Windows::Forms::Button();
-			this->txtDetailTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblDetailTexture = gcnew System::Windows::Forms::Label();
-			this->btnEnviromentMaskTexture = gcnew System::Windows::Forms::Button();
-			this->txtEnviromentMaskTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblEnviromentMaskTexture = gcnew System::Windows::Forms::Label();
-			this->btnEnviromentTexture = gcnew System::Windows::Forms::Button();
-			this->txtEnviromentTexture = gcnew System::Windows::Forms::TextBox();
-			this->lblEnviromentTexture = gcnew System::Windows::Forms::Label();
-			this->btnBumpTexture1 = gcnew System::Windows::Forms::Button();
-			this->txtBumpTexture1 = gcnew System::Windows::Forms::TextBox();
-			this->lblBumpTexture1 = gcnew System::Windows::Forms::Label();
-			this->btnBaseTexture1 = gcnew System::Windows::Forms::Button();
-			this->txtBaseTexture1 = gcnew System::Windows::Forms::TextBox();
-			this->lblBaseTexture1 = gcnew System::Windows::Forms::Label();
-			this->dlgOpenVTFFile = gcnew System::Windows::Forms::OpenFileDialog();
-			this->tabMain = gcnew System::Windows::Forms::TabControl();
-			this->tabTextures = gcnew System::Windows::Forms::TabPage();
-			this->tabOptions = gcnew System::Windows::Forms::TabPage();
-			this->grpOptions = gcnew System::Windows::Forms::GroupBox();
-			this->chkVertexAlpha = gcnew System::Windows::Forms::CheckBox();
-			this->chkVertexColor = gcnew System::Windows::Forms::CheckBox();
-			this->chkNoDecal = gcnew System::Windows::Forms::CheckBox();
-			this->chkNoLOD = gcnew System::Windows::Forms::CheckBox();
-			this->chkAlphaTest = gcnew System::Windows::Forms::CheckBox();
-			this->chkNoCull = gcnew System::Windows::Forms::CheckBox();
-			this->chkEnviromentMapSaturation = gcnew System::Windows::Forms::CheckBox();
-			this->chkEnviromentMapContrast = gcnew System::Windows::Forms::CheckBox();
-			this->chkAdditive = gcnew System::Windows::Forms::CheckBox();
-			this->chkTranslucent = gcnew System::Windows::Forms::CheckBox();
-			this->txtKeywords = gcnew System::Windows::Forms::TextBox();
-			this->lblKeywords = gcnew System::Windows::Forms::Label();
-			this->cboSurface2 = gcnew System::Windows::Forms::ComboBox();
-			this->lblSurface2 = gcnew System::Windows::Forms::Label();
-			this->cboSurface1 = gcnew System::Windows::Forms::ComboBox();
-			this->lblSurface1 = gcnew System::Windows::Forms::Label();
-			this->cboShader = gcnew System::Windows::Forms::ComboBox();
-			this->lblShader = gcnew System::Windows::Forms::Label();
-			this->tipMain = gcnew System::Windows::Forms::ToolTip(this->components);
-			this->btnClose = gcnew System::Windows::Forms::Button();
-			this->btnCreate = gcnew System::Windows::Forms::Button();
-			this->btnClear = gcnew System::Windows::Forms::Button();
-			this->dlgSaveVMTFile = gcnew System::Windows::Forms::SaveFileDialog();
+			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(CVMTCreate::typeid));
+			this->grpTextures = (gcnew System::Windows::Forms::GroupBox());
+			this->btnNormalTexture = (gcnew System::Windows::Forms::Button());
+			this->txtNormalTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblNormalTexture = (gcnew System::Windows::Forms::Label());
+			this->btnDuDvTexture = (gcnew System::Windows::Forms::Button());
+			this->txtDuDvTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblDuDvTexture = (gcnew System::Windows::Forms::Label());
+			this->btnBumpTexture2 = (gcnew System::Windows::Forms::Button());
+			this->txtBumpTexture2 = (gcnew System::Windows::Forms::TextBox());
+			this->lblBumpTexture2 = (gcnew System::Windows::Forms::Label());
+			this->btnBaseTexture2 = (gcnew System::Windows::Forms::Button());
+			this->txtBaseTexture2 = (gcnew System::Windows::Forms::TextBox());
+			this->lblBaseTexture2 = (gcnew System::Windows::Forms::Label());
+			this->btnToolTexture = (gcnew System::Windows::Forms::Button());
+			this->txtToolTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblToolTexture = (gcnew System::Windows::Forms::Label());
+			this->btnDetailTexture = (gcnew System::Windows::Forms::Button());
+			this->txtDetailTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblDetailTexture = (gcnew System::Windows::Forms::Label());
+			this->btnEnviromentMaskTexture = (gcnew System::Windows::Forms::Button());
+			this->txtEnviromentMaskTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblEnviromentMaskTexture = (gcnew System::Windows::Forms::Label());
+			this->btnEnviromentTexture = (gcnew System::Windows::Forms::Button());
+			this->txtEnviromentTexture = (gcnew System::Windows::Forms::TextBox());
+			this->lblEnviromentTexture = (gcnew System::Windows::Forms::Label());
+			this->btnBumpTexture1 = (gcnew System::Windows::Forms::Button());
+			this->txtBumpTexture1 = (gcnew System::Windows::Forms::TextBox());
+			this->lblBumpTexture1 = (gcnew System::Windows::Forms::Label());
+			this->btnBaseTexture1 = (gcnew System::Windows::Forms::Button());
+			this->txtBaseTexture1 = (gcnew System::Windows::Forms::TextBox());
+			this->lblBaseTexture1 = (gcnew System::Windows::Forms::Label());
+			this->dlgOpenVTFFile = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->tabMain = (gcnew System::Windows::Forms::TabControl());
+			this->tabTextures = (gcnew System::Windows::Forms::TabPage());
+			this->tabOptions = (gcnew System::Windows::Forms::TabPage());
+			this->grpOptions = (gcnew System::Windows::Forms::GroupBox());
+			this->chkVertexAlpha = (gcnew System::Windows::Forms::CheckBox());
+			this->chkVertexColor = (gcnew System::Windows::Forms::CheckBox());
+			this->chkNoDecal = (gcnew System::Windows::Forms::CheckBox());
+			this->chkNoLOD = (gcnew System::Windows::Forms::CheckBox());
+			this->chkAlphaTest = (gcnew System::Windows::Forms::CheckBox());
+			this->chkNoCull = (gcnew System::Windows::Forms::CheckBox());
+			this->chkEnviromentMapSaturation = (gcnew System::Windows::Forms::CheckBox());
+			this->chkEnviromentMapContrast = (gcnew System::Windows::Forms::CheckBox());
+			this->chkAdditive = (gcnew System::Windows::Forms::CheckBox());
+			this->chkTranslucent = (gcnew System::Windows::Forms::CheckBox());
+			this->txtKeywords = (gcnew System::Windows::Forms::TextBox());
+			this->lblKeywords = (gcnew System::Windows::Forms::Label());
+			this->cboSurface2 = (gcnew System::Windows::Forms::ComboBox());
+			this->lblSurface2 = (gcnew System::Windows::Forms::Label());
+			this->cboSurface1 = (gcnew System::Windows::Forms::ComboBox());
+			this->lblSurface1 = (gcnew System::Windows::Forms::Label());
+			this->cboShader = (gcnew System::Windows::Forms::ComboBox());
+			this->lblShader = (gcnew System::Windows::Forms::Label());
+			this->tipMain = (gcnew System::Windows::Forms::ToolTip(this->components));
+			this->btnClose = (gcnew System::Windows::Forms::Button());
+			this->btnCreate = (gcnew System::Windows::Forms::Button());
+			this->btnClear = (gcnew System::Windows::Forms::Button());
+			this->dlgSaveVMTFile = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->grpTextures->SuspendLayout();
 			this->tabMain->SuspendLayout();
 			this->tabTextures->SuspendLayout();
@@ -212,336 +212,326 @@ namespace VTFEdit
 			this->grpTextures->Controls->Add(this->txtBaseTexture1);
 			this->grpTextures->Controls->Add(this->lblBaseTexture1);
 			this->grpTextures->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpTextures->Location = System::Drawing::Point(8, 8);
-			this->grpTextures->Name = "grpTextures";
-			this->grpTextures->Size = System::Drawing::Size(336, 264);
+			this->grpTextures->Location = System::Drawing::Point(10, 9);
+			this->grpTextures->Name = L"grpTextures";
+			this->grpTextures->Size = System::Drawing::Size(497, 305);
 			this->grpTextures->TabIndex = 0;
 			this->grpTextures->TabStop = false;
-			this->grpTextures->Text = "Textures:";
+			this->grpTextures->Text = L"Textures:";
 			// 
 			// btnNormalTexture
 			// 
 			this->btnNormalTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnNormalTexture->Location = System::Drawing::Point(304, 208);
-			this->btnNormalTexture->Name = "btnNormalTexture";
-			this->btnNormalTexture->Size = System::Drawing::Size(20, 20);
+			this->btnNormalTexture->Location = System::Drawing::Point(467, 240);
+			this->btnNormalTexture->Name = L"btnNormalTexture";
+			this->btnNormalTexture->Size = System::Drawing::Size(24, 23);
 			this->btnNormalTexture->TabIndex = 26;
-			this->btnNormalTexture->Text = "...";
+			this->btnNormalTexture->Text = L"...";
 			this->btnNormalTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnNormalTexture_Click);
 			// 
 			// txtNormalTexture
 			// 
-			this->txtNormalTexture->Location = System::Drawing::Point(96, 208);
-			this->txtNormalTexture->Name = "txtNormalTexture";
-			this->txtNormalTexture->Size = System::Drawing::Size(200, 20);
+			this->txtNormalTexture->Location = System::Drawing::Point(149, 240);
+			this->txtNormalTexture->Name = L"txtNormalTexture";
+			this->txtNormalTexture->Size = System::Drawing::Size(312, 26);
 			this->txtNormalTexture->TabIndex = 25;
-			this->txtNormalTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtNormalTexture, "$normalmap");
+			this->tipMain->SetToolTip(this->txtNormalTexture, L"$normalmap");
 			this->txtNormalTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblNormalTexture
 			// 
 			this->lblNormalTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblNormalTexture->Location = System::Drawing::Point(8, 208);
-			this->lblNormalTexture->Name = "lblNormalTexture";
-			this->lblNormalTexture->Size = System::Drawing::Size(88, 23);
+			this->lblNormalTexture->Location = System::Drawing::Point(10, 240);
+			this->lblNormalTexture->Name = L"lblNormalTexture";
+			this->lblNormalTexture->Size = System::Drawing::Size(133, 27);
 			this->lblNormalTexture->TabIndex = 24;
-			this->lblNormalTexture->Text = "Normal Map:";
+			this->lblNormalTexture->Text = L"Normal Map:";
 			// 
 			// btnDuDvTexture
 			// 
 			this->btnDuDvTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnDuDvTexture->Location = System::Drawing::Point(304, 232);
-			this->btnDuDvTexture->Name = "btnDuDvTexture";
-			this->btnDuDvTexture->Size = System::Drawing::Size(20, 20);
+			this->btnDuDvTexture->Location = System::Drawing::Point(467, 268);
+			this->btnDuDvTexture->Name = L"btnDuDvTexture";
+			this->btnDuDvTexture->Size = System::Drawing::Size(24, 23);
 			this->btnDuDvTexture->TabIndex = 29;
-			this->btnDuDvTexture->Text = "...";
+			this->btnDuDvTexture->Text = L"...";
 			this->btnDuDvTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnDuDvTexture_Click);
 			// 
 			// txtDuDvTexture
 			// 
-			this->txtDuDvTexture->Location = System::Drawing::Point(96, 232);
-			this->txtDuDvTexture->Name = "txtDuDvTexture";
-			this->txtDuDvTexture->Size = System::Drawing::Size(200, 20);
+			this->txtDuDvTexture->Location = System::Drawing::Point(149, 268);
+			this->txtDuDvTexture->Name = L"txtDuDvTexture";
+			this->txtDuDvTexture->Size = System::Drawing::Size(312, 26);
 			this->txtDuDvTexture->TabIndex = 28;
-			this->txtDuDvTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtDuDvTexture, "$dudvmap");
+			this->tipMain->SetToolTip(this->txtDuDvTexture, L"$dudvmap");
 			this->txtDuDvTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblDuDvTexture
 			// 
 			this->lblDuDvTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblDuDvTexture->Location = System::Drawing::Point(8, 232);
-			this->lblDuDvTexture->Name = "lblDuDvTexture";
-			this->lblDuDvTexture->Size = System::Drawing::Size(88, 23);
+			this->lblDuDvTexture->Location = System::Drawing::Point(10, 268);
+			this->lblDuDvTexture->Name = L"lblDuDvTexture";
+			this->lblDuDvTexture->Size = System::Drawing::Size(133, 26);
 			this->lblDuDvTexture->TabIndex = 27;
-			this->lblDuDvTexture->Text = "DuDv Map:";
+			this->lblDuDvTexture->Text = L"DuDv Map:";
 			// 
 			// btnBumpTexture2
 			// 
 			this->btnBumpTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBumpTexture2->Location = System::Drawing::Point(304, 88);
-			this->btnBumpTexture2->Name = "btnBumpTexture2";
-			this->btnBumpTexture2->Size = System::Drawing::Size(20, 20);
+			this->btnBumpTexture2->Location = System::Drawing::Point(467, 102);
+			this->btnBumpTexture2->Name = L"btnBumpTexture2";
+			this->btnBumpTexture2->Size = System::Drawing::Size(24, 23);
 			this->btnBumpTexture2->TabIndex = 11;
-			this->btnBumpTexture2->Text = "...";
+			this->btnBumpTexture2->Text = L"...";
 			this->btnBumpTexture2->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBumpTexture2_Click);
 			// 
 			// txtBumpTexture2
 			// 
-			this->txtBumpTexture2->Location = System::Drawing::Point(96, 88);
-			this->txtBumpTexture2->Name = "txtBumpTexture2";
-			this->txtBumpTexture2->Size = System::Drawing::Size(200, 20);
+			this->txtBumpTexture2->Location = System::Drawing::Point(149, 102);
+			this->txtBumpTexture2->Name = L"txtBumpTexture2";
+			this->txtBumpTexture2->Size = System::Drawing::Size(312, 26);
 			this->txtBumpTexture2->TabIndex = 10;
-			this->txtBumpTexture2->Text = "";
-			this->tipMain->SetToolTip(this->txtBumpTexture2, "$bumpmap2");
+			this->tipMain->SetToolTip(this->txtBumpTexture2, L"$bumpmap2");
 			this->txtBumpTexture2->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblBumpTexture2
 			// 
 			this->lblBumpTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBumpTexture2->Location = System::Drawing::Point(8, 88);
-			this->lblBumpTexture2->Name = "lblBumpTexture2";
-			this->lblBumpTexture2->Size = System::Drawing::Size(88, 23);
+			this->lblBumpTexture2->Location = System::Drawing::Point(10, 102);
+			this->lblBumpTexture2->Name = L"lblBumpTexture2";
+			this->lblBumpTexture2->Size = System::Drawing::Size(133, 26);
 			this->lblBumpTexture2->TabIndex = 9;
-			this->lblBumpTexture2->Text = "Bump Map 2:";
+			this->lblBumpTexture2->Text = L"Bump Map 2:";
 			// 
 			// btnBaseTexture2
 			// 
 			this->btnBaseTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBaseTexture2->Location = System::Drawing::Point(304, 64);
-			this->btnBaseTexture2->Name = "btnBaseTexture2";
-			this->btnBaseTexture2->Size = System::Drawing::Size(20, 20);
+			this->btnBaseTexture2->Location = System::Drawing::Point(467, 74);
+			this->btnBaseTexture2->Name = L"btnBaseTexture2";
+			this->btnBaseTexture2->Size = System::Drawing::Size(24, 23);
 			this->btnBaseTexture2->TabIndex = 8;
-			this->btnBaseTexture2->Text = "...";
+			this->btnBaseTexture2->Text = L"...";
 			this->btnBaseTexture2->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBaseTexture2_Click);
 			// 
 			// txtBaseTexture2
 			// 
-			this->txtBaseTexture2->Location = System::Drawing::Point(96, 64);
-			this->txtBaseTexture2->Name = "txtBaseTexture2";
-			this->txtBaseTexture2->Size = System::Drawing::Size(200, 20);
+			this->txtBaseTexture2->Location = System::Drawing::Point(149, 74);
+			this->txtBaseTexture2->Name = L"txtBaseTexture2";
+			this->txtBaseTexture2->Size = System::Drawing::Size(312, 26);
 			this->txtBaseTexture2->TabIndex = 7;
-			this->txtBaseTexture2->Text = "";
-			this->tipMain->SetToolTip(this->txtBaseTexture2, "$basetexture2");
+			this->tipMain->SetToolTip(this->txtBaseTexture2, L"$basetexture2");
 			this->txtBaseTexture2->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblBaseTexture2
 			// 
 			this->lblBaseTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBaseTexture2->Location = System::Drawing::Point(8, 64);
-			this->lblBaseTexture2->Name = "lblBaseTexture2";
-			this->lblBaseTexture2->Size = System::Drawing::Size(88, 23);
+			this->lblBaseTexture2->Location = System::Drawing::Point(10, 74);
+			this->lblBaseTexture2->Name = L"lblBaseTexture2";
+			this->lblBaseTexture2->Size = System::Drawing::Size(133, 26);
 			this->lblBaseTexture2->TabIndex = 6;
-			this->lblBaseTexture2->Text = "Base Texture 2:";
+			this->lblBaseTexture2->Text = L"Base Texture 2:";
 			// 
 			// btnToolTexture
 			// 
 			this->btnToolTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnToolTexture->Location = System::Drawing::Point(304, 184);
-			this->btnToolTexture->Name = "btnToolTexture";
-			this->btnToolTexture->Size = System::Drawing::Size(20, 20);
+			this->btnToolTexture->Location = System::Drawing::Point(467, 212);
+			this->btnToolTexture->Name = L"btnToolTexture";
+			this->btnToolTexture->Size = System::Drawing::Size(24, 23);
 			this->btnToolTexture->TabIndex = 23;
-			this->btnToolTexture->Text = "...";
+			this->btnToolTexture->Text = L"...";
 			this->btnToolTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnToolTexture_Click);
 			// 
 			// txtToolTexture
 			// 
-			this->txtToolTexture->Location = System::Drawing::Point(96, 184);
-			this->txtToolTexture->Name = "txtToolTexture";
-			this->txtToolTexture->Size = System::Drawing::Size(200, 20);
+			this->txtToolTexture->Location = System::Drawing::Point(149, 212);
+			this->txtToolTexture->Name = L"txtToolTexture";
+			this->txtToolTexture->Size = System::Drawing::Size(312, 26);
 			this->txtToolTexture->TabIndex = 22;
-			this->txtToolTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtToolTexture, "%tooltexture");
+			this->tipMain->SetToolTip(this->txtToolTexture, L"%tooltexture");
 			this->txtToolTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblToolTexture
 			// 
 			this->lblToolTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblToolTexture->Location = System::Drawing::Point(8, 184);
-			this->lblToolTexture->Name = "lblToolTexture";
-			this->lblToolTexture->Size = System::Drawing::Size(88, 23);
+			this->lblToolTexture->Location = System::Drawing::Point(10, 212);
+			this->lblToolTexture->Name = L"lblToolTexture";
+			this->lblToolTexture->Size = System::Drawing::Size(133, 27);
 			this->lblToolTexture->TabIndex = 21;
-			this->lblToolTexture->Text = "Tool Texture:";
+			this->lblToolTexture->Text = L"Tool Texture:";
 			// 
 			// btnDetailTexture
 			// 
 			this->btnDetailTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnDetailTexture->Location = System::Drawing::Point(304, 160);
-			this->btnDetailTexture->Name = "btnDetailTexture";
-			this->btnDetailTexture->Size = System::Drawing::Size(20, 20);
+			this->btnDetailTexture->Location = System::Drawing::Point(467, 185);
+			this->btnDetailTexture->Name = L"btnDetailTexture";
+			this->btnDetailTexture->Size = System::Drawing::Size(24, 23);
 			this->btnDetailTexture->TabIndex = 20;
-			this->btnDetailTexture->Text = "...";
+			this->btnDetailTexture->Text = L"...";
 			this->btnDetailTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnDetailTexture_Click);
 			// 
 			// txtDetailTexture
 			// 
-			this->txtDetailTexture->Location = System::Drawing::Point(96, 160);
-			this->txtDetailTexture->Name = "txtDetailTexture";
-			this->txtDetailTexture->Size = System::Drawing::Size(200, 20);
+			this->txtDetailTexture->Location = System::Drawing::Point(149, 185);
+			this->txtDetailTexture->Name = L"txtDetailTexture";
+			this->txtDetailTexture->Size = System::Drawing::Size(312, 26);
 			this->txtDetailTexture->TabIndex = 19;
-			this->txtDetailTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtDetailTexture, "$detail");
+			this->tipMain->SetToolTip(this->txtDetailTexture, L"$detail");
 			this->txtDetailTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblDetailTexture
 			// 
 			this->lblDetailTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblDetailTexture->Location = System::Drawing::Point(8, 160);
-			this->lblDetailTexture->Name = "lblDetailTexture";
-			this->lblDetailTexture->Size = System::Drawing::Size(88, 23);
+			this->lblDetailTexture->Location = System::Drawing::Point(10, 185);
+			this->lblDetailTexture->Name = L"lblDetailTexture";
+			this->lblDetailTexture->Size = System::Drawing::Size(133, 26);
 			this->lblDetailTexture->TabIndex = 18;
-			this->lblDetailTexture->Text = "Detail Texture:";
+			this->lblDetailTexture->Text = L"Detail Texture:";
 			// 
 			// btnEnviromentMaskTexture
 			// 
 			this->btnEnviromentMaskTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnEnviromentMaskTexture->Location = System::Drawing::Point(304, 136);
-			this->btnEnviromentMaskTexture->Name = "btnEnviromentMaskTexture";
-			this->btnEnviromentMaskTexture->Size = System::Drawing::Size(20, 20);
+			this->btnEnviromentMaskTexture->Location = System::Drawing::Point(467, 157);
+			this->btnEnviromentMaskTexture->Name = L"btnEnviromentMaskTexture";
+			this->btnEnviromentMaskTexture->Size = System::Drawing::Size(24, 23);
 			this->btnEnviromentMaskTexture->TabIndex = 17;
-			this->btnEnviromentMaskTexture->Text = "...";
+			this->btnEnviromentMaskTexture->Text = L"...";
 			this->btnEnviromentMaskTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnEnviromentMaskTexture_Click);
 			// 
 			// txtEnviromentMaskTexture
 			// 
-			this->txtEnviromentMaskTexture->Location = System::Drawing::Point(96, 136);
-			this->txtEnviromentMaskTexture->Name = "txtEnviromentMaskTexture";
-			this->txtEnviromentMaskTexture->Size = System::Drawing::Size(200, 20);
+			this->txtEnviromentMaskTexture->Location = System::Drawing::Point(149, 157);
+			this->txtEnviromentMaskTexture->Name = L"txtEnviromentMaskTexture";
+			this->txtEnviromentMaskTexture->Size = System::Drawing::Size(312, 26);
 			this->txtEnviromentMaskTexture->TabIndex = 16;
-			this->txtEnviromentMaskTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtEnviromentMaskTexture, "$envmapmask");
+			this->tipMain->SetToolTip(this->txtEnviromentMaskTexture, L"$envmapmask");
 			this->txtEnviromentMaskTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblEnviromentMaskTexture
 			// 
 			this->lblEnviromentMaskTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblEnviromentMaskTexture->Location = System::Drawing::Point(8, 136);
-			this->lblEnviromentMaskTexture->Name = "lblEnviromentMaskTexture";
-			this->lblEnviromentMaskTexture->Size = System::Drawing::Size(88, 23);
+			this->lblEnviromentMaskTexture->Location = System::Drawing::Point(10, 157);
+			this->lblEnviromentMaskTexture->Name = L"lblEnviromentMaskTexture";
+			this->lblEnviromentMaskTexture->Size = System::Drawing::Size(133, 26);
 			this->lblEnviromentMaskTexture->TabIndex = 15;
-			this->lblEnviromentMaskTexture->Text = "Enviroment Mask:";
+			this->lblEnviromentMaskTexture->Text = L"Enviroment Mask:";
 			// 
 			// btnEnviromentTexture
 			// 
 			this->btnEnviromentTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnEnviromentTexture->Location = System::Drawing::Point(304, 112);
-			this->btnEnviromentTexture->Name = "btnEnviromentTexture";
-			this->btnEnviromentTexture->Size = System::Drawing::Size(20, 20);
+			this->btnEnviromentTexture->Location = System::Drawing::Point(467, 129);
+			this->btnEnviromentTexture->Name = L"btnEnviromentTexture";
+			this->btnEnviromentTexture->Size = System::Drawing::Size(24, 23);
 			this->btnEnviromentTexture->TabIndex = 14;
-			this->btnEnviromentTexture->Text = "...";
+			this->btnEnviromentTexture->Text = L"...";
 			this->btnEnviromentTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnEnviromentTexture_Click);
 			// 
 			// txtEnviromentTexture
 			// 
-			this->txtEnviromentTexture->Location = System::Drawing::Point(96, 112);
-			this->txtEnviromentTexture->Name = "txtEnviromentTexture";
-			this->txtEnviromentTexture->Size = System::Drawing::Size(200, 20);
+			this->txtEnviromentTexture->Location = System::Drawing::Point(149, 129);
+			this->txtEnviromentTexture->Name = L"txtEnviromentTexture";
+			this->txtEnviromentTexture->Size = System::Drawing::Size(312, 26);
 			this->txtEnviromentTexture->TabIndex = 13;
-			this->txtEnviromentTexture->Text = "";
-			this->tipMain->SetToolTip(this->txtEnviromentTexture, "$envmap");
+			this->tipMain->SetToolTip(this->txtEnviromentTexture, L"$envmap");
 			this->txtEnviromentTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblEnviromentTexture
 			// 
 			this->lblEnviromentTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblEnviromentTexture->Location = System::Drawing::Point(8, 112);
-			this->lblEnviromentTexture->Name = "lblEnviromentTexture";
-			this->lblEnviromentTexture->Size = System::Drawing::Size(88, 23);
+			this->lblEnviromentTexture->Location = System::Drawing::Point(10, 129);
+			this->lblEnviromentTexture->Name = L"lblEnviromentTexture";
+			this->lblEnviromentTexture->Size = System::Drawing::Size(133, 27);
 			this->lblEnviromentTexture->TabIndex = 12;
-			this->lblEnviromentTexture->Text = "Enviroment:";
+			this->lblEnviromentTexture->Text = L"Enviroment:";
 			// 
 			// btnBumpTexture1
 			// 
 			this->btnBumpTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBumpTexture1->Location = System::Drawing::Point(304, 40);
-			this->btnBumpTexture1->Name = "btnBumpTexture1";
-			this->btnBumpTexture1->Size = System::Drawing::Size(20, 20);
+			this->btnBumpTexture1->Location = System::Drawing::Point(467, 46);
+			this->btnBumpTexture1->Name = L"btnBumpTexture1";
+			this->btnBumpTexture1->Size = System::Drawing::Size(24, 23);
 			this->btnBumpTexture1->TabIndex = 5;
-			this->btnBumpTexture1->Text = "...";
+			this->btnBumpTexture1->Text = L"...";
 			this->btnBumpTexture1->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBumpTexture1_Click);
 			// 
 			// txtBumpTexture1
 			// 
-			this->txtBumpTexture1->Location = System::Drawing::Point(96, 40);
-			this->txtBumpTexture1->Name = "txtBumpTexture1";
-			this->txtBumpTexture1->Size = System::Drawing::Size(200, 20);
+			this->txtBumpTexture1->Location = System::Drawing::Point(149, 46);
+			this->txtBumpTexture1->Name = L"txtBumpTexture1";
+			this->txtBumpTexture1->Size = System::Drawing::Size(312, 26);
 			this->txtBumpTexture1->TabIndex = 4;
-			this->txtBumpTexture1->Text = "";
-			this->tipMain->SetToolTip(this->txtBumpTexture1, "$bumpmap");
+			this->tipMain->SetToolTip(this->txtBumpTexture1, L"$bumpmap");
 			this->txtBumpTexture1->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblBumpTexture1
 			// 
 			this->lblBumpTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBumpTexture1->Location = System::Drawing::Point(8, 40);
-			this->lblBumpTexture1->Name = "lblBumpTexture1";
-			this->lblBumpTexture1->Size = System::Drawing::Size(88, 23);
+			this->lblBumpTexture1->Location = System::Drawing::Point(10, 46);
+			this->lblBumpTexture1->Name = L"lblBumpTexture1";
+			this->lblBumpTexture1->Size = System::Drawing::Size(133, 27);
 			this->lblBumpTexture1->TabIndex = 3;
-			this->lblBumpTexture1->Text = "Bump Map 1:";
+			this->lblBumpTexture1->Text = L"Bump Map 1:";
 			// 
 			// btnBaseTexture1
 			// 
 			this->btnBaseTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBaseTexture1->Location = System::Drawing::Point(304, 16);
-			this->btnBaseTexture1->Name = "btnBaseTexture1";
-			this->btnBaseTexture1->Size = System::Drawing::Size(20, 20);
+			this->btnBaseTexture1->Location = System::Drawing::Point(467, 18);
+			this->btnBaseTexture1->Name = L"btnBaseTexture1";
+			this->btnBaseTexture1->Size = System::Drawing::Size(24, 24);
 			this->btnBaseTexture1->TabIndex = 2;
-			this->btnBaseTexture1->Text = "...";
+			this->btnBaseTexture1->Text = L"...";
 			this->btnBaseTexture1->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBaseTexture1_Click);
 			// 
 			// txtBaseTexture1
 			// 
-			this->txtBaseTexture1->Location = System::Drawing::Point(96, 16);
-			this->txtBaseTexture1->Name = "txtBaseTexture1";
-			this->txtBaseTexture1->Size = System::Drawing::Size(200, 20);
+			this->txtBaseTexture1->Location = System::Drawing::Point(149, 18);
+			this->txtBaseTexture1->Name = L"txtBaseTexture1";
+			this->txtBaseTexture1->Size = System::Drawing::Size(312, 26);
 			this->txtBaseTexture1->TabIndex = 1;
-			this->txtBaseTexture1->Text = "";
-			this->tipMain->SetToolTip(this->txtBaseTexture1, "$basetexture");
+			this->tipMain->SetToolTip(this->txtBaseTexture1, L"$basetexture");
 			this->txtBaseTexture1->TextChanged += gcnew System::EventHandler(this, &CVMTCreate::txtBaseTexture1_TextChanged);
 			this->txtBaseTexture1->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblBaseTexture1
 			// 
 			this->lblBaseTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBaseTexture1->Location = System::Drawing::Point(8, 16);
-			this->lblBaseTexture1->Name = "lblBaseTexture1";
-			this->lblBaseTexture1->Size = System::Drawing::Size(88, 23);
+			this->lblBaseTexture1->Location = System::Drawing::Point(10, 18);
+			this->lblBaseTexture1->Name = L"lblBaseTexture1";
+			this->lblBaseTexture1->Size = System::Drawing::Size(133, 27);
 			this->lblBaseTexture1->TabIndex = 0;
-			this->lblBaseTexture1->Text = "Base Texture 1:";
+			this->lblBaseTexture1->Text = L"Base Texture 1:";
 			// 
 			// dlgOpenVTFFile
 			// 
-			this->dlgOpenVTFFile->Filter = "VTF Files (*.vtf)|*.vtf";
-			this->dlgOpenVTFFile->Title = "Open VTF File";
+			this->dlgOpenVTFFile->Filter = L"VTF Files (*.vtf)|*.vtf";
+			this->dlgOpenVTFFile->Title = L"Open VTF File";
 			// 
 			// tabMain
 			// 
 			this->tabMain->Controls->Add(this->tabTextures);
 			this->tabMain->Controls->Add(this->tabOptions);
-			this->tabMain->Location = System::Drawing::Point(8, 8);
-			this->tabMain->Name = "tabMain";
+			this->tabMain->Location = System::Drawing::Point(10, 9);
+			this->tabMain->Name = L"tabMain";
 			this->tabMain->SelectedIndex = 0;
-			this->tabMain->Size = System::Drawing::Size(360, 304);
+			this->tabMain->Size = System::Drawing::Size(518, 351);
 			this->tabMain->TabIndex = 0;
 			// 
 			// tabTextures
 			// 
 			this->tabTextures->Controls->Add(this->grpTextures);
-			this->tabTextures->Location = System::Drawing::Point(4, 22);
-			this->tabTextures->Name = "tabTextures";
-			this->tabTextures->Size = System::Drawing::Size(352, 278);
+			this->tabTextures->Location = System::Drawing::Point(4, 29);
+			this->tabTextures->Name = L"tabTextures";
+			this->tabTextures->Size = System::Drawing::Size(510, 318);
 			this->tabTextures->TabIndex = 0;
-			this->tabTextures->Text = "Textures";
+			this->tabTextures->Text = L"Textures";
 			// 
 			// tabOptions
 			// 
 			this->tabOptions->Controls->Add(this->grpOptions);
-			this->tabOptions->Location = System::Drawing::Point(4, 22);
-			this->tabOptions->Name = "tabOptions";
-			this->tabOptions->Size = System::Drawing::Size(352, 278);
+			this->tabOptions->Location = System::Drawing::Point(4, 29);
+			this->tabOptions->Name = L"tabOptions";
+			this->tabOptions->Size = System::Drawing::Size(510, 318);
 			this->tabOptions->TabIndex = 1;
-			this->tabOptions->Text = "Options";
+			this->tabOptions->Text = L"Options";
 			// 
 			// grpOptions
 			// 
@@ -564,348 +554,266 @@ namespace VTFEdit
 			this->grpOptions->Controls->Add(this->cboShader);
 			this->grpOptions->Controls->Add(this->lblShader);
 			this->grpOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpOptions->Location = System::Drawing::Point(8, 8);
-			this->grpOptions->Name = "grpOptions";
-			this->grpOptions->Size = System::Drawing::Size(336, 264);
+			this->grpOptions->Location = System::Drawing::Point(10, 9);
+			this->grpOptions->Name = L"grpOptions";
+			this->grpOptions->Size = System::Drawing::Size(481, 305);
 			this->grpOptions->TabIndex = 0;
 			this->grpOptions->TabStop = false;
-			this->grpOptions->Text = "Options:";
+			this->grpOptions->Text = L"Options:";
+			this->grpOptions->Enter += gcnew System::EventHandler(this, &CVMTCreate::grpOptions_Enter);
 			// 
 			// chkVertexAlpha
 			// 
 			this->chkVertexAlpha->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexAlpha->Location = System::Drawing::Point(168, 160);
-			this->chkVertexAlpha->Name = "chkVertexAlpha";
-			this->chkVertexAlpha->Size = System::Drawing::Size(160, 24);
+			this->chkVertexAlpha->Location = System::Drawing::Point(270, 185);
+			this->chkVertexAlpha->Name = L"chkVertexAlpha";
+			this->chkVertexAlpha->Size = System::Drawing::Size(192, 27);
 			this->chkVertexAlpha->TabIndex = 16;
-			this->chkVertexAlpha->Text = "Vertex Alpha";
-			this->tipMain->SetToolTip(this->chkVertexAlpha, "$vertexalpha");
+			this->chkVertexAlpha->Text = L"Vertex Alpha";
+			this->tipMain->SetToolTip(this->chkVertexAlpha, L"$vertexalpha");
 			// 
 			// chkVertexColor
 			// 
 			this->chkVertexColor->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexColor->Location = System::Drawing::Point(168, 184);
-			this->chkVertexColor->Name = "chkVertexColor";
-			this->chkVertexColor->Size = System::Drawing::Size(160, 24);
+			this->chkVertexColor->Location = System::Drawing::Point(270, 212);
+			this->chkVertexColor->Name = L"chkVertexColor";
+			this->chkVertexColor->Size = System::Drawing::Size(192, 28);
 			this->chkVertexColor->TabIndex = 17;
-			this->chkVertexColor->Text = "Vertex Color";
-			this->tipMain->SetToolTip(this->chkVertexColor, "$vertexcolor");
+			this->chkVertexColor->Text = L"Vertex Color";
+			this->tipMain->SetToolTip(this->chkVertexColor, L"$vertexcolor");
 			// 
 			// chkNoDecal
 			// 
 			this->chkNoDecal->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoDecal->Location = System::Drawing::Point(8, 232);
-			this->chkNoDecal->Name = "chkNoDecal";
-			this->chkNoDecal->Size = System::Drawing::Size(160, 24);
+			this->chkNoDecal->Location = System::Drawing::Point(10, 268);
+			this->chkNoDecal->Name = L"chkNoDecal";
+			this->chkNoDecal->Size = System::Drawing::Size(192, 27);
 			this->chkNoDecal->TabIndex = 13;
-			this->chkNoDecal->Text = "No Decal";
-			this->tipMain->SetToolTip(this->chkNoDecal, "$nodecal");
+			this->chkNoDecal->Text = L"No Decal";
+			this->tipMain->SetToolTip(this->chkNoDecal, L"$nodecal");
 			// 
 			// chkNoLOD
 			// 
 			this->chkNoLOD->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoLOD->Location = System::Drawing::Point(168, 112);
-			this->chkNoLOD->Name = "chkNoLOD";
-			this->chkNoLOD->Size = System::Drawing::Size(160, 24);
+			this->chkNoLOD->Location = System::Drawing::Point(270, 129);
+			this->chkNoLOD->Name = L"chkNoLOD";
+			this->chkNoLOD->Size = System::Drawing::Size(192, 28);
 			this->chkNoLOD->TabIndex = 14;
-			this->chkNoLOD->Text = "No LOD";
-			this->tipMain->SetToolTip(this->chkNoLOD, "$nolod");
+			this->chkNoLOD->Text = L"No LOD";
+			this->tipMain->SetToolTip(this->chkNoLOD, L"$nolod");
 			// 
 			// chkAlphaTest
 			// 
 			this->chkAlphaTest->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkAlphaTest->Location = System::Drawing::Point(8, 136);
-			this->chkAlphaTest->Name = "chkAlphaTest";
-			this->chkAlphaTest->Size = System::Drawing::Size(160, 24);
+			this->chkAlphaTest->Location = System::Drawing::Point(10, 157);
+			this->chkAlphaTest->Name = L"chkAlphaTest";
+			this->chkAlphaTest->Size = System::Drawing::Size(192, 28);
 			this->chkAlphaTest->TabIndex = 9;
-			this->chkAlphaTest->Text = "Alpha Test";
-			this->tipMain->SetToolTip(this->chkAlphaTest, "$alphatest");
+			this->chkAlphaTest->Text = L"Alpha Test";
+			this->tipMain->SetToolTip(this->chkAlphaTest, L"$alphatest");
 			// 
 			// chkNoCull
 			// 
 			this->chkNoCull->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoCull->Location = System::Drawing::Point(8, 208);
-			this->chkNoCull->Name = "chkNoCull";
-			this->chkNoCull->Size = System::Drawing::Size(160, 24);
+			this->chkNoCull->Location = System::Drawing::Point(10, 240);
+			this->chkNoCull->Name = L"chkNoCull";
+			this->chkNoCull->Size = System::Drawing::Size(192, 28);
 			this->chkNoCull->TabIndex = 12;
-			this->chkNoCull->Text = "No Cull";
-			this->tipMain->SetToolTip(this->chkNoCull, "$nocull");
+			this->chkNoCull->Text = L"No Cull";
+			this->tipMain->SetToolTip(this->chkNoCull, L"$nocull");
 			// 
 			// chkEnviromentMapSaturation
 			// 
 			this->chkEnviromentMapSaturation->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapSaturation->Location = System::Drawing::Point(8, 184);
-			this->chkEnviromentMapSaturation->Name = "chkEnviromentMapSaturation";
-			this->chkEnviromentMapSaturation->Size = System::Drawing::Size(160, 24);
+			this->chkEnviromentMapSaturation->Location = System::Drawing::Point(10, 212);
+			this->chkEnviromentMapSaturation->Name = L"chkEnviromentMapSaturation";
+			this->chkEnviromentMapSaturation->Size = System::Drawing::Size(234, 28);
 			this->chkEnviromentMapSaturation->TabIndex = 11;
-			this->chkEnviromentMapSaturation->Text = "Enviroment Map Saturation";
-			this->tipMain->SetToolTip(this->chkEnviromentMapSaturation, "$envmapsaturation");
+			this->chkEnviromentMapSaturation->Text = L"Enviroment Map Saturation";
+			this->tipMain->SetToolTip(this->chkEnviromentMapSaturation, L"$envmapsaturation");
 			// 
 			// chkEnviromentMapContrast
 			// 
 			this->chkEnviromentMapContrast->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapContrast->Location = System::Drawing::Point(8, 160);
-			this->chkEnviromentMapContrast->Name = "chkEnviromentMapContrast";
-			this->chkEnviromentMapContrast->Size = System::Drawing::Size(160, 24);
+			this->chkEnviromentMapContrast->Location = System::Drawing::Point(10, 185);
+			this->chkEnviromentMapContrast->Name = L"chkEnviromentMapContrast";
+			this->chkEnviromentMapContrast->Size = System::Drawing::Size(215, 27);
 			this->chkEnviromentMapContrast->TabIndex = 10;
-			this->chkEnviromentMapContrast->Text = "Enviroment Map Contrast";
-			this->tipMain->SetToolTip(this->chkEnviromentMapContrast, "$envmapcontrast");
+			this->chkEnviromentMapContrast->Text = L"Enviroment Map Contrast";
+			this->tipMain->SetToolTip(this->chkEnviromentMapContrast, L"$envmapcontrast");
 			// 
 			// chkAdditive
 			// 
 			this->chkAdditive->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkAdditive->Location = System::Drawing::Point(8, 112);
-			this->chkAdditive->Name = "chkAdditive";
-			this->chkAdditive->Size = System::Drawing::Size(160, 24);
+			this->chkAdditive->Location = System::Drawing::Point(10, 129);
+			this->chkAdditive->Name = L"chkAdditive";
+			this->chkAdditive->Size = System::Drawing::Size(192, 28);
 			this->chkAdditive->TabIndex = 8;
-			this->chkAdditive->Text = "Additive";
-			this->tipMain->SetToolTip(this->chkAdditive, "$additive");
+			this->chkAdditive->Text = L"Additive";
+			this->tipMain->SetToolTip(this->chkAdditive, L"$additive");
 			// 
 			// chkTranslucent
 			// 
 			this->chkTranslucent->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkTranslucent->Location = System::Drawing::Point(168, 136);
-			this->chkTranslucent->Name = "chkTranslucent";
-			this->chkTranslucent->Size = System::Drawing::Size(160, 24);
+			this->chkTranslucent->Location = System::Drawing::Point(270, 157);
+			this->chkTranslucent->Name = L"chkTranslucent";
+			this->chkTranslucent->Size = System::Drawing::Size(192, 28);
 			this->chkTranslucent->TabIndex = 15;
-			this->chkTranslucent->Text = "Translucent";
-			this->tipMain->SetToolTip(this->chkTranslucent, "$translucent");
+			this->chkTranslucent->Text = L"Translucent";
+			this->tipMain->SetToolTip(this->chkTranslucent, L"$translucent");
 			// 
 			// txtKeywords
 			// 
-			this->txtKeywords->Location = System::Drawing::Point(96, 88);
-			this->txtKeywords->Name = "txtKeywords";
-			this->txtKeywords->Size = System::Drawing::Size(232, 20);
+			this->txtKeywords->Location = System::Drawing::Point(115, 102);
+			this->txtKeywords->Name = L"txtKeywords";
+			this->txtKeywords->Size = System::Drawing::Size(347, 26);
 			this->txtKeywords->TabIndex = 7;
-			this->txtKeywords->Text = "";
-			this->tipMain->SetToolTip(this->txtKeywords, "%keywords");
+			this->tipMain->SetToolTip(this->txtKeywords, L"%keywords");
 			// 
 			// lblKeywords
 			// 
 			this->lblKeywords->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblKeywords->Location = System::Drawing::Point(8, 88);
-			this->lblKeywords->Name = "lblKeywords";
-			this->lblKeywords->Size = System::Drawing::Size(88, 23);
+			this->lblKeywords->Location = System::Drawing::Point(10, 102);
+			this->lblKeywords->Name = L"lblKeywords";
+			this->lblKeywords->Size = System::Drawing::Size(105, 26);
 			this->lblKeywords->TabIndex = 6;
-			this->lblKeywords->Text = "Keywords:";
+			this->lblKeywords->Text = L"Keywords:";
 			// 
 			// cboSurface2
 			// 
-			array<System::Object^>^ __mcTemp__1 = gcnew array<System::Object^>(42);
-			__mcTemp__1[0] = "AlienFlesh";
-			__mcTemp__1[1] = "ArmorFlesh";
-			__mcTemp__1[2] = "BloodyFlesh";
-			__mcTemp__1[3] = "Boulder";
-			__mcTemp__1[4] = "Brick";
-			__mcTemp__1[5] = "Chain";
-			__mcTemp__1[6] = "Chainlink";
-			__mcTemp__1[7] = "Computer";
-			__mcTemp__1[8] = "Concrete";
-			__mcTemp__1[9] = "Concrete_Block";
-			__mcTemp__1[10] = "Default";
-			__mcTemp__1[11] = "Dirt";
-			__mcTemp__1[12] = "Flesh";
-			__mcTemp__1[13] = "Glass";
-			__mcTemp__1[14] = "Grass";
-			__mcTemp__1[15] = "Gravel";
-			__mcTemp__1[16] = "Ice";
-			__mcTemp__1[17] = "Ladder";
-			__mcTemp__1[18] = "Metal_Box";
-			__mcTemp__1[19] = "Metal";
-			__mcTemp__1[20] = "MetalGrate";
-			__mcTemp__1[21] = "MetalPanel";
-			__mcTemp__1[22] = "MetalVent";
-			__mcTemp__1[23] = "MudSlipperySlime";
-			__mcTemp__1[24] = "Porcelain";
-			__mcTemp__1[25] = "Quicksand";
-			__mcTemp__1[26] = "Rock";
-			__mcTemp__1[27] = "Slime";
-			__mcTemp__1[28] = "SlipperyMetal";
-			__mcTemp__1[29] = "Snow";
-			__mcTemp__1[30] = "SolidMetal";
-			__mcTemp__1[31] = "Tile";
-			__mcTemp__1[32] = "Wade";
-			__mcTemp__1[33] = "Water";
-			__mcTemp__1[34] = "Watermelon";
-			__mcTemp__1[35] = "Wood_Box";
-			__mcTemp__1[36] = "Wood_Crate";
-			__mcTemp__1[37] = "Wood_Furniture";
-			__mcTemp__1[38] = "Wood_Panel";
-			__mcTemp__1[39] = "Wood_Plank";
-			__mcTemp__1[40] = "Wood_Solid";
-			__mcTemp__1[41] = "WoodWood_Lowdensity";
-			this->cboSurface2->Items->AddRange(__mcTemp__1);
-			this->cboSurface2->Location = System::Drawing::Point(96, 64);
-			this->cboSurface2->Name = "cboSurface2";
-			this->cboSurface2->Size = System::Drawing::Size(232, 21);
+			this->cboSurface2->Items->AddRange(gcnew cli::array< System::Object^  >(42) {
+				L"AlienFlesh", L"ArmorFlesh", L"BloodyFlesh",
+					L"Boulder", L"Brick", L"Chain", L"Chainlink", L"Computer", L"Concrete", L"Concrete_Block", L"Default", L"Dirt", L"Flesh", L"Glass",
+					L"Grass", L"Gravel", L"Ice", L"Ladder", L"Metal_Box", L"Metal", L"MetalGrate", L"MetalPanel", L"MetalVent", L"MudSlipperySlime",
+					L"Porcelain", L"Quicksand", L"Rock", L"Slime", L"SlipperyMetal", L"Snow", L"SolidMetal", L"Tile", L"Wade", L"Water", L"Watermelon",
+					L"Wood_Box", L"Wood_Crate", L"Wood_Furniture", L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"WoodWood_Lowdensity"
+			});
+			this->cboSurface2->Location = System::Drawing::Point(115, 74);
+			this->cboSurface2->Name = L"cboSurface2";
+			this->cboSurface2->Size = System::Drawing::Size(347, 28);
 			this->cboSurface2->TabIndex = 5;
-			this->tipMain->SetToolTip(this->cboSurface2, "$surfaceprop2");
+			this->tipMain->SetToolTip(this->cboSurface2, L"$surfaceprop2");
 			// 
 			// lblSurface2
 			// 
 			this->lblSurface2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblSurface2->Location = System::Drawing::Point(8, 64);
-			this->lblSurface2->Name = "lblSurface2";
-			this->lblSurface2->Size = System::Drawing::Size(88, 23);
+			this->lblSurface2->Location = System::Drawing::Point(10, 74);
+			this->lblSurface2->Name = L"lblSurface2";
+			this->lblSurface2->Size = System::Drawing::Size(105, 26);
 			this->lblSurface2->TabIndex = 4;
-			this->lblSurface2->Text = "Surface 2:";
+			this->lblSurface2->Text = L"Surface 2:";
 			// 
 			// cboSurface1
 			// 
-			array<System::Object^>^ __mcTemp__2 = gcnew array<System::Object^>(42);
-			__mcTemp__2[0] = "AlienFlesh";
-			__mcTemp__2[1] = "ArmorFlesh";
-			__mcTemp__2[2] = "BloodyFlesh";
-			__mcTemp__2[3] = "Boulder";
-			__mcTemp__2[4] = "Brick";
-			__mcTemp__2[5] = "Chain";
-			__mcTemp__2[6] = "Chainlink";
-			__mcTemp__2[7] = "Computer";
-			__mcTemp__2[8] = "Concrete";
-			__mcTemp__2[9] = "Concrete_Block";
-			__mcTemp__2[10] = "Default";
-			__mcTemp__2[11] = "Dirt";
-			__mcTemp__2[12] = "Flesh";
-			__mcTemp__2[13] = "Glass";
-			__mcTemp__2[14] = "Grass";
-			__mcTemp__2[15] = "Gravel";
-			__mcTemp__2[16] = "Ice";
-			__mcTemp__2[17] = "Ladder";
-			__mcTemp__2[18] = "Metal_Box";
-			__mcTemp__2[19] = "Metal";
-			__mcTemp__2[20] = "MetalGrate";
-			__mcTemp__2[21] = "MetalPanel";
-			__mcTemp__2[22] = "MetalVent";
-			__mcTemp__2[23] = "MudSlipperySlime";
-			__mcTemp__2[24] = "Porcelain";
-			__mcTemp__2[25] = "Quicksand";
-			__mcTemp__2[26] = "Rock";
-			__mcTemp__2[27] = "Slime";
-			__mcTemp__2[28] = "SlipperyMetal";
-			__mcTemp__2[29] = "Snow";
-			__mcTemp__2[30] = "SolidMetal";
-			__mcTemp__2[31] = "Tile";
-			__mcTemp__2[32] = "Wade";
-			__mcTemp__2[33] = "Water";
-			__mcTemp__2[34] = "Watermelon";
-			__mcTemp__2[35] = "Wood_Box";
-			__mcTemp__2[36] = "Wood_Crate";
-			__mcTemp__2[37] = "Wood_Furniture";
-			__mcTemp__2[38] = "Wood_Panel";
-			__mcTemp__2[39] = "Wood_Plank";
-			__mcTemp__2[40] = "Wood_Solid";
-			__mcTemp__2[41] = "WoodWood_Lowdensity";
-			this->cboSurface1->Items->AddRange(__mcTemp__2);
-			this->cboSurface1->Location = System::Drawing::Point(96, 40);
-			this->cboSurface1->Name = "cboSurface1";
-			this->cboSurface1->Size = System::Drawing::Size(232, 21);
+			this->cboSurface1->Items->AddRange(gcnew cli::array< System::Object^  >(42) {
+				L"AlienFlesh", L"ArmorFlesh", L"BloodyFlesh",
+					L"Boulder", L"Brick", L"Chain", L"Chainlink", L"Computer", L"Concrete", L"Concrete_Block", L"Default", L"Dirt", L"Flesh", L"Glass",
+					L"Grass", L"Gravel", L"Ice", L"Ladder", L"Metal_Box", L"Metal", L"MetalGrate", L"MetalPanel", L"MetalVent", L"MudSlipperySlime",
+					L"Porcelain", L"Quicksand", L"Rock", L"Slime", L"SlipperyMetal", L"Snow", L"SolidMetal", L"Tile", L"Wade", L"Water", L"Watermelon",
+					L"Wood_Box", L"Wood_Crate", L"Wood_Furniture", L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"WoodWood_Lowdensity"
+			});
+			this->cboSurface1->Location = System::Drawing::Point(115, 46);
+			this->cboSurface1->Name = L"cboSurface1";
+			this->cboSurface1->Size = System::Drawing::Size(347, 28);
 			this->cboSurface1->TabIndex = 3;
-			this->tipMain->SetToolTip(this->cboSurface1, "$surfaceprop");
+			this->tipMain->SetToolTip(this->cboSurface1, L"$surfaceprop");
 			// 
 			// lblSurface1
 			// 
 			this->lblSurface1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblSurface1->Location = System::Drawing::Point(8, 40);
-			this->lblSurface1->Name = "lblSurface1";
-			this->lblSurface1->Size = System::Drawing::Size(88, 23);
+			this->lblSurface1->Location = System::Drawing::Point(10, 46);
+			this->lblSurface1->Name = L"lblSurface1";
+			this->lblSurface1->Size = System::Drawing::Size(105, 27);
 			this->lblSurface1->TabIndex = 2;
-			this->lblSurface1->Text = "Surface 1:";
+			this->lblSurface1->Text = L"Surface 1:";
 			// 
 			// cboShader
 			// 
-			array<System::Object^>^ __mcTemp__3 = gcnew array<System::Object^>(13);
-			__mcTemp__3[0] = "Cable";
-			__mcTemp__3[1] = "Decal";
-			__mcTemp__3[2] = "DecalModulate";
-			__mcTemp__3[3] = "LightmappedGeneric";
-			__mcTemp__3[4] = "Modulate";
-			__mcTemp__3[5] = "MonitorScreen";
-			__mcTemp__3[6] = "Predator";
-			__mcTemp__3[7] = "Refract";
-			__mcTemp__3[8] = "ShatteredGlass";
-			__mcTemp__3[9] = "Sprite";
-			__mcTemp__3[10] = "UnlitGeneric";
-			__mcTemp__3[11] = "VertexlitGeneric";
-			__mcTemp__3[12] = "Water";
-			this->cboShader->Items->AddRange(__mcTemp__3);
-			this->cboShader->Location = System::Drawing::Point(96, 16);
-			this->cboShader->Name = "cboShader";
-			this->cboShader->Size = System::Drawing::Size(232, 21);
+			this->cboShader->Items->AddRange(gcnew cli::array< System::Object^  >(13) {
+				L"Cable", L"Decal", L"DecalModulate", L"LightmappedGeneric",
+					L"Modulate", L"MonitorScreen", L"Predator", L"Refract", L"ShatteredGlass", L"Sprite", L"UnlitGeneric", L"VertexlitGeneric", L"Water"
+			});
+			this->cboShader->Location = System::Drawing::Point(115, 18);
+			this->cboShader->Name = L"cboShader";
+			this->cboShader->Size = System::Drawing::Size(347, 28);
 			this->cboShader->TabIndex = 1;
-			this->cboShader->Text = "LightmappedGeneric";
+			this->cboShader->Text = L"LightmappedGeneric";
 			this->cboShader->TextChanged += gcnew System::EventHandler(this, &CVMTCreate::cboShader_TextChanged);
 			// 
 			// lblShader
 			// 
 			this->lblShader->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblShader->Location = System::Drawing::Point(8, 16);
-			this->lblShader->Name = "lblShader";
-			this->lblShader->Size = System::Drawing::Size(88, 23);
+			this->lblShader->Location = System::Drawing::Point(10, 18);
+			this->lblShader->Name = L"lblShader";
+			this->lblShader->Size = System::Drawing::Size(105, 27);
 			this->lblShader->TabIndex = 0;
-			this->lblShader->Text = "Shader:";
+			this->lblShader->Text = L"Shader:";
 			// 
 			// btnClose
 			// 
 			this->btnClose->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClose->Location = System::Drawing::Point(288, 320);
-			this->btnClose->Name = "btnClose";
-			this->btnClose->Size = System::Drawing::Size(80, 23);
+			this->btnClose->Location = System::Drawing::Point(432, 366);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(96, 27);
 			this->btnClose->TabIndex = 2;
-			this->btnClose->Text = "&Close";
+			this->btnClose->Text = L"&Close";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClose_Click);
 			// 
 			// btnCreate
 			// 
 			this->btnCreate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnCreate->Location = System::Drawing::Point(200, 320);
-			this->btnCreate->Name = "btnCreate";
-			this->btnCreate->Size = System::Drawing::Size(80, 23);
+			this->btnCreate->Location = System::Drawing::Point(330, 366);
+			this->btnCreate->Name = L"btnCreate";
+			this->btnCreate->Size = System::Drawing::Size(96, 27);
 			this->btnCreate->TabIndex = 1;
-			this->btnCreate->Text = "C&reate";
+			this->btnCreate->Text = L"C&reate";
 			this->btnCreate->Click += gcnew System::EventHandler(this, &CVMTCreate::btnCreate_Click);
 			// 
 			// btnClear
 			// 
 			this->btnClear->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClear->Location = System::Drawing::Point(8, 320);
-			this->btnClear->Name = "btnClear";
-			this->btnClear->Size = System::Drawing::Size(80, 23);
+			this->btnClear->Location = System::Drawing::Point(24, 366);
+			this->btnClear->Name = L"btnClear";
+			this->btnClear->Size = System::Drawing::Size(96, 27);
 			this->btnClear->TabIndex = 3;
-			this->btnClear->Text = "C&lear";
+			this->btnClear->Text = L"C&lear";
 			this->btnClear->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClear_Click);
 			// 
 			// dlgSaveVMTFile
 			// 
-			this->dlgSaveVMTFile->Filter = "VMT Files (*.vmt)|*.vmt";
-			this->dlgSaveVMTFile->Title = "Save VMT File";
+			this->dlgSaveVMTFile->Filter = L"VMT Files (*.vmt)|*.vmt";
+			this->dlgSaveVMTFile->Title = L"Save VMT File";
 			// 
 			// CVMTCreate
 			// 
 			this->AcceptButton = this->btnCreate;
-			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
+			this->AutoScaleBaseSize = System::Drawing::Size(8, 19);
 			this->CancelButton = this->btnClose;
-			this->ClientSize = System::Drawing::Size(378, 352);
+			this->ClientSize = System::Drawing::Size(540, 405);
 			this->Controls->Add(this->btnClear);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnCreate);
 			this->Controls->Add(this->tabMain);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
-			this->Icon = (safe_cast<System::Drawing::Icon ^  >(resources->GetObject("$this.Icon")));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
-			this->Name = "CVMTCreate";
+			this->Name = L"CVMTCreate";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = "Create VMT File";
+			this->Text = L"Create VMT File";
 			this->grpTextures->ResumeLayout(false);
+			this->grpTextures->PerformLayout();
 			this->tabMain->ResumeLayout(false);
 			this->tabTextures->ResumeLayout(false);
 			this->tabOptions->ResumeLayout(false);
 			this->grpOptions->ResumeLayout(false);
+			this->grpOptions->PerformLayout();
 			this->ResumeLayout(false);
 
-		}		
+		}
 		private: System::Void GetTexture(System::Windows::Forms::TextBox ^oTextBox)
 		{
 			if(this->dlgOpenVTFFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
@@ -1114,5 +1022,7 @@ namespace VTFEdit
 		{
 			this->DialogResult = System::Windows::Forms::DialogResult::OK;
 		}
-	};
+	private: System::Void grpOptions_Enter(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

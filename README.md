@@ -78,6 +78,7 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
   - Ported to using the latest CLR and VS 2019.
   - Removed crufty sharpening filters (no longer needed with proper sRGB)
   - Use monospace font for VMT editor
+  - High DPI support
 
 ## Library Changelog
 
