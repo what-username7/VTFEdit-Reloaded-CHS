@@ -1122,6 +1122,7 @@ namespace VTFEdit
 			__mcTemp__26[4] = "7.1";
 			__mcTemp__26[5] = "7.0";
 			this->cboVersion->Items->AddRange(__mcTemp__26);
+			this->cboVersion->SelectedIndex = 0;
 			this->cboVersion->Location = System::Drawing::Point(104, 24);
 			this->cboVersion->Name = "cboVersion";
 			this->cboVersion->Size = System::Drawing::Size(160, 21);
@@ -2057,7 +2058,7 @@ namespace VTFEdit
 			this->cboVersion->Text = sVersion;
 			if (this->cboVersion->SelectedIndex == -1)
 			{
-				this->cboVersion->SelectedIndex = 3;
+				this->cboVersion->SelectedIndex = 0;
 			}
 		}
 	}
@@ -2498,7 +2499,7 @@ namespace VTFEdit
 		this->numNormalScale->Value = System::Decimal(2.0f);
 		this->chkNormalMap->Checked = false;
 
-		this->cboVersion->SelectedIndex = 3;
+		this->cboVersion->SelectedIndex = 0;
 
 		this->chkReflectivity->Checked = true;
 		this->chkThumbnail->Checked = true;
