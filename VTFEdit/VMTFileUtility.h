@@ -192,8 +192,8 @@ namespace VTFEdit
 				char lastChar = '\0';
 				for (int i = 0; i < TextBox->Text->Length; i++)
 				{
-					char character = TextBox->Text[i];
-					char nextCharacter = (i + 1) != TextBox->Text->Length ? TextBox->Text[i + 1] : '\0';
+					char character = char(TextBox->Text[i]);
+					char nextCharacter = char((i + 1) != TextBox->Text->Length ? TextBox->Text[i + 1] : '\0');
 					bool validQuote = character == '"' && lastChar != '\\';
 					if (validQuote)
 						quoted = !quoted;
