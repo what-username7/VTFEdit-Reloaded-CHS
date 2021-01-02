@@ -82,4 +82,15 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="..\..\..\VTFEdit\windows_default.manifest">
+      <Filter>Source Files</Filter>
+    </Manifest>
+    <Manifest Include="..\..\..\VTFEdit\windows_dpiaware.manifest">
+      <Filter>Source Files</Filter>
+    </Manifest>
+    <Manifest Include="..\..\..\VTFEdit\windows_visualstyles.manifest">
+      <Filter>Source Files</Filter>
+    </Manifest>
+  </ItemGroup>
 </Project>
