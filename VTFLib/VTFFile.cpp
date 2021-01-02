@@ -17,6 +17,9 @@
 
 #include "Compressonator.h"
 
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
+#include "stb_image_resize.h"
+
 using namespace VTFLib;
 
 // Class construction
@@ -411,6 +414,42 @@ static CMP_FORMAT GetCMPFormat( VTFImageFormat imageFormat, bool bDXT5GA )
 	}
 }
 
+static const char *GetCMPErrorString( CMP_ERROR error )
+{
+	switch ( error )
+	{
+		case CMP_OK:		                        return "Ok.";
+		case CMP_ABORTED:                           return "The conversion was aborted.";
+		case CMP_ERR_INVALID_SOURCE_TEXTURE:        return "The source texture is invalid.";
+		case CMP_ERR_INVALID_DEST_TEXTURE:          return "The destination texture is invalid.";
+		case CMP_ERR_UNSUPPORTED_SOURCE_FORMAT:     return "The source format is not a supported format.";
+		case CMP_ERR_UNSUPPORTED_DEST_FORMAT:       return "The destination format is not a supported format.";
+		case CMP_ERR_UNSUPPORTED_GPU_ASTC_DECODE:   return "The gpu hardware is not supported.";
+		case CMP_ERR_UNSUPPORTED_GPU_BASIS_DECODE:  return "The gpu hardware is not supported.";
+		case CMP_ERR_SIZE_MISMATCH:                 return "The source and destination texture sizes do not match.";
+		case CMP_ERR_UNABLE_TO_INIT_CODEC:          return "Compressonator was unable to initialize the codec needed for conversion.";
+		case CMP_ERR_UNABLE_TO_INIT_DECOMPRESSLIB:  return "GPU_Decode Lib was unable to initialize the codec needed for decompression .";
+		case CMP_ERR_UNABLE_TO_INIT_COMPUTELIB:     return "Compute Lib was unable to initialize the codec needed for compression.";
+		case CMP_ERR_CMP_DESTINATION:               return "Error in compressing destination texture";
+		case CMP_ERR_MEM_ALLOC_FOR_MIPSET:          return "Memory Error: allocating MIPSet compression level data buffer";
+		case CMP_ERR_UNKNOWN_DESTINATION_FORMAT:    return "The destination Codec Type is unknown! In SDK refer to GetCodecType()";
+		case CMP_ERR_FAILED_HOST_SETUP:             return "Failed to setup Host for processing";
+		case CMP_ERR_PLUGIN_FILE_NOT_FOUND:         return "The required plugin library was not found";
+		case CMP_ERR_UNABLE_TO_LOAD_FILE:           return "The requested file was not loaded";
+		case CMP_ERR_UNABLE_TO_CREATE_ENCODER:      return "Request to create an encoder failed";
+		case CMP_ERR_UNABLE_TO_LOAD_ENCODER:        return "Unable to load an encode library";
+		case CMP_ERR_NOSHADER_CODE_DEFINED:         return "No shader code is available for the requested framework";
+		case CMP_ERR_GPU_DOESNOT_SUPPORT_COMPUTE:   return "The GPU device selected does not support compute";
+		case CMP_ERR_NOPERFSTATS:                   return "No Performance Stats are available";
+		case CMP_ERR_GPU_DOESNOT_SUPPORT_CMP_EXT:   return "The GPU does not support the requested compression extension!";
+		case CMP_ERR_GAMMA_OUTOFRANGE:              return "Gamma value set for processing is out of range";
+		case CMP_ERR_PLUGIN_SHAREDIO_NOT_SET:       return "The plugin C_PluginSetSharedIO call was not set and is required for this plugin to operate";
+		case CMP_ERR_UNABLE_TO_INIT_D3DX:           return "Unable to initialize DirectX SDK or get a specific DX API";
+		default:
+		case CMP_ERR_GENERIC:                       return "An unknown error occurred.";
+	}
+}
+
 //
 // Create()
 // Creates a VTF file of the specified format and size using the provided image RGBA data.
@@ -639,7 +678,42 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 		// Generate mipmaps off source image.
 		if(VTFCreateOptions.bMipmaps && this->Header->MipCount != 1)
 		{
-			//CMP_GenerateMIPLevels
+			auto temp = std::vector<vlByte>(this->Header->Width * this->Header->Height * 4);
+
+			for(vlUInt i = 0; i < uiFrames; i++)
+			{
+				for(vlUInt j = 0; j < uiFaces; j++)
+				{
+					for(vlUInt k = 0; k < uiSlices; k++)
+					{
+						vlByte* pSource = lpImageDataRGBA8888[i + j + k];
+
+						if(!this->ConvertFromRGBA8888(pSource, this->GetData(i, j, k, 0), this->Header->Width, this->Header->Height, this->Header->ImageFormat))
+						{
+							throw 0;
+						}
+
+						for (vlUInt m = 1; m < this->Header->MipCount; m++)
+						{
+							vlUShort usWidth  = max(1u, this->Header->Width  >> m);
+							vlUShort usHeight = max(1u, this->Header->Height >> m);
+
+							if (!stbir_resize_uint8_generic(
+								pSource, this->Header->Width, this->Header->Height, 0,
+								temp.data(), usWidth, usHeight, 0,
+								4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, STBIR_COLORSPACE_LINEAR, NULL))
+							{
+								throw 0;
+							}
+
+							if (!this->ConvertFromRGBA8888(temp.data(), this->GetData(i, j, k, m), usWidth, usHeight, this->Header->ImageFormat))
+							{
+								throw 0;
+							}
+						}
+					}
+				}
+			}
 		}
 		else
 		{
@@ -718,17 +792,6 @@ vlBool CVTFFile::Create(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt
 		}
 		this->SetStartFrame(VTFCreateOptions.uiStartFrame);
 		this->SetBumpmapScale(VTFCreateOptions.sBumpScale);
-
-		if(lpNewImageDataRGBA8888 != 0)
-		{
-			for(vlUInt i = 0; i < uiCount; i++)
-			{
-				delete []lpNewImageDataRGBA8888[i];
-			}
-			delete []lpNewImageDataRGBA8888;
-		}
-
-		this->Destroy();
 
 		return vlTrue;
 	}
@@ -2165,7 +2228,7 @@ vlBool CVTFFile::GenerateThumbnail()
 		return vlFalse;
 	}
 
-	if(!CVTFFile::Resize(lpImageData, lpThumbnailImageData, this->Header->Width, this->Header->Height, this->Header->LowResImageWidth, this->Header->LowResImageHeight))
+	if(!CVTFFile::Resize(lpImageData, lpThumbnailImageData, this->Header->Width, this->Header->Height, this->Header->LowResImageWidth, this->Header->LowResImageHeight, MIPMAP_FILTER_CATROM))
 	{
 		delete []lpImageData;
 		delete []lpThumbnailImageData;
@@ -2841,337 +2904,44 @@ vlBool CVTFFile::ConvertToRGBA8888(vlByte *lpSource, vlByte *lpDest, vlUInt uiWi
 }
 
 //-----------------------------------------------------------------------------------------------------
-// DXTn decompression code is based on examples on Microsofts website and from the
-// Developers Image Library (http://www.imagelib.org) (c) Denton Woods.
-//
-//-----------------------------------------------------------------------------------------------------
-// DecompressDXT1(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
+// DecompressDXTn(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat SourceFormat)
 //
 // Converts data from the DXT1 to RGBA8888 format. Data is read from *src
 // and written to *dst. Width and height are needed to it knows how much data to process
 //-----------------------------------------------------------------------------------------------------
-vlBool CVTFFile::DecompressDXT1(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
+vlBool CVTFFile::DecompressDXTn(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight, VTFImageFormat SourceFormat)
 {
-	vlUInt		x, y, i, j, k, Select;
-	vlByte		*Temp;
-	Colour565	*color_0, *color_1;
-	Colour8888	colours[4], *col;
-	vlUInt		bitmask, Offset;
+	CMP_Texture srcTexture = {0};
+	srcTexture.dwSize     = sizeof( srcTexture );
+	srcTexture.dwWidth    = uiWidth;
+	srcTexture.dwHeight   = uiHeight;
+	srcTexture.dwPitch    = 0;
+	srcTexture.format     = GetCMPFormat( SourceFormat, false );
+	srcTexture.dwDataSize = CMP_CalculateBufferSize( &srcTexture );
+	srcTexture.pData      = (CMP_BYTE*) src;
 
-	vlByte nBpp = 4;						// bytes per pixel (4 channels (RGBA))
-	vlByte nBpc = 1;						// bytes per channel (1 byte per channel)
-	vlUInt iBps = nBpp * nBpc * uiWidth;		// bytes per scanline
+	CMP_CompressOptions options = {0};
+	options.dwSize        = sizeof(options);
+	options.fquality      = 1.0f;
+	options.dwnumThreads  = 0;
+	options.bDXT1UseAlpha = false;
 
-	Temp = src;
+	CMP_Texture destTexture = {0};
+	destTexture.dwSize     = sizeof( destTexture );
+	destTexture.dwWidth    = uiWidth;
+	destTexture.dwHeight   = uiHeight;
+	destTexture.dwPitch    = 4 * uiWidth;
+	destTexture.format     = CMP_FORMAT_RGBA_8888;
+	destTexture.dwDataSize = destTexture.dwPitch * uiHeight;
+	destTexture.pData      = (CMP_BYTE*) dst;
 
-	for (y = 0; y < uiHeight; y += 4)
+	CMP_ERROR cmp_status = CMP_ConvertTexture( &srcTexture, &destTexture, &options, NULL );
+	if (cmp_status != CMP_OK)
 	{
-		for (x = 0; x < uiWidth; x += 4)
-		{
-			color_0 = ((Colour565*)Temp);
-			color_1 = ((Colour565*)(Temp+2));
-			bitmask = ((vlUInt*)Temp)[1];
-			Temp += 8;
-
-			colours[0].r = color_0->nRed << 3;
-			colours[0].g = color_0->nGreen << 2;
-			colours[0].b = color_0->nBlue << 3;
-			colours[0].a = 0xFF;
-
-			colours[1].r = color_1->nRed << 3;
-			colours[1].g = color_1->nGreen << 2;
-			colours[1].b = color_1->nBlue << 3;
-			colours[1].a = 0xFF;
-
-			if (*((vlUShort*)color_0) > *((vlUShort*)color_1))
-			{
-				// Four-color block: derive the other two colors.    
-				// 00 = color_0, 01 = color_1, 10 = color_2, 11 = color_3
-				// These 2-bit codes correspond to the 2-bit fields 
-				// stored in the 64-bit block.
-				colours[2].b = (2 * colours[0].b + colours[1].b + 1) / 3;
-				colours[2].g = (2 * colours[0].g + colours[1].g + 1) / 3;
-				colours[2].r = (2 * colours[0].r + colours[1].r + 1) / 3;
-				colours[2].a = 0xFF;
-
-				colours[3].b = (colours[0].b + 2 * colours[1].b + 1) / 3;
-				colours[3].g = (colours[0].g + 2 * colours[1].g + 1) / 3;
-				colours[3].r = (colours[0].r + 2 * colours[1].r + 1) / 3;
-				colours[3].a = 0xFF;
-			}
-			else
-			{
-				// Three-color block: derive the other color.
-				// 00 = color_0,  01 = color_1,  10 = color_2,
-				// 11 = transparent.
-				// These 2-bit codes correspond to the 2-bit fields 
-				// stored in the 64-bit block. 
-				colours[2].b = (colours[0].b + colours[1].b) / 2;
-				colours[2].g = (colours[0].g + colours[1].g) / 2;
-				colours[2].r = (colours[0].r + colours[1].r) / 2;
-				colours[2].a = 0xFF;
-
-				colours[3].b = (colours[0].b + 2 * colours[1].b + 1) / 3;
-				colours[3].g = (colours[0].g + 2 * colours[1].g + 1) / 3;
-				colours[3].r = (colours[0].r + 2 * colours[1].r + 1) / 3;
-				colours[3].a = 0x00;
-			}
-
-			for (j = 0, k = 0; j < 4; j++)
-			{
-				for (i = 0; i < 4; i++, k++)
-				{
-					Select = (bitmask & (0x03 << k*2)) >> k*2;
-					col = &colours[Select];
-
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight))
-					{
-						Offset = (y + j) * iBps + (x + i) * nBpp;
-						dst[Offset + 0] = col->r;
-						dst[Offset + 1] = col->g;
-						dst[Offset + 2] = col->b;
-						dst[Offset + 3] = col->a;
-					}
-				}
-			}
-		}
+		LastError.Set( GetCMPErrorString( cmp_status ) );
+		return vlFalse;
 	}
-	return vlTrue;
-}
 
-//-----------------------------------------------------------------------------------------------------
-// DecompressDXT3(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
-//
-// Converts data from the DXT3 to RGBA8888 format. Data is read from *src
-// and written to *dst. Width and height are needed to it knows how much data to process
-//-----------------------------------------------------------------------------------------------------
-vlBool CVTFFile::DecompressDXT3(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
-{
-	vlUInt		x, y, i, j, k, Select;
-	vlByte		*Temp;
-	Colour565	*color_0, *color_1;
-	Colour8888	colours[4], *col;
-	vlUInt		bitmask, Offset;
-	vlUShort	word;
-	DXTAlphaBlockExplicit *alpha;
-
-	vlByte nBpp = 4;						// bytes per pixel (4 channels (RGBA))
-	vlByte nBpc = 1;						// bytes per channel (1 byte per channel)
-	vlUInt iBps = nBpp * nBpc * uiWidth;		// bytes per scanline
-
-	Temp = src;
-
-	for (y = 0; y < uiHeight; y += 4)
-	{
-		for (x = 0; x < uiWidth; x += 4)
-		{
-			alpha = (DXTAlphaBlockExplicit*)Temp;
-			Temp += 8;
-			color_0 = ((Colour565*)Temp);
-			color_1 = ((Colour565*)(Temp+2));
-			bitmask = ((vlUInt*)Temp)[1];
-			Temp += 8;
-
-			colours[0].r = color_0->nRed << 3;
-			colours[0].g = color_0->nGreen << 2;
-			colours[0].b = color_0->nBlue << 3;
-			colours[0].a = 0xFF;
-
-			colours[1].r = color_1->nRed << 3;
-			colours[1].g = color_1->nGreen << 2;
-			colours[1].b = color_1->nBlue << 3;
-			colours[1].a = 0xFF;
-
-			// Four-color block: derive the other two colors.    
-			// 00 = color_0, 01 = color_1, 10 = color_2, 11 = color_3
-			// These 2-bit codes correspond to the 2-bit fields 
-			// stored in the 64-bit block.
-			colours[2].b = (2 * colours[0].b + colours[1].b + 1) / 3;
-			colours[2].g = (2 * colours[0].g + colours[1].g + 1) / 3;
-			colours[2].r = (2 * colours[0].r + colours[1].r + 1) / 3;
-			colours[2].a = 0xFF;
-
-			colours[3].b = (colours[0].b + 2 * colours[1].b + 1) / 3;
-			colours[3].g = (colours[0].g + 2 * colours[1].g + 1) / 3;
-			colours[3].r = (colours[0].r + 2 * colours[1].r + 1) / 3;
-			colours[3].a = 0xFF;
-
-			k = 0;
-			for (j = 0; j < 4; j++)
-			{
-				for (i = 0; i < 4; i++, k++)
-				{
-					Select = (bitmask & (0x03 << k*2)) >> k*2;
-					col = &colours[Select];
-
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight))
-					{
-						Offset = (y + j) * iBps + (x + i) * nBpp;
-						dst[Offset + 0] = col->r;
-						dst[Offset + 1] = col->g;
-						dst[Offset + 2] = col->b;
-					}
-				}
-			}
-
-			for (j = 0; j < 4; j++)
-			{
-				word = alpha->row[j];
-				for (i = 0; i < 4; i++)
-				{
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight))
-					{
-						Offset = (y + j) * iBps + (x + i) * nBpp + 3;
-						dst[Offset] = word & 0x0F;
-						dst[Offset] = dst[Offset] | (dst[Offset] << 4);
-					}
-					
-					word >>= 4;
-				}
-			}
-		}
-	}
-	return vlTrue;
-}
-
-//-----------------------------------------------------------------------------------------------------
-// DecompressDXT5(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
-//
-// Converts data from the DXT5 to RGBA8888 format. Data is read from *src
-// and written to *dst. Width and height are needed to it knows how much data to process
-//-----------------------------------------------------------------------------------------------------
-vlBool CVTFFile::DecompressDXT5(vlByte *src, vlByte *dst, vlUInt uiWidth, vlUInt uiHeight)
-{
-	vlUInt		x, y, i, j, k, Select;
-	vlByte		*Temp;
-	Colour565	*color_0, *color_1;
-	Colour8888	colours[4], *col;
-	vlUInt		bitmask, Offset;
-	vlByte		alphas[8], *alphamask;
-	vlUInt		bits;
-
-	vlByte nBpp = 4;						// bytes per pixel (4 channels (RGBA))
-	vlByte nBpc = 1;						// bytes per channel (1 byte per channel)
-	vlUInt iBps = nBpp * nBpc * uiWidth;		// bytes per scanline
-
-	Temp = src;
-
-	for (y = 0; y < uiHeight; y += 4)
-	{
-		for (x = 0; x < uiWidth; x += 4)
-		{
-			//if (y >= uiHeight || x >= uiWidth)
-			//		break;
-
-			alphas[0] = Temp[0];
-			alphas[1] = Temp[1];
-			alphamask = Temp + 2;
-			Temp += 8;
-			color_0 = ((Colour565*)Temp);
-			color_1 = ((Colour565*)(Temp+2));
-			bitmask = ((vlUInt*)Temp)[1];
-			Temp += 8;
-
-			colours[0].r = color_0->nRed << 3;
-			colours[0].g = color_0->nGreen << 2;
-			colours[0].b = color_0->nBlue << 3;
-			colours[0].a = 0xFF;
-
-			colours[1].r = color_1->nRed << 3;
-			colours[1].g = color_1->nGreen << 2;
-			colours[1].b = color_1->nBlue << 3;
-			colours[1].a = 0xFF;
-
-			// Four-color block: derive the other two colors.    
-			// 00 = color_0, 01 = color_1, 10 = color_2, 11 = color_3
-			// These 2-bit codes correspond to the 2-bit fields 
-			// stored in the 64-bit block.
-			colours[2].b = (2 * colours[0].b + colours[1].b + 1) / 3;
-			colours[2].g = (2 * colours[0].g + colours[1].g + 1) / 3;
-			colours[2].r = (2 * colours[0].r + colours[1].r + 1) / 3;
-			colours[2].a = 0xFF;
-
-			colours[3].b = (colours[0].b + 2 * colours[1].b + 1) / 3;
-			colours[3].g = (colours[0].g + 2 * colours[1].g + 1) / 3;
-			colours[3].r = (colours[0].r + 2 * colours[1].r + 1) / 3;
-			colours[3].a = 0xFF;
-
-			k = 0;
-			for (j = 0; j < 4; j++)
-			{
-				for (i = 0; i < 4; i++, k++)
-				{
-					Select = (bitmask & (0x03 << k*2)) >> k*2;
-					col = &colours[Select];
-
-					// only put pixels out < width or height
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight)) {
-						Offset = (y + j) * iBps + (x + i) * nBpp;
-						dst[Offset + 0] = col->r;
-						dst[Offset + 1] = col->g;
-						dst[Offset + 2] = col->b;
-					}
-				}
-			}
-
-			// 8-alpha or 6-alpha block?    
-			if (alphas[0] > alphas[1])
-			{ 
-				// 8-alpha block:  derive the other six alphas.    
-				// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
-				alphas[2] = (6 * alphas[0] + 1 * alphas[1] + 3) / 7;	// bit code 010
-				alphas[3] = (5 * alphas[0] + 2 * alphas[1] + 3) / 7;	// bit code 011
-				alphas[4] = (4 * alphas[0] + 3 * alphas[1] + 3) / 7;	// bit code 100
-				alphas[5] = (3 * alphas[0] + 4 * alphas[1] + 3) / 7;	// bit code 101
-				alphas[6] = (2 * alphas[0] + 5 * alphas[1] + 3) / 7;	// bit code 110
-				alphas[7] = (1 * alphas[0] + 6 * alphas[1] + 3) / 7;	// bit code 111  
-			}    
-			else
-			{  
-				// 6-alpha block.    
-				// Bit code 000 = alpha_0, 001 = alpha_1, others are interpolated.
-				alphas[2] = (4 * alphas[0] + 1 * alphas[1] + 2) / 5;	// Bit code 010
-				alphas[3] = (3 * alphas[0] + 2 * alphas[1] + 2) / 5;	// Bit code 011
-				alphas[4] = (2 * alphas[0] + 3 * alphas[1] + 2) / 5;	// Bit code 100
-				alphas[5] = (1 * alphas[0] + 4 * alphas[1] + 2) / 5;	// Bit code 101
-				alphas[6] = 0x00;										// Bit code 110
-				alphas[7] = 0xFF;										// Bit code 111
-			}
-
-			// Note: Have to separate the next two loops,
-			//	it operates on a 6-byte system.
-
-			// First three bytes
-			bits = *((int*)alphamask);
-			for (j = 0; j < 2; j++)
-			{
-				for (i = 0; i < 4; i++)
-				{
-					// only put pixels out < width or height
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight)) {
-						Offset = (y + j) * iBps + (x + i) * nBpp + 3;
-							dst[Offset] = alphas[bits & 0x07];
-					}
-					bits >>= 3;
-				}
-			}
-
-			// Last three bytes
-			bits = *((int*)&alphamask[3]);
-			for (j = 2; j < 4; j++)
-			{
-				for (i = 0; i < 4; i++)
-				{
-					// only put pixels out < width or height
-					if (((x + i) < uiWidth) && ((y + j) < uiHeight)) {
-						Offset = (y + j) * iBps + (x + i) * nBpp + 3;
-							dst[Offset] = alphas[bits & 0x07];
-					}
-					bits >>= 3;
-				}
-			}
-		}
-	}
 	return vlTrue;
 }
 
@@ -3193,17 +2963,17 @@ vlBool CVTFFile::CompressDXTn(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, 
 {
 	CMP_Texture srcTexture = {0};
 	srcTexture.dwSize     = sizeof( srcTexture );
-	srcTexture.dwWidth    = srcTexture.dwWidth;
-	srcTexture.dwHeight   = srcTexture.dwHeight;
-	srcTexture.dwPitch    = CVTFFile::ComputeImageSize( uiWidth, uiHeight, 1, IMAGE_FORMAT_RGBA8888 );
+	srcTexture.dwWidth    = uiWidth;
+	srcTexture.dwHeight   = uiHeight;
+	srcTexture.dwPitch    = 4 * uiWidth;
 	srcTexture.format     = CMP_FORMAT_RGBA_8888;
 	srcTexture.dwDataSize = uiHeight * srcTexture.dwPitch;
 	srcTexture.pData      = (CMP_BYTE*) lpSource;
 
 	CMP_CompressOptions options = {0};
 	options.dwSize        = sizeof(options);
-	options.fquality      = 1.0f;//0.05f;
-	options.dwnumThreads  = 8;
+	options.fquality      = 1.0f;
+	options.dwnumThreads  = 0;
 	options.bDXT1UseAlpha = DestFormat == IMAGE_FORMAT_DXT1_ONEBITALPHA;
 
 	CMP_Texture destTexture = {0};
@@ -3215,15 +2985,14 @@ vlBool CVTFFile::CompressDXTn(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, 
 	destTexture.dwDataSize = CMP_CalculateBufferSize( &destTexture );
 	destTexture.pData      = (CMP_BYTE*) lpDest;
 
-	CMP_ERROR cmp_status;
-	cmp_status = CMP_ConvertTexture( &srcTexture, &destTexture, &options, NULL );
+	CMP_ERROR cmp_status = CMP_ConvertTexture( &srcTexture, &destTexture, &options, NULL );
 	if (cmp_status != CMP_OK)
 	{
-		// Blah
-		return false;
+		LastError.Set( GetCMPErrorString( cmp_status ) );
+		return vlFalse;
 	}
 
-	return true;
+	return vlTrue;
 }
 
 typedef vlVoid (*TransformProc)(vlUInt16& R, vlUInt16& G, vlUInt16& B, vlUInt16& A);
@@ -3691,13 +3460,9 @@ vlBool CVTFFile::Convert(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUIn
 			break;
 		case IMAGE_FORMAT_DXT1:
 		case IMAGE_FORMAT_DXT1_ONEBITALPHA:
-			bResult = CVTFFile::DecompressDXT1(lpSource, lpSourceRGBA, uiWidth, uiHeight);
-			break;
 		case IMAGE_FORMAT_DXT3:
-			bResult = CVTFFile::DecompressDXT3(lpSource, lpSourceRGBA, uiWidth, uiHeight);
-			break;
 		case IMAGE_FORMAT_DXT5:
-			bResult = CVTFFile::DecompressDXT5(lpSource, lpSourceRGBA, uiWidth, uiHeight);
+			bResult = CVTFFile::DecompressDXTn(lpSource, lpSourceRGBA, uiWidth, uiHeight, SourceFormat);
 			break;
 		default:
 			bResult = CVTFFile::Convert(lpSource, lpSourceRGBA, uiWidth, uiHeight, SourceFormat, IMAGE_FORMAT_RGBA8888);
@@ -3834,46 +3599,16 @@ vlBool CVTFFile::Resize(vlByte *lpSourceRGBA8888, vlByte *lpDestRGBA8888, vlUInt
 	assert(ResizeFilter >= 0 && ResizeFilter < MIPMAP_FILTER_COUNT);
 	assert(SharpenFilter >= 0 && SharpenFilter < SHARPEN_FILTER_COUNT);
 
-#ifdef USE_NVDXT
-	nvCompressionOptions Options = nvCompressionOptions();
-
-	SNVCompressionUserData UserData = SNVCompressionUserData(lpDestRGBA8888, IMAGE_FORMAT_RGBA8888);
-
-	// Don't generate mipmaps.
-	Options.mipMapGeneration = kNoMipMaps;
-
-	// Set new image size.
-	Options.rescaleImageType = kRescalePreScale;
-	Options.scaleX = (vlSingle)uiDestWidth;
-	Options.scaleY = (vlSingle)uiDestHeight;
-
-	// Set resize filter.
-	Options.rescaleImageFilter = (nvMipFilterTypes)ResizeFilter;
-
-	// Setup sharpen filter.
-	if(SharpenFilter != SHARPEN_FILTER_NONE)
+	if (!stbir_resize_uint8_generic(
+		lpSourceRGBA8888, uiSourceWidth, uiSourceHeight, 0,
+		lpDestRGBA8888, uiDestWidth, uiDestHeight, 0,
+		4, 3, 0, STBIR_EDGE_CLAMP, STBIR_FILTER_BOX, STBIR_COLORSPACE_LINEAR, NULL))
 	{
-		Options.sharpenFilterType = (nvSharpenFilterTypes)SharpenFilter;
-		Options.sharpening_passes_per_mip_level[0] = 1;
-		Options.unsharp_data.radius32F = sUnsharpenRadius;
-		Options.unsharp_data.amount32F = sUnsharpenAmount;
-		Options.unsharp_data.threshold32F = sUnsharpenThreshold;
-		Options.xsharp_data.strength32F = sXSharpenStrength;
-		Options.xsharp_data.threshold32F = sXSharpenThreshold;
+		LastError.Set("Error resizing image.");
+		return vlFalse;
 	}
 
-	// Set the format.
-	Options.textureFormat = k8888;
-	Options.bSwapRB = true;
-
-	// The UserData struct gets passed to our callback.
-	Options.user_data = &UserData;
-
-	return nvDXTCompressWrapper(lpSourceRGBA8888, uiSourceWidth, uiSourceHeight, &Options, NVWriteCallback);
-#else
-	LastError.Set("NVDXT support required for CVTFFile::Resize().");
-	return vlFalse;
-#endif
+	return vlTrue;
 }
 
 //
