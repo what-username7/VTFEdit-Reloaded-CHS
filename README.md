@@ -77,6 +77,7 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
   - Respect sRGB-ness when generating mipmaps and resizing.
   - Ported to using the latest CLR and VS 2019.
   - Removed crufty sharpening filters (no longer needed with proper sRGB)
+  - Use monospace font for VMT editor
 
 ## Library Changelog
 

@@ -1720,6 +1720,8 @@ namespace VTFEdit
 			this->txtVMTFile->ContextMenu = this->mnuVMTFile;
 			this->txtVMTFile->DetectUrls = false;
 			this->txtVMTFile->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->txtVMTFile->Font = (gcnew System::Drawing::Font(L"Consolas", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
 			this->txtVMTFile->Size = System::Drawing::Size(470, 532);
