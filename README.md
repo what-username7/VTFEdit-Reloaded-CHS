@@ -79,6 +79,7 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
   - Removed crufty sharpening filters (no longer needed with proper sRGB)
   - Use monospace font for VMT editor
   - High DPI support
+  - Syntax highlighting support for VMTs
 
 ## Library Changelog
 

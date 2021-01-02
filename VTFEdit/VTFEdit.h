@@ -977,7 +977,7 @@ namespace VTFEdit
 			this->tabImage->Controls->Add(this->grpFlags);
 			this->tabImage->Location = System::Drawing::Point(4, 29);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(251, 480);
+			this->tabImage->Size = System::Drawing::Size(251, 469);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -1175,7 +1175,7 @@ namespace VTFEdit
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFlags->Location = System::Drawing::Point(10, 277);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(230, 187);
+			this->grpFlags->Size = System::Drawing::Size(230, 176);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1188,7 +1188,7 @@ namespace VTFEdit
 			this->lstFlags->CheckOnClick = true;
 			this->lstFlags->Location = System::Drawing::Point(10, 18);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(211, 119);
+			this->lstFlags->Size = System::Drawing::Size(211, 96);
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
 			// 
@@ -1199,7 +1199,7 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpFileInfo);
 			this->tabInfo->Location = System::Drawing::Point(4, 29);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(251, 480);
+			this->tabInfo->Size = System::Drawing::Size(251, 469);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1531,7 +1531,7 @@ namespace VTFEdit
 			this->tabResources->Controls->Add(this->grpResourceInfo);
 			this->tabResources->Location = System::Drawing::Point(4, 29);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(251, 480);
+			this->tabResources->Size = System::Drawing::Size(251, 469);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1544,7 +1544,7 @@ namespace VTFEdit
 			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpResources->Location = System::Drawing::Point(10, 83);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(230, 381);
+			this->grpResources->Size = System::Drawing::Size(230, 370);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1556,7 +1556,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treResources->Location = System::Drawing::Point(10, 18);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(211, 354);
+			this->treResources->Size = System::Drawing::Size(211, 343);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1625,9 +1625,9 @@ namespace VTFEdit
 			// picVTFFileBR
 			// 
 			this->picVTFFileBR->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileBR->Location = System::Drawing::Point(38, 37);
+			this->picVTFFileBR->Location = System::Drawing::Point(32, 31);
 			this->picVTFFileBR->Name = L"picVTFFileBR";
-			this->picVTFFileBR->Size = System::Drawing::Size(39, 37);
+			this->picVTFFileBR->Size = System::Drawing::Size(33, 31);
 			this->picVTFFileBR->TabIndex = 4;
 			this->picVTFFileBR->TabStop = false;
 			this->picVTFFileBR->Visible = false;
@@ -1679,9 +1679,9 @@ namespace VTFEdit
 			// picVTFFileBL
 			// 
 			this->picVTFFileBL->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileBL->Location = System::Drawing::Point(0, 37);
+			this->picVTFFileBL->Location = System::Drawing::Point(0, 31);
 			this->picVTFFileBL->Name = L"picVTFFileBL";
-			this->picVTFFileBL->Size = System::Drawing::Size(38, 37);
+			this->picVTFFileBL->Size = System::Drawing::Size(32, 31);
 			this->picVTFFileBL->TabIndex = 3;
 			this->picVTFFileBL->TabStop = false;
 			this->picVTFFileBL->Visible = false;
@@ -1692,9 +1692,9 @@ namespace VTFEdit
 			// picVTFFileTR
 			// 
 			this->picVTFFileTR->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileTR->Location = System::Drawing::Point(38, 0);
+			this->picVTFFileTR->Location = System::Drawing::Point(32, 0);
 			this->picVTFFileTR->Name = L"picVTFFileTR";
-			this->picVTFFileTR->Size = System::Drawing::Size(39, 37);
+			this->picVTFFileTR->Size = System::Drawing::Size(33, 31);
 			this->picVTFFileTR->TabIndex = 2;
 			this->picVTFFileTR->TabStop = false;
 			this->picVTFFileTR->Visible = false;
@@ -1707,7 +1707,7 @@ namespace VTFEdit
 			this->picVTFFileTL->ContextMenu = this->mnuVTFFile;
 			this->picVTFFileTL->Location = System::Drawing::Point(0, 0);
 			this->picVTFFileTL->Name = L"picVTFFileTL";
-			this->picVTFFileTL->Size = System::Drawing::Size(38, 37);
+			this->picVTFFileTL->Size = System::Drawing::Size(32, 31);
 			this->picVTFFileTL->TabIndex = 0;
 			this->picVTFFileTL->TabStop = false;
 			this->picVTFFileTL->Visible = false;
@@ -1719,11 +1719,14 @@ namespace VTFEdit
 			// 
 			this->txtVMTFile->AcceptsTab = true;
 			this->txtVMTFile->AllowDrop = true;
+			this->txtVMTFile->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(31)),
+				static_cast<System::Int32>(static_cast<System::Byte>(33)));
 			this->txtVMTFile->ContextMenu = this->mnuVMTFile;
 			this->txtVMTFile->DetectUrls = false;
 			this->txtVMTFile->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->txtVMTFile->Font = (gcnew System::Drawing::Font(L"Consolas", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->txtVMTFile->Font = (gcnew System::Drawing::Font(L"Consolas", 10));
+			this->txtVMTFile->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(197)), static_cast<System::Int32>(static_cast<System::Byte>(200)),
+				static_cast<System::Int32>(static_cast<System::Byte>(198)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
 			this->txtVMTFile->Size = System::Drawing::Size(470, 524);
@@ -3415,7 +3418,7 @@ namespace VTFEdit
 
 			this->EnableVMTContextMenuItems();
 			this->SyntaxHilighter->Enabled = true;
-			//this->SyntaxHilighter->Process();
+			this->SyntaxHilighter->Process();
 
 			this->txtVMTFile->Visible = true;
 		}
@@ -4436,9 +4439,9 @@ namespace VTFEdit
 		{
 			this->EnableVMTContextMenuItems();
 
-			//this->txtVMTFile->SelectionChanged -= new System::EventHandler(this, txtVMTFile_SelectionChanged);
-			//this->SyntaxHilighter->Process();
-			//this->txtVMTFile->SelectionChanged += new System::EventHandler(this, &CVTFEdit::txtVMTFile_SelectionChanged);
+			this->txtVMTFile->SelectionChanged -= gcnew System::EventHandler(this, &CVTFEdit::txtVMTFile_SelectionChanged);
+			this->SyntaxHilighter->Process();
+			this->txtVMTFile->SelectionChanged += gcnew System::EventHandler(this, &CVTFEdit::txtVMTFile_SelectionChanged);
 		}
 
 		//

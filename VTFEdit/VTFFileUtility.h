@@ -69,8 +69,7 @@ namespace VTFEdit
 			vlSetFloat(VTFLIB_LUMINANCE_WEIGHT_G, Options->LuminanceWeightG);
 			vlSetFloat(VTFLIB_LUMINANCE_WEIGHT_B, Options->LuminanceWeightB);
 
-			if (VTFCreateOptions.bSRGB)
-				VTFCreateOptions.uiFlags |= TEXTUREFLAGS_SRGB;
+ 
 
 			return VTFCreateOptions;
 		}

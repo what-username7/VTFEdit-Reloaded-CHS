@@ -22,6 +22,7 @@
 #include "stdafx.h"
 
 using namespace System;
+using namespace System::Text::RegularExpressions;
 
 enum EToken
 {
@@ -136,181 +137,6 @@ namespace VTFEdit
 			return bResult != 0;
 		}
 
-		// Stores token information.
-		ref class CToken
-		{
-		private:
-			EToken eToken;
-			char cChar;
-			int iIndex;
-
-		public:
-			// Create a normal token.  cChar was the tokenized char.
-			CToken(EToken eToken, char cChar, int iIndex) : eToken(eToken), cChar(cChar), iIndex(iIndex)
-			{
-
-			}
-
-			// Copy a token.
-			CToken(const CToken ^ Token)
-			{
-				this->eToken = Token->eToken;
-				this->cChar = Token->cChar;
-			}
-
-		public:
-			// Convert the current token to a special token.
-			// We need to do this because the tokenizer reads ahead and doen't
-			// know if the requested token will be special until after the fact.
-			void ToSpecial(char cSpecial)
-			{
-				if(this->cChar == cSpecial)
-				{
-					this->eToken = TOKEN_SPECIAL;
-					return;
-				}
-
-				this->eToken = TOKEN_CHAR;
-			}
-
-			// Get the token that was read.
-			EToken GetToken()
-			{
-				return this->eToken;
-			}
-
-			// Get the char that was tokenized.  Only works if
-			// token is a TOKEN_CHAR or was tokenized by the byte
-			// tokenizer.
-			char GetChar()
-			{
-				return this->cChar;
-			}
-
-			int GetIndex()
-			{
-				return this->iIndex;
-			}
-		};
-
-		// Tokenizes single byte tokens.
-		ref class CByteTokenizer
-		{
-		private:
-			int iIndex;
-			int iStart;
-			int iEnd;
-			String ^ Text;
-
-		private:
-			CToken ^ CurrentToken;
-			CToken ^ NextToken;
-
-		public:
-			CByteTokenizer(String ^ Text, int iStart, int iEnd) : iIndex(0), iStart(iStart), iEnd(iEnd), Text(Text), CurrentToken(nullptr), NextToken(nullptr)
-			{
-				this->GetNextToken();
-			}
-
-		private:
-			void GetNextToken()
-			{
-				this->GetNextToken('\0');
-			}
-
-			void GetNextToken(char cSpecial)
-			{
-				char cChar;
-
-				if (this->iIndex < this->iStart)
-					this->iIndex = this->iStart;
-
-				if(this->iIndex == this->iEnd + 1 || this->iIndex == this->Text->Length)
-				{
-					this->NextToken = gcnew CToken(TOKEN_EOF, '\0', this->iIndex);
-					return;
-				}
-
-				cChar = (char)this->Text[this->iIndex];
-
-				// If a special char was specified, only return TOKEN_CHAR tokens
-				// unless the special char was found in which case return a
-				// TOKEN_SPECIAL.
-				if(cSpecial)
-				{
-					if(cChar == cSpecial)
-					{
-						this->NextToken = gcnew CToken(TOKEN_SPECIAL, cChar, this->iIndex);
-						return;
-					}
-
-					this->NextToken = gcnew CToken(TOKEN_CHAR, cChar, this->iIndex);
-
-					this->iIndex++;
-					return;
-				}
-				
-				if(cChar == '\r' || cChar == '\n')
-				{
-					this->NextToken = gcnew CToken(TOKEN_NEWLINE, cChar, this->iIndex);
-				}
-				else if(isspace(cChar))
-				{
-					this->NextToken = gcnew CToken(TOKEN_WHITESPACE, cChar, this->iIndex);
-				}
-				else if(cChar == '/')
-				{
-					this->NextToken = gcnew CToken(TOKEN_FORWARD_SLASH, cChar, this->iIndex);
-				}
-				else if(cChar == '\"')
-				{
-					this->NextToken = gcnew CToken(TOKEN_QUOTE, cChar, this->iIndex);
-				}
-				else if(cChar == '{')
-				{
-					this->NextToken = gcnew CToken(TOKEN_OPEN_BRACE, cChar, this->iIndex);
-				}
-				else if(cChar == '}')
-				{
-					this->NextToken = gcnew CToken(TOKEN_CLOSE_BRACE, cChar, this->iIndex);
-				}
-				else
-				{
-					this->NextToken = gcnew CToken(TOKEN_CHAR, cChar, this->iIndex);
-				}
-
-				this->iIndex++;
-			}
-
-		public:
-			// Get the current token and return the next one.
-			CToken ^ Next()
-			{
-				return this->Next('\0');
-			}
-
-			CToken ^ Next(char cSpecial)
-			{
-				this->CurrentToken = this->NextToken;
-				this->NextToken = nullptr;
-
-				if(cSpecial && this->CurrentToken)
-				{
-					this->CurrentToken->ToSpecial(cSpecial);
-				}
-
-				this->GetNextToken();
-
-				return this->CurrentToken;
-			}
-
-			// Get the curret token.
-			CToken ^ Peek()
-			{
-				return this->NextToken;
-			}
-		};
-
 		// Tokenizes multi byte tokens.
 		ref class CSyntaxHilighter
 		{
@@ -337,51 +163,10 @@ namespace VTFEdit
 				if (!this->Enabled)
 					return;
 
-				String ^ sNewText = TextBox->Text;
-				int iStart = 0, iEnd = sNewText->Length - 1, iLength;
-
-				for(int i = 0; i < sNewText->Length && i < this->sOldText->Length; i++)
-				{
-					if(sNewText[i] != this->sOldText[i])
-					{
-						break;
-					}
-					
-					iStart = i;
-				}
-
-				for(int i = 0; i < sNewText->Length && i < this->sOldText->Length; i++)
-				{
-					if(sNewText[sNewText->Length - 1 - i] != this->sOldText[sOldText->Length - 1 - i])
-					{
-						break;
-					}
-
-					iEnd = sNewText->Length - 1 - i;
-				}
-
-				if (iEnd >= sNewText->Length)
-					iEnd = sNewText->Length - 1;
-				if (iEnd < iStart)
-					iEnd = iStart;
-
-				while (iStart > 0 && (char)sNewText[iStart] != '\r' && (char)sNewText[iStart] != '\n')
-				{
-					iStart--;
-				}
-
-				while(iEnd < sNewText->Length - 1 && (char)sNewText[iEnd] != '\r' && (char)sNewText[iEnd] != '\n')
-				{
-					iEnd++;
-				}
-
-				CByteTokenizer ^ ByteTokenizer = gcnew CByteTokenizer(sNewText, iStart, iEnd);
-
-				this->sOldText = sNewText;
+				int iSelectionStart = this->TextBox->SelectionStart;
+				int iSelectionLength = this->TextBox->SelectionLength;
 
 				HWND Handle = (HWND)this->TextBox->Handle.ToPointer();
-
-				//LockWindowUpdate(Handle);
 
 				SendMessage(Handle, WM_SETREDRAW, FALSE, 0);
 				LRESULT EventMask = SendMessage(Handle, EM_SETEVENTMASK, 0, 0);
@@ -389,161 +174,68 @@ namespace VTFEdit
 				POINT ScrollLocation;
 				SendMessage(Handle, EM_GETSCROLLPOS, 0, (LPARAM)&ScrollLocation);
 
-				System::Drawing::Font ^ BoldFont = gcnew System::Drawing::Font(this->TextBox->Font, System::Drawing::FontStyle::Bold);
-
-				int iSelectionStart = this->TextBox->SelectionStart;
-				int iSelectionLength = this->TextBox->SelectionLength;
-
-				this->TextBox->Select(iStart, iEnd - iStart);
-				//this->TextBox->SelectionStart = iStart;
-				//this->TextBox->SelectionLength = iEnd - iStart;
-				this->TextBox->SelectionColor = System::Drawing::Color::Black;
-				this->TextBox->SelectionFont = this->TextBox->Font;
-
-				CToken ^ Token;
-				//int iStart, iLength;
-
-				while(true)
+				TextBox->Select(0, TextBox->Text->Length);
+				array<Int32>^ tabs = gcnew array<Int32>(4);
+				// Consolas has a font-width of 55%
+				// The thing is 10px...
+				tabs[0] = 9 * 4;
+				for (int i = 1; i < 4; i++)
 				{
-					Token = ByteTokenizer->Next();
+					tabs[i] = tabs[0] * (i + 1);
+				}
+				TextBox->SelectionTabs = tabs;
+				
+				bool quoted = false;
+				bool key = true;
+				bool hadCharThisLine = false;
+				bool comment = false;
+				char lastChar = '\0';
+				for (int i = 0; i < TextBox->Text->Length; i++)
+				{
+					char character = TextBox->Text[i];
+					char nextCharacter = (i + 1) != TextBox->Text->Length ? TextBox->Text[i + 1] : '\0';
+					bool validQuote = character == '"' && lastChar != '\\';
+					if (validQuote)
+						quoted = !quoted;
 
-					if(Token->GetToken() == TOKEN_EOF)
+					if ((character == ' ' || character == '\t') && !quoted && hadCharThisLine)
+						key = !key;
+
+					if (character == '\n')
 					{
-						break;
+						hadCharThisLine = false;
+						key = true;
+						comment = false;
 					}
 
-					// Consume all whitespace.
-					while(Token->GetToken() == TOKEN_WHITESPACE)
+					comment |= character == '/' && nextCharacter == '/';
+
+					this->TextBox->Select(i, 1);
+					this->TextBox->SelectionFont = this->TextBox->Font;
+					if (comment)
+						this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(181, 189, 104);
+					else if (character == '{' || character == '}' || validQuote)
+						this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(197, 200, 198);
+					else if (key)
 					{
-						Token = ByteTokenizer->Next();
+						if (character == '$' && (!hadCharThisLine || (lastChar == '"')))
+							this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(222, 147, 144);
+						else if (character == '%' && (!hadCharThisLine || (lastChar == '"')))
+							this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(138, 190, 183);
+						else
+							this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(204, 102, 102);
+					}
+					else
+					{
+						if (character == '[' || character == ']')
+							this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(197, 200, 198);
+						else
+							this->TextBox->SelectionColor = System::Drawing::Color::FromArgb(129, 162, 190);
 					}
 
-					iStart = Token->GetIndex();
-					iLength = 1;
+					hadCharThisLine = hadCharThisLine || !(character == ' ' || character == '\t' || character == '\n');
 
-					switch(Token->GetToken())
-					{
-						// Comment (these are removed for the parser).
-						case TOKEN_FORWARD_SLASH:
-						{
-							bool bError = false;
-
-							if(ByteTokenizer->Peek()->GetToken() != TOKEN_FORWARD_SLASH)
-							{
-								bError = true;
-							}
-
-							while(true)
-							{
-								Token = ByteTokenizer->Next('\n');
-								if(Token->GetToken() == TOKEN_CHAR)
-								{
-									iLength++;
-								}
-								else
-								{
-									break;
-								}
-							}
-
-							this->TextBox->Select(iStart, iLength);
-							this->TextBox->SelectionColor = bError ? System::Drawing::Color::Red : System::Drawing::Color::Green;
-							break;
-						}
-						// Quoted string.
-						case TOKEN_QUOTE:
-						{
-							bool bError = false;
-							char cStart = '\0';
-
-							this->TextBox->Select(iStart, iLength);
-							this->TextBox->SelectionColor = System::Drawing::Color::DarkGray;
-							this->TextBox->SelectionFont = BoldFont;
-
-							iStart++;
-							iLength = 0;
-
-							while(true)
-							{
-								Token = ByteTokenizer->Next('\"');
-
-								if(Token->GetToken() != TOKEN_CHAR)
-								{
-									break;
-								}
-
-								if(Token->GetChar() == '\r' || Token->GetChar() == '\n')
-								{
-									bError = true;
-									break;
-								}
-
-								if(iLength == 0)
-								{
-									cStart = Token->GetChar();
-								}
-
-								iLength++;
-							}
-
-							if(bError || Token->GetToken() != TOKEN_SPECIAL)
-							{
-								this->TextBox->Select(iStart, iLength);
-								this->TextBox->SelectionColor = System::Drawing::Color::Red;
-							}
-							else
-							{
-								/*if(cStart == '$')
-								{
-									this->TextBox->SelectionStart = iStart;
-									this->TextBox->SelectionLength = iLength;
-									this->TextBox->SelectionColor = System::Drawing::Color::Orange;
-								}
-								else if(cStart == '%')
-								{
-									this->TextBox->SelectionStart = iStart;
-									this->TextBox->SelectionLength = iLength;
-									this->TextBox->SelectionColor = System::Drawing::Color::Lime;
-								}*/
-								this->TextBox->Select(Token->GetIndex(), 1);
-								this->TextBox->SelectionColor = System::Drawing::Color::DarkGray;
-								this->TextBox->SelectionFont = BoldFont;
-							}
-							break;
-						}
-						// Unquoted string.
-						case TOKEN_CHAR:
-						{
-							while(ByteTokenizer->Peek()->GetToken() == TOKEN_CHAR)
-							{
-								iLength++;
-								Token = ByteTokenizer->Next();
-							}
-
-							this->TextBox->Select(iStart, iLength);
-							this->TextBox->SelectionColor = System::Drawing::Color::Blue;
-							break;
-						}
-						// Let these byte tokens "pass through".
-						case TOKEN_EOF:
-						case TOKEN_NEWLINE:
-						{
-							break;
-						}
-						case TOKEN_OPEN_BRACE:
-						case TOKEN_CLOSE_BRACE:
-						{
-							this->TextBox->Select(iStart, iLength);
-							this->TextBox->SelectionColor = System::Drawing::Color::DarkGray;
-							this->TextBox->SelectionFont = BoldFont;
-							break;
-						}
-						// The parser doesn't care about anything else.
-						default:
-						{
-							break;
-						}
-					}
+					lastChar = character;
 				}
 
 				this->TextBox->Select(iSelectionStart, iSelectionLength);
@@ -554,8 +246,6 @@ namespace VTFEdit
 				SendMessage(Handle, WM_SETREDRAW, TRUE, 0);
 
 				RedrawWindow(Handle, NULL, NULL, RDW_INVALIDATE);
-
-				//LockWindowUpdate(0);
 			}
 		};
 	};
