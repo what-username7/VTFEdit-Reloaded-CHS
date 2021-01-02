@@ -133,7 +133,7 @@ VTFLIB_API vlVoid vlImageCreateDefaultCreateStructure(SVTFCreateOptions *VTFCrea
 	VTFCreateOptions->sGammaCorrection = 2.0f;
 
 	VTFCreateOptions->bSphereMap = vlFalse;
-	VTFCreateOptions->bSRGB = vlTrue;
+	VTFCreateOptions->bSRGB = vlFalse;
 }
 
 VTFLIB_API vlBool vlImageCreate(vlUInt uiWidth, vlUInt uiHeight, vlUInt uiFrames, vlUInt uiFaces, vlUInt uiSlices, VTFImageFormat ImageFormat, vlBool bThumbnail, vlBool bMipmaps, vlBool bNullImageData)

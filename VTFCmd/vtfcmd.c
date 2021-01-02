@@ -50,7 +50,6 @@ vlChar *lpShader = 0;								// VMT shader to use.
 vlUInt uiParameterCount = 0;
 vlChar *lpParameters[MAX_ITEMS][2];					// VMT parameters.
 vlChar *lpExportFormat = "tga";						// Format extension for exporting VTF images.
-vlBool bSRGB = vlFalse;								// Is the image SRGB?
 
 void Pause();
 void Print(const vlChar *lpFormat, ...);
@@ -267,7 +266,8 @@ int main(int argc, char* argv[])
 			}
 			else if(stricmp(argv[i], "-srgb") == 0)
 			{
-				bSRGB = vlTrue;
+				CreateOptions.bSRGB = vlTrue;
+				CreateOptions.uiFlags |= TEXTUREFLAGS_SRGB;
 			}
 			else if(stricmp(argv[i], "-alphaformat") == 0)
 			{
