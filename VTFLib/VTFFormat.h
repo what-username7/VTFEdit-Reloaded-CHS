@@ -200,17 +200,6 @@ typedef enum tagVTFMipmapFilter
     MIPMAP_FILTER_COUNT
 } VTFMipmapFilter;
 
-#define DXT_QUALITY_BASE 68
-
-typedef enum tagDXTQuality
-{
-	DXT_QUALITY_LOW,
-	DXT_QUALITY_MEDIUM,
-	DXT_QUALITY_HIGH,
-	DXT_QUALITY_HIGHEST,
-	DXT_QUALITY_COUNT
-} VTFDXTQuality;
-
 #define KERNEL_FILTER_BASE 1040
 
 //! Normal map creation kernel size indices.

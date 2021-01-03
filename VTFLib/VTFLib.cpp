@@ -26,8 +26,6 @@ namespace VTFLib
 	CVMTFile *Material = 0;
 	CMaterialVector *MaterialVector = 0;
 
-	vlUInt uiDXTQuality = DXT_QUALITY_HIGH;
-
 	vlSingle sLuminanceWeightR = 0.299f;
 	vlSingle sLuminanceWeightG = 0.587f;
 	vlSingle sLuminanceWeightB = 0.114f;
