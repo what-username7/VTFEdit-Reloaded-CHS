@@ -80,6 +80,10 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
   - Use monospace font for VMT editor
   - High DPI support
   - Syntax highlighting support for VMTs
+  - Fixed cubemap previews
+    - Previously they were doing integer maths on what should be floats
+    - Replaced overly complex controls with a simple exposure slider
+    - Very simple Reinhard tonemapper for previewing exposure
 
 ## Library Changelog
 

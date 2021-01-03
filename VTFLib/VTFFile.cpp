@@ -2965,43 +2965,82 @@ vlVoid FromBlueScreen(vlUInt16& R, vlUInt16& G, vlUInt16& B, vlUInt16& A)
 	}
 }
 
-vlSingle sHDRLogAverageLuminance;
+static inline vlSingle FP16ToFP32(vlUInt16 input)
+{
+	const vlUInt32 uiF32Bias = 127;
+	const vlUInt32 uiF16Bias = 15;
+	const vlSingle sMaxFloat16Bits = 65504.0f;
+
+	struct
+	{
+		vlUInt16 uiMantissa : 10;
+		vlUInt16 uiExponent : 5;
+		vlUInt16 uiSign : 1;
+	} fp16;
+	std::memcpy(&fp16, &input, sizeof(vlUInt16));
+
+	if (fp16.uiExponent == 31)
+	{
+		if (fp16.uiMantissa == 0) // Check for Infinity
+			return sMaxFloat16Bits * ((fp16.uiSign == 1) ? -1.0f : 1.0f);
+		else if (fp16.uiMantissa != 0) // Check for NaN
+			return 0.0f;
+	}
+
+	if (fp16.uiExponent == 0 && fp16.uiMantissa != 0)
+	{
+		// Denorm...
+		const vlSingle sHalfDenorm = 1.0f / vlSingle(1 << 14);
+		const vlSingle sMantissa   = vlSingle(fp16.uiMantissa) / vlSingle(1 << 10);
+		const vlSingle sSign       = fp16.uiSign ? -1.0f : 1.0f;
+
+		return sSign * sMantissa * sHalfDenorm;
+	}
+	else
+	{
+		const vlUInt32 uiMantissa = fp16.uiMantissa;
+		const vlUInt32 uiExponent = fp16.uiExponent != 0
+			? fp16.uiExponent - uiF16Bias + uiF32Bias
+			: 0;
+		const vlUInt32 uiSign     = fp16.uiSign;
+
+		vlUInt32 uiBits = (uiMantissa << 13) | (uiExponent << 23) | (uiSign << 31);
+		vlSingle sValue;
+		std::memcpy(&sValue, &uiBits, sizeof(sValue));
+		return sValue;
+	}
+}
+
+// A very very basic Reinhard implementation for
+// previewing cubemaps...
+// (Feel free to use something better with proper luminance
+// and a white point!)
+vlSingle Reinhard(vlSingle sValue)
+{
+    return sValue / (1.0f + sValue);
+}
 
 vlVoid ToFP16(vlUInt16& R, vlUInt16& G, vlUInt16& B, vlUInt16& A)
 {
-	
 }
 
-vlSingle ClampFP16(vlSingle sValue)
+vlUInt16 FP16ToUnorm(vlUInt16 uiValue)
 {
-	if(sValue < 0.0f)
-		sValue = 0.0f;
-	if(sValue > 65335.0f)
-		sValue = 65335.0f;
-	return sValue;
+	vlSingle sValue = FP16ToFP32(uiValue);
+
+	sValue *= sFP16HDRExposure;
+	sValue = Reinhard(sValue);
+	sValue *= 65535.0f;
+	sValue = min(max(sValue, 0.0f), 65535.0f);
+	return (vlUInt16) sValue;
 }
 
-// Reference:
-// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/directx9_c/directx/graphics/programmingguide/advancedtopics/HDRLighting/HDRLighting.asp
 vlVoid FromFP16(vlUInt16& R, vlUInt16& G, vlUInt16& B, vlUInt16& A)
 {
-	vlSingle sR = (vlSingle)R, sG = (vlSingle)G, sB = (vlSingle)B;//, sA = (vlSingle)A;
-
-	vlSingle sY = sR * 0.299f + sG * 0.587f + sB * 0.114f;
-
-	vlSingle sU = (sB - sY) * 0.565f;
-	vlSingle sV = (sR - sY) * 0.713f;
-
-	vlSingle sTemp = sY;
-
-	sTemp = sFP16HDRKey * sTemp / sHDRLogAverageLuminance;
-	sTemp = sTemp / (1.0f + sTemp);
-
-	sTemp = sTemp / sY;
-
-	R = (vlUInt16)ClampFP16(pow((sY + 1.403f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
-	G = (vlUInt16)ClampFP16(pow((sY - 0.344f * sU - 0.714f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
-	B = (vlUInt16)ClampFP16(pow((sY + 1.770f * sU) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
+	R = FP16ToUnorm(R);
+	G = FP16ToUnorm(G);
+	B = FP16ToUnorm(B);
+	A = FP16ToUnorm(A);
 }
 
 typedef struct tagSVTFImageConvertInfo
@@ -3215,26 +3254,6 @@ vlBool ConvertTemplated(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt
 
 	GetShiftAndMask<vlUInt16>(SourceInfo, uiSourceRShift, uiSourceGShift, uiSourceBShift, uiSourceAShift, uiSourceRMask, uiSourceGMask, uiSourceBMask, uiSourceAMask);
 	GetShiftAndMask<vlUInt16>(DestInfo, uiDestRShift, uiDestGShift, uiDestBShift, uiDestAShift, uiDestRMask, uiDestGMask, uiDestBMask, uiDestAMask);
-
-	// If we are in the FP16 HDR format we will need a log average.
-	if(SourceInfo.Format == IMAGE_FORMAT_RGBA16161616F)
-	{
-		vlByte* lpFPSource = lpSource;
-
-		sHDRLogAverageLuminance = 0.0f;
-
-		vlByte *lpFPSourceEnd = lpFPSource + (uiWidth * uiHeight * SourceInfo.uiBytesPerPixel);
-		for(; lpFPSource < lpFPSourceEnd; lpFPSource += SourceInfo.uiBytesPerPixel)
-		{
-			vlUInt16* p = (vlUInt16*)lpFPSource;
-
-			vlSingle sLuminance = (vlSingle)p[0] * 0.299f + (vlSingle)p[1] * 0.587f + (vlSingle)p[2] * 0.114f;
-
-			sHDRLogAverageLuminance += log(0.0000000001f + sLuminance);
-		}
-
-		sHDRLogAverageLuminance = exp(sHDRLogAverageLuminance / (vlSingle)(uiWidth * uiHeight));
-	}
 
 	vlByte *lpSourceEnd = lpSource + (uiWidth * uiHeight * SourceInfo.uiBytesPerPixel);
 	for(; lpSource < lpSourceEnd; lpSource += SourceInfo.uiBytesPerPixel, lpDest += DestInfo.uiBytesPerPixel)

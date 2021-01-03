@@ -40,9 +40,7 @@ namespace VTFLib
 	vlUShort uiBlueScreenClearG = 0x0000;
 	vlUShort uiBlueScreenClearB = 0x0000;
 
-	vlSingle sFP16HDRKey = 4.0f;
-	vlSingle sFP16HDRShift = 0.0f;
-	vlSingle sFP16HDRGamma = 2.25f;
+	vlSingle sFP16HDRExposure = 2.0f;
 
 	vlUInt uiVMTParseMode = PARSE_MODE_LOOSE;
 }
@@ -141,9 +139,6 @@ VTFLIB_API vlInt vlGetInteger(VTFLibOption Option)
 {
 	switch(Option)
 	{
-	case VTFLIB_DXT_QUALITY:
-		return (vlInt)uiDXTQuality;
-
 	case VTFLIB_BLUESCREEN_MASK_R:
 		return (vlInt)uiBlueScreenMaskR;
 	case VTFLIB_BLUESCREEN_MASK_G:
@@ -169,12 +164,6 @@ VTFLIB_API vlVoid vlSetInteger(VTFLibOption Option, vlInt iValue)
 {
 	switch(Option)
 	{
-	case VTFLIB_DXT_QUALITY:
-		if(iValue < 0 || iValue >= DXT_QUALITY_COUNT)
-			return;
-		uiDXTQuality = (vlUInt)iValue;
-		break;
-
 	case VTFLIB_BLUESCREEN_MASK_R:
 		if(iValue < 0)
 			iValue = 0;
@@ -238,8 +227,8 @@ VTFLIB_API vlSingle vlGetFloat(VTFLibOption Option)
 	case VTFLIB_LUMINANCE_WEIGHT_B:
 		return sLuminanceWeightB;
 
-	case VTFLIB_FP16_HDR_KEY:
-		return sFP16HDRKey;
+	case VTFLIB_FP16_HDR_EXPOSURE:
+		return sFP16HDRExposure;
 	}
 
 	return 0.0f;
@@ -265,14 +254,8 @@ VTFLIB_API vlVoid vlSetFloat(VTFLibOption Option, vlSingle sValue)
 		sLuminanceWeightB = sValue;
 		break;
 
-	case VTFLIB_FP16_HDR_KEY:
-		sFP16HDRKey = sValue;
-		break;
-	case VTFLIB_FP16_HDR_SHIFT:
-		sFP16HDRShift = sValue;
-		break;
-	case VTFLIB_FP16_HDR_GAMMA:
-		sFP16HDRGamma = sValue;
+	case VTFLIB_FP16_HDR_EXPOSURE:
+		sFP16HDRExposure = sValue;
 		break;
 	}
 }

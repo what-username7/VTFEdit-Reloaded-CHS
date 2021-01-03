@@ -134,9 +134,7 @@ namespace VTFLib
 	extern vlUShort uiBlueScreenClearG;
 	extern vlUShort uiBlueScreenClearB;
 
-	extern vlSingle sFP16HDRKey;
-	extern vlSingle sFP16HDRShift;
-	extern vlSingle sFP16HDRGamma;
+	extern vlSingle sFP16HDRExposure;
 
 	extern vlUInt uiVMTParseMode;
 }
@@ -150,8 +148,6 @@ extern "C" {
 
 typedef enum tagVTFLibOption
 {
-	VTFLIB_DXT_QUALITY,
-
 	VTFLIB_LUMINANCE_WEIGHT_R,
 	VTFLIB_LUMINANCE_WEIGHT_G,
 	VTFLIB_LUMINANCE_WEIGHT_B,
@@ -164,9 +160,7 @@ typedef enum tagVTFLibOption
 	VTFLIB_BLUESCREEN_CLEAR_G,
 	VTFLIB_BLUESCREEN_CLEAR_B,
 
-	VTFLIB_FP16_HDR_KEY,
-	VTFLIB_FP16_HDR_SHIFT,
-	VTFLIB_FP16_HDR_GAMMA,
+	VTFLIB_FP16_HDR_EXPOSURE,
 
 	VTFLIB_VMT_PARSE_MODE
 } VTFLibOption;
