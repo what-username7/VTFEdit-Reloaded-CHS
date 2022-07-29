@@ -71,6 +71,9 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 
 ## VTFEdit Reloaded Changelog
 
+  v2.0.1
+  - Updated to HLLib v2.4.6.
+  
   v2.0.0
   - Migrated to using AMD Compressonator for DXT compression.
   - Fix the green tinge when exporting textures
