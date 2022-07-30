@@ -23,9 +23,7 @@ The library contains five folders:
 * **VTFLib** - Contains C++ library source code.
 
 The project files are for Visual Studio .NET 2003 and 2005; no .NET extensions are used except in VTFEdit. Visual Studio 6.0 project files have also been
-included, but nvDXTLib does not come with the correct .lib files to link with. nvDXTLib is required for VTF creation and can be downloaded from:
-
-http://developer.nvidia.com/object/dds_utilities_legacy.html
+included.
 
 ## VTFCmd Usage
 
