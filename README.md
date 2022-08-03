@@ -69,6 +69,10 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 
 ## VTFEdit Reloaded Changelog
 
+  v2.0.2
+  - Updated Compressonator to latest version as of 8/8/22.
+  - Added 32-bit version.
+
   v2.0.1
   - Updated to HLLib v2.4.6.
   
