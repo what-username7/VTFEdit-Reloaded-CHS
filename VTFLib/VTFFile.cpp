@@ -9,6 +9,7 @@
  * version.
  */
 
+#include <algorithm>
 #include "VTFLib.h"
 #include "VTFFile.h"
 #include "VTFFormat.h"
@@ -21,6 +22,7 @@
 #include "stb_image_resize.h"
 
 using namespace VTFLib;
+using namespace std;
 
 // Class construction
 // ------------------
@@ -3242,6 +3244,8 @@ vlVoid Transform(TransformProc pTransform1, TransformProc pTransform2, T SR, T S
 	DABits && DABits < 16 ? DA = (U)Shrink<vlUInt16>(TA, 16, (vlUInt16)DABits) : DA = (U)TA;
 }
 
+#define HDR_EXPOSURE 512;
+
 // Convert source to dest using required storage requirments (hence the template).
 template<typename T, typename U>
 vlBool ConvertTemplated(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt uiHeight, const SVTFImageConvertInfo& SourceInfo, const SVTFImageConvertInfo& DestInfo)
@@ -3281,6 +3285,20 @@ vlBool ConvertTemplated(vlByte *lpSource, vlByte *lpDest, vlUInt uiWidth, vlUInt
 
 		if(uiSourceAMask)
 			SA = (vlUInt16)(Source >> (T)uiSourceAShift) & uiSourceAMask;	// isolate A channel
+
+		//If hdr, reduce colours to ldr range
+		//Clamp rgb values to prevent artifacting
+		vlUInt16 modifier = SA * 16;
+		SR = (SR * modifier) / HDR_EXPOSURE;
+		SR = min(max(0, SR), 255);
+
+		SG = (SG * modifier) / HDR_EXPOSURE;
+		SG = min(max(0, SG), 255);
+
+		SB = (SB * modifier) / HDR_EXPOSURE;
+		SB = min(max(0, SB), 255);
+
+		SA = ~0;
 
 		if(SourceInfo.pFromTransform || DestInfo.pToTransform)
 		{
