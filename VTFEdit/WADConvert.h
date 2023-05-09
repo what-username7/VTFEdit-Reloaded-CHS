@@ -152,7 +152,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtOutputFolder->Location = System::Drawing::Point(128, 46);
 			this->txtOutputFolder->Name = L"txtOutputFolder";
-			this->txtOutputFolder->ReadOnly = true;
+			this->txtOutputFolder->ReadOnly = false;
 			this->txtOutputFolder->Size = System::Drawing::Size(371, 26);
 			this->txtOutputFolder->TabIndex = 4;
 			this->tipMain->SetToolTip(this->txtOutputFolder, L"Destination image folder.");
@@ -183,7 +183,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtWADFile->Location = System::Drawing::Point(128, 18);
 			this->txtWADFile->Name = L"txtWADFile";
-			this->txtWADFile->ReadOnly = true;
+			this->txtWADFile->ReadOnly = false;
 			this->txtWADFile->Size = System::Drawing::Size(371, 26);
 			this->txtWADFile->TabIndex = 1;
 			this->tipMain->SetToolTip(this->txtWADFile, L"Source .wad file.");
