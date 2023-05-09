@@ -681,12 +681,32 @@ namespace VTFEdit
 			// 
 			// cboSurface2
 			// 
-			this->cboSurface2->Items->AddRange(gcnew cli::array< System::Object^  >(42) {
-				L"AlienFlesh", L"ArmorFlesh", L"BloodyFlesh",
-					L"Boulder", L"Brick", L"Chain", L"Chainlink", L"Computer", L"Concrete", L"Concrete_Block", L"Default", L"Dirt", L"Flesh", L"Glass",
-					L"Grass", L"Gravel", L"Ice", L"Ladder", L"Metal_Box", L"Metal", L"MetalGrate", L"MetalPanel", L"MetalVent", L"MudSlipperySlime",
-					L"Porcelain", L"Quicksand", L"Rock", L"Slime", L"SlipperyMetal", L"Snow", L"SolidMetal", L"Tile", L"Wade", L"Water", L"Watermelon",
-					L"Wood_Box", L"Wood_Crate", L"Wood_Furniture", L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"WoodWood_Lowdensity"
+			this->cboSurface2->Items->AddRange(gcnew cli::array< System::Object^  >(126) {
+				L"Advisor_shield", L"Alienflesh", L"Antlion", L"Antlion_eggshell", L"Antlionsand",
+				L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh",
+				L"Boulder", L"Brakingrubbertire", L"Brick", L"Canister", L"Cardboard",
+				L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink",
+				L"Chainsaw", L"Clay", L"Combine_glass", L"Combine_metal", L"Computer",
+				L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar",
+				L"Default", L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh",
+				L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf", L"Fryingpan",
+				L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass",
+				L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
+				L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire",
+				L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel",
+				L"Metal_bouncy", L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel",
+				L"Metalvehicle", L"Metalvent", L"Mud", L"No_decal", L"Paintcan",
+				L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic",
+				L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant", L"Player", L"Player_control_clip",
+				L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand",
+				L"Rock", L"Roller", L"Rubber", L"Rubbertire", L"Sand",
+				L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
+				L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide",
+				L"Slipperyslime", L"Snow", L"Solidmetal", L"Strider", L"Strongman_bell",
+				L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade",
+				L"Water", L"Watermelon", L"Weapon", L"Wet", L"Wood",
+				L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity",
+				L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
 			});
 			this->cboSurface2->Location = System::Drawing::Point(115, 74);
 			this->cboSurface2->Name = L"cboSurface2";
@@ -705,12 +725,32 @@ namespace VTFEdit
 			// 
 			// cboSurface1
 			// 
-			this->cboSurface1->Items->AddRange(gcnew cli::array< System::Object^  >(42) {
-				L"AlienFlesh", L"ArmorFlesh", L"BloodyFlesh",
-					L"Boulder", L"Brick", L"Chain", L"Chainlink", L"Computer", L"Concrete", L"Concrete_Block", L"Default", L"Dirt", L"Flesh", L"Glass",
-					L"Grass", L"Gravel", L"Ice", L"Ladder", L"Metal_Box", L"Metal", L"MetalGrate", L"MetalPanel", L"MetalVent", L"MudSlipperySlime",
-					L"Porcelain", L"Quicksand", L"Rock", L"Slime", L"SlipperyMetal", L"Snow", L"SolidMetal", L"Tile", L"Wade", L"Water", L"Watermelon",
-					L"Wood_Box", L"Wood_Crate", L"Wood_Furniture", L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"WoodWood_Lowdensity"
+			this->cboSurface1->Items->AddRange(gcnew cli::array< System::Object^  >(126) {
+				L"Advisor_shield", L"Alienflesh", L"Antlion", L"Antlion_eggshell", L"Antlionsand",
+				L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh",
+				L"Boulder", L"Brakingrubbertire", L"Brick", L"Canister", L"Cardboard",
+				L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink",
+				L"Chainsaw", L"Clay", L"Combine_glass", L"Combine_metal", L"Computer",
+				L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar",
+				L"Default", L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh",
+				L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf", L"Fryingpan",
+				L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass",
+				L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
+				L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire",
+				L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel",
+				L"Metal_bouncy", L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel",
+				L"Metalvehicle", L"Metalvent", L"Mud", L"No_decal", L"Paintcan",
+				L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic",
+				L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant", L"Player", L"Player_control_clip",
+				L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand",
+				L"Rock", L"Roller", L"Rubber", L"Rubbertire", L"Sand",
+				L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
+				L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide",
+				L"Slipperyslime", L"Snow", L"Solidmetal", L"Strider", L"Strongman_bell",
+				L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade",
+				L"Water", L"Watermelon", L"Weapon", L"Wet", L"Wood",
+				L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity",
+				L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
 			});
 			this->cboSurface1->Location = System::Drawing::Point(115, 46);
 			this->cboSurface1->Name = L"cboSurface1";
@@ -729,9 +769,16 @@ namespace VTFEdit
 			// 
 			// cboShader
 			// 
-			this->cboShader->Items->AddRange(gcnew cli::array< System::Object^  >(13) {
-				L"Cable", L"Decal", L"DecalModulate", L"LightmappedGeneric",
-					L"Modulate", L"MonitorScreen", L"Predator", L"Refract", L"ShatteredGlass", L"Sprite", L"UnlitGeneric", L"VertexlitGeneric", L"Water"
+			this->cboShader->Items->AddRange(gcnew cli::array< System::Object^  >(43) {
+				L"Aftershock", L"Cable", L"Character", L"Core", L"DecalModulate",
+				L"DepthOfField", L"Engine_Post", L"EyeRefract", L"Eyes", L"LensFX",
+				L"LightmappedGeneric", L"LightmappedReflective", L"LightmappedTwoTexture", L"Lightmapped_4WayBlend", L"Modulate",
+				L"MonitorScreen", L"MotionBlur", L"Multiblend", L"PaintBlob", L"ParallaxTest",
+				L"Pyro_vision", L"RGBFilmGrain", L"Refract", L"Screenspace_general", L"Shadow",
+				L"Sky", L"SolidEnergy", L"SplineRope", L"SpriteCard", L"Subrect",
+				L"Suppression", L"SurfaceGGX", L"Teeth", L"UnlitGeneric", L"UnlitTwoTexture",
+				L"VertexLitGeneric", L"VolumeCloud", L"VortWarp", L"Water", L"WindowImposter",
+				L"WorldGGX", L"WorldTwoTextureBlend", L"WorldVertexTransition"
 			});
 			this->cboShader->Location = System::Drawing::Point(115, 18);
 			this->cboShader->Name = L"cboShader";
