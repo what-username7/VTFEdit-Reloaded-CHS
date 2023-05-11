@@ -25,6 +25,26 @@ The library contains five folders:
 The project files are for Visual Studio .NET 2003 and 2005; no .NET extensions are used except in VTFEdit. Visual Studio 6.0 project files have also been
 included.
 
+## How to Build
+
+### Prerequisites
+Visual Studio 2019 or Visual Studio 2022
+
+"Desktop development with C++" workload
+
+HLLib.dll from this zip, extract from /hllib246.zip/bin/x64/ [>>Link](https://web.archive.org/web/20171114194253/http://nemesis.thewavelength.net/files/files/hllib246.zip) 
+
+DevIL.dll from this zip [>>Link](https://sourceforge.net/projects/openil/files/DevIL%20Win32%20and%20Win64/DevIL-EndUser-x64-1.8.0.zip/download?use_mirror=phoenixnap)
+#
+
+Open the solution in /VTFEdit-Reloaded/sln/ with Visual Studio 2019 or 2022. Set the build from Debug to Release, then right-click on VTFEdit in the Solution Explorer and click Set as startup project, then right-click VTFEdit again and click Build. You *might* get a Build Failed message in the bottom-left after completion, but it means nothing in the context of the build actually succeeding, it can be ignored.
+
+After the Build is finished, the executable will be in /VTFEdit-Reloaded/sln/vs2019/Build/
+
+Move the executable and VTFLib.dll to any folder you want VTFEdit-Reloaded to be in, it does not matter.
+
+Move the other dlls you downloaded from the Prerequisites and put them into the same folder as where you put VTFEdit-Reloaded.
+
 ## VTFCmd Usage
 
 ```
@@ -68,6 +88,13 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 ```
 
 ## VTFEdit Reloaded Changelog
+
+  v2.0.3
+  - Updated the Shaders and Surface Properties list in VMT Create in accordance to the Valve Developer Wiki's current list
+  - Added Drag and Drop functionality for images that can be imported normally through the File > Import dialog
+	  - Note that if any window is above VTFEdit-Reloaded, or any part of the window is outside monitor bounds, the Import settings will default to the top-left of the screen. I do not have the knowledge to change this behavior myself unfortunately.
+  - Changed the ReadOnly property in the Convert Folder and Convert WAD dialog, so you can manually insert or change the path to your folder instead of needing to use the Folder Selector button on the right.
+  - Changed the resource files to use "winres.h" and "winver.h" instead of "afxres.h". Supposedly afxres.h is outdated, and has been replaced with the two other headers. So far I haven't noticed any issues with this.
 
   v2.0.2
   - Updated Compressonator to latest version as of 8/8/22.

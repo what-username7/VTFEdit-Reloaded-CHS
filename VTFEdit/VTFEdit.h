@@ -5232,7 +5232,20 @@ namespace VTFEdit
 			array< System::String^>^ lpFiles = static_cast<array< System::String^>^>(e->Data->GetData(System::Windows::Forms::DataFormats::FileDrop));
 			if(lpFiles->Length > 0)
 			{
-				this->Open(lpFiles[0], false);
+				if (lpFiles[0]->ToLower()->EndsWith(".bmp") ||
+					lpFiles[0]->ToLower()->EndsWith(".dds") ||
+					lpFiles[0]->ToLower()->EndsWith(".gif") ||
+					lpFiles[0]->ToLower()->EndsWith(".jpg") ||
+					lpFiles[0]->ToLower()->EndsWith(".jpeg") ||
+					lpFiles[0]->ToLower()->EndsWith(".png") ||
+					lpFiles[0]->ToLower()->EndsWith(".tga"))
+				{
+					this->Import(lpFiles);
+				}
+				else
+				{
+					this->Open(lpFiles[0], false);
+				}
 			}
 		}
 
@@ -5245,8 +5258,15 @@ namespace VTFEdit
 				{
 					if(!System::IO::Directory::Exists(lpFiles[0]))
 					{
-						if(lpFiles[0]->ToLower()->EndsWith(".vmt") ||
-							lpFiles[0]->ToLower()->EndsWith(".vtf"))
+						if(lpFiles[0]->ToLower()->EndsWith(".vmt")   ||
+							lpFiles[0]->ToLower()->EndsWith(".vtf")  || 
+							lpFiles[0]->ToLower()->EndsWith(".bmp")  ||
+							lpFiles[0]->ToLower()->EndsWith(".dds")  ||
+							lpFiles[0]->ToLower()->EndsWith(".gif")  ||
+							lpFiles[0]->ToLower()->EndsWith(".jpg")  ||
+							lpFiles[0]->ToLower()->EndsWith(".jpeg") ||
+							lpFiles[0]->ToLower()->EndsWith(".png")  ||
+							lpFiles[0]->ToLower()->EndsWith(".tga"))
 						{
 							e->Effect = System::Windows::Forms::DragDropEffects::All;
 						}
