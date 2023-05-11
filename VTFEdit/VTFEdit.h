@@ -5242,7 +5242,10 @@ namespace VTFEdit
 				{
 					this->Import(lpFiles);
 				}
+				else
+				{
 					this->Open(lpFiles[0], false);
+				}
 			}
 		}
 
