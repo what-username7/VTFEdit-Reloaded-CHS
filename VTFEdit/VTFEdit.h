@@ -66,6 +66,8 @@ namespace VTFEdit
 		CBatchConvert ^BatchConvert;
 		CWADConvert ^WADConvert;
 		CAbout ^About;
+	private: System::Windows::Forms::Label^ lblAlpha;
+	private: System::Windows::Forms::Label^ lblAlphaLabel;
 
 		HWND hWndNewViewer;
 
@@ -341,10 +343,12 @@ namespace VTFEdit
 			this->btnFileSystemDelete = (gcnew System::Windows::Forms::MenuItem());
 			this->tabImage = (gcnew System::Windows::Forms::TabPage());
 			this->grpImage = (gcnew System::Windows::Forms::GroupBox());
-			this->mnuHDR = (gcnew System::Windows::Forms::ContextMenu());
-			this->btnHDRReset = (gcnew System::Windows::Forms::MenuItem());
+			this->lblAlpha = (gcnew System::Windows::Forms::Label());
+			this->lblAlphaLabel = (gcnew System::Windows::Forms::Label());
 			this->lblHDRKey = (gcnew System::Windows::Forms::Label());
 			this->trkHDRExposure = (gcnew System::Windows::Forms::TrackBar());
+			this->mnuHDR = (gcnew System::Windows::Forms::ContextMenu());
+			this->btnHDRReset = (gcnew System::Windows::Forms::MenuItem());
 			this->lblSlice = (gcnew System::Windows::Forms::Label());
 			this->numSlice = (gcnew System::Windows::Forms::NumericUpDown());
 			this->lblMipmap = (gcnew System::Windows::Forms::Label());
@@ -747,14 +751,14 @@ namespace VTFEdit
 			// 
 			// barStatus
 			// 
-			this->barStatus->Location = System::Drawing::Point(0, 564);
+			this->barStatus->Location = System::Drawing::Point(0, 526);
 			this->barStatus->Name = L"barStatus";
 			this->barStatus->Panels->AddRange(gcnew cli::array< System::Windows::Forms::StatusBarPanel^  >(3) {
 				this->pnlFileName, this->pnlInfo1,
 					this->pnlInfo2
 			});
 			this->barStatus->ShowPanels = true;
-			this->barStatus->Size = System::Drawing::Size(752, 21);
+			this->barStatus->Size = System::Drawing::Size(752, 17);
 			this->barStatus->TabIndex = 3;
 			// 
 			// pnlFileName
@@ -762,7 +766,7 @@ namespace VTFEdit
 			this->pnlFileName->AutoSize = System::Windows::Forms::StatusBarPanelAutoSize::Spring;
 			this->pnlFileName->MinWidth = 100;
 			this->pnlFileName->Name = L"pnlFileName";
-			this->pnlFileName->Width = 581;
+			this->pnlFileName->Width = 585;
 			// 
 			// pnlInfo1
 			// 
@@ -785,7 +789,7 @@ namespace VTFEdit
 			this->pnlSidebar->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlSidebar->Location = System::Drawing::Point(0, 36);
 			this->pnlSidebar->Name = L"pnlSidebar";
-			this->pnlSidebar->Size = System::Drawing::Size(258, 528);
+			this->pnlSidebar->Size = System::Drawing::Size(215, 490);
 			this->pnlSidebar->TabIndex = 0;
 			// 
 			// tabSidebar
@@ -799,19 +803,19 @@ namespace VTFEdit
 			this->tabSidebar->Controls->Add(this->tabResources);
 			this->tabSidebar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tabSidebar->Location = System::Drawing::Point(8, 8);
+			this->tabSidebar->Location = System::Drawing::Point(6, 6);
 			this->tabSidebar->Name = L"tabSidebar";
 			this->tabSidebar->SelectedIndex = 0;
-			this->tabSidebar->Size = System::Drawing::Size(244, 508);
+			this->tabSidebar->Size = System::Drawing::Size(203, 474);
 			this->tabSidebar->TabIndex = 2;
 			// 
 			// tabFileSystem
 			// 
 			this->tabFileSystem->Controls->Add(this->grpGoto);
 			this->tabFileSystem->Controls->Add(this->grpFileSystem);
-			this->tabFileSystem->Location = System::Drawing::Point(4, 25);
+			this->tabFileSystem->Location = System::Drawing::Point(4, 22);
 			this->tabFileSystem->Name = L"tabFileSystem";
-			this->tabFileSystem->Size = System::Drawing::Size(214, 479);
+			this->tabFileSystem->Size = System::Drawing::Size(195, 448);
 			this->tabFileSystem->TabIndex = 2;
 			this->tabFileSystem->Text = L"File System";
 			// 
@@ -821,9 +825,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpGoto->Controls->Add(this->cboGoto);
 			this->grpGoto->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpGoto->Location = System::Drawing::Point(8, 8);
+			this->grpGoto->Location = System::Drawing::Point(7, 6);
 			this->grpGoto->Name = L"grpGoto";
-			this->grpGoto->Size = System::Drawing::Size(158, 47);
+			this->grpGoto->Size = System::Drawing::Size(185, 39);
 			this->grpGoto->TabIndex = 1;
 			this->grpGoto->TabStop = false;
 			this->grpGoto->Text = L"Goto:";
@@ -834,9 +838,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->cboGoto->ContextMenu = this->mnuGoto;
 			this->cboGoto->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cboGoto->Location = System::Drawing::Point(8, 15);
+			this->cboGoto->Location = System::Drawing::Point(7, 12);
 			this->cboGoto->Name = L"cboGoto";
-			this->cboGoto->Size = System::Drawing::Size(144, 24);
+			this->cboGoto->Size = System::Drawing::Size(173, 21);
 			this->cboGoto->TabIndex = 0;
 			this->cboGoto->SelectedIndexChanged += gcnew System::EventHandler(this, &CVTFEdit::cboGoto_SelectedIndexChanged);
 			// 
@@ -864,9 +868,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpFileSystem->Controls->Add(this->treFileSystem);
 			this->grpFileSystem->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFileSystem->Location = System::Drawing::Point(8, 62);
+			this->grpFileSystem->Location = System::Drawing::Point(7, 50);
 			this->grpFileSystem->Name = L"grpFileSystem";
-			this->grpFileSystem->Size = System::Drawing::Size(158, 408);
+			this->grpFileSystem->Size = System::Drawing::Size(185, 395);
 			this->grpFileSystem->TabIndex = 0;
 			this->grpFileSystem->TabStop = false;
 			this->grpFileSystem->Text = L"File System:";
@@ -878,9 +882,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treFileSystem->ContextMenu = this->mnuFileSystem;
 			this->treFileSystem->HideSelection = false;
-			this->treFileSystem->Location = System::Drawing::Point(8, 15);
+			this->treFileSystem->Location = System::Drawing::Point(7, 12);
 			this->treFileSystem->Name = L"treFileSystem";
-			this->treFileSystem->Size = System::Drawing::Size(144, 385);
+			this->treFileSystem->Size = System::Drawing::Size(173, 376);
 			this->treFileSystem->TabIndex = 0;
 			this->treFileSystem->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &CVTFEdit::treFileSystem_AfterCollapse);
 			this->treFileSystem->BeforeExpand += gcnew System::Windows::Forms::TreeViewCancelEventHandler(this, &CVTFEdit::treFileSystem_BeforeExpand);
@@ -970,9 +974,9 @@ namespace VTFEdit
 			// 
 			this->tabImage->Controls->Add(this->grpImage);
 			this->tabImage->Controls->Add(this->grpFlags);
-			this->tabImage->Location = System::Drawing::Point(4, 25);
+			this->tabImage->Location = System::Drawing::Point(4, 22);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(236, 479);
+			this->tabImage->Size = System::Drawing::Size(195, 448);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -980,6 +984,8 @@ namespace VTFEdit
 			// 
 			this->grpImage->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpImage->Controls->Add(this->lblAlpha);
+			this->grpImage->Controls->Add(this->lblAlphaLabel);
 			this->grpImage->Controls->Add(this->lblHDRKey);
 			this->grpImage->Controls->Add(this->trkHDRExposure);
 			this->grpImage->Controls->Add(this->lblSlice);
@@ -992,12 +998,47 @@ namespace VTFEdit
 			this->grpImage->Controls->Add(this->lblFrame);
 			this->grpImage->Controls->Add(this->btnAnimate);
 			this->grpImage->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpImage->Location = System::Drawing::Point(8, 8);
+			this->grpImage->Location = System::Drawing::Point(7, 6);
 			this->grpImage->Name = L"grpImage";
-			this->grpImage->Size = System::Drawing::Size(225, 173);
+			this->grpImage->Size = System::Drawing::Size(187, 160);
 			this->grpImage->TabIndex = 0;
 			this->grpImage->TabStop = false;
 			this->grpImage->Text = L"Image:";
+			// 
+			// lblAlpha
+			// 
+			this->lblAlpha->Location = System::Drawing::Point(68, 113);
+			this->lblAlpha->Name = L"lblAlpha";
+			this->lblAlpha->Size = System::Drawing::Size(117, 19);
+			this->lblAlpha->TabIndex = 16;
+			// 
+			// lblAlphaLabel
+			// 
+			this->lblAlphaLabel->Location = System::Drawing::Point(6, 113);
+			this->lblAlphaLabel->Name = L"lblAlphaLabel";
+			this->lblAlphaLabel->Size = System::Drawing::Size(100, 19);
+			this->lblAlphaLabel->TabIndex = 15;
+			this->lblAlphaLabel->Text = L"Alpha: ";
+			// 
+			// lblHDRKey
+			// 
+			this->lblHDRKey->Location = System::Drawing::Point(7, 94);
+			this->lblHDRKey->Name = L"lblHDRKey";
+			this->lblHDRKey->Size = System::Drawing::Size(60, 19);
+			this->lblHDRKey->TabIndex = 8;
+			this->lblHDRKey->Text = L"Exposure:";
+			// 
+			// trkHDRExposure
+			// 
+			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->trkHDRExposure->AutoSize = false;
+			this->trkHDRExposure->ContextMenu = this->mnuHDR;
+			this->trkHDRExposure->Location = System::Drawing::Point(68, 94);
+			this->trkHDRExposure->Name = L"trkHDRExposure";
+			this->trkHDRExposure->Size = System::Drawing::Size(103, 16);
+			this->trkHDRExposure->TabIndex = 9;
+			this->trkHDRExposure->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::trkHDRKey_ValueChanged);
 			// 
 			// mnuHDR
 			// 
@@ -1009,31 +1050,11 @@ namespace VTFEdit
 			this->btnHDRReset->Text = L"&Reset";
 			this->btnHDRReset->Click += gcnew System::EventHandler(this, &CVTFEdit::btnHDRReset_Click);
 			// 
-			// lblHDRKey
-			// 
-			this->lblHDRKey->Location = System::Drawing::Point(8, 116);
-			this->lblHDRKey->Name = L"lblHDRKey";
-			this->lblHDRKey->Size = System::Drawing::Size(72, 23);
-			this->lblHDRKey->TabIndex = 8;
-			this->lblHDRKey->Text = L"Exposure:";
-			// 
-			// trkHDRExposure
-			// 
-			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->trkHDRExposure->AutoSize = false;
-			this->trkHDRExposure->ContextMenu = this->mnuHDR;
-			this->trkHDRExposure->Location = System::Drawing::Point(82, 116);
-			this->trkHDRExposure->Name = L"trkHDRExposure";
-			this->trkHDRExposure->Size = System::Drawing::Size(123, 20);
-			this->trkHDRExposure->TabIndex = 9;
-			this->trkHDRExposure->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::trkHDRKey_ValueChanged);
-			// 
 			// lblSlice
 			// 
-			this->lblSlice->Location = System::Drawing::Point(8, 70);
+			this->lblSlice->Location = System::Drawing::Point(7, 57);
 			this->lblSlice->Name = L"lblSlice";
-			this->lblSlice->Size = System::Drawing::Size(56, 23);
+			this->lblSlice->Size = System::Drawing::Size(46, 19);
 			this->lblSlice->TabIndex = 4;
 			this->lblSlice->Text = L"Slice:";
 			// 
@@ -1041,18 +1062,18 @@ namespace VTFEdit
 			// 
 			this->numSlice->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numSlice->Location = System::Drawing::Point(82, 70);
+			this->numSlice->Location = System::Drawing::Point(68, 55);
 			this->numSlice->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numSlice->Name = L"numSlice";
-			this->numSlice->Size = System::Drawing::Size(137, 23);
+			this->numSlice->Size = System::Drawing::Size(114, 20);
 			this->numSlice->TabIndex = 5;
 			this->numSlice->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
 			// lblMipmap
 			// 
-			this->lblMipmap->Location = System::Drawing::Point(8, 93);
+			this->lblMipmap->Location = System::Drawing::Point(7, 76);
 			this->lblMipmap->Name = L"lblMipmap";
-			this->lblMipmap->Size = System::Drawing::Size(72, 22);
+			this->lblMipmap->Size = System::Drawing::Size(60, 17);
 			this->lblMipmap->TabIndex = 6;
 			this->lblMipmap->Text = L"Mipmap:";
 			// 
@@ -1060,10 +1081,10 @@ namespace VTFEdit
 			// 
 			this->numMipmap->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numMipmap->Location = System::Drawing::Point(82, 93);
+			this->numMipmap->Location = System::Drawing::Point(68, 74);
 			this->numMipmap->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numMipmap->Name = L"numMipmap";
-			this->numMipmap->Size = System::Drawing::Size(137, 23);
+			this->numMipmap->Size = System::Drawing::Size(114, 20);
 			this->numMipmap->TabIndex = 7;
 			this->numMipmap->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
@@ -1071,18 +1092,18 @@ namespace VTFEdit
 			// 
 			this->numFace->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numFace->Location = System::Drawing::Point(82, 46);
+			this->numFace->Location = System::Drawing::Point(68, 37);
 			this->numFace->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numFace->Name = L"numFace";
-			this->numFace->Size = System::Drawing::Size(137, 23);
+			this->numFace->Size = System::Drawing::Size(114, 20);
 			this->numFace->TabIndex = 3;
 			this->numFace->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
 			// lblFace
 			// 
-			this->lblFace->Location = System::Drawing::Point(8, 46);
+			this->lblFace->Location = System::Drawing::Point(7, 37);
 			this->lblFace->Name = L"lblFace";
-			this->lblFace->Size = System::Drawing::Size(72, 23);
+			this->lblFace->Size = System::Drawing::Size(60, 19);
 			this->lblFace->TabIndex = 2;
 			this->lblFace->Text = L"Face:";
 			// 
@@ -1090,18 +1111,18 @@ namespace VTFEdit
 			// 
 			this->numFrame->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numFrame->Location = System::Drawing::Point(82, 24);
+			this->numFrame->Location = System::Drawing::Point(68, 20);
 			this->numFrame->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numFrame->Name = L"numFrame";
-			this->numFrame->Size = System::Drawing::Size(137, 23);
+			this->numFrame->Size = System::Drawing::Size(114, 20);
 			this->numFrame->TabIndex = 1;
 			this->numFrame->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
 			// lblFrame
 			// 
-			this->lblFrame->Location = System::Drawing::Point(8, 24);
+			this->lblFrame->Location = System::Drawing::Point(7, 20);
 			this->lblFrame->Name = L"lblFrame";
-			this->lblFrame->Size = System::Drawing::Size(42, 21);
+			this->lblFrame->Size = System::Drawing::Size(46, 17);
 			this->lblFrame->TabIndex = 0;
 			this->lblFrame->Text = L"Frame:";
 			// 
@@ -1111,9 +1132,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->btnAnimate->Enabled = false;
 			this->btnAnimate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnAnimate->Location = System::Drawing::Point(11, 142);
+			this->btnAnimate->Location = System::Drawing::Point(10, 135);
 			this->btnAnimate->Name = L"btnAnimate";
-			this->btnAnimate->Size = System::Drawing::Size(194, 22);
+			this->btnAnimate->Size = System::Drawing::Size(162, 18);
 			this->btnAnimate->TabIndex = 14;
 			this->btnAnimate->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAnimate_Click);
 			// 
@@ -1124,9 +1145,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpFlags->Controls->Add(this->lstFlags);
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFlags->Location = System::Drawing::Point(8, 178);
+			this->grpFlags->Location = System::Drawing::Point(7, 172);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(219, 298);
+			this->grpFlags->Size = System::Drawing::Size(182, 273);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1137,10 +1158,13 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->lstFlags->CheckOnClick = true;
-			this->lstFlags->Location = System::Drawing::Point(8, 15);
+			this->lstFlags->ForeColor = System::Drawing::SystemColors::WindowText;
+			this->lstFlags->HorizontalScrollbar = true;
+			this->lstFlags->Location = System::Drawing::Point(7, 27);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(191, 274);
+			this->lstFlags->Size = System::Drawing::Size(159, 244);
 			this->lstFlags->TabIndex = 3;
+			this->lstFlags->TabStop = false;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
 			// 
 			// tabInfo
@@ -1148,9 +1172,9 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpImageInfo);
 			this->tabInfo->Controls->Add(this->grpThumbnailInfo);
 			this->tabInfo->Controls->Add(this->grpFileInfo);
-			this->tabInfo->Location = System::Drawing::Point(4, 25);
+			this->tabInfo->Location = System::Drawing::Point(4, 22);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(218, 479);
+			this->tabInfo->Size = System::Drawing::Size(195, 448);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1179,9 +1203,9 @@ namespace VTFEdit
 			this->grpImageInfo->Controls->Add(this->lblImageWidth);
 			this->grpImageInfo->Controls->Add(this->lblImageWidthLabel);
 			this->grpImageInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpImageInfo->Location = System::Drawing::Point(8, 93);
+			this->grpImageInfo->Location = System::Drawing::Point(7, 76);
 			this->grpImageInfo->Name = L"grpImageInfo";
-			this->grpImageInfo->Size = System::Drawing::Size(204, 265);
+			this->grpImageInfo->Size = System::Drawing::Size(185, 215);
 			this->grpImageInfo->TabIndex = 1;
 			this->grpImageInfo->TabStop = false;
 			this->grpImageInfo->Text = L"Image Info:";
@@ -1190,16 +1214,16 @@ namespace VTFEdit
 			// 
 			this->lblImageSlices->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageSlices->Location = System::Drawing::Point(64, 163);
+			this->lblImageSlices->Location = System::Drawing::Point(70, 132);
 			this->lblImageSlices->Name = L"lblImageSlices";
-			this->lblImageSlices->Size = System::Drawing::Size(134, 22);
+			this->lblImageSlices->Size = System::Drawing::Size(110, 18);
 			this->lblImageSlices->TabIndex = 13;
 			// 
 			// lblImageSlicesLabel
 			// 
-			this->lblImageSlicesLabel->Location = System::Drawing::Point(8, 163);
+			this->lblImageSlicesLabel->Location = System::Drawing::Point(7, 132);
 			this->lblImageSlicesLabel->Name = L"lblImageSlicesLabel";
-			this->lblImageSlicesLabel->Size = System::Drawing::Size(56, 22);
+			this->lblImageSlicesLabel->Size = System::Drawing::Size(46, 18);
 			this->lblImageSlicesLabel->TabIndex = 12;
 			this->lblImageSlicesLabel->Text = L"Slices:";
 			// 
@@ -1207,51 +1231,51 @@ namespace VTFEdit
 			// 
 			this->numImageBumpmapScale->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numImageBumpmapScale->Location = System::Drawing::Point(64, 210);
+			this->numImageBumpmapScale->Location = System::Drawing::Point(70, 171);
 			this->numImageBumpmapScale->Name = L"numImageBumpmapScale";
-			this->numImageBumpmapScale->Size = System::Drawing::Size(134, 23);
+			this->numImageBumpmapScale->Size = System::Drawing::Size(110, 20);
 			this->numImageBumpmapScale->TabIndex = 17;
 			// 
 			// numImageStartFrame
 			// 
 			this->numImageStartFrame->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numImageStartFrame->Location = System::Drawing::Point(64, 116);
+			this->numImageStartFrame->Location = System::Drawing::Point(70, 94);
 			this->numImageStartFrame->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numImageStartFrame->Name = L"numImageStartFrame";
-			this->numImageStartFrame->Size = System::Drawing::Size(134, 23);
+			this->numImageStartFrame->Size = System::Drawing::Size(110, 20);
 			this->numImageStartFrame->TabIndex = 9;
 			// 
 			// lblImageReflectivity
 			// 
 			this->lblImageReflectivity->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageReflectivity->Location = System::Drawing::Point(64, 233);
+			this->lblImageReflectivity->Location = System::Drawing::Point(69, 194);
 			this->lblImageReflectivity->Name = L"lblImageReflectivity";
-			this->lblImageReflectivity->Size = System::Drawing::Size(134, 22);
+			this->lblImageReflectivity->Size = System::Drawing::Size(110, 18);
 			this->lblImageReflectivity->TabIndex = 19;
 			// 
 			// lblImageReflectivityLabel
 			// 
-			this->lblImageReflectivityLabel->Location = System::Drawing::Point(8, 233);
+			this->lblImageReflectivityLabel->Location = System::Drawing::Point(7, 194);
 			this->lblImageReflectivityLabel->Name = L"lblImageReflectivityLabel";
-			this->lblImageReflectivityLabel->Size = System::Drawing::Size(56, 22);
+			this->lblImageReflectivityLabel->Size = System::Drawing::Size(65, 18);
 			this->lblImageReflectivityLabel->TabIndex = 18;
 			this->lblImageReflectivityLabel->Text = L"Reflectivity:";
 			// 
 			// lblImageBumpmapScaleLabel
 			// 
-			this->lblImageBumpmapScaleLabel->Location = System::Drawing::Point(8, 210);
+			this->lblImageBumpmapScaleLabel->Location = System::Drawing::Point(7, 171);
 			this->lblImageBumpmapScaleLabel->Name = L"lblImageBumpmapScaleLabel";
-			this->lblImageBumpmapScaleLabel->Size = System::Drawing::Size(56, 22);
+			this->lblImageBumpmapScaleLabel->Size = System::Drawing::Size(57, 17);
 			this->lblImageBumpmapScaleLabel->TabIndex = 16;
 			this->lblImageBumpmapScaleLabel->Text = L"Bumpmap:";
 			// 
 			// lblImageStartFrameLabel
 			// 
-			this->lblImageStartFrameLabel->Location = System::Drawing::Point(8, 116);
+			this->lblImageStartFrameLabel->Location = System::Drawing::Point(7, 94);
 			this->lblImageStartFrameLabel->Name = L"lblImageStartFrameLabel";
-			this->lblImageStartFrameLabel->Size = System::Drawing::Size(56, 23);
+			this->lblImageStartFrameLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageStartFrameLabel->TabIndex = 8;
 			this->lblImageStartFrameLabel->Text = L"Start:";
 			// 
@@ -1259,16 +1283,16 @@ namespace VTFEdit
 			// 
 			this->lblImageMipmaps->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageMipmaps->Location = System::Drawing::Point(64, 187);
+			this->lblImageMipmaps->Location = System::Drawing::Point(70, 152);
 			this->lblImageMipmaps->Name = L"lblImageMipmaps";
-			this->lblImageMipmaps->Size = System::Drawing::Size(134, 22);
+			this->lblImageMipmaps->Size = System::Drawing::Size(110, 18);
 			this->lblImageMipmaps->TabIndex = 15;
 			// 
 			// lblImageMipmapsLabel
 			// 
-			this->lblImageMipmapsLabel->Location = System::Drawing::Point(8, 187);
+			this->lblImageMipmapsLabel->Location = System::Drawing::Point(7, 152);
 			this->lblImageMipmapsLabel->Name = L"lblImageMipmapsLabel";
-			this->lblImageMipmapsLabel->Size = System::Drawing::Size(56, 22);
+			this->lblImageMipmapsLabel->Size = System::Drawing::Size(57, 18);
 			this->lblImageMipmapsLabel->TabIndex = 14;
 			this->lblImageMipmapsLabel->Text = L"Mipmaps:";
 			// 
@@ -1276,16 +1300,16 @@ namespace VTFEdit
 			// 
 			this->lblImageFaces->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFaces->Location = System::Drawing::Point(64, 140);
+			this->lblImageFaces->Location = System::Drawing::Point(70, 114);
 			this->lblImageFaces->Name = L"lblImageFaces";
-			this->lblImageFaces->Size = System::Drawing::Size(134, 23);
+			this->lblImageFaces->Size = System::Drawing::Size(110, 18);
 			this->lblImageFaces->TabIndex = 11;
 			// 
 			// lblImageFacesLabel
 			// 
-			this->lblImageFacesLabel->Location = System::Drawing::Point(8, 140);
+			this->lblImageFacesLabel->Location = System::Drawing::Point(7, 114);
 			this->lblImageFacesLabel->Name = L"lblImageFacesLabel";
-			this->lblImageFacesLabel->Size = System::Drawing::Size(56, 23);
+			this->lblImageFacesLabel->Size = System::Drawing::Size(46, 18);
 			this->lblImageFacesLabel->TabIndex = 10;
 			this->lblImageFacesLabel->Text = L"Faces:";
 			// 
@@ -1293,16 +1317,16 @@ namespace VTFEdit
 			// 
 			this->lblImageFrames->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFrames->Location = System::Drawing::Point(64, 93);
+			this->lblImageFrames->Location = System::Drawing::Point(70, 76);
 			this->lblImageFrames->Name = L"lblImageFrames";
-			this->lblImageFrames->Size = System::Drawing::Size(134, 22);
+			this->lblImageFrames->Size = System::Drawing::Size(110, 17);
 			this->lblImageFrames->TabIndex = 7;
 			// 
 			// lblImageFramesLabel
 			// 
-			this->lblImageFramesLabel->Location = System::Drawing::Point(8, 93);
+			this->lblImageFramesLabel->Location = System::Drawing::Point(7, 76);
 			this->lblImageFramesLabel->Name = L"lblImageFramesLabel";
-			this->lblImageFramesLabel->Size = System::Drawing::Size(56, 22);
+			this->lblImageFramesLabel->Size = System::Drawing::Size(46, 17);
 			this->lblImageFramesLabel->TabIndex = 6;
 			this->lblImageFramesLabel->Text = L"Frames:";
 			// 
@@ -1310,16 +1334,16 @@ namespace VTFEdit
 			// 
 			this->lblImageFormat->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFormat->Location = System::Drawing::Point(64, 70);
+			this->lblImageFormat->Location = System::Drawing::Point(70, 57);
 			this->lblImageFormat->Name = L"lblImageFormat";
-			this->lblImageFormat->Size = System::Drawing::Size(134, 23);
+			this->lblImageFormat->Size = System::Drawing::Size(110, 19);
 			this->lblImageFormat->TabIndex = 5;
 			// 
 			// lblImageFormatLabel
 			// 
-			this->lblImageFormatLabel->Location = System::Drawing::Point(8, 70);
+			this->lblImageFormatLabel->Location = System::Drawing::Point(7, 57);
 			this->lblImageFormatLabel->Name = L"lblImageFormatLabel";
-			this->lblImageFormatLabel->Size = System::Drawing::Size(56, 23);
+			this->lblImageFormatLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageFormatLabel->TabIndex = 4;
 			this->lblImageFormatLabel->Text = L"Format:";
 			// 
@@ -1327,16 +1351,16 @@ namespace VTFEdit
 			// 
 			this->lblImageHeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageHeight->Location = System::Drawing::Point(64, 46);
+			this->lblImageHeight->Location = System::Drawing::Point(70, 37);
 			this->lblImageHeight->Name = L"lblImageHeight";
-			this->lblImageHeight->Size = System::Drawing::Size(134, 23);
+			this->lblImageHeight->Size = System::Drawing::Size(110, 19);
 			this->lblImageHeight->TabIndex = 3;
 			// 
 			// lblImageHeightLabel
 			// 
-			this->lblImageHeightLabel->Location = System::Drawing::Point(8, 46);
+			this->lblImageHeightLabel->Location = System::Drawing::Point(7, 37);
 			this->lblImageHeightLabel->Name = L"lblImageHeightLabel";
-			this->lblImageHeightLabel->Size = System::Drawing::Size(56, 23);
+			this->lblImageHeightLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageHeightLabel->TabIndex = 2;
 			this->lblImageHeightLabel->Text = L"Height:";
 			// 
@@ -1344,16 +1368,16 @@ namespace VTFEdit
 			// 
 			this->lblImageWidth->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageWidth->Location = System::Drawing::Point(64, 24);
+			this->lblImageWidth->Location = System::Drawing::Point(70, 20);
 			this->lblImageWidth->Name = L"lblImageWidth";
-			this->lblImageWidth->Size = System::Drawing::Size(134, 21);
+			this->lblImageWidth->Size = System::Drawing::Size(110, 17);
 			this->lblImageWidth->TabIndex = 1;
 			// 
 			// lblImageWidthLabel
 			// 
-			this->lblImageWidthLabel->Location = System::Drawing::Point(8, 24);
+			this->lblImageWidthLabel->Location = System::Drawing::Point(7, 20);
 			this->lblImageWidthLabel->Name = L"lblImageWidthLabel";
-			this->lblImageWidthLabel->Size = System::Drawing::Size(56, 21);
+			this->lblImageWidthLabel->Size = System::Drawing::Size(46, 17);
 			this->lblImageWidthLabel->TabIndex = 0;
 			this->lblImageWidthLabel->Text = L"Width:";
 			// 
@@ -1368,9 +1392,9 @@ namespace VTFEdit
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailWidth);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailWidthLabel);
 			this->grpThumbnailInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpThumbnailInfo->Location = System::Drawing::Point(8, 365);
+			this->grpThumbnailInfo->Location = System::Drawing::Point(7, 297);
 			this->grpThumbnailInfo->Name = L"grpThumbnailInfo";
-			this->grpThumbnailInfo->Size = System::Drawing::Size(204, 102);
+			this->grpThumbnailInfo->Size = System::Drawing::Size(185, 82);
 			this->grpThumbnailInfo->TabIndex = 2;
 			this->grpThumbnailInfo->TabStop = false;
 			this->grpThumbnailInfo->Text = L"Thumbnail Info:";
@@ -1379,16 +1403,16 @@ namespace VTFEdit
 			// 
 			this->lblThumbnailFormat->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblThumbnailFormat->Location = System::Drawing::Point(64, 70);
+			this->lblThumbnailFormat->Location = System::Drawing::Point(53, 57);
 			this->lblThumbnailFormat->Name = L"lblThumbnailFormat";
-			this->lblThumbnailFormat->Size = System::Drawing::Size(134, 23);
+			this->lblThumbnailFormat->Size = System::Drawing::Size(127, 19);
 			this->lblThumbnailFormat->TabIndex = 5;
 			// 
 			// lblThumbnailFormatLabel
 			// 
-			this->lblThumbnailFormatLabel->Location = System::Drawing::Point(8, 70);
+			this->lblThumbnailFormatLabel->Location = System::Drawing::Point(7, 57);
 			this->lblThumbnailFormatLabel->Name = L"lblThumbnailFormatLabel";
-			this->lblThumbnailFormatLabel->Size = System::Drawing::Size(56, 23);
+			this->lblThumbnailFormatLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailFormatLabel->TabIndex = 4;
 			this->lblThumbnailFormatLabel->Text = L"Format:";
 			// 
@@ -1396,16 +1420,16 @@ namespace VTFEdit
 			// 
 			this->lblThumbnailHeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblThumbnailHeight->Location = System::Drawing::Point(64, 46);
+			this->lblThumbnailHeight->Location = System::Drawing::Point(53, 37);
 			this->lblThumbnailHeight->Name = L"lblThumbnailHeight";
-			this->lblThumbnailHeight->Size = System::Drawing::Size(134, 23);
+			this->lblThumbnailHeight->Size = System::Drawing::Size(127, 19);
 			this->lblThumbnailHeight->TabIndex = 3;
 			// 
 			// lblThumbnailHeightLabel
 			// 
-			this->lblThumbnailHeightLabel->Location = System::Drawing::Point(8, 46);
+			this->lblThumbnailHeightLabel->Location = System::Drawing::Point(7, 37);
 			this->lblThumbnailHeightLabel->Name = L"lblThumbnailHeightLabel";
-			this->lblThumbnailHeightLabel->Size = System::Drawing::Size(56, 23);
+			this->lblThumbnailHeightLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailHeightLabel->TabIndex = 2;
 			this->lblThumbnailHeightLabel->Text = L"Height:";
 			// 
@@ -1413,16 +1437,16 @@ namespace VTFEdit
 			// 
 			this->lblThumbnailWidth->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblThumbnailWidth->Location = System::Drawing::Point(64, 24);
+			this->lblThumbnailWidth->Location = System::Drawing::Point(53, 20);
 			this->lblThumbnailWidth->Name = L"lblThumbnailWidth";
-			this->lblThumbnailWidth->Size = System::Drawing::Size(134, 21);
+			this->lblThumbnailWidth->Size = System::Drawing::Size(127, 17);
 			this->lblThumbnailWidth->TabIndex = 1;
 			// 
 			// lblThumbnailWidthLabel
 			// 
-			this->lblThumbnailWidthLabel->Location = System::Drawing::Point(8, 24);
+			this->lblThumbnailWidthLabel->Location = System::Drawing::Point(7, 20);
 			this->lblThumbnailWidthLabel->Name = L"lblThumbnailWidthLabel";
-			this->lblThumbnailWidthLabel->Size = System::Drawing::Size(56, 21);
+			this->lblThumbnailWidthLabel->Size = System::Drawing::Size(46, 17);
 			this->lblThumbnailWidthLabel->TabIndex = 0;
 			this->lblThumbnailWidthLabel->Text = L"Width:";
 			// 
@@ -1435,9 +1459,9 @@ namespace VTFEdit
 			this->grpFileInfo->Controls->Add(this->lblFileVersion);
 			this->grpFileInfo->Controls->Add(this->lblFileVersionLabel);
 			this->grpFileInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFileInfo->Location = System::Drawing::Point(8, 8);
+			this->grpFileInfo->Location = System::Drawing::Point(7, 6);
 			this->grpFileInfo->Name = L"grpFileInfo";
-			this->grpFileInfo->Size = System::Drawing::Size(204, 78);
+			this->grpFileInfo->Size = System::Drawing::Size(185, 64);
 			this->grpFileInfo->TabIndex = 0;
 			this->grpFileInfo->TabStop = false;
 			this->grpFileInfo->Text = L"File Info:";
@@ -1446,16 +1470,16 @@ namespace VTFEdit
 			// 
 			this->lblFileSize->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblFileSize->Location = System::Drawing::Point(64, 46);
+			this->lblFileSize->Location = System::Drawing::Point(53, 37);
 			this->lblFileSize->Name = L"lblFileSize";
-			this->lblFileSize->Size = System::Drawing::Size(134, 23);
+			this->lblFileSize->Size = System::Drawing::Size(127, 19);
 			this->lblFileSize->TabIndex = 3;
 			// 
 			// lblFileSizeLabel
 			// 
-			this->lblFileSizeLabel->Location = System::Drawing::Point(8, 46);
+			this->lblFileSizeLabel->Location = System::Drawing::Point(7, 37);
 			this->lblFileSizeLabel->Name = L"lblFileSizeLabel";
-			this->lblFileSizeLabel->Size = System::Drawing::Size(56, 23);
+			this->lblFileSizeLabel->Size = System::Drawing::Size(46, 19);
 			this->lblFileSizeLabel->TabIndex = 2;
 			this->lblFileSizeLabel->Text = L"Size:";
 			// 
@@ -1463,16 +1487,16 @@ namespace VTFEdit
 			// 
 			this->lblFileVersion->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblFileVersion->Location = System::Drawing::Point(64, 24);
+			this->lblFileVersion->Location = System::Drawing::Point(53, 20);
 			this->lblFileVersion->Name = L"lblFileVersion";
-			this->lblFileVersion->Size = System::Drawing::Size(134, 21);
+			this->lblFileVersion->Size = System::Drawing::Size(127, 17);
 			this->lblFileVersion->TabIndex = 1;
 			// 
 			// lblFileVersionLabel
 			// 
-			this->lblFileVersionLabel->Location = System::Drawing::Point(8, 24);
+			this->lblFileVersionLabel->Location = System::Drawing::Point(7, 20);
 			this->lblFileVersionLabel->Name = L"lblFileVersionLabel";
-			this->lblFileVersionLabel->Size = System::Drawing::Size(56, 21);
+			this->lblFileVersionLabel->Size = System::Drawing::Size(46, 17);
 			this->lblFileVersionLabel->TabIndex = 0;
 			this->lblFileVersionLabel->Text = L"Version:";
 			// 
@@ -1480,9 +1504,9 @@ namespace VTFEdit
 			// 
 			this->tabResources->Controls->Add(this->grpResources);
 			this->tabResources->Controls->Add(this->grpResourceInfo);
-			this->tabResources->Location = System::Drawing::Point(4, 25);
+			this->tabResources->Location = System::Drawing::Point(4, 22);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(218, 479);
+			this->tabResources->Size = System::Drawing::Size(195, 448);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1493,9 +1517,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpResources->Controls->Add(this->treResources);
 			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpResources->Location = System::Drawing::Point(8, 70);
+			this->grpResources->Location = System::Drawing::Point(7, 57);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(204, 401);
+			this->grpResources->Size = System::Drawing::Size(185, 389);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1505,9 +1529,9 @@ namespace VTFEdit
 			this->treResources->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->treResources->Location = System::Drawing::Point(8, 15);
+			this->treResources->Location = System::Drawing::Point(7, 12);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(190, 378);
+			this->treResources->Size = System::Drawing::Size(173, 371);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1517,9 +1541,9 @@ namespace VTFEdit
 			this->grpResourceInfo->Controls->Add(this->lblResourceCount);
 			this->grpResourceInfo->Controls->Add(this->lblResourceCountLabel);
 			this->grpResourceInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpResourceInfo->Location = System::Drawing::Point(8, 8);
+			this->grpResourceInfo->Location = System::Drawing::Point(7, 6);
 			this->grpResourceInfo->Name = L"grpResourceInfo";
-			this->grpResourceInfo->Size = System::Drawing::Size(204, 54);
+			this->grpResourceInfo->Size = System::Drawing::Size(185, 44);
 			this->grpResourceInfo->TabIndex = 1;
 			this->grpResourceInfo->TabStop = false;
 			this->grpResourceInfo->Text = L"Resource Info:";
@@ -1528,16 +1552,16 @@ namespace VTFEdit
 			// 
 			this->lblResourceCount->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblResourceCount->Location = System::Drawing::Point(64, 24);
+			this->lblResourceCount->Location = System::Drawing::Point(66, 20);
 			this->lblResourceCount->Name = L"lblResourceCount";
-			this->lblResourceCount->Size = System::Drawing::Size(134, 21);
+			this->lblResourceCount->Size = System::Drawing::Size(114, 17);
 			this->lblResourceCount->TabIndex = 1;
 			// 
 			// lblResourceCountLabel
 			// 
-			this->lblResourceCountLabel->Location = System::Drawing::Point(8, 24);
+			this->lblResourceCountLabel->Location = System::Drawing::Point(7, 20);
 			this->lblResourceCountLabel->Name = L"lblResourceCountLabel";
-			this->lblResourceCountLabel->Size = System::Drawing::Size(56, 21);
+			this->lblResourceCountLabel->Size = System::Drawing::Size(61, 17);
 			this->lblResourceCountLabel->TabIndex = 0;
 			this->lblResourceCountLabel->Text = L"Resources:";
 			// 
@@ -1566,19 +1590,20 @@ namespace VTFEdit
 			this->pnlMain->Controls->Add(this->picVTFFileTL);
 			this->pnlMain->Controls->Add(this->txtVMTFile);
 			this->pnlMain->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pnlMain->Location = System::Drawing::Point(262, 36);
+			this->pnlMain->Location = System::Drawing::Point(218, 36);
 			this->pnlMain->Name = L"pnlMain";
-			this->pnlMain->Size = System::Drawing::Size(490, 528);
+			this->pnlMain->Size = System::Drawing::Size(534, 490);
 			this->pnlMain->TabIndex = 2;
 			this->pnlMain->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragDrop);
 			this->pnlMain->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragEnter);
+
 			// 
 			// picVTFFileBR
 			// 
 			this->picVTFFileBR->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileBR->Location = System::Drawing::Point(24, 26);
+			this->picVTFFileBR->Location = System::Drawing::Point(20, 21);
 			this->picVTFFileBR->Name = L"picVTFFileBR";
-			this->picVTFFileBR->Size = System::Drawing::Size(25, 26);
+			this->picVTFFileBR->Size = System::Drawing::Size(21, 21);
 			this->picVTFFileBR->TabIndex = 4;
 			this->picVTFFileBR->TabStop = false;
 			this->picVTFFileBR->Visible = false;
@@ -1630,9 +1655,9 @@ namespace VTFEdit
 			// picVTFFileBL
 			// 
 			this->picVTFFileBL->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileBL->Location = System::Drawing::Point(0, 26);
+			this->picVTFFileBL->Location = System::Drawing::Point(0, 21);
 			this->picVTFFileBL->Name = L"picVTFFileBL";
-			this->picVTFFileBL->Size = System::Drawing::Size(24, 26);
+			this->picVTFFileBL->Size = System::Drawing::Size(20, 21);
 			this->picVTFFileBL->TabIndex = 3;
 			this->picVTFFileBL->TabStop = false;
 			this->picVTFFileBL->Visible = false;
@@ -1643,9 +1668,9 @@ namespace VTFEdit
 			// picVTFFileTR
 			// 
 			this->picVTFFileTR->ContextMenu = this->mnuVTFFile;
-			this->picVTFFileTR->Location = System::Drawing::Point(24, 0);
+			this->picVTFFileTR->Location = System::Drawing::Point(20, 0);
 			this->picVTFFileTR->Name = L"picVTFFileTR";
-			this->picVTFFileTR->Size = System::Drawing::Size(25, 26);
+			this->picVTFFileTR->Size = System::Drawing::Size(21, 21);
 			this->picVTFFileTR->TabIndex = 2;
 			this->picVTFFileTR->TabStop = false;
 			this->picVTFFileTR->Visible = false;
@@ -1658,7 +1683,7 @@ namespace VTFEdit
 			this->picVTFFileTL->ContextMenu = this->mnuVTFFile;
 			this->picVTFFileTL->Location = System::Drawing::Point(0, 0);
 			this->picVTFFileTL->Name = L"picVTFFileTL";
-			this->picVTFFileTL->Size = System::Drawing::Size(24, 26);
+			this->picVTFFileTL->Size = System::Drawing::Size(20, 21);
 			this->picVTFFileTL->TabIndex = 0;
 			this->picVTFFileTL->TabStop = false;
 			this->picVTFFileTL->Visible = false;
@@ -1680,7 +1705,7 @@ namespace VTFEdit
 				static_cast<System::Int32>(static_cast<System::Byte>(198)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
-			this->txtVMTFile->Size = System::Drawing::Size(490, 528);
+			this->txtVMTFile->Size = System::Drawing::Size(534, 490);
 			this->txtVMTFile->TabIndex = 5;
 			this->txtVMTFile->Text = L"";
 			this->txtVMTFile->Visible = false;
@@ -1856,11 +1881,11 @@ namespace VTFEdit
 			// splSidebar
 			// 
 			this->splSidebar->BackColor = System::Drawing::SystemColors::Control;
-			this->splSidebar->Location = System::Drawing::Point(258, 36);
+			this->splSidebar->Location = System::Drawing::Point(215, 36);
 			this->splSidebar->MinExtra = 96;
 			this->splSidebar->MinSize = 96;
 			this->splSidebar->Name = L"splSidebar";
-			this->splSidebar->Size = System::Drawing::Size(4, 528);
+			this->splSidebar->Size = System::Drawing::Size(3, 490);
 			this->splSidebar->TabIndex = 5;
 			this->splSidebar->TabStop = false;
 			this->splSidebar->SplitterMoved += gcnew System::Windows::Forms::SplitterEventHandler(this, &CVTFEdit::splSidebar_SplitterMoved);
@@ -1871,9 +1896,9 @@ namespace VTFEdit
 			// 
 			// CVTFEdit
 			// 
-			this->AutoScaleBaseSize = System::Drawing::Size(6, 16);
+			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(752, 585);
+			this->ClientSize = System::Drawing::Size(752, 543);
 			this->Controls->Add(this->pnlMain);
 			this->Controls->Add(this->splSidebar);
 			this->Controls->Add(this->pnlSidebar);
@@ -3114,6 +3139,23 @@ namespace VTFEdit
 			{
 				this->btnAnimate->Enabled = true;
 			}
+			else 
+			{
+				this->numFrame->ReadOnly = true;
+			}
+
+			// It was meant to be this way
+			if((VTFFile->GetFaceCount() - 1) < 1) {
+				this->numFace->ReadOnly = true;
+			}
+
+			if((VTFFile->GetDepth() - 1) < 1) {
+				this->numSlice->ReadOnly = true;
+			}
+
+			if((VTFFile->GetMipmapCount() - 1) < 1) {
+				this->numMipmap->ReadOnly = true;
+			}
 
 			if(VTFFile->GetFormat() == IMAGE_FORMAT_RGBA16161616F)
 			{
@@ -3122,13 +3164,23 @@ namespace VTFEdit
 
 			vlUInt uiFlags = VTFFile->GetFlags();
 
+			if (uiFlags & TEXTUREFLAGS_ONEBITALPHA) {
+				this->lblAlpha->Text = "One Bit Alpha";
+			}
+			else if (uiFlags & TEXTUREFLAGS_EIGHTBITALPHA) {
+				this->lblAlpha->Text = "Eight Bit Alpha";
+			}
+			else {
+				this->lblAlpha->Text = "None";
+			}
+
 			this->lstFlags->BeginUpdate();
 			this->lstFlags->Items->Clear();
 
 			#pragma warning(disable: 4800)
 			this->lstFlags->Items->Add("Point Sample", uiFlags & TEXTUREFLAGS_POINTSAMPLE);
 			this->lstFlags->Items->Add("Trilinear", uiFlags & TEXTUREFLAGS_TRILINEAR);
-			this->lstFlags->Items->Add("Clamp ", uiFlags & TEXTUREFLAGS_CLAMPS);
+			this->lstFlags->Items->Add("Clamp S", uiFlags & TEXTUREFLAGS_CLAMPS);
 			this->lstFlags->Items->Add("Clamp T", uiFlags & TEXTUREFLAGS_CLAMPT);
 			this->lstFlags->Items->Add("Anisotropic", uiFlags & TEXTUREFLAGS_ANISOTROPIC);
 			this->lstFlags->Items->Add("Hint DXT5", uiFlags & TEXTUREFLAGS_HINT_DXT5);
@@ -3138,24 +3190,24 @@ namespace VTFEdit
 			this->lstFlags->Items->Add("No Level Of Detail", uiFlags & TEXTUREFLAGS_NOLOD);
 			this->lstFlags->Items->Add("No Minimum Mipmap", uiFlags & TEXTUREFLAGS_MINMIP);
 			this->lstFlags->Items->Add("Procedural", uiFlags & TEXTUREFLAGS_PROCEDURAL);
-			this->lstFlags->Items->Add("One Bit Alpha (Format Specific)", uiFlags & TEXTUREFLAGS_ONEBITALPHA);
-			this->lstFlags->Items->Add("Eight Bit Alpha (Format Specific)", uiFlags & TEXTUREFLAGS_EIGHTBITALPHA);
-			this->lstFlags->Items->Add("Enviroment Map (Format Specific)", uiFlags & TEXTUREFLAGS_ENVMAP);
+			//this->lstFlags->Items->Add("One Bit Alpha", uiFlags & TEXTUREFLAGS_ONEBITALPHA);
+			//this->lstFlags->Items->Add("Eight Bit Alpha", uiFlags & TEXTUREFLAGS_EIGHTBITALPHA);
+			this->lstFlags->Items->Add("Enviroment Map", uiFlags & TEXTUREFLAGS_ENVMAP);
 			this->lstFlags->Items->Add("Render Target", uiFlags & TEXTUREFLAGS_RENDERTARGET);
 			this->lstFlags->Items->Add("Depth Render Target", uiFlags & TEXTUREFLAGS_DEPTHRENDERTARGET);
 			this->lstFlags->Items->Add("No Debug Override", uiFlags & TEXTUREFLAGS_NODEBUGOVERRIDE);
 			this->lstFlags->Items->Add("Single Copy", uiFlags & TEXTUREFLAGS_SINGLECOPY);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED0);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED1);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED2);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED3);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED0);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED1);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED2);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED3);
 			this->lstFlags->Items->Add("No Depth Buffer", uiFlags & TEXTUREFLAGS_NODEPTHBUFFER);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED4);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED4);
 			this->lstFlags->Items->Add("Clamp U", uiFlags & TEXTUREFLAGS_CLAMPU);
 			this->lstFlags->Items->Add("Vertex Texture", uiFlags & TEXTUREFLAGS_VERTEXTEXTURE);
 			this->lstFlags->Items->Add("SSBump", uiFlags & TEXTUREFLAGS_SSBUMP);
-			this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED5);
-			this->lstFlags->Items->Add("Clamp All", uiFlags & TEXTUREFLAGS_BORDER);
+			//this->lstFlags->Items->Add("Unused", uiFlags & TEXTUREFLAGS_UNUSED5);
+			this->lstFlags->Items->Add("Clamp Border", uiFlags & TEXTUREFLAGS_BORDER);
 			#pragma warning(default: 4800)
 
 			this->lstFlags->EndUpdate();
@@ -3460,6 +3512,9 @@ namespace VTFEdit
 
 					this->btnToolCopy->Enabled = true;
 					this->btnCopy->Enabled = true;
+
+					this->pnlMain->ContextMenu = this->mnuVTFFile;
+
 				}
 				else
 				{
@@ -3698,6 +3753,9 @@ namespace VTFEdit
 
 					this->btnToolCopy->Enabled = true;
 					this->btnCopy->Enabled = true;
+
+					this->pnlMain->ContextMenu = this->mnuVTFFile;
+
 				}
 				else
 				{
@@ -3856,6 +3914,8 @@ namespace VTFEdit
 			this->picVTFFileTR->Image = nullptr;
 			this->picVTFFileBL->Image = nullptr;
 			this->picVTFFileBR->Image = nullptr;
+
+			this->pnlMain->ContextMenu = nullptr;
 
 			//this->treVMTFile->Visible = false;
 			//this->treVMTFile->Nodes->Clear();
@@ -4945,16 +5005,7 @@ namespace VTFEdit
 					{
 						if(System::String::Compare(sArg, "VTFEdit.AnimationFrameInterval", true) == 0)
 						{
-							this->tmrAnimate->Interval = Convert::ToUInt32(sVal);
-
-							if(this->tmrAnimate->Interval < 10)
-							{
-								this->tmrAnimate->Interval = 10;
-							}
-							else if(this->tmrAnimate->Interval > 1000)
-							{
-								this->tmrAnimate->Interval = 1000;
-							}
+							this->tmrAnimate->Interval = Convert::ToDouble(sVal);
 						}
 						else if(System::String::Compare(sArg, "VTFEdit.Mask", true) == 0)
 						{
@@ -5200,9 +5251,9 @@ namespace VTFEdit
 						{
 							this->uiMaximumRecentFiles = Convert::ToUInt32(sVal);
 
-							if(this->uiMaximumRecentFiles > 16)
+							if(this->uiMaximumRecentFiles > 32)
 							{
-								this->uiMaximumRecentFiles = 16;
+								this->uiMaximumRecentFiles = 32;
 							}
 						}
 						else if(System::String::Compare(sArg, "RecentFiles.File", true) == 0 && System::IO::File::Exists(sVal))
