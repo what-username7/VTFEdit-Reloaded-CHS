@@ -89,6 +89,13 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 
 ## VTFEdit Reloaded Changelog
 
+  v2.0.3
+  - Updated the Shaders and Surface Properties list in VMT Create in accordance to the Valve Developer Wiki's current list
+  - Added Drag and Drop functionality for images that can be imported normally through the File > Import dialog
+	  - Note that if any window is above VTFEdit-Reloaded, or any part of the window is outside monitor bounds, the Import settings will default to the top-left of the screen. I do not have the knowledge to change this behavior myself unfortunately.
+  - Changed the ReadOnly property in the Convert Folder and Convert WAD dialog, so you can manually insert or change the path to your folder instead of needing to use the Folder Selector button on the right.
+  - Changed the resource files to use "winres.h" and "winver.h" instead of "afxres.h". Supposedly afxres.h is outdated, and has been replaced with the two other headers. So far I haven't noticed any issues with this.
+
   v2.0.2
   - Updated Compressonator to latest version as of 8/8/22.
   - Added 32-bit version.
