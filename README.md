@@ -31,19 +31,19 @@ included.
 Visual Studio 2019 or Visual Studio 2022
 
 "Desktop development with C++" workload
-
-HLLib.dll from this zip, extract from /hllib246.zip/bin/x64/ [>>Link](https://web.archive.org/web/20171114194253/http://nemesis.thewavelength.net/files/files/hllib246.zip) 
-
-DevIL.dll from this zip [>>Link](https://sourceforge.net/projects/openil/files/DevIL%20Win32%20and%20Win64/DevIL-EndUser-x64-1.8.0.zip/download?use_mirror=phoenixnap)
 #
 
-Open the solution in /VTFEdit-Reloaded/sln/ with Visual Studio 2019 or 2022. Set the build from Debug to Release, then right-click on VTFEdit in the Solution Explorer and click Set as startup project, then right-click VTFEdit again and click Build. You *might* get a Build Failed message in the bottom-left after completion, but it means nothing in the context of the build actually succeeding, it can be ignored.
+Open the solution in /VTFEdit-Reloaded/sln/ with Visual Studio 2019 or 2022. Set the build from Debug to Release, then right-click on VTFEdit in the Solution Explorer and click Set as startup project, then right-click VTFEdit again and click Build.
 
 After the Build is finished, the executable will be in /VTFEdit-Reloaded/sln/vs2019/Build/
 
-Move the executable and VTFLib.dll to any folder you want VTFEdit-Reloaded to be in, it does not matter.
+Move the executable and all dll files to any folder you want VTFEdit-Reloaded to be in, it does not matter.
 
-Move the other dlls you downloaded from the Prerequisites and put them into the same folder as where you put VTFEdit-Reloaded.
+#
+HLLib can be obtained from here, with the dll and the source code if you want to build it yourself. [>>Link](https://web.archive.org/web/20171114194253/http://nemesis.thewavelength.net/files/files/hllib246.zip) 
+
+DevIL.dll from this zip (This may be changed if the project has a working 32 bit compile) [>>Link](https://sourceforge.net/projects/openil/files/DevIL%20Win32%20and%20Win64/DevIL-EndUser-x64-1.8.0.zip/download?use_mirror=phoenixnap)
+#
 
 ## VTFCmd Usage
 
