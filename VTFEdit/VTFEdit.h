@@ -783,7 +783,7 @@ namespace VTFEdit
 					this->pnlInfo2
 			});
 			this->barStatus->ShowPanels = true;
-			this->barStatus->Size = System::Drawing::Size(752, 17);
+			this->barStatus->Size = System::Drawing::Size(784, 17);
 			this->barStatus->TabIndex = 3;
 			// 
 			// pnlFileName
@@ -1618,7 +1618,7 @@ namespace VTFEdit
 			this->pnlMain->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pnlMain->Location = System::Drawing::Point(231, 43);
 			this->pnlMain->Name = L"pnlMain";
-			this->pnlMain->Size = System::Drawing::Size(521, 483);
+			this->pnlMain->Size = System::Drawing::Size(553, 483);
 			this->pnlMain->TabIndex = 2;
 			this->pnlMain->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragDrop);
 			this->pnlMain->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragEnter);
@@ -1730,7 +1730,7 @@ namespace VTFEdit
 				static_cast<System::Int32>(static_cast<System::Byte>(198)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
-			this->txtVMTFile->Size = System::Drawing::Size(521, 483);
+			this->txtVMTFile->Size = System::Drawing::Size(553, 483);
 			this->txtVMTFile->TabIndex = 5;
 			this->txtVMTFile->Text = L"";
 			this->txtVMTFile->Visible = false;
@@ -1838,7 +1838,7 @@ namespace VTFEdit
 			this->toolStripView->Name = L"toolStripView";
 			this->toolStripView->Padding = System::Windows::Forms::Padding(0);
 			this->toolStripView->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
-			this->toolStripView->Size = System::Drawing::Size(752, 43);
+			this->toolStripView->Size = System::Drawing::Size(784, 43);
 			this->toolStripView->TabIndex = 6;
 			this->toolStripView->Text = L"toolStpView";
 			// 
@@ -2091,7 +2091,7 @@ namespace VTFEdit
 			// 
 			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(752, 543);
+			this->ClientSize = System::Drawing::Size(784, 543);
 			this->Controls->Add(this->pnlMain);
 			this->Controls->Add(this->splSidebar);
 			this->Controls->Add(this->pnlSidebar);
@@ -2100,6 +2100,7 @@ namespace VTFEdit
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Menu = this->mnuMain;
+			this->MinimumSize = System::Drawing::Size(600, 600);
 			this->Name = L"CVTFEdit";
 			this->Text = L"VTFEdit Reloaded";
 			this->Closing += gcnew System::ComponentModel::CancelEventHandler(this, &CVTFEdit::CVTFEdit_Closing);
