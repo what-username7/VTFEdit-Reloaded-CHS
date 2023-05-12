@@ -89,6 +89,18 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
 
 ## VTFEdit Reloaded Changelog
 
+  v2.0.4
+  - Changed the UI to use a better version of the tool bar and added more buttons for ease of access.
+  - Adjusted several UI elements to stop text wrapping, causing the rest of the text to not be visible at all.
+  - Adjusted some windows to now use a minimum window size, as this was not set before and you were able to resize these windows to be extremely small which also hid controls.
+  - Added a Close option to both the File dropdown, and the new tool bar. The shortcut for this is Ctrl + Q. This will close the current file, which has a confirmation prompt so you don't close your file accidentally.
+  - Changed the right-click context menu for VTFs to additionally show when clicking within the image window instead of needing to right-click on the image itself.
+  - Changed the functionality of the Frame, Face, Slice, and Mipmap numeric bars to only be interactable if any of these properties have more than one to them. (in this case 0 = 1 because C++ starts at 0)
+  - Removed the Alpha flags from the flags checkbox list, as they are set on import and cannot be changed manually.
+	- Instead the alpha property has been turned into a label in the image tab with the text saying what its alpha is, for example "Eight Bit Alpha".
+  - Removed the Unused flags from the checkbox list, as they are internal to VTEX only and is not needed to be defined as a VTF flag.
+  - Adjusted some VTF flag names.
+
   v2.0.3
   - Updated the Shaders and Surface Properties list in VMT Create in accordance to the Valve Developer Wiki's current list
   - Added Drag and Drop functionality for images that can be imported normally through the File > Import dialog
