@@ -68,8 +68,42 @@ namespace VTFEdit
 		CAbout ^About;
 	private: System::Windows::Forms::Label^ lblAlpha;
 	private: System::Windows::Forms::Label^ lblAlphaLabel;
+	private: System::Windows::Forms::ToolStrip^ toolStripView;
+	private: System::Windows::Forms::ToolStripButton^ toolStripRGB;
+	private: System::Windows::Forms::ToolStripButton^ toolStripG;
+	private: System::Windows::Forms::ToolStripButton^ toolStripB;
+	private: System::Windows::Forms::ToolStripButton^ toolStripA;
 
-		HWND hWndNewViewer;
+
+
+	private: System::Windows::Forms::ToolStripButton^ toolStripMask;
+	private: System::Windows::Forms::ToolStripButton^ toolStripR;
+	private: System::Windows::Forms::ToolStripButton^ toolStripTile;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::ToolStripButton^ toolStripOpen;
+	private: System::Windows::Forms::ToolStripButton^ toolStripImport;
+	private: System::Windows::Forms::ToolStripButton^ toolStripSave;
+
+
+
+
+	private: System::Windows::Forms::ToolStripButton^ toolStripCopy;
+	private: System::Windows::Forms::ToolStripButton^ toolStripPaste;
+
+
+
+
+	private: System::Windows::Forms::ToolStripButton^ toolStripClose;
+	private: System::Windows::Forms::ToolStripButton^ toolStripExport;
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripSeparator2;
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripSeparator3;
+		   HWND hWndNewViewer;
 
 	public: 
 		CVTFEdit()
@@ -115,13 +149,8 @@ namespace VTFEdit
 	private: System::Windows::Forms::MenuItem ^  btnHDRReset;
 	private: System::Windows::Forms::StatusBarPanel ^  pnlInfo1;
 	private: System::Windows::Forms::StatusBarPanel ^  pnlInfo2;
-
-
-
-
 	private: System::Windows::Forms::MenuItem ^  btnExportAll;
 	private: System::Windows::Forms::TrackBar^ trkHDRExposure;
-
 	private: System::Windows::Forms::Label ^  lblHDRKey;
 	private: System::Windows::Forms::Label ^  lblSlice;
 	private: System::Windows::Forms::NumericUpDown ^  numSlice;
@@ -192,14 +221,14 @@ namespace VTFEdit
 	private: System::Windows::Forms::TreeView ^  treFileSystem;
 	private: System::Windows::Forms::Splitter ^  splSidebar;
 	private: System::Windows::Forms::StatusBar ^  barStatus;
-	private: System::Windows::Forms::ToolBar ^  barTool;
+
 	private: System::Windows::Forms::ImageList ^  imgTool;
-	private: System::Windows::Forms::ToolBarButton ^  btnToolImport;
-	private: System::Windows::Forms::ToolBarButton ^  btnToolOpen;
-	private: System::Windows::Forms::ToolBarButton ^  btnToolSave;
-	private: System::Windows::Forms::ToolBarButton ^  btnSeparator1;
-	private: System::Windows::Forms::ToolBarButton ^  btnToolCopy;
-	private: System::Windows::Forms::ToolBarButton ^  btnToolPaste;
+
+
+
+
+
+
 	private: System::Windows::Forms::MenuItem ^  btnPaste;
 	private: System::Windows::Forms::NumericUpDown ^  numImageStartFrame;
 	private: System::Windows::Forms::NumericUpDown ^  numImageBumpmapScale;
@@ -429,15 +458,25 @@ namespace VTFEdit
 			this->btnVMTFileValidate = (gcnew System::Windows::Forms::MenuItem());
 			this->btnVMTFileValidateLoose = (gcnew System::Windows::Forms::MenuItem());
 			this->btnVMTFileValidateStrict = (gcnew System::Windows::Forms::MenuItem());
+			this->toolStripView = (gcnew System::Windows::Forms::ToolStrip());
+			this->toolStripOpen = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripClose = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripImport = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripExport = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripSave = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripCopy = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripPaste = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripSeparator2 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->toolStripRGB = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripR = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripG = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripB = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripA = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripSeparator3 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->toolStripMask = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripTile = (gcnew System::Windows::Forms::ToolStripButton());
 			this->dlgImportFile = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->dlgExportFile = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->barTool = (gcnew System::Windows::Forms::ToolBar());
-			this->btnToolImport = (gcnew System::Windows::Forms::ToolBarButton());
-			this->btnToolOpen = (gcnew System::Windows::Forms::ToolBarButton());
-			this->btnToolSave = (gcnew System::Windows::Forms::ToolBarButton());
-			this->btnSeparator1 = (gcnew System::Windows::Forms::ToolBarButton());
-			this->btnToolCopy = (gcnew System::Windows::Forms::ToolBarButton());
-			this->btnToolPaste = (gcnew System::Windows::Forms::ToolBarButton());
 			this->imgTool = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->splSidebar = (gcnew System::Windows::Forms::Splitter());
 			this->dlgExtractDirectoryItem = (gcnew System::Windows::Forms::FolderBrowserDialog());
@@ -471,6 +510,7 @@ namespace VTFEdit
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileBL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTR))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTL))->BeginInit();
+			this->toolStripView->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// mnuMain
@@ -787,9 +827,9 @@ namespace VTFEdit
 			this->pnlSidebar->BackColor = System::Drawing::SystemColors::Control;
 			this->pnlSidebar->Controls->Add(this->tabSidebar);
 			this->pnlSidebar->Dock = System::Windows::Forms::DockStyle::Left;
-			this->pnlSidebar->Location = System::Drawing::Point(0, 36);
+			this->pnlSidebar->Location = System::Drawing::Point(0, 43);
 			this->pnlSidebar->Name = L"pnlSidebar";
-			this->pnlSidebar->Size = System::Drawing::Size(215, 490);
+			this->pnlSidebar->Size = System::Drawing::Size(215, 483);
 			this->pnlSidebar->TabIndex = 0;
 			// 
 			// tabSidebar
@@ -806,7 +846,7 @@ namespace VTFEdit
 			this->tabSidebar->Location = System::Drawing::Point(6, 6);
 			this->tabSidebar->Name = L"tabSidebar";
 			this->tabSidebar->SelectedIndex = 0;
-			this->tabSidebar->Size = System::Drawing::Size(203, 474);
+			this->tabSidebar->Size = System::Drawing::Size(203, 489);
 			this->tabSidebar->TabIndex = 2;
 			// 
 			// tabFileSystem
@@ -815,7 +855,7 @@ namespace VTFEdit
 			this->tabFileSystem->Controls->Add(this->grpFileSystem);
 			this->tabFileSystem->Location = System::Drawing::Point(4, 22);
 			this->tabFileSystem->Name = L"tabFileSystem";
-			this->tabFileSystem->Size = System::Drawing::Size(195, 448);
+			this->tabFileSystem->Size = System::Drawing::Size(195, 463);
 			this->tabFileSystem->TabIndex = 2;
 			this->tabFileSystem->Text = L"File System";
 			// 
@@ -870,7 +910,7 @@ namespace VTFEdit
 			this->grpFileSystem->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFileSystem->Location = System::Drawing::Point(7, 50);
 			this->grpFileSystem->Name = L"grpFileSystem";
-			this->grpFileSystem->Size = System::Drawing::Size(185, 395);
+			this->grpFileSystem->Size = System::Drawing::Size(185, 428);
 			this->grpFileSystem->TabIndex = 0;
 			this->grpFileSystem->TabStop = false;
 			this->grpFileSystem->Text = L"File System:";
@@ -884,7 +924,7 @@ namespace VTFEdit
 			this->treFileSystem->HideSelection = false;
 			this->treFileSystem->Location = System::Drawing::Point(7, 12);
 			this->treFileSystem->Name = L"treFileSystem";
-			this->treFileSystem->Size = System::Drawing::Size(173, 376);
+			this->treFileSystem->Size = System::Drawing::Size(173, 428);
 			this->treFileSystem->TabIndex = 0;
 			this->treFileSystem->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &CVTFEdit::treFileSystem_AfterCollapse);
 			this->treFileSystem->BeforeExpand += gcnew System::Windows::Forms::TreeViewCancelEventHandler(this, &CVTFEdit::treFileSystem_BeforeExpand);
@@ -976,7 +1016,7 @@ namespace VTFEdit
 			this->tabImage->Controls->Add(this->grpFlags);
 			this->tabImage->Location = System::Drawing::Point(4, 22);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(195, 448);
+			this->tabImage->Size = System::Drawing::Size(195, 463);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -1147,7 +1187,7 @@ namespace VTFEdit
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFlags->Location = System::Drawing::Point(7, 172);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(182, 273);
+			this->grpFlags->Size = System::Drawing::Size(182, 288);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1174,7 +1214,7 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpFileInfo);
 			this->tabInfo->Location = System::Drawing::Point(4, 22);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(195, 448);
+			this->tabInfo->Size = System::Drawing::Size(195, 463);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1506,7 +1546,7 @@ namespace VTFEdit
 			this->tabResources->Controls->Add(this->grpResourceInfo);
 			this->tabResources->Location = System::Drawing::Point(4, 22);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(195, 448);
+			this->tabResources->Size = System::Drawing::Size(195, 463);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1519,7 +1559,7 @@ namespace VTFEdit
 			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpResources->Location = System::Drawing::Point(7, 57);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(185, 389);
+			this->grpResources->Size = System::Drawing::Size(185, 404);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1531,7 +1571,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treResources->Location = System::Drawing::Point(7, 12);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(173, 371);
+			this->treResources->Size = System::Drawing::Size(173, 386);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1590,13 +1630,12 @@ namespace VTFEdit
 			this->pnlMain->Controls->Add(this->picVTFFileTL);
 			this->pnlMain->Controls->Add(this->txtVMTFile);
 			this->pnlMain->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pnlMain->Location = System::Drawing::Point(218, 36);
+			this->pnlMain->Location = System::Drawing::Point(218, 43);
 			this->pnlMain->Name = L"pnlMain";
-			this->pnlMain->Size = System::Drawing::Size(534, 490);
+			this->pnlMain->Size = System::Drawing::Size(534, 483);
 			this->pnlMain->TabIndex = 2;
 			this->pnlMain->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragDrop);
 			this->pnlMain->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragEnter);
-
 			// 
 			// picVTFFileBR
 			// 
@@ -1705,7 +1744,7 @@ namespace VTFEdit
 				static_cast<System::Int32>(static_cast<System::Byte>(198)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
-			this->txtVMTFile->Size = System::Drawing::Size(534, 490);
+			this->txtVMTFile->Size = System::Drawing::Size(534, 483);
 			this->txtVMTFile->TabIndex = 5;
 			this->txtVMTFile->Text = L"";
 			this->txtVMTFile->Visible = false;
@@ -1799,6 +1838,229 @@ namespace VTFEdit
 			this->btnVMTFileValidateStrict->Text = L"&Strict";
 			this->btnVMTFileValidateStrict->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileValidateStrict_Click);
 			// 
+			// toolStripView
+			// 
+			this->toolStripView->AutoSize = false;
+			this->toolStripView->GripStyle = System::Windows::Forms::ToolStripGripStyle::Hidden;
+			this->toolStripView->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(16) {
+				this->toolStripOpen,
+					this->toolStripClose, this->toolStripImport, this->toolStripExport, this->toolStripSave, this->toolStripCopy, this->toolStripPaste,
+					this->toolStripSeparator2, this->toolStripRGB, this->toolStripR, this->toolStripG, this->toolStripB, this->toolStripA, this->toolStripSeparator3,
+					this->toolStripMask, this->toolStripTile
+			});
+			this->toolStripView->Location = System::Drawing::Point(0, 0);
+			this->toolStripView->Name = L"toolStripView";
+			this->toolStripView->Padding = System::Windows::Forms::Padding(0);
+			this->toolStripView->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
+			this->toolStripView->Size = System::Drawing::Size(752, 43);
+			this->toolStripView->TabIndex = 6;
+			this->toolStripView->Text = L"toolStpView";
+			// 
+			// toolStripOpen
+			// 
+			this->toolStripOpen->AutoSize = false;
+			this->toolStripOpen->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripOpen->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripOpen.Image")));
+			this->toolStripOpen->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripOpen->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripOpen->Name = L"toolStripOpen";
+			this->toolStripOpen->Size = System::Drawing::Size(40, 40);
+			this->toolStripOpen->Text = L"Open";
+			this->toolStripOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripOpen_Click);
+			// 
+			// toolStripClose
+			// 
+			this->toolStripClose->AutoSize = false;
+			this->toolStripClose->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripClose.Image")));
+			this->toolStripClose->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripClose->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripClose->Name = L"toolStripClose";
+			this->toolStripClose->Size = System::Drawing::Size(40, 40);
+			this->toolStripClose->Text = L"Close";
+			this->toolStripClose->ToolTipText = L"Close";
+			this->toolStripClose->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripClose_Click);
+			// 
+			// toolStripImport
+			// 
+			this->toolStripImport->AutoSize = false;
+			this->toolStripImport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripImport->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripImport.Image")));
+			this->toolStripImport->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripImport->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripImport->Name = L"toolStripImport";
+			this->toolStripImport->Size = System::Drawing::Size(40, 40);
+			this->toolStripImport->Text = L"Import";
+			this->toolStripImport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripImport_Click);
+			// 
+			// toolStripExport
+			// 
+			this->toolStripExport->AutoSize = false;
+			this->toolStripExport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripExport->Enabled = false;
+			this->toolStripExport->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripExport.Image")));
+			this->toolStripExport->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripExport->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripExport->Name = L"toolStripExport";
+			this->toolStripExport->Size = System::Drawing::Size(40, 40);
+			this->toolStripExport->Text = L"Export";
+			this->toolStripExport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripExport_Click);
+			// 
+			// toolStripSave
+			// 
+			this->toolStripSave->AutoSize = false;
+			this->toolStripSave->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripSave->Enabled = false;
+			this->toolStripSave->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripSave.Image")));
+			this->toolStripSave->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripSave->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripSave->Name = L"toolStripSave";
+			this->toolStripSave->Size = System::Drawing::Size(40, 40);
+			this->toolStripSave->Text = L"Save";
+			this->toolStripSave->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripSave_Click);
+			// 
+			// toolStripCopy
+			// 
+			this->toolStripCopy->AutoSize = false;
+			this->toolStripCopy->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripCopy->Enabled = false;
+			this->toolStripCopy->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripCopy.Image")));
+			this->toolStripCopy->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripCopy->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripCopy->Name = L"toolStripCopy";
+			this->toolStripCopy->Size = System::Drawing::Size(40, 40);
+			this->toolStripCopy->Text = L"Copy";
+			this->toolStripCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripCopy_Click);
+			// 
+			// toolStripPaste
+			// 
+			this->toolStripPaste->AutoSize = false;
+			this->toolStripPaste->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripPaste->Enabled = false;
+			this->toolStripPaste->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripPaste.Image")));
+			this->toolStripPaste->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripPaste->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripPaste->Name = L"toolStripPaste";
+			this->toolStripPaste->Size = System::Drawing::Size(40, 40);
+			this->toolStripPaste->Text = L"Paste";
+			this->toolStripPaste->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripPaste_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this->toolStripSeparator2->Name = L"toolStripSeparator2";
+			this->toolStripSeparator2->Size = System::Drawing::Size(6, 43);
+			// 
+			// toolStripRGB
+			// 
+			this->toolStripRGB->AutoSize = false;
+			this->toolStripRGB->Checked = this->btnChannelRGB->Checked;
+			this->toolStripRGB->CheckOnClick = true;
+			this->toolStripRGB->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->toolStripRGB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripRGB->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripRGB.Image")));
+			this->toolStripRGB->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripRGB->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripRGB->Name = L"toolStripRGB";
+			this->toolStripRGB->Size = System::Drawing::Size(40, 40);
+			this->toolStripRGB->Text = L"Red Green and Blue channels";
+			this->toolStripRGB->ToolTipText = L"Red Green and Blue channels";
+			this->toolStripRGB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripRGB_Click);
+			// 
+			// toolStripR
+			// 
+			this->toolStripR->AutoSize = false;
+			this->toolStripR->Checked = this->btnChannelR->Checked;
+			this->toolStripR->CheckOnClick = true;
+			this->toolStripR->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripR->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripR.Image")));
+			this->toolStripR->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripR->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripR->Name = L"toolStripR";
+			this->toolStripR->Size = System::Drawing::Size(40, 40);
+			this->toolStripR->Text = L"Red channel";
+			this->toolStripR->ToolTipText = L"Red channel";
+			this->toolStripR->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripR_Click);
+			// 
+			// toolStripG
+			// 
+			this->toolStripG->AutoSize = false;
+			this->toolStripG->Checked = this->btnChannelG->Checked;
+			this->toolStripG->CheckOnClick = true;
+			this->toolStripG->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripG->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripG.Image")));
+			this->toolStripG->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripG->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripG->Name = L"toolStripG";
+			this->toolStripG->Size = System::Drawing::Size(40, 40);
+			this->toolStripG->Text = L"toolStripButton3";
+			this->toolStripG->ToolTipText = L"Green channel";
+			this->toolStripG->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripG_Click);
+			// 
+			// toolStripB
+			// 
+			this->toolStripB->AutoSize = false;
+			this->toolStripB->Checked = this->btnChannelB->Checked;
+			this->toolStripB->CheckOnClick = true;
+			this->toolStripB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripB->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripB.Image")));
+			this->toolStripB->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripB->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripB->Name = L"toolStripB";
+			this->toolStripB->Size = System::Drawing::Size(40, 40);
+			this->toolStripB->Text = L"toolStripButton4";
+			this->toolStripB->ToolTipText = L"Blue channel";
+			this->toolStripB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripB_Click);
+			// 
+			// toolStripA
+			// 
+			this->toolStripA->AutoSize = false;
+			this->toolStripA->Checked = this->btnChannelA->Checked;
+			this->toolStripA->CheckOnClick = true;
+			this->toolStripA->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripA->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripA.Image")));
+			this->toolStripA->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripA->ImageTransparentColor = System::Drawing::Color::Maroon;
+			this->toolStripA->Name = L"toolStripA";
+			this->toolStripA->Size = System::Drawing::Size(40, 40);
+			this->toolStripA->Text = L"toolStripButton5";
+			this->toolStripA->ToolTipText = L"Alpha channel";
+			this->toolStripA->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripA_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this->toolStripSeparator3->Name = L"toolStripSeparator3";
+			this->toolStripSeparator3->Size = System::Drawing::Size(6, 43);
+			// 
+			// toolStripMask
+			// 
+			this->toolStripMask->AutoSize = false;
+			this->toolStripMask->Checked = this->btnMask->Checked;
+			this->toolStripMask->CheckOnClick = true;
+			this->toolStripMask->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripMask->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripMask.Image")));
+			this->toolStripMask->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripMask->ImageTransparentColor = System::Drawing::Color::Maroon;
+			this->toolStripMask->Name = L"toolStripMask";
+			this->toolStripMask->Size = System::Drawing::Size(40, 40);
+			this->toolStripMask->Text = L"toolStripButton6";
+			this->toolStripMask->ToolTipText = L"Toggle alpha mask";
+			this->toolStripMask->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripMask_Click);
+			// 
+			// toolStripTile
+			// 
+			this->toolStripTile->AutoSize = false;
+			this->toolStripTile->Checked = this->btnTile->Checked;
+			this->toolStripTile->CheckOnClick = true;
+			this->toolStripTile->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripTile->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripTile.Image")));
+			this->toolStripTile->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->toolStripTile->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripTile->Name = L"toolStripTile";
+			this->toolStripTile->Size = System::Drawing::Size(40, 40);
+			this->toolStripTile->Text = L"toolStripButton7";
+			this->toolStripTile->ToolTipText = L"Toggle image tiling";
+			this->toolStripTile->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripTile_Click);
+			// 
 			// dlgImportFile
 			// 
 			this->dlgImportFile->Filter = resources->GetString(L"dlgImportFile.Filter");
@@ -1811,62 +2073,6 @@ namespace VTFEdit
 				L"*.png|TGA Files (*.tga)|*.tga";
 			this->dlgExportFile->FilterIndex = 4;
 			this->dlgExportFile->Title = L"Export File";
-			// 
-			// barTool
-			// 
-			this->barTool->Buttons->AddRange(gcnew cli::array< System::Windows::Forms::ToolBarButton^  >(6) {
-				this->btnToolImport, this->btnToolOpen,
-					this->btnToolSave, this->btnSeparator1, this->btnToolCopy, this->btnToolPaste
-			});
-			this->barTool->ButtonSize = System::Drawing::Size(23, 22);
-			this->barTool->DropDownArrows = true;
-			this->barTool->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 32));
-			this->barTool->ImageList = this->imgTool;
-			this->barTool->Location = System::Drawing::Point(0, 0);
-			this->barTool->Name = L"barTool";
-			this->barTool->ShowToolTips = true;
-			this->barTool->Size = System::Drawing::Size(752, 36);
-			this->barTool->TabIndex = 4;
-			this->barTool->Wrappable = false;
-			this->barTool->ButtonClick += gcnew System::Windows::Forms::ToolBarButtonClickEventHandler(this, &CVTFEdit::barTool_ButtonClick);
-			// 
-			// btnToolImport
-			// 
-			this->btnToolImport->ImageIndex = 0;
-			this->btnToolImport->Name = L"btnToolImport";
-			this->btnToolImport->ToolTipText = L"Import";
-			// 
-			// btnToolOpen
-			// 
-			this->btnToolOpen->ImageIndex = 1;
-			this->btnToolOpen->Name = L"btnToolOpen";
-			this->btnToolOpen->ToolTipText = L"Open";
-			// 
-			// btnToolSave
-			// 
-			this->btnToolSave->Enabled = false;
-			this->btnToolSave->ImageIndex = 2;
-			this->btnToolSave->Name = L"btnToolSave";
-			this->btnToolSave->ToolTipText = L"Save";
-			// 
-			// btnSeparator1
-			// 
-			this->btnSeparator1->Name = L"btnSeparator1";
-			this->btnSeparator1->Style = System::Windows::Forms::ToolBarButtonStyle::Separator;
-			// 
-			// btnToolCopy
-			// 
-			this->btnToolCopy->Enabled = false;
-			this->btnToolCopy->ImageIndex = 3;
-			this->btnToolCopy->Name = L"btnToolCopy";
-			this->btnToolCopy->ToolTipText = L"Copy";
-			// 
-			// btnToolPaste
-			// 
-			this->btnToolPaste->Enabled = false;
-			this->btnToolPaste->ImageIndex = 4;
-			this->btnToolPaste->Name = L"btnToolPaste";
-			this->btnToolPaste->ToolTipText = L"Paste";
 			// 
 			// imgTool
 			// 
@@ -1881,11 +2087,11 @@ namespace VTFEdit
 			// splSidebar
 			// 
 			this->splSidebar->BackColor = System::Drawing::SystemColors::Control;
-			this->splSidebar->Location = System::Drawing::Point(215, 36);
+			this->splSidebar->Location = System::Drawing::Point(215, 43);
 			this->splSidebar->MinExtra = 96;
 			this->splSidebar->MinSize = 96;
 			this->splSidebar->Name = L"splSidebar";
-			this->splSidebar->Size = System::Drawing::Size(3, 490);
+			this->splSidebar->Size = System::Drawing::Size(3, 483);
 			this->splSidebar->TabIndex = 5;
 			this->splSidebar->TabStop = false;
 			this->splSidebar->SplitterMoved += gcnew System::Windows::Forms::SplitterEventHandler(this, &CVTFEdit::splSidebar_SplitterMoved);
@@ -1902,8 +2108,8 @@ namespace VTFEdit
 			this->Controls->Add(this->pnlMain);
 			this->Controls->Add(this->splSidebar);
 			this->Controls->Add(this->pnlSidebar);
-			this->Controls->Add(this->barTool);
 			this->Controls->Add(this->barStatus);
+			this->Controls->Add(this->toolStripView);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Menu = this->mnuMain;
@@ -1943,8 +2149,9 @@ namespace VTFEdit
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileBL))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTR))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTL))->EndInit();
+			this->toolStripView->ResumeLayout(false);
+			this->toolStripView->PerformLayout();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 		//
@@ -2692,8 +2899,8 @@ namespace VTFEdit
 			if(System::Threading::Thread::CurrentThread->ApartmentState == System::Threading::ApartmentState::STA)
 			{
 				// Set intitial clipboard state.
-				this->btnToolPaste->Enabled = System::Windows::Forms::Clipboard::GetDataObject()->GetDataPresent(System::Windows::Forms::DataFormats::Bitmap);
-				this->btnPaste->Enabled = this->btnToolPaste->Enabled;
+				this->toolStripPaste->Enabled = System::Windows::Forms::Clipboard::GetDataObject()->GetDataPresent(System::Windows::Forms::DataFormats::Bitmap);
+				this->btnPaste->Enabled = this->toolStripPaste->Enabled;
 
 				// Add ourselves to clipboard notification chain.
 				if(this->hWndNewViewer == 0)
@@ -2703,8 +2910,8 @@ namespace VTFEdit
 			}
 			else
 			{	// Set intitial clipboard state.
-				this->btnToolPaste->Enabled = true;
-				this->btnPaste->Enabled = this->btnToolPaste->Enabled;
+				this->toolStripPaste->Enabled = true;
+				this->btnPaste->Enabled = this->toolStripPaste->Enabled;
 			}
 
 			// Populate drive list.
@@ -2854,7 +3061,7 @@ namespace VTFEdit
 					{
 						this->btnPaste->Enabled = false;
 					}
-					this->btnToolPaste->Enabled = this->btnPaste->Enabled;
+					this->toolStripPaste->Enabled = this->btnPaste->Enabled;
 
 					this->btnVMTFilePaste->Enabled = false;
 					try
@@ -3432,30 +3639,6 @@ namespace VTFEdit
 			return bResult != 0;
 		}
 
-		private: System::Void barTool_ButtonClick(System::Object ^  sender, System::Windows::Forms::ToolBarButtonClickEventArgs ^  e)
-		{
-			if(e->Button == this->btnToolImport)
-			{
-				this->btnImport_Click(this->btnImport, System::EventArgs::Empty);
-			}
-			else if(e->Button == this->btnToolOpen)
-			{
-				this->btnOpen_Click(this->btnOpen, System::EventArgs::Empty);
-			}
-			else if(e->Button == this->btnToolSave)
-			{
-				this->btnSave_Click(this->btnSave, System::EventArgs::Empty);
-			}
-			else if(e->Button == this->btnToolCopy)
-			{
-				this->btnCopy_Click(this->btnCopy, System::EventArgs::Empty);
-			}
-			else if(e->Button == this->btnToolPaste)
-			{
-				this->btnPaste_Click(this->btnPaste, System::EventArgs::Empty);
-			}
-		}
-
 		private: void New()
 		{
 			this->Close();
@@ -3470,8 +3653,7 @@ namespace VTFEdit
 
 			this->FileName = nullptr;
 
-			this->btnSave->Enabled = true;
-			this->btnToolSave->Enabled = true;
+			this->toolStripSave->Enabled = true;
 			this->btnSaveAs->Enabled = true;
 
 			this->txtVMTFile->Focus();
@@ -3503,14 +3685,14 @@ namespace VTFEdit
 						this->FileName = nullptr;
 					}
 
-					this->btnSave->Enabled = true;
-					this->btnToolSave->Enabled = true;
+					this->toolStripSave->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
 					this->btnExportAll->Enabled = true;
+					this->toolStripExport->Enabled = true;
 
-					this->btnToolCopy->Enabled = true;
+					this->toolStripCopy->Enabled = true;
 					this->btnCopy->Enabled = true;
 
 					this->pnlMain->ContextMenu = this->mnuVTFFile;
@@ -3554,8 +3736,7 @@ namespace VTFEdit
 						this->FileName = nullptr;
 					}
 
-					this->btnSave->Enabled = true;
-					this->btnToolSave->Enabled = true;
+					this->toolStripSave->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->txtVMTFile->Focus();
@@ -3744,14 +3925,14 @@ namespace VTFEdit
 
 					this->FileName = nullptr;
 
-					this->btnSave->Enabled = true;
-					this->btnToolSave->Enabled = true;
+					this->toolStripSave->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
 					this->btnExportAll->Enabled = true;
+					this->toolStripExport->Enabled = true;
 
-					this->btnToolCopy->Enabled = true;
+					this->toolStripCopy->Enabled = true;
 					this->btnCopy->Enabled = true;
 
 					this->pnlMain->ContextMenu = this->mnuVTFFile;
@@ -3875,15 +4056,15 @@ namespace VTFEdit
 
 		private: void Close()
 		{
-			this->btnToolSave->Enabled = false;
-			this->btnSave->Enabled = false;
+			this->toolStripSave->Enabled = false;
 			this->btnSaveAs->Enabled = false;
 
 			this->btnExport->Enabled = false;
 			this->btnExportAll->Enabled = false;
+			this->toolStripExport->Enabled = false;
 
-			this->btnToolCopy->Enabled = false;
-			this->btnCopy->Enabled = false;
+			this->toolStripCopy->Enabled = false;
+			this->btnCopy->Enabled = true;
 
 			this->trkHDRExposure->Enabled = false;
 
@@ -4109,13 +4290,14 @@ namespace VTFEdit
 				{
 					this->SetVTFFile(VTFFile);
 
-					this->btnToolSave->Enabled = true;
+					this->toolStripSave->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
 					this->btnExportAll->Enabled = true;
+					this->toolStripExport->Enabled = true;
 
-					this->btnToolCopy->Enabled = true;
+					this->toolStripCopy->Enabled = true;
 					this->btnCopy->Enabled = true;
 				}
 				else
@@ -4321,7 +4503,7 @@ namespace VTFEdit
 			if(this->VTFFile == 0)
 				return;
 
-			this->btnCopy_Click(this->btnCopy, System::EventArgs::Empty);
+			this->toolStripCopy_Click(this->toolStripCopy, System::EventArgs::Empty);
 		}
 
 		//
@@ -5010,10 +5192,12 @@ namespace VTFEdit
 						else if(System::String::Compare(sArg, "VTFEdit.Mask", true) == 0)
 						{
 							this->btnMask->Checked = Convert::ToBoolean(sVal);
+							this->toolStripMask->Checked = Convert::ToBoolean(sVal);
 						}
 						else if(System::String::Compare(sArg, "VTFEdit.Tile", true) == 0)
 						{
 							this->btnTile->Checked = Convert::ToBoolean(sVal);
+							this->toolStripTile->Checked = Convert::ToBoolean(sVal);
 						}
 						else if(System::String::Compare(sArg, "VTFEdit.AutoCreateVMTFile", true) == 0)
 						{
@@ -5323,6 +5507,258 @@ namespace VTFEdit
 						}
 					}
 				}
+			}
+		}
+
+		private: System::Void toolStripRGB_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			// Yes I know these are long, but there isn't a nice way to do this without a radio button system in the tool strip. No I'm not going to use the drop down button just to have the radio button functionality. I want all buttons visible at once.
+			if (this->toolStripRGB->Checked) 
+			{
+				this->btnChannelRGB->Checked = true;
+				this->btnChannelR->Checked = false;
+				this->btnChannelG->Checked = false;
+				this->btnChannelB->Checked = false;
+				this->btnChannelA->Checked = false;
+
+				this->toolStripRGB->Checked = true;
+				this->toolStripR->Checked = false;
+				this->toolStripG->Checked = false;
+				this->toolStripB->Checked = false;
+				this->toolStripA->Checked = false;
+			}
+			else
+			{
+				this->toolStripRGB->Checked = true;
+			}
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripR_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->toolStripR->Checked) 
+			{
+				this->btnChannelRGB->Checked = false;
+				this->btnChannelR->Checked = true;
+				this->btnChannelG->Checked = false;
+				this->btnChannelB->Checked = false;
+				this->btnChannelA->Checked = false;
+
+				this->toolStripRGB->Checked = false;
+				this->toolStripG->Checked = false;
+				this->toolStripB->Checked = false;
+				this->toolStripA->Checked = false;
+			}
+			else
+			{
+				this->toolStripR->Checked = true;
+			}
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripG_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->toolStripG->Checked) 
+			{
+				this->btnChannelRGB->Checked = false;
+				this->btnChannelR->Checked = false;
+				this->btnChannelG->Checked = true;
+				this->btnChannelB->Checked = false;
+				this->btnChannelA->Checked = false;
+
+				this->toolStripRGB->Checked = false;
+				this->toolStripR->Checked = false;
+				this->toolStripB->Checked = false;
+				this->toolStripA->Checked = false;
+			}
+			else 
+			{
+				this->toolStripG->Checked = true;
+			}
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripB_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->toolStripB->Checked)
+			{
+				this->btnChannelRGB->Checked = false;
+				this->btnChannelR->Checked = false;
+				this->btnChannelG->Checked = false;
+				this->btnChannelB->Checked = true;
+				this->btnChannelA->Checked = false;
+
+				this->toolStripRGB->Checked = false;
+				this->toolStripR->Checked = false;
+				this->toolStripG->Checked = false;
+				this->toolStripA->Checked = false;
+			}
+			else
+			{
+				this->toolStripB->Checked = true;
+			}
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripA_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->toolStripA->Checked)
+			{
+				this->btnChannelRGB->Checked = false;
+				this->btnChannelR->Checked = false;
+				this->btnChannelG->Checked = false;
+				this->btnChannelB->Checked = false;
+				this->btnChannelA->Checked = true;
+
+				this->toolStripRGB->Checked = false;
+				this->toolStripR->Checked = false;
+				this->toolStripG->Checked = false;
+				this->toolStripB->Checked = false;
+			}
+			else 
+			{
+				this->toolStripA->Checked = true;
+			}
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripMask_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			this->btnMask->Checked = this->toolStripMask->Checked ? true : false;
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripTile_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			this->btnTile->Checked = this->toolStripTile->Checked ? true : false;
+			this->UpdateVTFFile();
+		}
+
+		private: System::Void toolStripImport_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->dlgImportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				this->Import(this->dlgImportFile->FileNames);
+			}
+		}
+
+		private: System::Void toolStripClose_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			this->Close();
+		}
+
+		private: System::Void toolStripCopy_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (System::Threading::Thread::CurrentThread->ApartmentState == System::Threading::ApartmentState::STA)
+			{
+				if (this->picVTFFileTL->Image != nullptr)
+				{
+					System::Windows::Forms::Clipboard::SetDataObject(this->picVTFFileTL->Image, true);
+				}
+			}
+			else
+			{
+				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+
+		private: System::Void toolStripPaste_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (System::Threading::Thread::CurrentThread->ApartmentState == System::Threading::ApartmentState::STA)
+			{
+				System::Windows::Forms::IDataObject^ Data = System::Windows::Forms::Clipboard::GetDataObject();
+
+				if (!Data->GetDataPresent(System::Windows::Forms::DataFormats::Bitmap))
+				{
+					return;
+				}
+
+				System::Drawing::Bitmap^ Bitmap = static_cast<System::Drawing::Bitmap^>(Data->GetData(System::Windows::Forms::DataFormats::Bitmap));
+
+				if (this->Options->ShowDialog() != System::Windows::Forms::DialogResult::OK)
+				{
+					return;
+				}
+
+				this->Close();
+
+				VTFLib::CVTFFile* VTFFile = new VTFLib::CVTFFile();
+
+				// Initialize image data.
+				vlUInt uiWidth = (vlUInt)Bitmap->Width, uiHeight = (vlUInt)Bitmap->Height;
+
+				vlByte* lpImageData = new vlByte[uiWidth * uiHeight * 4];
+				vlByte* lpPointer = lpImageData;
+
+				for (int j = 0; j < Bitmap->Height; j++)
+				{
+					for (int i = 0; i < Bitmap->Width; i++)
+					{
+						System::Drawing::Color Pixel = Bitmap->GetPixel(i, j);
+
+						*(lpPointer++) = (vlByte)Pixel.R;
+						*(lpPointer++) = (vlByte)Pixel.G;
+						*(lpPointer++) = (vlByte)Pixel.B;
+						*(lpPointer++) = (vlByte)Pixel.A;
+					}
+				}
+
+				SVTFCreateOptions VTFCreateOptions = CVTFFileUtility::GetCreateOptions(this->Options);
+
+				// Create the .vtf file.
+				if (VTFFile->Create(uiWidth, uiHeight, lpImageData, VTFCreateOptions) != vlFalse && CVTFFileUtility::CreateResources(Options, VTFFile))
+				{
+					this->SetVTFFile(VTFFile);
+
+					this->toolStripSave->Enabled = true;
+					this->btnSaveAs->Enabled = true;
+
+					this->btnExport->Enabled = true;
+					this->btnExportAll->Enabled = true;
+
+					this->toolStripCopy->Enabled = true;
+				}
+				else
+				{
+					delete VTFFile;
+
+					MessageBox::Show(System::String::Concat("Error creating VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				}
+
+				delete[]lpImageData;
+			}
+			else
+			{
+				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+
+		private: System::Void toolStripOpen_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->dlgOpenFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				this->Open(this->dlgOpenFile->FileName, false);
+			}
+		}
+
+		private: System::Void toolStripExport_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			this->dlgExportFile->FileName = this->RemoveExtension(this->FileName);
+
+			if (this->dlgExportFile->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				this->Export(this->dlgExportFile->FileName);
+			}
+		}
+
+		private: System::Void toolStripSave_Click(System::Object^ sender, System::EventArgs^ e) 
+		{
+			if (this->FileName != nullptr) 
+			{
+				this->Save(this->FileName);
+			}
+			else {
+				this->SaveAs();
 			}
 		}
 	};
