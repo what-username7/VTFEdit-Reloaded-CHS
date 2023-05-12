@@ -828,8 +828,9 @@ namespace VTFEdit
 			this->pnlSidebar->Controls->Add(this->tabSidebar);
 			this->pnlSidebar->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlSidebar->Location = System::Drawing::Point(0, 43);
+			this->pnlSidebar->MinimumSize = System::Drawing::Size(228, 0);
 			this->pnlSidebar->Name = L"pnlSidebar";
-			this->pnlSidebar->Size = System::Drawing::Size(215, 483);
+			this->pnlSidebar->Size = System::Drawing::Size(228, 483);
 			this->pnlSidebar->TabIndex = 0;
 			// 
 			// tabSidebar
@@ -846,7 +847,7 @@ namespace VTFEdit
 			this->tabSidebar->Location = System::Drawing::Point(6, 6);
 			this->tabSidebar->Name = L"tabSidebar";
 			this->tabSidebar->SelectedIndex = 0;
-			this->tabSidebar->Size = System::Drawing::Size(203, 489);
+			this->tabSidebar->Size = System::Drawing::Size(216, 489);
 			this->tabSidebar->TabIndex = 2;
 			// 
 			// tabFileSystem
@@ -855,7 +856,7 @@ namespace VTFEdit
 			this->tabFileSystem->Controls->Add(this->grpFileSystem);
 			this->tabFileSystem->Location = System::Drawing::Point(4, 22);
 			this->tabFileSystem->Name = L"tabFileSystem";
-			this->tabFileSystem->Size = System::Drawing::Size(195, 463);
+			this->tabFileSystem->Size = System::Drawing::Size(208, 463);
 			this->tabFileSystem->TabIndex = 2;
 			this->tabFileSystem->Text = L"File System";
 			// 
@@ -867,7 +868,7 @@ namespace VTFEdit
 			this->grpGoto->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpGoto->Location = System::Drawing::Point(7, 6);
 			this->grpGoto->Name = L"grpGoto";
-			this->grpGoto->Size = System::Drawing::Size(185, 39);
+			this->grpGoto->Size = System::Drawing::Size(198, 39);
 			this->grpGoto->TabIndex = 1;
 			this->grpGoto->TabStop = false;
 			this->grpGoto->Text = L"Goto:";
@@ -880,7 +881,7 @@ namespace VTFEdit
 			this->cboGoto->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cboGoto->Location = System::Drawing::Point(7, 12);
 			this->cboGoto->Name = L"cboGoto";
-			this->cboGoto->Size = System::Drawing::Size(173, 21);
+			this->cboGoto->Size = System::Drawing::Size(186, 21);
 			this->cboGoto->TabIndex = 0;
 			this->cboGoto->SelectedIndexChanged += gcnew System::EventHandler(this, &CVTFEdit::cboGoto_SelectedIndexChanged);
 			// 
@@ -910,7 +911,7 @@ namespace VTFEdit
 			this->grpFileSystem->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFileSystem->Location = System::Drawing::Point(7, 50);
 			this->grpFileSystem->Name = L"grpFileSystem";
-			this->grpFileSystem->Size = System::Drawing::Size(185, 428);
+			this->grpFileSystem->Size = System::Drawing::Size(198, 399);
 			this->grpFileSystem->TabIndex = 0;
 			this->grpFileSystem->TabStop = false;
 			this->grpFileSystem->Text = L"File System:";
@@ -924,7 +925,7 @@ namespace VTFEdit
 			this->treFileSystem->HideSelection = false;
 			this->treFileSystem->Location = System::Drawing::Point(7, 12);
 			this->treFileSystem->Name = L"treFileSystem";
-			this->treFileSystem->Size = System::Drawing::Size(173, 428);
+			this->treFileSystem->Size = System::Drawing::Size(186, 381);
 			this->treFileSystem->TabIndex = 0;
 			this->treFileSystem->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &CVTFEdit::treFileSystem_AfterCollapse);
 			this->treFileSystem->BeforeExpand += gcnew System::Windows::Forms::TreeViewCancelEventHandler(this, &CVTFEdit::treFileSystem_BeforeExpand);
@@ -1630,9 +1631,9 @@ namespace VTFEdit
 			this->pnlMain->Controls->Add(this->picVTFFileTL);
 			this->pnlMain->Controls->Add(this->txtVMTFile);
 			this->pnlMain->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pnlMain->Location = System::Drawing::Point(218, 43);
+			this->pnlMain->Location = System::Drawing::Point(231, 43);
 			this->pnlMain->Name = L"pnlMain";
-			this->pnlMain->Size = System::Drawing::Size(534, 483);
+			this->pnlMain->Size = System::Drawing::Size(521, 483);
 			this->pnlMain->TabIndex = 2;
 			this->pnlMain->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragDrop);
 			this->pnlMain->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragEnter);
@@ -1744,7 +1745,7 @@ namespace VTFEdit
 				static_cast<System::Int32>(static_cast<System::Byte>(198)));
 			this->txtVMTFile->Location = System::Drawing::Point(0, 0);
 			this->txtVMTFile->Name = L"txtVMTFile";
-			this->txtVMTFile->Size = System::Drawing::Size(534, 483);
+			this->txtVMTFile->Size = System::Drawing::Size(521, 483);
 			this->txtVMTFile->TabIndex = 5;
 			this->txtVMTFile->Text = L"";
 			this->txtVMTFile->Visible = false;
@@ -1872,6 +1873,7 @@ namespace VTFEdit
 			// 
 			this->toolStripClose->AutoSize = false;
 			this->toolStripClose->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripClose->Enabled = false;
 			this->toolStripClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripClose.Image")));
 			this->toolStripClose->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripClose->ImageTransparentColor = System::Drawing::Color::Transparent;
@@ -2087,7 +2089,7 @@ namespace VTFEdit
 			// splSidebar
 			// 
 			this->splSidebar->BackColor = System::Drawing::SystemColors::Control;
-			this->splSidebar->Location = System::Drawing::Point(215, 43);
+			this->splSidebar->Location = System::Drawing::Point(228, 43);
 			this->splSidebar->MinExtra = 96;
 			this->splSidebar->MinSize = 96;
 			this->splSidebar->Name = L"splSidebar";
@@ -3654,6 +3656,7 @@ namespace VTFEdit
 			this->FileName = nullptr;
 
 			this->toolStripSave->Enabled = true;
+			this->toolStripClose->Enabled = true;
 			this->btnSaveAs->Enabled = true;
 
 			this->txtVMTFile->Focus();
@@ -3686,6 +3689,7 @@ namespace VTFEdit
 					}
 
 					this->toolStripSave->Enabled = true;
+					this->toolStripClose->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
@@ -3737,6 +3741,7 @@ namespace VTFEdit
 					}
 
 					this->toolStripSave->Enabled = true;
+					this->toolStripClose->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->txtVMTFile->Focus();
@@ -3926,6 +3931,7 @@ namespace VTFEdit
 					this->FileName = nullptr;
 
 					this->toolStripSave->Enabled = true;
+					this->toolStripClose->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
@@ -4057,6 +4063,7 @@ namespace VTFEdit
 		private: void Close()
 		{
 			this->toolStripSave->Enabled = false;
+			this->toolStripClose->Enabled = false;
 			this->btnSaveAs->Enabled = false;
 
 			this->btnExport->Enabled = false;
@@ -4064,7 +4071,7 @@ namespace VTFEdit
 			this->toolStripExport->Enabled = false;
 
 			this->toolStripCopy->Enabled = false;
-			this->btnCopy->Enabled = true;
+			this->btnCopy->Enabled = false;
 
 			this->trkHDRExposure->Enabled = false;
 
@@ -4291,6 +4298,7 @@ namespace VTFEdit
 					this->SetVTFFile(VTFFile);
 
 					this->toolStripSave->Enabled = true;
+					this->toolStripClose->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
@@ -5644,7 +5652,15 @@ namespace VTFEdit
 
 		private: System::Void toolStripClose_Click(System::Object^ sender, System::EventArgs^ e) 
 		{
-			this->Close();
+			System::Media::SystemSounds::Asterisk->Play();
+			if (MessageBox::Show("Are you sure you want to close the current file?", "Confirm Close", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
+
+				this->Close();
+			}
+			else
+			{
+
+			}
 		}
 
 		private: System::Void toolStripCopy_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -5711,6 +5727,7 @@ namespace VTFEdit
 					this->SetVTFFile(VTFFile);
 
 					this->toolStripSave->Enabled = true;
+					this->toolStripClose->Enabled = true;
 					this->btnSaveAs->Enabled = true;
 
 					this->btnExport->Enabled = true;
