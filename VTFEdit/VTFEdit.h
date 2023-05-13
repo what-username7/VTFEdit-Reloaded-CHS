@@ -3641,6 +3641,7 @@ namespace VTFEdit
 
 			this->FileName = nullptr;
 
+			this->btnSave->Enabled = true;
 			this->toolStripSave->Enabled = true;
 			this->toolStripClose->Enabled = true;
 			this->btnClose->Enabled = true;
@@ -3675,6 +3676,7 @@ namespace VTFEdit
 						this->FileName = nullptr;
 					}
 
+					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
 					this->toolStripClose->Enabled = true;
 					this->btnClose->Enabled = true;
@@ -3728,6 +3730,7 @@ namespace VTFEdit
 						this->FileName = nullptr;
 					}
 
+					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
 					this->toolStripClose->Enabled = true;
 					this->btnClose->Enabled = true;
@@ -3919,6 +3922,7 @@ namespace VTFEdit
 
 					this->FileName = nullptr;
 
+					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
 					this->toolStripClose->Enabled = true;
 					this->btnClose->Enabled = true;
@@ -4053,6 +4057,7 @@ namespace VTFEdit
 
 		private: void Close()
 		{
+			this->btnSave->Enabled = false;
 			this->toolStripSave->Enabled = false;
 			this->toolStripClose->Enabled = false;
 			this->btnClose->Enabled = false;
@@ -4289,6 +4294,7 @@ namespace VTFEdit
 				{
 					this->SetVTFFile(VTFFile);
 
+					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
 					this->toolStripClose->Enabled = true;
 					this->btnClose->Enabled = true;
@@ -5715,6 +5721,7 @@ namespace VTFEdit
 				{
 					this->SetVTFFile(VTFFile);
 
+					this->btnSave->Enabled = true;
 					this->toolStripSave->Enabled = true;
 					this->toolStripClose->Enabled = true;
 					this->btnClose->Enabled = true;
