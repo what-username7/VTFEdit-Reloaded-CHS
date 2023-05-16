@@ -1002,7 +1002,7 @@ namespace VTFEdit
 			this->tabImage->Controls->Add(this->grpFlags);
 			this->tabImage->Location = System::Drawing::Point(4, 22);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(208, 460);
+			this->tabImage->Size = System::Drawing::Size(208, 481);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -1173,7 +1173,7 @@ namespace VTFEdit
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpFlags->Location = System::Drawing::Point(7, 172);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(195, 285);
+			this->grpFlags->Size = System::Drawing::Size(195, 306);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1188,7 +1188,7 @@ namespace VTFEdit
 			this->lstFlags->HorizontalScrollbar = true;
 			this->lstFlags->Location = System::Drawing::Point(7, 27);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(172, 229);
+			this->lstFlags->Size = System::Drawing::Size(172, 244);
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->TabStop = false;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
@@ -1200,7 +1200,7 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpFileInfo);
 			this->tabInfo->Location = System::Drawing::Point(4, 22);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(208, 460);
+			this->tabInfo->Size = System::Drawing::Size(208, 481);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1532,7 +1532,7 @@ namespace VTFEdit
 			this->tabResources->Controls->Add(this->grpResourceInfo);
 			this->tabResources->Location = System::Drawing::Point(4, 22);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(208, 460);
+			this->tabResources->Size = System::Drawing::Size(208, 481);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1545,7 +1545,7 @@ namespace VTFEdit
 			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpResources->Location = System::Drawing::Point(7, 57);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(198, 401);
+			this->grpResources->Size = System::Drawing::Size(198, 422);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1557,7 +1557,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treResources->Location = System::Drawing::Point(7, 12);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(186, 383);
+			this->treResources->Size = System::Drawing::Size(186, 404);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1946,11 +1946,11 @@ namespace VTFEdit
 			this->toolStripRGB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
 			this->toolStripRGB->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripRGB.Image")));
 			this->toolStripRGB->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
-			this->toolStripRGB->ImageTransparentColor = System::Drawing::Color::Transparent;
+			this->toolStripRGB->ImageTransparentColor = System::Drawing::Color::SpringGreen;
 			this->toolStripRGB->Name = L"toolStripRGB";
 			this->toolStripRGB->Size = System::Drawing::Size(40, 40);
-			this->toolStripRGB->Text = L"Red Green and Blue channels";
-			this->toolStripRGB->ToolTipText = L"Red Green and Blue channels";
+			this->toolStripRGB->Text = L"Red Green and Blue Channels";
+			this->toolStripRGB->ToolTipText = L"Red Green and Blue Channels";
 			this->toolStripRGB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripRGB_Click);
 			// 
 			// toolStripR
@@ -1964,8 +1964,8 @@ namespace VTFEdit
 			this->toolStripR->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripR->Name = L"toolStripR";
 			this->toolStripR->Size = System::Drawing::Size(40, 40);
-			this->toolStripR->Text = L"Red channel";
-			this->toolStripR->ToolTipText = L"Red channel";
+			this->toolStripR->Text = L"Red Channel";
+			this->toolStripR->ToolTipText = L"Red Channel";
 			this->toolStripR->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripR_Click);
 			// 
 			// toolStripG
@@ -1979,8 +1979,8 @@ namespace VTFEdit
 			this->toolStripG->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripG->Name = L"toolStripG";
 			this->toolStripG->Size = System::Drawing::Size(40, 40);
-			this->toolStripG->Text = L"toolStripButton3";
-			this->toolStripG->ToolTipText = L"Green channel";
+			this->toolStripG->Text = L"Green Channel";
+			this->toolStripG->ToolTipText = L"Green Channel";
 			this->toolStripG->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripG_Click);
 			// 
 			// toolStripB
@@ -1994,8 +1994,8 @@ namespace VTFEdit
 			this->toolStripB->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripB->Name = L"toolStripB";
 			this->toolStripB->Size = System::Drawing::Size(40, 40);
-			this->toolStripB->Text = L"toolStripButton4";
-			this->toolStripB->ToolTipText = L"Blue channel";
+			this->toolStripB->Text = L"Blue Channel";
+			this->toolStripB->ToolTipText = L"Blue Channel";
 			this->toolStripB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripB_Click);
 			// 
 			// toolStripA
@@ -2009,8 +2009,8 @@ namespace VTFEdit
 			this->toolStripA->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripA->Name = L"toolStripA";
 			this->toolStripA->Size = System::Drawing::Size(40, 40);
-			this->toolStripA->Text = L"toolStripButton5";
-			this->toolStripA->ToolTipText = L"Alpha channel";
+			this->toolStripA->Text = L"Alpha Channel";
+			this->toolStripA->ToolTipText = L"Alpha Channel";
 			this->toolStripA->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripA_Click);
 			// 
 			// toolStripSeparator3
@@ -2029,8 +2029,8 @@ namespace VTFEdit
 			this->toolStripMask->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripMask->Name = L"toolStripMask";
 			this->toolStripMask->Size = System::Drawing::Size(40, 40);
-			this->toolStripMask->Text = L"toolStripButton6";
-			this->toolStripMask->ToolTipText = L"Toggle alpha mask";
+			this->toolStripMask->Text = L"Toggle Alpha Mask";
+			this->toolStripMask->ToolTipText = L"Toggle Alpha Mask";
 			this->toolStripMask->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripMask_Click);
 			// 
 			// toolStripTile
@@ -2044,8 +2044,8 @@ namespace VTFEdit
 			this->toolStripTile->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripTile->Name = L"toolStripTile";
 			this->toolStripTile->Size = System::Drawing::Size(40, 40);
-			this->toolStripTile->Text = L"toolStripButton7";
-			this->toolStripTile->ToolTipText = L"Toggle image tiling";
+			this->toolStripTile->Text = L"Toggle Image Tiling";
+			this->toolStripTile->ToolTipText = L"Toggle Image Tiling";
 			this->toolStripTile->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripTile_Click);
 			// 
 			// dlgImportFile
