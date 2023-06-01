@@ -1188,7 +1188,7 @@ namespace VTFEdit
 			this->lstFlags->HorizontalScrollbar = true;
 			this->lstFlags->Location = System::Drawing::Point(7, 27);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(172, 244);
+			this->lstFlags->Size = System::Drawing::Size(172, 259);
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->TabStop = false;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
@@ -1291,7 +1291,7 @@ namespace VTFEdit
 			// 
 			// lblImageBumpmapScaleLabel
 			// 
-			this->lblImageBumpmapScaleLabel->Location = System::Drawing::Point(7, 171);
+			this->lblImageBumpmapScaleLabel->Location = System::Drawing::Point(7, 173);
 			this->lblImageBumpmapScaleLabel->Name = L"lblImageBumpmapScaleLabel";
 			this->lblImageBumpmapScaleLabel->Size = System::Drawing::Size(57, 17);
 			this->lblImageBumpmapScaleLabel->TabIndex = 16;
@@ -1299,7 +1299,7 @@ namespace VTFEdit
 			// 
 			// lblImageStartFrameLabel
 			// 
-			this->lblImageStartFrameLabel->Location = System::Drawing::Point(7, 94);
+			this->lblImageStartFrameLabel->Location = System::Drawing::Point(7, 96);
 			this->lblImageStartFrameLabel->Name = L"lblImageStartFrameLabel";
 			this->lblImageStartFrameLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageStartFrameLabel->TabIndex = 8;
@@ -1429,14 +1429,14 @@ namespace VTFEdit
 			// 
 			this->lblThumbnailFormat->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblThumbnailFormat->Location = System::Drawing::Point(53, 57);
+			this->lblThumbnailFormat->Location = System::Drawing::Point(53, 59);
 			this->lblThumbnailFormat->Name = L"lblThumbnailFormat";
 			this->lblThumbnailFormat->Size = System::Drawing::Size(140, 19);
 			this->lblThumbnailFormat->TabIndex = 5;
 			// 
 			// lblThumbnailFormatLabel
 			// 
-			this->lblThumbnailFormatLabel->Location = System::Drawing::Point(7, 57);
+			this->lblThumbnailFormatLabel->Location = System::Drawing::Point(7, 59);
 			this->lblThumbnailFormatLabel->Name = L"lblThumbnailFormatLabel";
 			this->lblThumbnailFormatLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailFormatLabel->TabIndex = 4;
@@ -1446,14 +1446,14 @@ namespace VTFEdit
 			// 
 			this->lblThumbnailHeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblThumbnailHeight->Location = System::Drawing::Point(53, 37);
+			this->lblThumbnailHeight->Location = System::Drawing::Point(53, 39);
 			this->lblThumbnailHeight->Name = L"lblThumbnailHeight";
 			this->lblThumbnailHeight->Size = System::Drawing::Size(140, 19);
 			this->lblThumbnailHeight->TabIndex = 3;
 			// 
 			// lblThumbnailHeightLabel
 			// 
-			this->lblThumbnailHeightLabel->Location = System::Drawing::Point(7, 37);
+			this->lblThumbnailHeightLabel->Location = System::Drawing::Point(7, 39);
 			this->lblThumbnailHeightLabel->Name = L"lblThumbnailHeightLabel";
 			this->lblThumbnailHeightLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailHeightLabel->TabIndex = 2;

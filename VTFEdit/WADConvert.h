@@ -128,9 +128,9 @@ namespace VTFEdit
 			this->chkCreateVMTFiles->Checked = true;
 			this->chkCreateVMTFiles->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->chkCreateVMTFiles->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkCreateVMTFiles->Location = System::Drawing::Point(6, 51);
+			this->chkCreateVMTFiles->Location = System::Drawing::Point(239, 53);
 			this->chkCreateVMTFiles->Name = L"chkCreateVMTFiles";
-			this->chkCreateVMTFiles->Size = System::Drawing::Size(117, 19);
+			this->chkCreateVMTFiles->Size = System::Drawing::Size(101, 19);
 			this->chkCreateVMTFiles->TabIndex = 6;
 			this->chkCreateVMTFiles->Text = L"Create &VMT Files";
 			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"Generate .vmt files for .vtf files. Ouput folder should be a material folder.");
@@ -228,7 +228,7 @@ namespace VTFEdit
 			this->grpProgress->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpProgress->Location = System::Drawing::Point(6, 88);
 			this->grpProgress->Name = L"grpProgress";
-			this->grpProgress->Size = System::Drawing::Size(370, 39);
+			this->grpProgress->Size = System::Drawing::Size(370, 41);
 			this->grpProgress->TabIndex = 3;
 			this->grpProgress->TabStop = false;
 			this->grpProgress->Text = L"Progress:";
@@ -237,7 +237,7 @@ namespace VTFEdit
 			// 
 			this->barProgress->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->barProgress->Location = System::Drawing::Point(6, 12);
+			this->barProgress->Location = System::Drawing::Point(6, 16);
 			this->barProgress->Name = L"barProgress";
 			this->barProgress->Size = System::Drawing::Size(358, 19);
 			this->barProgress->TabIndex = 0;
@@ -282,10 +282,10 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtLog->DetectUrls = false;
-			this->txtLog->Location = System::Drawing::Point(6, 12);
+			this->txtLog->Location = System::Drawing::Point(6, 14);
 			this->txtLog->Name = L"txtLog";
 			this->txtLog->ReadOnly = true;
-			this->txtLog->Size = System::Drawing::Size(358, 178);
+			this->txtLog->Size = System::Drawing::Size(358, 176);
 			this->txtLog->TabIndex = 0;
 			this->txtLog->Text = L"";
 			// 
