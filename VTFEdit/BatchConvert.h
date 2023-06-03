@@ -256,9 +256,9 @@ namespace VTFEdit
 			this->chkRecursive->Checked = true;
 			this->chkRecursive->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->chkRecursive->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkRecursive->Location = System::Drawing::Point(163, 90);
+			this->chkRecursive->Location = System::Drawing::Point(106, 90);
 			this->chkRecursive->Name = L"chkRecursive";
-			this->chkRecursive->Size = System::Drawing::Size(72, 19);
+			this->chkRecursive->Size = System::Drawing::Size(66, 19);
 			this->chkRecursive->TabIndex = 11;
 			this->chkRecursive->Text = L"&Recursive";
 			this->tipMain->SetToolTip(this->chkRecursive, L"Include subdirectories.");
@@ -268,9 +268,9 @@ namespace VTFEdit
 			this->chkCreateVMTFiles->Checked = true;
 			this->chkCreateVMTFiles->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->chkCreateVMTFiles->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkCreateVMTFiles->Location = System::Drawing::Point(241, 90);
+			this->chkCreateVMTFiles->Location = System::Drawing::Point(178, 90);
 			this->chkCreateVMTFiles->Name = L"chkCreateVMTFiles";
-			this->chkCreateVMTFiles->Size = System::Drawing::Size(101, 19);
+			this->chkCreateVMTFiles->Size = System::Drawing::Size(100, 19);
 			this->chkCreateVMTFiles->TabIndex = 12;
 			this->chkCreateVMTFiles->Text = L"Create &VMT Files";
 			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"Generate .vmt files for .vtf files. Ouput folder should be a material folder.");
@@ -300,7 +300,7 @@ namespace VTFEdit
 			// lblOutputFolder
 			// 
 			this->lblOutputFolder->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblOutputFolder->Location = System::Drawing::Point(6, 31);
+			this->lblOutputFolder->Location = System::Drawing::Point(6, 34);
 			this->lblOutputFolder->Name = L"lblOutputFolder";
 			this->lblOutputFolder->Size = System::Drawing::Size(105, 19);
 			this->lblOutputFolder->TabIndex = 3;
@@ -331,7 +331,7 @@ namespace VTFEdit
 			// lblWADFile
 			// 
 			this->lblWADFile->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblWADFile->Location = System::Drawing::Point(6, 12);
+			this->lblWADFile->Location = System::Drawing::Point(6, 15);
 			this->lblWADFile->Name = L"lblWADFile";
 			this->lblWADFile->Size = System::Drawing::Size(60, 19);
 			this->lblWADFile->TabIndex = 0;

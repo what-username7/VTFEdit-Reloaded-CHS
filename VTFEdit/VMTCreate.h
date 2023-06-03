@@ -89,15 +89,16 @@ namespace VTFEdit
 	private: System::Windows::Forms::TextBox ^  txtKeywords;
 	private: System::Windows::Forms::CheckBox ^  chkTranslucent;
 	private: System::Windows::Forms::CheckBox ^  chkAdditive;
-	private: System::Windows::Forms::CheckBox ^  chkEnviromentMapContrast;
-	private: System::Windows::Forms::CheckBox ^  chkEnviromentMapSaturation;
 	private: System::Windows::Forms::CheckBox ^  chkNoCull;
 	private: System::Windows::Forms::CheckBox ^  chkAlphaTest;
 	private: System::Windows::Forms::CheckBox ^  chkNoLOD;
 	private: System::Windows::Forms::CheckBox ^  chkNoDecal;
 	private: System::Windows::Forms::CheckBox ^  chkVertexColor;
 	private: System::Windows::Forms::CheckBox ^  chkVertexAlpha;
-	private: System::ComponentModel::IContainer ^  components;
+	private: System::Windows::Forms::CheckBox^ chkModel;
+	private: System::Windows::Forms::CheckBox^ chkDecal;
+
+	private: System::ComponentModel::IContainer^ components;
 
 	private:
 		/// <summary>
@@ -149,17 +150,17 @@ namespace VTFEdit
 			this->tabTextures = (gcnew System::Windows::Forms::TabPage());
 			this->tabOptions = (gcnew System::Windows::Forms::TabPage());
 			this->grpOptions = (gcnew System::Windows::Forms::GroupBox());
+			this->chkDecal = (gcnew System::Windows::Forms::CheckBox());
+			this->chkModel = (gcnew System::Windows::Forms::CheckBox());
+			this->txtKeywords = (gcnew System::Windows::Forms::TextBox());
 			this->chkVertexAlpha = (gcnew System::Windows::Forms::CheckBox());
 			this->chkVertexColor = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoDecal = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoLOD = (gcnew System::Windows::Forms::CheckBox());
 			this->chkAlphaTest = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoCull = (gcnew System::Windows::Forms::CheckBox());
-			this->chkEnviromentMapSaturation = (gcnew System::Windows::Forms::CheckBox());
-			this->chkEnviromentMapContrast = (gcnew System::Windows::Forms::CheckBox());
 			this->chkAdditive = (gcnew System::Windows::Forms::CheckBox());
 			this->chkTranslucent = (gcnew System::Windows::Forms::CheckBox());
-			this->txtKeywords = (gcnew System::Windows::Forms::TextBox());
 			this->lblKeywords = (gcnew System::Windows::Forms::Label());
 			this->cboSurface2 = (gcnew System::Windows::Forms::ComboBox());
 			this->lblSurface2 = (gcnew System::Windows::Forms::Label());
@@ -513,7 +514,7 @@ namespace VTFEdit
 			this->tabMain->Location = System::Drawing::Point(6, 6);
 			this->tabMain->Name = L"tabMain";
 			this->tabMain->SelectedIndex = 0;
-			this->tabMain->Size = System::Drawing::Size(324, 240);
+			this->tabMain->Size = System::Drawing::Size(324, 236);
 			this->tabMain->TabIndex = 0;
 			// 
 			// tabTextures
@@ -521,7 +522,7 @@ namespace VTFEdit
 			this->tabTextures->Controls->Add(this->grpTextures);
 			this->tabTextures->Location = System::Drawing::Point(4, 22);
 			this->tabTextures->Name = L"tabTextures";
-			this->tabTextures->Size = System::Drawing::Size(316, 214);
+			this->tabTextures->Size = System::Drawing::Size(316, 210);
 			this->tabTextures->TabIndex = 0;
 			this->tabTextures->Text = L"Textures";
 			// 
@@ -530,12 +531,14 @@ namespace VTFEdit
 			this->tabOptions->Controls->Add(this->grpOptions);
 			this->tabOptions->Location = System::Drawing::Point(4, 22);
 			this->tabOptions->Name = L"tabOptions";
-			this->tabOptions->Size = System::Drawing::Size(316, 214);
+			this->tabOptions->Size = System::Drawing::Size(316, 210);
 			this->tabOptions->TabIndex = 1;
 			this->tabOptions->Text = L"Options";
 			// 
 			// grpOptions
 			// 
+			this->grpOptions->Controls->Add(this->chkDecal);
+			this->grpOptions->Controls->Add(this->chkModel);
 			this->grpOptions->Controls->Add(this->txtKeywords);
 			this->grpOptions->Controls->Add(this->chkVertexAlpha);
 			this->grpOptions->Controls->Add(this->chkVertexColor);
@@ -543,8 +546,6 @@ namespace VTFEdit
 			this->grpOptions->Controls->Add(this->chkNoLOD);
 			this->grpOptions->Controls->Add(this->chkAlphaTest);
 			this->grpOptions->Controls->Add(this->chkNoCull);
-			this->grpOptions->Controls->Add(this->chkEnviromentMapSaturation);
-			this->grpOptions->Controls->Add(this->chkEnviromentMapContrast);
 			this->grpOptions->Controls->Add(this->chkAdditive);
 			this->grpOptions->Controls->Add(this->chkTranslucent);
 			this->grpOptions->Controls->Add(this->lblKeywords);
@@ -557,18 +558,48 @@ namespace VTFEdit
 			this->grpOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpOptions->Location = System::Drawing::Point(6, 6);
 			this->grpOptions->Name = L"grpOptions";
-			this->grpOptions->Size = System::Drawing::Size(301, 209);
+			this->grpOptions->Size = System::Drawing::Size(301, 220);
 			this->grpOptions->TabIndex = 0;
 			this->grpOptions->TabStop = false;
 			this->grpOptions->Text = L"Options:";
 			this->grpOptions->Enter += gcnew System::EventHandler(this, &CVMTCreate::grpOptions_Enter);
 			// 
+			// chkDecal
+			// 
+			this->chkDecal->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->chkDecal->Location = System::Drawing::Point(167, 166);
+			this->chkDecal->Name = L"chkDecal";
+			this->chkDecal->Size = System::Drawing::Size(51, 19);
+			this->chkDecal->TabIndex = 19;
+			this->chkDecal->Text = L"Decal";
+			this->tipMain->SetToolTip(this->chkDecal, L"$decal");
+			this->chkDecal->UseVisualStyleBackColor = true;
+			// 
+			// chkModel
+			// 
+			this->chkModel->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->chkModel->Location = System::Drawing::Point(167, 148);
+			this->chkModel->Name = L"chkModel";
+			this->chkModel->Size = System::Drawing::Size(51, 18);
+			this->chkModel->TabIndex = 18;
+			this->chkModel->Text = L"Model";
+			this->tipMain->SetToolTip(this->chkModel, L"$model");
+			this->chkModel->UseVisualStyleBackColor = true;
+			// 
+			// txtKeywords
+			// 
+			this->txtKeywords->Location = System::Drawing::Point(72, 70);
+			this->txtKeywords->Name = L"txtKeywords";
+			this->txtKeywords->Size = System::Drawing::Size(217, 20);
+			this->txtKeywords->TabIndex = 7;
+			this->tipMain->SetToolTip(this->txtKeywords, L"%keywords");
+			// 
 			// chkVertexAlpha
 			// 
 			this->chkVertexAlpha->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexAlpha->Location = System::Drawing::Point(169, 130);
+			this->chkVertexAlpha->Location = System::Drawing::Point(6, 148);
 			this->chkVertexAlpha->Name = L"chkVertexAlpha";
-			this->chkVertexAlpha->Size = System::Drawing::Size(120, 18);
+			this->chkVertexAlpha->Size = System::Drawing::Size(81, 18);
 			this->chkVertexAlpha->TabIndex = 16;
 			this->chkVertexAlpha->Text = L"Vertex Alpha";
 			this->tipMain->SetToolTip(this->chkVertexAlpha, L"$vertexalpha");
@@ -576,9 +607,9 @@ namespace VTFEdit
 			// chkVertexColor
 			// 
 			this->chkVertexColor->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexColor->Location = System::Drawing::Point(169, 148);
+			this->chkVertexColor->Location = System::Drawing::Point(6, 166);
 			this->chkVertexColor->Name = L"chkVertexColor";
-			this->chkVertexColor->Size = System::Drawing::Size(120, 19);
+			this->chkVertexColor->Size = System::Drawing::Size(81, 19);
 			this->chkVertexColor->TabIndex = 17;
 			this->chkVertexColor->Text = L"Vertex Color";
 			this->tipMain->SetToolTip(this->chkVertexColor, L"$vertexcolor");
@@ -586,9 +617,9 @@ namespace VTFEdit
 			// chkNoDecal
 			// 
 			this->chkNoDecal->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoDecal->Location = System::Drawing::Point(6, 186);
+			this->chkNoDecal->Location = System::Drawing::Point(167, 111);
 			this->chkNoDecal->Name = L"chkNoDecal";
-			this->chkNoDecal->Size = System::Drawing::Size(120, 19);
+			this->chkNoDecal->Size = System::Drawing::Size(66, 19);
 			this->chkNoDecal->TabIndex = 13;
 			this->chkNoDecal->Text = L"No Decal";
 			this->tipMain->SetToolTip(this->chkNoDecal, L"$nodecal");
@@ -596,9 +627,9 @@ namespace VTFEdit
 			// chkNoLOD
 			// 
 			this->chkNoLOD->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoLOD->Location = System::Drawing::Point(169, 91);
+			this->chkNoLOD->Location = System::Drawing::Point(167, 129);
 			this->chkNoLOD->Name = L"chkNoLOD";
-			this->chkNoLOD->Size = System::Drawing::Size(120, 19);
+			this->chkNoLOD->Size = System::Drawing::Size(62, 19);
 			this->chkNoLOD->TabIndex = 14;
 			this->chkNoLOD->Text = L"No LOD";
 			this->tipMain->SetToolTip(this->chkNoLOD, L"$nolod");
@@ -608,7 +639,7 @@ namespace VTFEdit
 			this->chkAlphaTest->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->chkAlphaTest->Location = System::Drawing::Point(6, 110);
 			this->chkAlphaTest->Name = L"chkAlphaTest";
-			this->chkAlphaTest->Size = System::Drawing::Size(120, 20);
+			this->chkAlphaTest->Size = System::Drawing::Size(75, 20);
 			this->chkAlphaTest->TabIndex = 9;
 			this->chkAlphaTest->Text = L"Alpha Test";
 			this->tipMain->SetToolTip(this->chkAlphaTest, L"$alphatest");
@@ -616,37 +647,17 @@ namespace VTFEdit
 			// chkNoCull
 			// 
 			this->chkNoCull->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoCull->Location = System::Drawing::Point(6, 167);
+			this->chkNoCull->Location = System::Drawing::Point(167, 92);
 			this->chkNoCull->Name = L"chkNoCull";
-			this->chkNoCull->Size = System::Drawing::Size(120, 19);
+			this->chkNoCull->Size = System::Drawing::Size(57, 19);
 			this->chkNoCull->TabIndex = 12;
 			this->chkNoCull->Text = L"No Cull";
 			this->tipMain->SetToolTip(this->chkNoCull, L"$nocull");
 			// 
-			// chkEnviromentMapSaturation
-			// 
-			this->chkEnviromentMapSaturation->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapSaturation->Location = System::Drawing::Point(6, 148);
-			this->chkEnviromentMapSaturation->Name = L"chkEnviromentMapSaturation";
-			this->chkEnviromentMapSaturation->Size = System::Drawing::Size(146, 19);
-			this->chkEnviromentMapSaturation->TabIndex = 11;
-			this->chkEnviromentMapSaturation->Text = L"Enviroment Map Saturation";
-			this->tipMain->SetToolTip(this->chkEnviromentMapSaturation, L"$envmapsaturation");
-			// 
-			// chkEnviromentMapContrast
-			// 
-			this->chkEnviromentMapContrast->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapContrast->Location = System::Drawing::Point(6, 130);
-			this->chkEnviromentMapContrast->Name = L"chkEnviromentMapContrast";
-			this->chkEnviromentMapContrast->Size = System::Drawing::Size(135, 18);
-			this->chkEnviromentMapContrast->TabIndex = 10;
-			this->chkEnviromentMapContrast->Text = L"Enviroment Map Contrast";
-			this->tipMain->SetToolTip(this->chkEnviromentMapContrast, L"$envmapcontrast");
-			// 
 			// chkAdditive
 			// 
 			this->chkAdditive->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkAdditive->Location = System::Drawing::Point(6, 91);
+			this->chkAdditive->Location = System::Drawing::Point(6, 129);
 			this->chkAdditive->Name = L"chkAdditive";
 			this->chkAdditive->Size = System::Drawing::Size(66, 19);
 			this->chkAdditive->TabIndex = 8;
@@ -656,20 +667,12 @@ namespace VTFEdit
 			// chkTranslucent
 			// 
 			this->chkTranslucent->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkTranslucent->Location = System::Drawing::Point(169, 110);
+			this->chkTranslucent->Location = System::Drawing::Point(6, 91);
 			this->chkTranslucent->Name = L"chkTranslucent";
-			this->chkTranslucent->Size = System::Drawing::Size(120, 20);
+			this->chkTranslucent->Size = System::Drawing::Size(81, 20);
 			this->chkTranslucent->TabIndex = 15;
 			this->chkTranslucent->Text = L"Translucent";
 			this->tipMain->SetToolTip(this->chkTranslucent, L"$translucent");
-			// 
-			// txtKeywords
-			// 
-			this->txtKeywords->Location = System::Drawing::Point(72, 70);
-			this->txtKeywords->Name = L"txtKeywords";
-			this->txtKeywords->Size = System::Drawing::Size(217, 20);
-			this->txtKeywords->TabIndex = 7;
-			this->tipMain->SetToolTip(this->txtKeywords, L"%keywords");
 			// 
 			// lblKeywords
 			// 
@@ -778,7 +781,7 @@ namespace VTFEdit
 			// 
 			this->btnClose->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClose->Location = System::Drawing::Point(270, 250);
+			this->btnClose->Location = System::Drawing::Point(270, 244);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 2;
@@ -788,7 +791,7 @@ namespace VTFEdit
 			// btnCreate
 			// 
 			this->btnCreate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnCreate->Location = System::Drawing::Point(206, 250);
+			this->btnCreate->Location = System::Drawing::Point(206, 244);
 			this->btnCreate->Name = L"btnCreate";
 			this->btnCreate->Size = System::Drawing::Size(60, 22);
 			this->btnCreate->TabIndex = 1;
@@ -798,7 +801,7 @@ namespace VTFEdit
 			// btnClear
 			// 
 			this->btnClear->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClear->Location = System::Drawing::Point(6, 250);
+			this->btnClear->Location = System::Drawing::Point(4, 244);
 			this->btnClear->Name = L"btnClear";
 			this->btnClear->Size = System::Drawing::Size(60, 22);
 			this->btnClear->TabIndex = 3;
@@ -815,7 +818,7 @@ namespace VTFEdit
 			this->AcceptButton = this->btnCreate;
 			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
 			this->CancelButton = this->btnClose;
-			this->ClientSize = System::Drawing::Size(334, 277);
+			this->ClientSize = System::Drawing::Size(334, 270);
 			this->Controls->Add(this->btnClear);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnCreate);
@@ -875,14 +878,14 @@ namespace VTFEdit
 
 			this->chkAdditive->Checked = false;
 			this->chkAlphaTest->Checked = false;
-			this->chkEnviromentMapContrast->Checked = false;
-			this->chkEnviromentMapSaturation->Checked = false;
 			this->chkNoCull->Checked = false;
 			this->chkNoDecal->Checked = false;
 			this->chkNoLOD->Checked = false;
 			this->chkTranslucent->Checked = false;
 			this->chkVertexAlpha->Checked = false;
 			this->chkVertexColor->Checked = false;
+			this->chkModel->Checked = false;
+			this->chkDecal->Checked = false;
 		}
 
 		private: System::Void txtTexture_Leave(System::Object ^  sender, System::EventArgs ^  e)
@@ -1029,14 +1032,14 @@ namespace VTFEdit
 
 			this->AddVMTBooleanNode(VMTFile, "$additive", this->chkAdditive->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$alphatest", this->chkAlphaTest->Checked, false);
-			this->AddVMTBooleanNode(VMTFile, "$envmapcontrast", this->chkEnviromentMapContrast->Checked, false);
-			this->AddVMTBooleanNode(VMTFile, "$envmapsaturation", this->chkEnviromentMapSaturation->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nocull", this->chkNoCull->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nodecal", this->chkNoDecal->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nolod", this->chkNoLOD->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$translucent", this->chkTranslucent->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$vertexalpha", this->chkVertexAlpha->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$vertexcolor", this->chkVertexColor->Checked, false);
+			this->AddVMTBooleanNode(VMTFile, "$model", this->chkModel->Checked, false);
+			this->AddVMTBooleanNode(VMTFile, "$decal", this->chkDecal->Checked, false);
 
 			cTemp = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(this->dlgSaveVMTFile->FileName).ToPointer();
 			VMTFile.Save(cTemp);
