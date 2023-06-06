@@ -89,15 +89,16 @@ namespace VTFEdit
 	private: System::Windows::Forms::TextBox ^  txtKeywords;
 	private: System::Windows::Forms::CheckBox ^  chkTranslucent;
 	private: System::Windows::Forms::CheckBox ^  chkAdditive;
-	private: System::Windows::Forms::CheckBox ^  chkEnviromentMapContrast;
-	private: System::Windows::Forms::CheckBox ^  chkEnviromentMapSaturation;
 	private: System::Windows::Forms::CheckBox ^  chkNoCull;
 	private: System::Windows::Forms::CheckBox ^  chkAlphaTest;
 	private: System::Windows::Forms::CheckBox ^  chkNoLOD;
 	private: System::Windows::Forms::CheckBox ^  chkNoDecal;
 	private: System::Windows::Forms::CheckBox ^  chkVertexColor;
 	private: System::Windows::Forms::CheckBox ^  chkVertexAlpha;
-	private: System::ComponentModel::IContainer ^  components;
+	private: System::Windows::Forms::CheckBox^ chkModel;
+	private: System::Windows::Forms::CheckBox^ chkDecal;
+
+	private: System::ComponentModel::IContainer^ components;
 
 	private:
 		/// <summary>
@@ -149,17 +150,17 @@ namespace VTFEdit
 			this->tabTextures = (gcnew System::Windows::Forms::TabPage());
 			this->tabOptions = (gcnew System::Windows::Forms::TabPage());
 			this->grpOptions = (gcnew System::Windows::Forms::GroupBox());
+			this->chkDecal = (gcnew System::Windows::Forms::CheckBox());
+			this->chkModel = (gcnew System::Windows::Forms::CheckBox());
+			this->txtKeywords = (gcnew System::Windows::Forms::TextBox());
 			this->chkVertexAlpha = (gcnew System::Windows::Forms::CheckBox());
 			this->chkVertexColor = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoDecal = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoLOD = (gcnew System::Windows::Forms::CheckBox());
 			this->chkAlphaTest = (gcnew System::Windows::Forms::CheckBox());
 			this->chkNoCull = (gcnew System::Windows::Forms::CheckBox());
-			this->chkEnviromentMapSaturation = (gcnew System::Windows::Forms::CheckBox());
-			this->chkEnviromentMapContrast = (gcnew System::Windows::Forms::CheckBox());
 			this->chkAdditive = (gcnew System::Windows::Forms::CheckBox());
 			this->chkTranslucent = (gcnew System::Windows::Forms::CheckBox());
-			this->txtKeywords = (gcnew System::Windows::Forms::TextBox());
 			this->lblKeywords = (gcnew System::Windows::Forms::Label());
 			this->cboSurface2 = (gcnew System::Windows::Forms::ComboBox());
 			this->lblSurface2 = (gcnew System::Windows::Forms::Label());
@@ -212,9 +213,9 @@ namespace VTFEdit
 			this->grpTextures->Controls->Add(this->txtBaseTexture1);
 			this->grpTextures->Controls->Add(this->lblBaseTexture1);
 			this->grpTextures->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpTextures->Location = System::Drawing::Point(10, 9);
+			this->grpTextures->Location = System::Drawing::Point(6, 6);
 			this->grpTextures->Name = L"grpTextures";
-			this->grpTextures->Size = System::Drawing::Size(497, 305);
+			this->grpTextures->Size = System::Drawing::Size(311, 209);
 			this->grpTextures->TabIndex = 0;
 			this->grpTextures->TabStop = false;
 			this->grpTextures->Text = L"Textures:";
@@ -222,46 +223,47 @@ namespace VTFEdit
 			// btnNormalTexture
 			// 
 			this->btnNormalTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnNormalTexture->Location = System::Drawing::Point(467, 240);
+			this->btnNormalTexture->Location = System::Drawing::Point(292, 164);
 			this->btnNormalTexture->Name = L"btnNormalTexture";
-			this->btnNormalTexture->Size = System::Drawing::Size(24, 23);
+			this->btnNormalTexture->Size = System::Drawing::Size(15, 16);
 			this->btnNormalTexture->TabIndex = 26;
 			this->btnNormalTexture->Text = L"...";
 			this->btnNormalTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnNormalTexture_Click);
 			// 
 			// txtNormalTexture
 			// 
-			this->txtNormalTexture->Location = System::Drawing::Point(149, 240);
+			this->txtNormalTexture->Location = System::Drawing::Point(93, 160);
 			this->txtNormalTexture->Name = L"txtNormalTexture";
-			this->txtNormalTexture->Size = System::Drawing::Size(312, 26);
+			this->txtNormalTexture->Size = System::Drawing::Size(195, 20);
 			this->txtNormalTexture->TabIndex = 25;
 			this->tipMain->SetToolTip(this->txtNormalTexture, L"$normalmap");
+			this->txtNormalTexture->TextChanged += gcnew System::EventHandler(this, &CVMTCreate::txtNormalTexture_TextChanged);
 			this->txtNormalTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
 			// 
 			// lblNormalTexture
 			// 
 			this->lblNormalTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblNormalTexture->Location = System::Drawing::Point(10, 240);
+			this->lblNormalTexture->Location = System::Drawing::Point(6, 162);
 			this->lblNormalTexture->Name = L"lblNormalTexture";
-			this->lblNormalTexture->Size = System::Drawing::Size(133, 27);
+			this->lblNormalTexture->Size = System::Drawing::Size(83, 19);
 			this->lblNormalTexture->TabIndex = 24;
 			this->lblNormalTexture->Text = L"Normal Map:";
 			// 
 			// btnDuDvTexture
 			// 
 			this->btnDuDvTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnDuDvTexture->Location = System::Drawing::Point(467, 268);
+			this->btnDuDvTexture->Location = System::Drawing::Point(292, 183);
 			this->btnDuDvTexture->Name = L"btnDuDvTexture";
-			this->btnDuDvTexture->Size = System::Drawing::Size(24, 23);
+			this->btnDuDvTexture->Size = System::Drawing::Size(15, 16);
 			this->btnDuDvTexture->TabIndex = 29;
 			this->btnDuDvTexture->Text = L"...";
 			this->btnDuDvTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnDuDvTexture_Click);
 			// 
 			// txtDuDvTexture
 			// 
-			this->txtDuDvTexture->Location = System::Drawing::Point(149, 268);
+			this->txtDuDvTexture->Location = System::Drawing::Point(93, 179);
 			this->txtDuDvTexture->Name = L"txtDuDvTexture";
-			this->txtDuDvTexture->Size = System::Drawing::Size(312, 26);
+			this->txtDuDvTexture->Size = System::Drawing::Size(195, 20);
 			this->txtDuDvTexture->TabIndex = 28;
 			this->tipMain->SetToolTip(this->txtDuDvTexture, L"$dudvmap");
 			this->txtDuDvTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -269,27 +271,27 @@ namespace VTFEdit
 			// lblDuDvTexture
 			// 
 			this->lblDuDvTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblDuDvTexture->Location = System::Drawing::Point(10, 268);
+			this->lblDuDvTexture->Location = System::Drawing::Point(6, 182);
 			this->lblDuDvTexture->Name = L"lblDuDvTexture";
-			this->lblDuDvTexture->Size = System::Drawing::Size(133, 26);
+			this->lblDuDvTexture->Size = System::Drawing::Size(83, 18);
 			this->lblDuDvTexture->TabIndex = 27;
 			this->lblDuDvTexture->Text = L"DuDv Map:";
 			// 
 			// btnBumpTexture2
 			// 
 			this->btnBumpTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBumpTexture2->Location = System::Drawing::Point(467, 102);
+			this->btnBumpTexture2->Location = System::Drawing::Point(292, 70);
 			this->btnBumpTexture2->Name = L"btnBumpTexture2";
-			this->btnBumpTexture2->Size = System::Drawing::Size(24, 23);
+			this->btnBumpTexture2->Size = System::Drawing::Size(15, 16);
 			this->btnBumpTexture2->TabIndex = 11;
 			this->btnBumpTexture2->Text = L"...";
 			this->btnBumpTexture2->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBumpTexture2_Click);
 			// 
 			// txtBumpTexture2
 			// 
-			this->txtBumpTexture2->Location = System::Drawing::Point(149, 102);
+			this->txtBumpTexture2->Location = System::Drawing::Point(93, 67);
 			this->txtBumpTexture2->Name = L"txtBumpTexture2";
-			this->txtBumpTexture2->Size = System::Drawing::Size(312, 26);
+			this->txtBumpTexture2->Size = System::Drawing::Size(195, 20);
 			this->txtBumpTexture2->TabIndex = 10;
 			this->tipMain->SetToolTip(this->txtBumpTexture2, L"$bumpmap2");
 			this->txtBumpTexture2->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -297,27 +299,27 @@ namespace VTFEdit
 			// lblBumpTexture2
 			// 
 			this->lblBumpTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBumpTexture2->Location = System::Drawing::Point(10, 102);
+			this->lblBumpTexture2->Location = System::Drawing::Point(6, 70);
 			this->lblBumpTexture2->Name = L"lblBumpTexture2";
-			this->lblBumpTexture2->Size = System::Drawing::Size(133, 26);
+			this->lblBumpTexture2->Size = System::Drawing::Size(83, 18);
 			this->lblBumpTexture2->TabIndex = 9;
 			this->lblBumpTexture2->Text = L"Bump Map 2:";
 			// 
 			// btnBaseTexture2
 			// 
 			this->btnBaseTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBaseTexture2->Location = System::Drawing::Point(467, 74);
+			this->btnBaseTexture2->Location = System::Drawing::Point(292, 51);
 			this->btnBaseTexture2->Name = L"btnBaseTexture2";
-			this->btnBaseTexture2->Size = System::Drawing::Size(24, 23);
+			this->btnBaseTexture2->Size = System::Drawing::Size(15, 15);
 			this->btnBaseTexture2->TabIndex = 8;
 			this->btnBaseTexture2->Text = L"...";
 			this->btnBaseTexture2->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBaseTexture2_Click);
 			// 
 			// txtBaseTexture2
 			// 
-			this->txtBaseTexture2->Location = System::Drawing::Point(149, 74);
+			this->txtBaseTexture2->Location = System::Drawing::Point(93, 49);
 			this->txtBaseTexture2->Name = L"txtBaseTexture2";
-			this->txtBaseTexture2->Size = System::Drawing::Size(312, 26);
+			this->txtBaseTexture2->Size = System::Drawing::Size(195, 20);
 			this->txtBaseTexture2->TabIndex = 7;
 			this->tipMain->SetToolTip(this->txtBaseTexture2, L"$basetexture2");
 			this->txtBaseTexture2->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -325,27 +327,27 @@ namespace VTFEdit
 			// lblBaseTexture2
 			// 
 			this->lblBaseTexture2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBaseTexture2->Location = System::Drawing::Point(10, 74);
+			this->lblBaseTexture2->Location = System::Drawing::Point(6, 51);
 			this->lblBaseTexture2->Name = L"lblBaseTexture2";
-			this->lblBaseTexture2->Size = System::Drawing::Size(133, 26);
+			this->lblBaseTexture2->Size = System::Drawing::Size(83, 17);
 			this->lblBaseTexture2->TabIndex = 6;
 			this->lblBaseTexture2->Text = L"Base Texture 2:";
 			// 
 			// btnToolTexture
 			// 
 			this->btnToolTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnToolTexture->Location = System::Drawing::Point(467, 212);
+			this->btnToolTexture->Location = System::Drawing::Point(292, 145);
 			this->btnToolTexture->Name = L"btnToolTexture";
-			this->btnToolTexture->Size = System::Drawing::Size(24, 23);
+			this->btnToolTexture->Size = System::Drawing::Size(15, 16);
 			this->btnToolTexture->TabIndex = 23;
 			this->btnToolTexture->Text = L"...";
 			this->btnToolTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnToolTexture_Click);
 			// 
 			// txtToolTexture
 			// 
-			this->txtToolTexture->Location = System::Drawing::Point(149, 212);
+			this->txtToolTexture->Location = System::Drawing::Point(93, 141);
 			this->txtToolTexture->Name = L"txtToolTexture";
-			this->txtToolTexture->Size = System::Drawing::Size(312, 26);
+			this->txtToolTexture->Size = System::Drawing::Size(195, 20);
 			this->txtToolTexture->TabIndex = 22;
 			this->tipMain->SetToolTip(this->txtToolTexture, L"%tooltexture");
 			this->txtToolTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -353,27 +355,27 @@ namespace VTFEdit
 			// lblToolTexture
 			// 
 			this->lblToolTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblToolTexture->Location = System::Drawing::Point(10, 212);
+			this->lblToolTexture->Location = System::Drawing::Point(6, 143);
 			this->lblToolTexture->Name = L"lblToolTexture";
-			this->lblToolTexture->Size = System::Drawing::Size(133, 27);
+			this->lblToolTexture->Size = System::Drawing::Size(83, 19);
 			this->lblToolTexture->TabIndex = 21;
 			this->lblToolTexture->Text = L"Tool Texture:";
 			// 
 			// btnDetailTexture
 			// 
 			this->btnDetailTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnDetailTexture->Location = System::Drawing::Point(467, 185);
+			this->btnDetailTexture->Location = System::Drawing::Point(292, 127);
 			this->btnDetailTexture->Name = L"btnDetailTexture";
-			this->btnDetailTexture->Size = System::Drawing::Size(24, 23);
+			this->btnDetailTexture->Size = System::Drawing::Size(15, 15);
 			this->btnDetailTexture->TabIndex = 20;
 			this->btnDetailTexture->Text = L"...";
 			this->btnDetailTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnDetailTexture_Click);
 			// 
 			// txtDetailTexture
 			// 
-			this->txtDetailTexture->Location = System::Drawing::Point(149, 185);
+			this->txtDetailTexture->Location = System::Drawing::Point(93, 122);
 			this->txtDetailTexture->Name = L"txtDetailTexture";
-			this->txtDetailTexture->Size = System::Drawing::Size(312, 26);
+			this->txtDetailTexture->Size = System::Drawing::Size(195, 20);
 			this->txtDetailTexture->TabIndex = 19;
 			this->tipMain->SetToolTip(this->txtDetailTexture, L"$detail");
 			this->txtDetailTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -381,27 +383,27 @@ namespace VTFEdit
 			// lblDetailTexture
 			// 
 			this->lblDetailTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblDetailTexture->Location = System::Drawing::Point(10, 185);
+			this->lblDetailTexture->Location = System::Drawing::Point(6, 125);
 			this->lblDetailTexture->Name = L"lblDetailTexture";
-			this->lblDetailTexture->Size = System::Drawing::Size(133, 26);
+			this->lblDetailTexture->Size = System::Drawing::Size(83, 17);
 			this->lblDetailTexture->TabIndex = 18;
 			this->lblDetailTexture->Text = L"Detail Texture:";
 			// 
 			// btnEnviromentMaskTexture
 			// 
 			this->btnEnviromentMaskTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnEnviromentMaskTexture->Location = System::Drawing::Point(467, 157);
+			this->btnEnviromentMaskTexture->Location = System::Drawing::Point(292, 107);
 			this->btnEnviromentMaskTexture->Name = L"btnEnviromentMaskTexture";
-			this->btnEnviromentMaskTexture->Size = System::Drawing::Size(24, 23);
+			this->btnEnviromentMaskTexture->Size = System::Drawing::Size(15, 16);
 			this->btnEnviromentMaskTexture->TabIndex = 17;
 			this->btnEnviromentMaskTexture->Text = L"...";
 			this->btnEnviromentMaskTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnEnviromentMaskTexture_Click);
 			// 
 			// txtEnviromentMaskTexture
 			// 
-			this->txtEnviromentMaskTexture->Location = System::Drawing::Point(149, 157);
+			this->txtEnviromentMaskTexture->Location = System::Drawing::Point(93, 104);
 			this->txtEnviromentMaskTexture->Name = L"txtEnviromentMaskTexture";
-			this->txtEnviromentMaskTexture->Size = System::Drawing::Size(312, 26);
+			this->txtEnviromentMaskTexture->Size = System::Drawing::Size(195, 20);
 			this->txtEnviromentMaskTexture->TabIndex = 16;
 			this->tipMain->SetToolTip(this->txtEnviromentMaskTexture, L"$envmapmask");
 			this->txtEnviromentMaskTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -409,27 +411,27 @@ namespace VTFEdit
 			// lblEnviromentMaskTexture
 			// 
 			this->lblEnviromentMaskTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblEnviromentMaskTexture->Location = System::Drawing::Point(10, 157);
+			this->lblEnviromentMaskTexture->Location = System::Drawing::Point(6, 107);
 			this->lblEnviromentMaskTexture->Name = L"lblEnviromentMaskTexture";
-			this->lblEnviromentMaskTexture->Size = System::Drawing::Size(133, 26);
+			this->lblEnviromentMaskTexture->Size = System::Drawing::Size(92, 18);
 			this->lblEnviromentMaskTexture->TabIndex = 15;
 			this->lblEnviromentMaskTexture->Text = L"Enviroment Mask:";
 			// 
 			// btnEnviromentTexture
 			// 
 			this->btnEnviromentTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnEnviromentTexture->Location = System::Drawing::Point(467, 129);
+			this->btnEnviromentTexture->Location = System::Drawing::Point(292, 88);
 			this->btnEnviromentTexture->Name = L"btnEnviromentTexture";
-			this->btnEnviromentTexture->Size = System::Drawing::Size(24, 23);
+			this->btnEnviromentTexture->Size = System::Drawing::Size(15, 16);
 			this->btnEnviromentTexture->TabIndex = 14;
 			this->btnEnviromentTexture->Text = L"...";
 			this->btnEnviromentTexture->Click += gcnew System::EventHandler(this, &CVMTCreate::btnEnviromentTexture_Click);
 			// 
 			// txtEnviromentTexture
 			// 
-			this->txtEnviromentTexture->Location = System::Drawing::Point(149, 129);
+			this->txtEnviromentTexture->Location = System::Drawing::Point(93, 85);
 			this->txtEnviromentTexture->Name = L"txtEnviromentTexture";
-			this->txtEnviromentTexture->Size = System::Drawing::Size(312, 26);
+			this->txtEnviromentTexture->Size = System::Drawing::Size(195, 20);
 			this->txtEnviromentTexture->TabIndex = 13;
 			this->tipMain->SetToolTip(this->txtEnviromentTexture, L"$envmap");
 			this->txtEnviromentTexture->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -437,27 +439,27 @@ namespace VTFEdit
 			// lblEnviromentTexture
 			// 
 			this->lblEnviromentTexture->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblEnviromentTexture->Location = System::Drawing::Point(10, 129);
+			this->lblEnviromentTexture->Location = System::Drawing::Point(6, 88);
 			this->lblEnviromentTexture->Name = L"lblEnviromentTexture";
-			this->lblEnviromentTexture->Size = System::Drawing::Size(133, 27);
+			this->lblEnviromentTexture->Size = System::Drawing::Size(83, 19);
 			this->lblEnviromentTexture->TabIndex = 12;
 			this->lblEnviromentTexture->Text = L"Enviroment:";
 			// 
 			// btnBumpTexture1
 			// 
 			this->btnBumpTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBumpTexture1->Location = System::Drawing::Point(467, 46);
+			this->btnBumpTexture1->Location = System::Drawing::Point(292, 31);
 			this->btnBumpTexture1->Name = L"btnBumpTexture1";
-			this->btnBumpTexture1->Size = System::Drawing::Size(24, 23);
+			this->btnBumpTexture1->Size = System::Drawing::Size(15, 16);
 			this->btnBumpTexture1->TabIndex = 5;
 			this->btnBumpTexture1->Text = L"...";
 			this->btnBumpTexture1->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBumpTexture1_Click);
 			// 
 			// txtBumpTexture1
 			// 
-			this->txtBumpTexture1->Location = System::Drawing::Point(149, 46);
+			this->txtBumpTexture1->Location = System::Drawing::Point(93, 31);
 			this->txtBumpTexture1->Name = L"txtBumpTexture1";
-			this->txtBumpTexture1->Size = System::Drawing::Size(312, 26);
+			this->txtBumpTexture1->Size = System::Drawing::Size(195, 20);
 			this->txtBumpTexture1->TabIndex = 4;
 			this->tipMain->SetToolTip(this->txtBumpTexture1, L"$bumpmap");
 			this->txtBumpTexture1->Leave += gcnew System::EventHandler(this, &CVMTCreate::txtTexture_Leave);
@@ -465,27 +467,27 @@ namespace VTFEdit
 			// lblBumpTexture1
 			// 
 			this->lblBumpTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBumpTexture1->Location = System::Drawing::Point(10, 46);
+			this->lblBumpTexture1->Location = System::Drawing::Point(6, 33);
 			this->lblBumpTexture1->Name = L"lblBumpTexture1";
-			this->lblBumpTexture1->Size = System::Drawing::Size(133, 27);
+			this->lblBumpTexture1->Size = System::Drawing::Size(83, 19);
 			this->lblBumpTexture1->TabIndex = 3;
 			this->lblBumpTexture1->Text = L"Bump Map 1:";
 			// 
 			// btnBaseTexture1
 			// 
 			this->btnBaseTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnBaseTexture1->Location = System::Drawing::Point(467, 18);
+			this->btnBaseTexture1->Location = System::Drawing::Point(292, 12);
 			this->btnBaseTexture1->Name = L"btnBaseTexture1";
-			this->btnBaseTexture1->Size = System::Drawing::Size(24, 24);
+			this->btnBaseTexture1->Size = System::Drawing::Size(15, 17);
 			this->btnBaseTexture1->TabIndex = 2;
 			this->btnBaseTexture1->Text = L"...";
 			this->btnBaseTexture1->Click += gcnew System::EventHandler(this, &CVMTCreate::btnBaseTexture1_Click);
 			// 
 			// txtBaseTexture1
 			// 
-			this->txtBaseTexture1->Location = System::Drawing::Point(149, 18);
+			this->txtBaseTexture1->Location = System::Drawing::Point(93, 12);
 			this->txtBaseTexture1->Name = L"txtBaseTexture1";
-			this->txtBaseTexture1->Size = System::Drawing::Size(312, 26);
+			this->txtBaseTexture1->Size = System::Drawing::Size(195, 20);
 			this->txtBaseTexture1->TabIndex = 1;
 			this->tipMain->SetToolTip(this->txtBaseTexture1, L"$basetexture");
 			this->txtBaseTexture1->TextChanged += gcnew System::EventHandler(this, &CVMTCreate::txtBaseTexture1_TextChanged);
@@ -494,9 +496,9 @@ namespace VTFEdit
 			// lblBaseTexture1
 			// 
 			this->lblBaseTexture1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblBaseTexture1->Location = System::Drawing::Point(10, 18);
+			this->lblBaseTexture1->Location = System::Drawing::Point(6, 14);
 			this->lblBaseTexture1->Name = L"lblBaseTexture1";
-			this->lblBaseTexture1->Size = System::Drawing::Size(133, 27);
+			this->lblBaseTexture1->Size = System::Drawing::Size(83, 19);
 			this->lblBaseTexture1->TabIndex = 0;
 			this->lblBaseTexture1->Text = L"Base Texture 1:";
 			// 
@@ -509,43 +511,43 @@ namespace VTFEdit
 			// 
 			this->tabMain->Controls->Add(this->tabTextures);
 			this->tabMain->Controls->Add(this->tabOptions);
-			this->tabMain->Location = System::Drawing::Point(10, 9);
+			this->tabMain->Location = System::Drawing::Point(6, 6);
 			this->tabMain->Name = L"tabMain";
 			this->tabMain->SelectedIndex = 0;
-			this->tabMain->Size = System::Drawing::Size(518, 351);
+			this->tabMain->Size = System::Drawing::Size(324, 236);
 			this->tabMain->TabIndex = 0;
 			// 
 			// tabTextures
 			// 
 			this->tabTextures->Controls->Add(this->grpTextures);
-			this->tabTextures->Location = System::Drawing::Point(4, 29);
+			this->tabTextures->Location = System::Drawing::Point(4, 22);
 			this->tabTextures->Name = L"tabTextures";
-			this->tabTextures->Size = System::Drawing::Size(510, 318);
+			this->tabTextures->Size = System::Drawing::Size(316, 210);
 			this->tabTextures->TabIndex = 0;
 			this->tabTextures->Text = L"Textures";
 			// 
 			// tabOptions
 			// 
 			this->tabOptions->Controls->Add(this->grpOptions);
-			this->tabOptions->Location = System::Drawing::Point(4, 29);
+			this->tabOptions->Location = System::Drawing::Point(4, 22);
 			this->tabOptions->Name = L"tabOptions";
-			this->tabOptions->Size = System::Drawing::Size(510, 318);
+			this->tabOptions->Size = System::Drawing::Size(316, 210);
 			this->tabOptions->TabIndex = 1;
 			this->tabOptions->Text = L"Options";
 			// 
 			// grpOptions
 			// 
+			this->grpOptions->Controls->Add(this->chkDecal);
+			this->grpOptions->Controls->Add(this->chkModel);
+			this->grpOptions->Controls->Add(this->txtKeywords);
 			this->grpOptions->Controls->Add(this->chkVertexAlpha);
 			this->grpOptions->Controls->Add(this->chkVertexColor);
 			this->grpOptions->Controls->Add(this->chkNoDecal);
 			this->grpOptions->Controls->Add(this->chkNoLOD);
 			this->grpOptions->Controls->Add(this->chkAlphaTest);
 			this->grpOptions->Controls->Add(this->chkNoCull);
-			this->grpOptions->Controls->Add(this->chkEnviromentMapSaturation);
-			this->grpOptions->Controls->Add(this->chkEnviromentMapContrast);
 			this->grpOptions->Controls->Add(this->chkAdditive);
 			this->grpOptions->Controls->Add(this->chkTranslucent);
-			this->grpOptions->Controls->Add(this->txtKeywords);
 			this->grpOptions->Controls->Add(this->lblKeywords);
 			this->grpOptions->Controls->Add(this->cboSurface2);
 			this->grpOptions->Controls->Add(this->lblSurface2);
@@ -554,20 +556,50 @@ namespace VTFEdit
 			this->grpOptions->Controls->Add(this->cboShader);
 			this->grpOptions->Controls->Add(this->lblShader);
 			this->grpOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpOptions->Location = System::Drawing::Point(10, 9);
+			this->grpOptions->Location = System::Drawing::Point(6, 6);
 			this->grpOptions->Name = L"grpOptions";
-			this->grpOptions->Size = System::Drawing::Size(481, 305);
+			this->grpOptions->Size = System::Drawing::Size(301, 220);
 			this->grpOptions->TabIndex = 0;
 			this->grpOptions->TabStop = false;
 			this->grpOptions->Text = L"Options:";
 			this->grpOptions->Enter += gcnew System::EventHandler(this, &CVMTCreate::grpOptions_Enter);
 			// 
+			// chkDecal
+			// 
+			this->chkDecal->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->chkDecal->Location = System::Drawing::Point(167, 166);
+			this->chkDecal->Name = L"chkDecal";
+			this->chkDecal->Size = System::Drawing::Size(51, 19);
+			this->chkDecal->TabIndex = 19;
+			this->chkDecal->Text = L"Decal";
+			this->tipMain->SetToolTip(this->chkDecal, L"$decal");
+			this->chkDecal->UseVisualStyleBackColor = true;
+			// 
+			// chkModel
+			// 
+			this->chkModel->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->chkModel->Location = System::Drawing::Point(167, 148);
+			this->chkModel->Name = L"chkModel";
+			this->chkModel->Size = System::Drawing::Size(51, 18);
+			this->chkModel->TabIndex = 18;
+			this->chkModel->Text = L"Model";
+			this->tipMain->SetToolTip(this->chkModel, L"$model");
+			this->chkModel->UseVisualStyleBackColor = true;
+			// 
+			// txtKeywords
+			// 
+			this->txtKeywords->Location = System::Drawing::Point(72, 70);
+			this->txtKeywords->Name = L"txtKeywords";
+			this->txtKeywords->Size = System::Drawing::Size(217, 20);
+			this->txtKeywords->TabIndex = 7;
+			this->tipMain->SetToolTip(this->txtKeywords, L"%keywords");
+			// 
 			// chkVertexAlpha
 			// 
 			this->chkVertexAlpha->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexAlpha->Location = System::Drawing::Point(270, 185);
+			this->chkVertexAlpha->Location = System::Drawing::Point(6, 148);
 			this->chkVertexAlpha->Name = L"chkVertexAlpha";
-			this->chkVertexAlpha->Size = System::Drawing::Size(192, 27);
+			this->chkVertexAlpha->Size = System::Drawing::Size(81, 18);
 			this->chkVertexAlpha->TabIndex = 16;
 			this->chkVertexAlpha->Text = L"Vertex Alpha";
 			this->tipMain->SetToolTip(this->chkVertexAlpha, L"$vertexalpha");
@@ -575,9 +607,9 @@ namespace VTFEdit
 			// chkVertexColor
 			// 
 			this->chkVertexColor->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkVertexColor->Location = System::Drawing::Point(270, 212);
+			this->chkVertexColor->Location = System::Drawing::Point(6, 166);
 			this->chkVertexColor->Name = L"chkVertexColor";
-			this->chkVertexColor->Size = System::Drawing::Size(192, 28);
+			this->chkVertexColor->Size = System::Drawing::Size(81, 19);
 			this->chkVertexColor->TabIndex = 17;
 			this->chkVertexColor->Text = L"Vertex Color";
 			this->tipMain->SetToolTip(this->chkVertexColor, L"$vertexcolor");
@@ -585,9 +617,9 @@ namespace VTFEdit
 			// chkNoDecal
 			// 
 			this->chkNoDecal->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoDecal->Location = System::Drawing::Point(10, 268);
+			this->chkNoDecal->Location = System::Drawing::Point(167, 111);
 			this->chkNoDecal->Name = L"chkNoDecal";
-			this->chkNoDecal->Size = System::Drawing::Size(192, 27);
+			this->chkNoDecal->Size = System::Drawing::Size(66, 19);
 			this->chkNoDecal->TabIndex = 13;
 			this->chkNoDecal->Text = L"No Decal";
 			this->tipMain->SetToolTip(this->chkNoDecal, L"$nodecal");
@@ -595,9 +627,9 @@ namespace VTFEdit
 			// chkNoLOD
 			// 
 			this->chkNoLOD->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoLOD->Location = System::Drawing::Point(270, 129);
+			this->chkNoLOD->Location = System::Drawing::Point(167, 129);
 			this->chkNoLOD->Name = L"chkNoLOD";
-			this->chkNoLOD->Size = System::Drawing::Size(192, 28);
+			this->chkNoLOD->Size = System::Drawing::Size(62, 19);
 			this->chkNoLOD->TabIndex = 14;
 			this->chkNoLOD->Text = L"No LOD";
 			this->tipMain->SetToolTip(this->chkNoLOD, L"$nolod");
@@ -605,9 +637,9 @@ namespace VTFEdit
 			// chkAlphaTest
 			// 
 			this->chkAlphaTest->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkAlphaTest->Location = System::Drawing::Point(10, 157);
+			this->chkAlphaTest->Location = System::Drawing::Point(6, 110);
 			this->chkAlphaTest->Name = L"chkAlphaTest";
-			this->chkAlphaTest->Size = System::Drawing::Size(192, 28);
+			this->chkAlphaTest->Size = System::Drawing::Size(75, 20);
 			this->chkAlphaTest->TabIndex = 9;
 			this->chkAlphaTest->Text = L"Alpha Test";
 			this->tipMain->SetToolTip(this->chkAlphaTest, L"$alphatest");
@@ -615,39 +647,19 @@ namespace VTFEdit
 			// chkNoCull
 			// 
 			this->chkNoCull->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkNoCull->Location = System::Drawing::Point(10, 240);
+			this->chkNoCull->Location = System::Drawing::Point(167, 92);
 			this->chkNoCull->Name = L"chkNoCull";
-			this->chkNoCull->Size = System::Drawing::Size(192, 28);
+			this->chkNoCull->Size = System::Drawing::Size(57, 19);
 			this->chkNoCull->TabIndex = 12;
 			this->chkNoCull->Text = L"No Cull";
 			this->tipMain->SetToolTip(this->chkNoCull, L"$nocull");
 			// 
-			// chkEnviromentMapSaturation
-			// 
-			this->chkEnviromentMapSaturation->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapSaturation->Location = System::Drawing::Point(10, 212);
-			this->chkEnviromentMapSaturation->Name = L"chkEnviromentMapSaturation";
-			this->chkEnviromentMapSaturation->Size = System::Drawing::Size(234, 28);
-			this->chkEnviromentMapSaturation->TabIndex = 11;
-			this->chkEnviromentMapSaturation->Text = L"Enviroment Map Saturation";
-			this->tipMain->SetToolTip(this->chkEnviromentMapSaturation, L"$envmapsaturation");
-			// 
-			// chkEnviromentMapContrast
-			// 
-			this->chkEnviromentMapContrast->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkEnviromentMapContrast->Location = System::Drawing::Point(10, 185);
-			this->chkEnviromentMapContrast->Name = L"chkEnviromentMapContrast";
-			this->chkEnviromentMapContrast->Size = System::Drawing::Size(215, 27);
-			this->chkEnviromentMapContrast->TabIndex = 10;
-			this->chkEnviromentMapContrast->Text = L"Enviroment Map Contrast";
-			this->tipMain->SetToolTip(this->chkEnviromentMapContrast, L"$envmapcontrast");
-			// 
 			// chkAdditive
 			// 
 			this->chkAdditive->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkAdditive->Location = System::Drawing::Point(10, 129);
+			this->chkAdditive->Location = System::Drawing::Point(6, 129);
 			this->chkAdditive->Name = L"chkAdditive";
-			this->chkAdditive->Size = System::Drawing::Size(192, 28);
+			this->chkAdditive->Size = System::Drawing::Size(66, 19);
 			this->chkAdditive->TabIndex = 8;
 			this->chkAdditive->Text = L"Additive";
 			this->tipMain->SetToolTip(this->chkAdditive, L"$additive");
@@ -655,134 +667,103 @@ namespace VTFEdit
 			// chkTranslucent
 			// 
 			this->chkTranslucent->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkTranslucent->Location = System::Drawing::Point(270, 157);
+			this->chkTranslucent->Location = System::Drawing::Point(6, 91);
 			this->chkTranslucent->Name = L"chkTranslucent";
-			this->chkTranslucent->Size = System::Drawing::Size(192, 28);
+			this->chkTranslucent->Size = System::Drawing::Size(81, 20);
 			this->chkTranslucent->TabIndex = 15;
 			this->chkTranslucent->Text = L"Translucent";
 			this->tipMain->SetToolTip(this->chkTranslucent, L"$translucent");
 			// 
-			// txtKeywords
-			// 
-			this->txtKeywords->Location = System::Drawing::Point(115, 102);
-			this->txtKeywords->Name = L"txtKeywords";
-			this->txtKeywords->Size = System::Drawing::Size(347, 26);
-			this->txtKeywords->TabIndex = 7;
-			this->tipMain->SetToolTip(this->txtKeywords, L"%keywords");
-			// 
 			// lblKeywords
 			// 
 			this->lblKeywords->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblKeywords->Location = System::Drawing::Point(10, 102);
+			this->lblKeywords->Location = System::Drawing::Point(6, 74);
 			this->lblKeywords->Name = L"lblKeywords";
-			this->lblKeywords->Size = System::Drawing::Size(105, 26);
+			this->lblKeywords->Size = System::Drawing::Size(66, 18);
 			this->lblKeywords->TabIndex = 6;
 			this->lblKeywords->Text = L"Keywords:";
 			// 
 			// cboSurface2
 			// 
 			this->cboSurface2->Items->AddRange(gcnew cli::array< System::Object^  >(126) {
-				L"Advisor_shield", L"Alienflesh", L"Antlion", L"Antlion_eggshell", L"Antlionsand",
-				L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh",
-				L"Boulder", L"Brakingrubbertire", L"Brick", L"Canister", L"Cardboard",
-				L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink",
-				L"Chainsaw", L"Clay", L"Combine_glass", L"Combine_metal", L"Computer",
-				L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar",
-				L"Default", L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh",
-				L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf", L"Fryingpan",
-				L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass",
-				L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
-				L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire",
-				L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel",
-				L"Metal_bouncy", L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel",
-				L"Metalvehicle", L"Metalvent", L"Mud", L"No_decal", L"Paintcan",
-				L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic",
-				L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant", L"Player", L"Player_control_clip",
-				L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand",
-				L"Rock", L"Roller", L"Rubber", L"Rubbertire", L"Sand",
-				L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
-				L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide",
-				L"Slipperyslime", L"Snow", L"Solidmetal", L"Strider", L"Strongman_bell",
-				L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade",
-				L"Water", L"Watermelon", L"Weapon", L"Wet", L"Wood",
-				L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity",
-				L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
+				L"Advisor_shield", L"Alienflesh", L"Antlion",
+					L"Antlion_eggshell", L"Antlionsand", L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh", L"Boulder", L"Brakingrubbertire",
+					L"Brick", L"Canister", L"Cardboard", L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink", L"Chainsaw", L"Clay",
+					L"Combine_glass", L"Combine_metal", L"Computer", L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar", L"Default",
+					L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh", L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf",
+					L"Fryingpan", L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass", L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
+					L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire", L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel", L"Metal_bouncy",
+					L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel", L"Metalvehicle", L"Metalvent", L"Mud",
+					L"No_decal", L"Paintcan", L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic", L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant",
+					L"Player", L"Player_control_clip", L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand", L"Rock", L"Roller", L"Rubber",
+					L"Rubbertire", L"Sand", L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
+					L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide", L"Slipperyslime", L"Snow",
+					L"Solidmetal", L"Strider", L"Strongman_bell", L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade", L"Water", L"Watermelon",
+					L"Weapon", L"Wet", L"Wood", L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity", L"Wood_Panel",
+					L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
 			});
-			this->cboSurface2->Location = System::Drawing::Point(115, 74);
+			this->cboSurface2->Location = System::Drawing::Point(72, 51);
 			this->cboSurface2->Name = L"cboSurface2";
-			this->cboSurface2->Size = System::Drawing::Size(347, 28);
+			this->cboSurface2->Size = System::Drawing::Size(217, 21);
 			this->cboSurface2->TabIndex = 5;
 			this->tipMain->SetToolTip(this->cboSurface2, L"$surfaceprop2");
 			// 
 			// lblSurface2
 			// 
 			this->lblSurface2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblSurface2->Location = System::Drawing::Point(10, 74);
+			this->lblSurface2->Location = System::Drawing::Point(6, 55);
 			this->lblSurface2->Name = L"lblSurface2";
-			this->lblSurface2->Size = System::Drawing::Size(105, 26);
+			this->lblSurface2->Size = System::Drawing::Size(66, 17);
 			this->lblSurface2->TabIndex = 4;
 			this->lblSurface2->Text = L"Surface 2:";
 			// 
 			// cboSurface1
 			// 
 			this->cboSurface1->Items->AddRange(gcnew cli::array< System::Object^  >(126) {
-				L"Advisor_shield", L"Alienflesh", L"Antlion", L"Antlion_eggshell", L"Antlionsand",
-				L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh",
-				L"Boulder", L"Brakingrubbertire", L"Brick", L"Canister", L"Cardboard",
-				L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink",
-				L"Chainsaw", L"Clay", L"Combine_glass", L"Combine_metal", L"Computer",
-				L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar",
-				L"Default", L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh",
-				L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf", L"Fryingpan",
-				L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass",
-				L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
-				L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire",
-				L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel",
-				L"Metal_bouncy", L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel",
-				L"Metalvehicle", L"Metalvent", L"Mud", L"No_decal", L"Paintcan",
-				L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic",
-				L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant", L"Player", L"Player_control_clip",
-				L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand",
-				L"Rock", L"Roller", L"Rubber", L"Rubbertire", L"Sand",
-				L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
-				L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide",
-				L"Slipperyslime", L"Snow", L"Solidmetal", L"Strider", L"Strongman_bell",
-				L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade",
-				L"Water", L"Watermelon", L"Weapon", L"Wet", L"Wood",
-				L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity",
-				L"Wood_Panel", L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
+				L"Advisor_shield", L"Alienflesh", L"Antlion",
+					L"Antlion_eggshell", L"Antlionsand", L"Armorflesh", L"Bat", L"Blade", L"Blockbullets", L"Bloodyflesh", L"Boulder", L"Brakingrubbertire",
+					L"Brick", L"Canister", L"Cardboard", L"Carpet", L"Cavern_rock", L"Ceiling_tile", L"Chain", L"Chainlink", L"Chainsaw", L"Clay",
+					L"Combine_glass", L"Combine_metal", L"Computer", L"Concrete", L"Concrete_block", L"Cricketbat", L"Crowbar", L"Crowbar", L"Default",
+					L"Default_silent", L"Dirt", L"Fireaxe", L"Flesh", L"Floating_metal_barrel", L"Floatingstandable", L"Foliage", L"Foliage_leaf",
+					L"Fryingpan", L"Glass", L"Glassbottle", L"Glassfloor", L"Golfclub", L"Grass", L"Gravel", L"Gravel", L"Grenade", L"Guitar", L"Gunship",
+					L"Hunter", L"Ice", L"Item", L"Jalopy", L"Jalopytire", L"Jeeptire", L"Ladder", L"Metal", L"Metal_Box", L"Metal_barrel", L"Metal_bouncy",
+					L"Metal_sand_barrel", L"Metal_seafloorcar", L"Metal_shield", L"Metalgrate", L"Metalpanel", L"Metalvehicle", L"Metalvent", L"Mud",
+					L"No_decal", L"Paintcan", L"Paper", L"Papercup", L"Pitchfork", L"Plaster", L"Plastic", L"Plastic_Box", L"Plastic_barrel", L"Plastic_barrel_buoyant",
+					L"Player", L"Player_control_clip", L"Popcan", L"Porcelain", L"Pottery", L"Puddle", L"Quicksand", L"Rock", L"Roller", L"Rubber",
+					L"Rubbertire", L"Sand", L"Sheetrock", L"Shovel", L"Slidingrubbertire", L"Slidingrubbertire_front", L"Slidingrubbertire_jalopyfront",
+					L"Slidingrubbertire_jalopyrear", L"Slidingrubbertire_rear", L"Slime", L"Slipperymetal", L"Slipperyslide", L"Slipperyslime", L"Snow",
+					L"Solidmetal", L"Strider", L"Strongman_bell", L"Sugarcane", L"Sword", L"Tile", L"Upholstery", L"Wade", L"Water", L"Watermelon",
+					L"Weapon", L"Wet", L"Wood", L"Wood_Box", L"Wood_Crate", L"Wood_Dense", L"Wood_Furniture", L"Wood_LowDensity", L"Wood_Panel",
+					L"Wood_Plank", L"Wood_Solid", L"Woodladder", L"Zombieflesh"
 			});
-			this->cboSurface1->Location = System::Drawing::Point(115, 46);
+			this->cboSurface1->Location = System::Drawing::Point(72, 31);
 			this->cboSurface1->Name = L"cboSurface1";
-			this->cboSurface1->Size = System::Drawing::Size(347, 28);
+			this->cboSurface1->Size = System::Drawing::Size(217, 21);
 			this->cboSurface1->TabIndex = 3;
 			this->tipMain->SetToolTip(this->cboSurface1, L"$surfaceprop");
 			// 
 			// lblSurface1
 			// 
 			this->lblSurface1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblSurface1->Location = System::Drawing::Point(10, 46);
+			this->lblSurface1->Location = System::Drawing::Point(6, 35);
 			this->lblSurface1->Name = L"lblSurface1";
-			this->lblSurface1->Size = System::Drawing::Size(105, 27);
+			this->lblSurface1->Size = System::Drawing::Size(66, 19);
 			this->lblSurface1->TabIndex = 2;
 			this->lblSurface1->Text = L"Surface 1:";
 			// 
 			// cboShader
 			// 
 			this->cboShader->Items->AddRange(gcnew cli::array< System::Object^  >(43) {
-				L"Aftershock", L"Cable", L"Character", L"Core", L"DecalModulate",
-				L"DepthOfField", L"Engine_Post", L"EyeRefract", L"Eyes", L"LensFX",
-				L"LightmappedGeneric", L"LightmappedReflective", L"LightmappedTwoTexture", L"Lightmapped_4WayBlend", L"Modulate",
-				L"MonitorScreen", L"MotionBlur", L"Multiblend", L"PaintBlob", L"ParallaxTest",
-				L"Pyro_vision", L"RGBFilmGrain", L"Refract", L"Screenspace_general", L"Shadow",
-				L"Sky", L"SolidEnergy", L"SplineRope", L"SpriteCard", L"Subrect",
-				L"Suppression", L"SurfaceGGX", L"Teeth", L"UnlitGeneric", L"UnlitTwoTexture",
-				L"VertexLitGeneric", L"VolumeCloud", L"VortWarp", L"Water", L"WindowImposter",
-				L"WorldGGX", L"WorldTwoTextureBlend", L"WorldVertexTransition"
+				L"Aftershock", L"Cable", L"Character", L"Core",
+					L"DecalModulate", L"DepthOfField", L"Engine_Post", L"EyeRefract", L"Eyes", L"LensFX", L"LightmappedGeneric", L"LightmappedReflective",
+					L"LightmappedTwoTexture", L"Lightmapped_4WayBlend", L"Modulate", L"MonitorScreen", L"MotionBlur", L"Multiblend", L"PaintBlob",
+					L"ParallaxTest", L"Pyro_vision", L"RGBFilmGrain", L"Refract", L"Screenspace_general", L"Shadow", L"Sky", L"SolidEnergy", L"SplineRope",
+					L"SpriteCard", L"Subrect", L"Suppression", L"SurfaceGGX", L"Teeth", L"UnlitGeneric", L"UnlitTwoTexture", L"VertexLitGeneric",
+					L"VolumeCloud", L"VortWarp", L"Water", L"WindowImposter", L"WorldGGX", L"WorldTwoTextureBlend", L"WorldVertexTransition"
 			});
-			this->cboShader->Location = System::Drawing::Point(115, 18);
+			this->cboShader->Location = System::Drawing::Point(72, 12);
 			this->cboShader->Name = L"cboShader";
-			this->cboShader->Size = System::Drawing::Size(347, 28);
+			this->cboShader->Size = System::Drawing::Size(217, 21);
 			this->cboShader->TabIndex = 1;
 			this->cboShader->Text = L"LightmappedGeneric";
 			this->cboShader->TextChanged += gcnew System::EventHandler(this, &CVMTCreate::cboShader_TextChanged);
@@ -790,9 +771,9 @@ namespace VTFEdit
 			// lblShader
 			// 
 			this->lblShader->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblShader->Location = System::Drawing::Point(10, 18);
+			this->lblShader->Location = System::Drawing::Point(6, 16);
 			this->lblShader->Name = L"lblShader";
-			this->lblShader->Size = System::Drawing::Size(105, 27);
+			this->lblShader->Size = System::Drawing::Size(66, 19);
 			this->lblShader->TabIndex = 0;
 			this->lblShader->Text = L"Shader:";
 			// 
@@ -800,9 +781,9 @@ namespace VTFEdit
 			// 
 			this->btnClose->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClose->Location = System::Drawing::Point(432, 366);
+			this->btnClose->Location = System::Drawing::Point(270, 244);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(96, 27);
+			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 2;
 			this->btnClose->Text = L"&Close";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClose_Click);
@@ -810,9 +791,9 @@ namespace VTFEdit
 			// btnCreate
 			// 
 			this->btnCreate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnCreate->Location = System::Drawing::Point(330, 366);
+			this->btnCreate->Location = System::Drawing::Point(206, 244);
 			this->btnCreate->Name = L"btnCreate";
-			this->btnCreate->Size = System::Drawing::Size(96, 27);
+			this->btnCreate->Size = System::Drawing::Size(60, 22);
 			this->btnCreate->TabIndex = 1;
 			this->btnCreate->Text = L"C&reate";
 			this->btnCreate->Click += gcnew System::EventHandler(this, &CVMTCreate::btnCreate_Click);
@@ -820,9 +801,9 @@ namespace VTFEdit
 			// btnClear
 			// 
 			this->btnClear->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClear->Location = System::Drawing::Point(24, 366);
+			this->btnClear->Location = System::Drawing::Point(4, 244);
 			this->btnClear->Name = L"btnClear";
-			this->btnClear->Size = System::Drawing::Size(96, 27);
+			this->btnClear->Size = System::Drawing::Size(60, 22);
 			this->btnClear->TabIndex = 3;
 			this->btnClear->Text = L"C&lear";
 			this->btnClear->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClear_Click);
@@ -835,9 +816,9 @@ namespace VTFEdit
 			// CVMTCreate
 			// 
 			this->AcceptButton = this->btnCreate;
-			this->AutoScaleBaseSize = System::Drawing::Size(8, 19);
+			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
 			this->CancelButton = this->btnClose;
-			this->ClientSize = System::Drawing::Size(540, 405);
+			this->ClientSize = System::Drawing::Size(334, 270);
 			this->Controls->Add(this->btnClear);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnCreate);
@@ -897,14 +878,14 @@ namespace VTFEdit
 
 			this->chkAdditive->Checked = false;
 			this->chkAlphaTest->Checked = false;
-			this->chkEnviromentMapContrast->Checked = false;
-			this->chkEnviromentMapSaturation->Checked = false;
 			this->chkNoCull->Checked = false;
 			this->chkNoDecal->Checked = false;
 			this->chkNoLOD->Checked = false;
 			this->chkTranslucent->Checked = false;
 			this->chkVertexAlpha->Checked = false;
 			this->chkVertexColor->Checked = false;
+			this->chkModel->Checked = false;
+			this->chkDecal->Checked = false;
 		}
 
 		private: System::Void txtTexture_Leave(System::Object ^  sender, System::EventArgs ^  e)
@@ -1051,14 +1032,14 @@ namespace VTFEdit
 
 			this->AddVMTBooleanNode(VMTFile, "$additive", this->chkAdditive->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$alphatest", this->chkAlphaTest->Checked, false);
-			this->AddVMTBooleanNode(VMTFile, "$envmapcontrast", this->chkEnviromentMapContrast->Checked, false);
-			this->AddVMTBooleanNode(VMTFile, "$envmapsaturation", this->chkEnviromentMapSaturation->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nocull", this->chkNoCull->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nodecal", this->chkNoDecal->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$nolod", this->chkNoLOD->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$translucent", this->chkTranslucent->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$vertexalpha", this->chkVertexAlpha->Checked, false);
 			this->AddVMTBooleanNode(VMTFile, "$vertexcolor", this->chkVertexColor->Checked, false);
+			this->AddVMTBooleanNode(VMTFile, "$model", this->chkModel->Checked, false);
+			this->AddVMTBooleanNode(VMTFile, "$decal", this->chkDecal->Checked, false);
 
 			cTemp = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(this->dlgSaveVMTFile->FileName).ToPointer();
 			VMTFile.Save(cTemp);
@@ -1071,5 +1052,7 @@ namespace VTFEdit
 		}
 	private: System::Void grpOptions_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void txtNormalTexture_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

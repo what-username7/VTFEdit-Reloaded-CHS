@@ -117,9 +117,9 @@ namespace VTFEdit
 			// 
 			this->btnOptions->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->btnOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnOptions->Location = System::Drawing::Point(6, 336);
+			this->btnOptions->Location = System::Drawing::Point(6, 334);
 			this->btnOptions->Name = L"btnOptions";
-			this->btnOptions->Size = System::Drawing::Size(60, 18);
+			this->btnOptions->Size = System::Drawing::Size(60, 22);
 			this->btnOptions->TabIndex = 5;
 			this->btnOptions->Text = L"&Options";
 			this->btnOptions->Click += gcnew System::EventHandler(this, &CBatchConvert::btnOptions_Click);
@@ -132,7 +132,7 @@ namespace VTFEdit
 			this->grpProgress->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpProgress->Location = System::Drawing::Point(6, 127);
 			this->grpProgress->Name = L"grpProgress";
-			this->grpProgress->Size = System::Drawing::Size(372, 37);
+			this->grpProgress->Size = System::Drawing::Size(372, 41);
 			this->grpProgress->TabIndex = 3;
 			this->grpProgress->TabStop = false;
 			this->grpProgress->Text = L"Progress:";
@@ -141,7 +141,7 @@ namespace VTFEdit
 			// 
 			this->barProgress->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->barProgress->Location = System::Drawing::Point(6, 12);
+			this->barProgress->Location = System::Drawing::Point(6, 16);
 			this->barProgress->Name = L"barProgress";
 			this->barProgress->Size = System::Drawing::Size(360, 19);
 			this->barProgress->TabIndex = 0;
@@ -151,9 +151,9 @@ namespace VTFEdit
 			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnClose->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnClose->Location = System::Drawing::Point(318, 336);
+			this->btnClose->Location = System::Drawing::Point(318, 334);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(60, 18);
+			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 1;
 			this->btnClose->Text = L"&Close";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CBatchConvert::btnClose_Click);
@@ -163,9 +163,9 @@ namespace VTFEdit
 			this->btnConvert->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnConvert->Enabled = false;
 			this->btnConvert->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnConvert->Location = System::Drawing::Point(252, 336);
+			this->btnConvert->Location = System::Drawing::Point(252, 334);
 			this->btnConvert->Name = L"btnConvert";
-			this->btnConvert->Size = System::Drawing::Size(60, 18);
+			this->btnConvert->Size = System::Drawing::Size(60, 22);
 			this->btnConvert->TabIndex = 0;
 			this->btnConvert->Text = L"Con&vert";
 			this->btnConvert->Click += gcnew System::EventHandler(this, &CBatchConvert::btnConvert_Click);
@@ -200,9 +200,9 @@ namespace VTFEdit
 			this->cboFromVTFFormat->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cboFromVTFFormat->Enabled = false;
 			this->cboFromVTFFormat->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"bmp", L"jpg", L"png", L"tga" });
-			this->cboFromVTFFormat->Location = System::Drawing::Point(41, 68);
+			this->cboFromVTFFormat->Location = System::Drawing::Point(41, 67);
 			this->cboFromVTFFormat->Name = L"cboFromVTFFormat";
-			this->cboFromVTFFormat->Size = System::Drawing::Size(36, 21);
+			this->cboFromVTFFormat->Size = System::Drawing::Size(59, 21);
 			this->cboFromVTFFormat->TabIndex = 9;
 			this->cboFromVTFFormat->SelectedIndexChanged += gcnew System::EventHandler(this, &CBatchConvert::cboFromVTFFormat_SelectedIndexChanged);
 			// 
@@ -219,7 +219,7 @@ namespace VTFEdit
 			// 
 			this->txtFromVTFFilter->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->txtFromVTFFilter->Location = System::Drawing::Point(106, 70);
+			this->txtFromVTFFilter->Location = System::Drawing::Point(106, 68);
 			this->txtFromVTFFilter->Name = L"txtFromVTFFilter";
 			this->txtFromVTFFilter->ReadOnly = true;
 			this->txtFromVTFFilter->Size = System::Drawing::Size(236, 20);
@@ -243,7 +243,7 @@ namespace VTFEdit
 			// 
 			this->txtToVTFFilter->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->txtToVTFFilter->Location = System::Drawing::Point(106, 51);
+			this->txtToVTFFilter->Location = System::Drawing::Point(106, 50);
 			this->txtToVTFFilter->Name = L"txtToVTFFilter";
 			this->txtToVTFFilter->Size = System::Drawing::Size(236, 20);
 			this->txtToVTFFilter->TabIndex = 7;
@@ -256,9 +256,9 @@ namespace VTFEdit
 			this->chkRecursive->Checked = true;
 			this->chkRecursive->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->chkRecursive->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkRecursive->Location = System::Drawing::Point(146, 88);
+			this->chkRecursive->Location = System::Drawing::Point(106, 90);
 			this->chkRecursive->Name = L"chkRecursive";
-			this->chkRecursive->Size = System::Drawing::Size(72, 19);
+			this->chkRecursive->Size = System::Drawing::Size(66, 19);
 			this->chkRecursive->TabIndex = 11;
 			this->chkRecursive->Text = L"&Recursive";
 			this->tipMain->SetToolTip(this->chkRecursive, L"Include subdirectories.");
@@ -268,9 +268,9 @@ namespace VTFEdit
 			this->chkCreateVMTFiles->Checked = true;
 			this->chkCreateVMTFiles->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->chkCreateVMTFiles->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkCreateVMTFiles->Location = System::Drawing::Point(222, 88);
+			this->chkCreateVMTFiles->Location = System::Drawing::Point(178, 90);
 			this->chkCreateVMTFiles->Name = L"chkCreateVMTFiles";
-			this->chkCreateVMTFiles->Size = System::Drawing::Size(101, 19);
+			this->chkCreateVMTFiles->Size = System::Drawing::Size(100, 19);
 			this->chkCreateVMTFiles->TabIndex = 12;
 			this->chkCreateVMTFiles->Text = L"Create &VMT Files";
 			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"Generate .vmt files for .vtf files. Ouput folder should be a material folder.");
@@ -300,7 +300,7 @@ namespace VTFEdit
 			// lblOutputFolder
 			// 
 			this->lblOutputFolder->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblOutputFolder->Location = System::Drawing::Point(6, 31);
+			this->lblOutputFolder->Location = System::Drawing::Point(6, 34);
 			this->lblOutputFolder->Name = L"lblOutputFolder";
 			this->lblOutputFolder->Size = System::Drawing::Size(105, 19);
 			this->lblOutputFolder->TabIndex = 3;
@@ -331,7 +331,7 @@ namespace VTFEdit
 			// lblWADFile
 			// 
 			this->lblWADFile->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblWADFile->Location = System::Drawing::Point(6, 12);
+			this->lblWADFile->Location = System::Drawing::Point(6, 15);
 			this->lblWADFile->Name = L"lblWADFile";
 			this->lblWADFile->Size = System::Drawing::Size(60, 19);
 			this->lblWADFile->TabIndex = 0;
@@ -357,10 +357,10 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtLog->DetectUrls = false;
-			this->txtLog->Location = System::Drawing::Point(6, 12);
+			this->txtLog->Location = System::Drawing::Point(6, 14);
 			this->txtLog->Name = L"txtLog";
 			this->txtLog->ReadOnly = true;
-			this->txtLog->Size = System::Drawing::Size(360, 141);
+			this->txtLog->Size = System::Drawing::Size(360, 139);
 			this->txtLog->TabIndex = 0;
 			this->txtLog->Text = L"";
 			// 
