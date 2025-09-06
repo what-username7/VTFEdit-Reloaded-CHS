@@ -349,10 +349,9 @@ namespace VTFEdit
 			this->btnFileSystemDelete = (gcnew System::Windows::Forms::MenuItem());
 			this->tabImage = (gcnew System::Windows::Forms::TabPage());
 			this->grpImage = (gcnew System::Windows::Forms::GroupBox());
+			this->btnAnimate = (gcnew System::Windows::Forms::Button());
 			this->lblAlpha = (gcnew System::Windows::Forms::Label());
 			this->lblAlphaLabel = (gcnew System::Windows::Forms::Label());
-			this->mnuHDR = (gcnew System::Windows::Forms::ContextMenu());
-			this->btnHDRReset = (gcnew System::Windows::Forms::MenuItem());
 			this->lblSlice = (gcnew System::Windows::Forms::Label());
 			this->numSlice = (gcnew System::Windows::Forms::NumericUpDown());
 			this->lblMipmap = (gcnew System::Windows::Forms::Label());
@@ -361,11 +360,14 @@ namespace VTFEdit
 			this->lblFace = (gcnew System::Windows::Forms::Label());
 			this->numFrame = (gcnew System::Windows::Forms::NumericUpDown());
 			this->lblFrame = (gcnew System::Windows::Forms::Label());
-			this->btnAnimate = (gcnew System::Windows::Forms::Button());
 			this->grpFlags = (gcnew System::Windows::Forms::GroupBox());
 			this->lstFlags = (gcnew System::Windows::Forms::CheckedListBox());
 			this->tabInfo = (gcnew System::Windows::Forms::TabPage());
 			this->grpImageInfo = (gcnew System::Windows::Forms::GroupBox());
+			this->lblHDRKey = (gcnew System::Windows::Forms::Label());
+			this->trkHDRExposure = (gcnew System::Windows::Forms::TrackBar());
+			this->mnuHDR = (gcnew System::Windows::Forms::ContextMenu());
+			this->btnHDRReset = (gcnew System::Windows::Forms::MenuItem());
 			this->lblImageSlices = (gcnew System::Windows::Forms::Label());
 			this->lblImageSlicesLabel = (gcnew System::Windows::Forms::Label());
 			this->numImageBumpmapScale = (gcnew System::Windows::Forms::NumericUpDown());
@@ -455,8 +457,6 @@ namespace VTFEdit
 			this->imgTool = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->splSidebar = (gcnew System::Windows::Forms::Splitter());
 			this->dlgExtractDirectoryItem = (gcnew System::Windows::Forms::FolderBrowserDialog());
-			this->lblHDRKey = (gcnew System::Windows::Forms::Label());
-			this->trkHDRExposure = (gcnew System::Windows::Forms::TrackBar());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pnlFileName))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pnlInfo1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pnlInfo2))->BeginInit();
@@ -474,6 +474,7 @@ namespace VTFEdit
 			this->grpFlags->SuspendLayout();
 			this->tabInfo->SuspendLayout();
 			this->grpImageInfo->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkHDRExposure))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numImageBumpmapScale))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numImageStartFrame))->BeginInit();
 			this->grpThumbnailInfo->SuspendLayout();
@@ -487,7 +488,6 @@ namespace VTFEdit
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTR))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTL))->BeginInit();
 			this->toolStripView->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkHDRExposure))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// mnuMain
@@ -505,20 +505,20 @@ namespace VTFEdit
 					this->btnClose, this->btnFileSpace1, this->btnSave, this->btnSaveAs, this->btnFileSpace2, this->btnImport, this->btnExport, this->btnExportAll,
 					this->btnFileSpace3, this->btnRecentFiles, this->btnFileSpace4, this->btnExit
 			});
-			this->btnFileMenu->Text = L"&File";
+			this->btnFileMenu->Text = L"&文件";
 			// 
 			// btnNew
 			// 
 			this->btnNew->Index = 0;
 			this->btnNew->Shortcut = System::Windows::Forms::Shortcut::CtrlN;
-			this->btnNew->Text = L"&New";
+			this->btnNew->Text = L"&新建";
 			this->btnNew->Click += gcnew System::EventHandler(this, &CVTFEdit::btnNew_Click);
 			// 
 			// btnOpen
 			// 
 			this->btnOpen->Index = 1;
 			this->btnOpen->Shortcut = System::Windows::Forms::Shortcut::CtrlO;
-			this->btnOpen->Text = L"&Open";
+			this->btnOpen->Text = L"&打开";
 			this->btnOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::btnOpen_Click);
 			// 
 			// btnClose
@@ -526,7 +526,7 @@ namespace VTFEdit
 			this->btnClose->Enabled = false;
 			this->btnClose->Index = 2;
 			this->btnClose->Shortcut = System::Windows::Forms::Shortcut::CtrlQ;
-			this->btnClose->Text = L"&Close";
+			this->btnClose->Text = L"&关闭";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CVTFEdit::btnClose_Click);
 			// 
 			// btnFileSpace1
@@ -539,7 +539,7 @@ namespace VTFEdit
 			this->btnSave->Enabled = false;
 			this->btnSave->Index = 4;
 			this->btnSave->Shortcut = System::Windows::Forms::Shortcut::CtrlS;
-			this->btnSave->Text = L"&Save";
+			this->btnSave->Text = L"&保存";
 			this->btnSave->Click += gcnew System::EventHandler(this, &CVTFEdit::btnSave_Click);
 			// 
 			// btnSaveAs
@@ -547,7 +547,7 @@ namespace VTFEdit
 			this->btnSaveAs->Enabled = false;
 			this->btnSaveAs->Index = 5;
 			this->btnSaveAs->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftS;
-			this->btnSaveAs->Text = L"Save &As...";
+			this->btnSaveAs->Text = L"另存&为...";
 			this->btnSaveAs->Click += gcnew System::EventHandler(this, &CVTFEdit::btnSaveAs_Click);
 			// 
 			// btnFileSpace2
@@ -559,7 +559,7 @@ namespace VTFEdit
 			// 
 			this->btnImport->Index = 7;
 			this->btnImport->Shortcut = System::Windows::Forms::Shortcut::CtrlI;
-			this->btnImport->Text = L"&Import";
+			this->btnImport->Text = L"&导入";
 			this->btnImport->Click += gcnew System::EventHandler(this, &CVTFEdit::btnImport_Click);
 			// 
 			// btnExport
@@ -567,7 +567,7 @@ namespace VTFEdit
 			this->btnExport->Enabled = false;
 			this->btnExport->Index = 8;
 			this->btnExport->Shortcut = System::Windows::Forms::Shortcut::CtrlE;
-			this->btnExport->Text = L"&Export";
+			this->btnExport->Text = L"&导出";
 			this->btnExport->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExport_Click);
 			// 
 			// btnExportAll
@@ -575,7 +575,7 @@ namespace VTFEdit
 			this->btnExportAll->Enabled = false;
 			this->btnExportAll->Index = 9;
 			this->btnExportAll->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftE;
-			this->btnExportAll->Text = L"&Export All";
+			this->btnExportAll->Text = L"&导出全部";
 			this->btnExportAll->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExportAll_Click);
 			// 
 			// btnFileSpace3
@@ -586,7 +586,7 @@ namespace VTFEdit
 			// btnRecentFiles
 			// 
 			this->btnRecentFiles->Index = 11;
-			this->btnRecentFiles->Text = L"&Recent Files";
+			this->btnRecentFiles->Text = L"&最近的文件";
 			this->btnRecentFiles->Visible = false;
 			// 
 			// btnFileSpace4
@@ -599,21 +599,21 @@ namespace VTFEdit
 			// 
 			this->btnExit->Index = 13;
 			this->btnExit->Shortcut = System::Windows::Forms::Shortcut::AltF4;
-			this->btnExit->Text = L"E&xit";
+			this->btnExit->Text = L"退&出";
 			this->btnExit->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExit_Click);
 			// 
 			// btnEditMenu
 			// 
 			this->btnEditMenu->Index = 1;
 			this->btnEditMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(2) { this->btnCopy, this->btnPaste });
-			this->btnEditMenu->Text = L"&Edit";
+			this->btnEditMenu->Text = L"&编辑";
 			// 
 			// btnCopy
 			// 
 			this->btnCopy->Enabled = false;
 			this->btnCopy->Index = 0;
 			this->btnCopy->Shortcut = System::Windows::Forms::Shortcut::CtrlC;
-			this->btnCopy->Text = L"&Copy";
+			this->btnCopy->Text = L"&复制";
 			this->btnCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::btnCopy_Click);
 			// 
 			// btnPaste
@@ -621,7 +621,7 @@ namespace VTFEdit
 			this->btnPaste->Enabled = false;
 			this->btnPaste->Index = 1;
 			this->btnPaste->Shortcut = System::Windows::Forms::Shortcut::CtrlV;
-			this->btnPaste->Text = L"&Paste";
+			this->btnPaste->Text = L"&粘贴";
 			this->btnPaste->Click += gcnew System::EventHandler(this, &CVTFEdit::btnPaste_Click);
 			// 
 			// btnViewMenu
@@ -631,7 +631,7 @@ namespace VTFEdit
 				this->btnChannelMenu, this->btnMask,
 					this->btnTile
 			});
-			this->btnViewMenu->Text = L"&View";
+			this->btnViewMenu->Text = L"&视图";
 			// 
 			// btnChannelMenu
 			// 
@@ -640,7 +640,7 @@ namespace VTFEdit
 				this->btnChannelRGB,
 					this->btnChannelR, this->btnChannelG, this->btnChannelB, this->btnChannelA
 			});
-			this->btnChannelMenu->Text = L"&Channel";
+			this->btnChannelMenu->Text = L"&通道";
 			// 
 			// btnChannelRGB
 			// 
@@ -687,14 +687,14 @@ namespace VTFEdit
 			// 
 			this->btnMask->Index = 1;
 			this->btnMask->Shortcut = System::Windows::Forms::Shortcut::CtrlW;
-			this->btnMask->Text = L"&Mask";
+			this->btnMask->Text = L"&遮罩";
 			this->btnMask->Click += gcnew System::EventHandler(this, &CVTFEdit::btnMask_Click);
 			// 
 			// btnTile
 			// 
 			this->btnTile->Index = 2;
 			this->btnTile->Shortcut = System::Windows::Forms::Shortcut::CtrlT;
-			this->btnTile->Text = L"&Tile";
+			this->btnTile->Text = L"&平铺";
 			this->btnTile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnTile_Click);
 			// 
 			// btnToolsMenu
@@ -704,24 +704,24 @@ namespace VTFEdit
 				this->btnCreateVMTFile,
 					this->btnConvertFolder, this->btnConvertWADFile
 			});
-			this->btnToolsMenu->Text = L"&Tools";
+			this->btnToolsMenu->Text = L"&工具";
 			// 
 			// btnCreateVMTFile
 			// 
 			this->btnCreateVMTFile->Index = 0;
-			this->btnCreateVMTFile->Text = L"Create &VMT File";
+			this->btnCreateVMTFile->Text = L"创建 &VMT 文件";
 			this->btnCreateVMTFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnCreateVMTFile_Click);
 			// 
 			// btnConvertFolder
 			// 
 			this->btnConvertFolder->Index = 1;
-			this->btnConvertFolder->Text = L"Convert &Folder";
+			this->btnConvertFolder->Text = L"转换&文件夹";
 			this->btnConvertFolder->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertFolder_Click);
 			// 
 			// btnConvertWADFile
 			// 
 			this->btnConvertWADFile->Index = 2;
-			this->btnConvertWADFile->Text = L"Convert &WAD File";
+			this->btnConvertWADFile->Text = L"转换 &WAD 文件";
 			this->btnConvertWADFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertWADFile_Click);
 			// 
 			// btnOptionsMenu
@@ -731,12 +731,12 @@ namespace VTFEdit
 				this->btnAutoCreateVMTFile,
 					this->btnOptionsSpace1, this->btnFileMapping, this->btnVolatileAccess
 			});
-			this->btnOptionsMenu->Text = L"&Options";
+			this->btnOptionsMenu->Text = L"&选项";
 			// 
 			// btnAutoCreateVMTFile
 			// 
 			this->btnAutoCreateVMTFile->Index = 0;
-			this->btnAutoCreateVMTFile->Text = L"&Auto Create VMT File";
+			this->btnAutoCreateVMTFile->Text = L"&自动创建 VMT 文件";
 			this->btnAutoCreateVMTFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAutoCreateVMTFile_Click);
 			// 
 			// btnOptionsSpace1
@@ -747,7 +747,7 @@ namespace VTFEdit
 			// btnFileMapping
 			// 
 			this->btnFileMapping->Index = 2;
-			this->btnFileMapping->Text = L"File &Mapping";
+			this->btnFileMapping->Text = L"文件&映射";
 			this->btnFileMapping->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileMapping_Click);
 			// 
 			// btnVolatileAccess
@@ -760,19 +760,18 @@ namespace VTFEdit
 			// 
 			this->btnHelpMenu->Index = 5;
 			this->btnHelpMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(1) { this->btnAbout });
-			this->btnHelpMenu->Text = L"&Help";
+			this->btnHelpMenu->Text = L"&帮助";
 			// 
 			// btnAbout
 			// 
 			this->btnAbout->Index = 0;
-			this->btnAbout->Text = L"&About";
+			this->btnAbout->Text = L"&关于";
 			this->btnAbout->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAbout_Click);
 			// 
 			// dlgOpenFile
 			// 
-			this->dlgOpenFile->Filter = L"Supported Files (*.vmt;*.vtf)|*.vmt;*.vtf|VMT Files (*.vmt)|*.vmt|VTF File (*.vtf"
-				L")|*.vtf";
-			this->dlgOpenFile->Title = L"Open File";
+			this->dlgOpenFile->Filter = L"支持的文件 (*.vmt;*.vtf)|*.vmt;*.vtf|VMT 文件 (*.vmt)|*.vmt|VTF 文件 (*.vtf)|*.vtf";
+			this->dlgOpenFile->Title = L"打开文件";
 			// 
 			// barStatus
 			// 
@@ -843,7 +842,7 @@ namespace VTFEdit
 			this->tabFileSystem->Name = L"tabFileSystem";
 			this->tabFileSystem->Size = System::Drawing::Size(208, 481);
 			this->tabFileSystem->TabIndex = 2;
-			this->tabFileSystem->Text = L"File System";
+			this->tabFileSystem->Text = L"文件系统";
 			// 
 			// grpGoto
 			// 
@@ -851,12 +850,12 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpGoto->Controls->Add(this->cboGoto);
 			this->grpGoto->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpGoto->Location = System::Drawing::Point(7, 6);
+			this->grpGoto->Location = System::Drawing::Point(7, 3);
 			this->grpGoto->Name = L"grpGoto";
-			this->grpGoto->Size = System::Drawing::Size(198, 39);
+			this->grpGoto->Size = System::Drawing::Size(198, 42);
 			this->grpGoto->TabIndex = 1;
 			this->grpGoto->TabStop = false;
-			this->grpGoto->Text = L"Goto:";
+			this->grpGoto->Text = L"转到:";
 			// 
 			// cboGoto
 			// 
@@ -864,7 +863,7 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->cboGoto->ContextMenu = this->mnuGoto;
 			this->cboGoto->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cboGoto->Location = System::Drawing::Point(7, 12);
+			this->cboGoto->Location = System::Drawing::Point(7, 15);
 			this->cboGoto->Name = L"cboGoto";
 			this->cboGoto->Size = System::Drawing::Size(186, 21);
 			this->cboGoto->TabIndex = 0;
@@ -878,13 +877,13 @@ namespace VTFEdit
 			// btnGotoRemove
 			// 
 			this->btnGotoRemove->Index = 0;
-			this->btnGotoRemove->Text = L"&Remove";
+			this->btnGotoRemove->Text = L"&移除";
 			this->btnGotoRemove->Click += gcnew System::EventHandler(this, &CVTFEdit::btnGotoRemove_Click);
 			// 
 			// btnGotoClear
 			// 
 			this->btnGotoClear->Index = 1;
-			this->btnGotoClear->Text = L"&Clear";
+			this->btnGotoClear->Text = L"&清除";
 			this->btnGotoClear->Click += gcnew System::EventHandler(this, &CVTFEdit::btnGotoClear_Click);
 			// 
 			// grpFileSystem
@@ -899,7 +898,7 @@ namespace VTFEdit
 			this->grpFileSystem->Size = System::Drawing::Size(198, 417);
 			this->grpFileSystem->TabIndex = 0;
 			this->grpFileSystem->TabStop = false;
-			this->grpFileSystem->Text = L"File System:";
+			this->grpFileSystem->Text = L"文件系统:";
 			// 
 			// treFileSystem
 			// 
@@ -908,9 +907,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->treFileSystem->ContextMenu = this->mnuFileSystem;
 			this->treFileSystem->HideSelection = false;
-			this->treFileSystem->Location = System::Drawing::Point(7, 12);
+			this->treFileSystem->Location = System::Drawing::Point(7, 19);
 			this->treFileSystem->Name = L"treFileSystem";
-			this->treFileSystem->Size = System::Drawing::Size(186, 399);
+			this->treFileSystem->Size = System::Drawing::Size(186, 392);
 			this->treFileSystem->TabIndex = 0;
 			this->treFileSystem->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &CVTFEdit::treFileSystem_AfterCollapse);
 			this->treFileSystem->BeforeExpand += gcnew System::Windows::Forms::TreeViewCancelEventHandler(this, &CVTFEdit::treFileSystem_BeforeExpand);
@@ -931,42 +930,42 @@ namespace VTFEdit
 			// 
 			this->btnFileSystemOpen->DefaultItem = true;
 			this->btnFileSystemOpen->Index = 0;
-			this->btnFileSystemOpen->Text = L"&Open";
+			this->btnFileSystemOpen->Text = L"&打开";
 			this->btnFileSystemOpen->Visible = false;
 			this->btnFileSystemOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemOpen_Click);
 			// 
 			// btnFileSystemShellExecute
 			// 
 			this->btnFileSystemShellExecute->Index = 1;
-			this->btnFileSystemShellExecute->Text = L"&Shell Execute";
+			this->btnFileSystemShellExecute->Text = L"&Shell 执行";
 			this->btnFileSystemShellExecute->Visible = false;
 			this->btnFileSystemShellExecute->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemShellExecute_Click);
 			// 
 			// btnFileSystemExtract
 			// 
 			this->btnFileSystemExtract->Index = 2;
-			this->btnFileSystemExtract->Text = L"&Extract";
+			this->btnFileSystemExtract->Text = L"&提取";
 			this->btnFileSystemExtract->Visible = false;
 			this->btnFileSystemExtract->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemExtract_Click);
 			// 
 			// btnFileSystemExpandAll
 			// 
 			this->btnFileSystemExpandAll->Index = 3;
-			this->btnFileSystemExpandAll->Text = L"&Expand All";
+			this->btnFileSystemExpandAll->Text = L"&全部展开";
 			this->btnFileSystemExpandAll->Visible = false;
 			this->btnFileSystemExpandAll->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemExpandAll_Click);
 			// 
 			// btnFileSystemCollapseAll
 			// 
 			this->btnFileSystemCollapseAll->Index = 4;
-			this->btnFileSystemCollapseAll->Text = L"&Collapse All";
+			this->btnFileSystemCollapseAll->Text = L"&全部折叠";
 			this->btnFileSystemCollapseAll->Visible = false;
 			this->btnFileSystemCollapseAll->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemCollapseAll_Click);
 			// 
 			// btnFileSystemMount
 			// 
 			this->btnFileSystemMount->Index = 5;
-			this->btnFileSystemMount->Text = L"&Mount";
+			this->btnFileSystemMount->Text = L"&挂载";
 			this->btnFileSystemMount->Visible = false;
 			this->btnFileSystemMount->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemMount_Click);
 			// 
@@ -979,7 +978,7 @@ namespace VTFEdit
 			// btnFileSystemAddGoto
 			// 
 			this->btnFileSystemAddGoto->Index = 7;
-			this->btnFileSystemAddGoto->Text = L"Add &Goto";
+			this->btnFileSystemAddGoto->Text = L"添加至&转到";
 			this->btnFileSystemAddGoto->Visible = false;
 			this->btnFileSystemAddGoto->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemAddGoto_Click);
 			// 
@@ -992,7 +991,7 @@ namespace VTFEdit
 			// btnFileSystemDelete
 			// 
 			this->btnFileSystemDelete->Index = 9;
-			this->btnFileSystemDelete->Text = L"&Delete";
+			this->btnFileSystemDelete->Text = L"&删除";
 			this->btnFileSystemDelete->Visible = false;
 			this->btnFileSystemDelete->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileSystemDelete_Click);
 			// 
@@ -1004,7 +1003,7 @@ namespace VTFEdit
 			this->tabImage->Name = L"tabImage";
 			this->tabImage->Size = System::Drawing::Size(208, 481);
 			this->tabImage->TabIndex = 0;
-			this->tabImage->Text = L"Image";
+			this->tabImage->Text = L"图片";
 			// 
 			// grpImage
 			// 
@@ -1027,7 +1026,19 @@ namespace VTFEdit
 			this->grpImage->Size = System::Drawing::Size(200, 138);
 			this->grpImage->TabIndex = 0;
 			this->grpImage->TabStop = false;
-			this->grpImage->Text = L"Image:";
+			this->grpImage->Text = L"图片:";
+			// 
+			// btnAnimate
+			// 
+			this->btnAnimate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->btnAnimate->Enabled = false;
+			this->btnAnimate->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->btnAnimate->Location = System::Drawing::Point(6, 112);
+			this->btnAnimate->Name = L"btnAnimate";
+			this->btnAnimate->Size = System::Drawing::Size(189, 21);
+			this->btnAnimate->TabIndex = 14;
+			this->btnAnimate->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAnimate_Click);
 			// 
 			// lblAlpha
 			// 
@@ -1044,23 +1055,13 @@ namespace VTFEdit
 			this->lblAlphaLabel->TabIndex = 15;
 			this->lblAlphaLabel->Text = L"Alpha: ";
 			// 
-			// mnuHDR
-			// 
-			this->mnuHDR->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(1) { this->btnHDRReset });
-			// 
-			// btnHDRReset
-			// 
-			this->btnHDRReset->Index = 0;
-			this->btnHDRReset->Text = L"&Reset";
-			this->btnHDRReset->Click += gcnew System::EventHandler(this, &CVTFEdit::btnHDRReset_Click);
-			// 
 			// lblSlice
 			// 
 			this->lblSlice->Location = System::Drawing::Point(7, 57);
 			this->lblSlice->Name = L"lblSlice";
 			this->lblSlice->Size = System::Drawing::Size(46, 19);
 			this->lblSlice->TabIndex = 4;
-			this->lblSlice->Text = L"Slice:";
+			this->lblSlice->Text = L"切片:";
 			// 
 			// numSlice
 			// 
@@ -1109,7 +1110,7 @@ namespace VTFEdit
 			this->lblFace->Name = L"lblFace";
 			this->lblFace->Size = System::Drawing::Size(60, 19);
 			this->lblFace->TabIndex = 2;
-			this->lblFace->Text = L"Face:";
+			this->lblFace->Text = L"面:";
 			// 
 			// numFrame
 			// 
@@ -1128,19 +1129,7 @@ namespace VTFEdit
 			this->lblFrame->Name = L"lblFrame";
 			this->lblFrame->Size = System::Drawing::Size(46, 17);
 			this->lblFrame->TabIndex = 0;
-			this->lblFrame->Text = L"Frame:";
-			// 
-			// btnAnimate
-			// 
-			this->btnAnimate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->btnAnimate->Enabled = false;
-			this->btnAnimate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnAnimate->Location = System::Drawing::Point(6, 112);
-			this->btnAnimate->Name = L"btnAnimate";
-			this->btnAnimate->Size = System::Drawing::Size(189, 21);
-			this->btnAnimate->TabIndex = 14;
-			this->btnAnimate->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAnimate_Click);
+			this->lblFrame->Text = L"帧:";
 			// 
 			// grpFlags
 			// 
@@ -1154,7 +1143,7 @@ namespace VTFEdit
 			this->grpFlags->Size = System::Drawing::Size(195, 328);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
-			this->grpFlags->Text = L"Flags:";
+			this->grpFlags->Text = L"属性:";
 			// 
 			// lstFlags
 			// 
@@ -1170,6 +1159,7 @@ namespace VTFEdit
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->TabStop = false;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
+			this->lstFlags->SelectedIndexChanged += gcnew System::EventHandler(this, &CVTFEdit::lstFlags_SelectedIndexChanged);
 			// 
 			// tabInfo
 			// 
@@ -1180,7 +1170,7 @@ namespace VTFEdit
 			this->tabInfo->Name = L"tabInfo";
 			this->tabInfo->Size = System::Drawing::Size(208, 481);
 			this->tabInfo->TabIndex = 1;
-			this->tabInfo->Text = L"Info";
+			this->tabInfo->Text = L"信息";
 			// 
 			// grpImageInfo
 			// 
@@ -1214,7 +1204,36 @@ namespace VTFEdit
 			this->grpImageInfo->Size = System::Drawing::Size(198, 243);
 			this->grpImageInfo->TabIndex = 1;
 			this->grpImageInfo->TabStop = false;
-			this->grpImageInfo->Text = L"Image Info:";
+			this->grpImageInfo->Text = L"图片信息:";
+			// 
+			// lblHDRKey
+			// 
+			this->lblHDRKey->Location = System::Drawing::Point(7, 214);
+			this->lblHDRKey->Name = L"lblHDRKey";
+			this->lblHDRKey->Size = System::Drawing::Size(60, 19);
+			this->lblHDRKey->TabIndex = 20;
+			this->lblHDRKey->Text = L"曝光:";
+			// 
+			// trkHDRExposure
+			// 
+			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->trkHDRExposure->AutoSize = false;
+			this->trkHDRExposure->ContextMenu = this->mnuHDR;
+			this->trkHDRExposure->Location = System::Drawing::Point(68, 214);
+			this->trkHDRExposure->Name = L"trkHDRExposure";
+			this->trkHDRExposure->Size = System::Drawing::Size(116, 16);
+			this->trkHDRExposure->TabIndex = 21;
+			// 
+			// mnuHDR
+			// 
+			this->mnuHDR->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(1) { this->btnHDRReset });
+			// 
+			// btnHDRReset
+			// 
+			this->btnHDRReset->Index = 0;
+			this->btnHDRReset->Text = L"&重置";
+			this->btnHDRReset->Click += gcnew System::EventHandler(this, &CVTFEdit::btnHDRReset_Click);
 			// 
 			// lblImageSlices
 			// 
@@ -1231,7 +1250,7 @@ namespace VTFEdit
 			this->lblImageSlicesLabel->Name = L"lblImageSlicesLabel";
 			this->lblImageSlicesLabel->Size = System::Drawing::Size(46, 18);
 			this->lblImageSlicesLabel->TabIndex = 12;
-			this->lblImageSlicesLabel->Text = L"Slices:";
+			this->lblImageSlicesLabel->Text = L"切片:";
 			// 
 			// numImageBumpmapScale
 			// 
@@ -1267,7 +1286,7 @@ namespace VTFEdit
 			this->lblImageReflectivityLabel->Name = L"lblImageReflectivityLabel";
 			this->lblImageReflectivityLabel->Size = System::Drawing::Size(65, 18);
 			this->lblImageReflectivityLabel->TabIndex = 18;
-			this->lblImageReflectivityLabel->Text = L"Reflectivity:";
+			this->lblImageReflectivityLabel->Text = L"反射率:";
 			// 
 			// lblImageBumpmapScaleLabel
 			// 
@@ -1275,7 +1294,7 @@ namespace VTFEdit
 			this->lblImageBumpmapScaleLabel->Name = L"lblImageBumpmapScaleLabel";
 			this->lblImageBumpmapScaleLabel->Size = System::Drawing::Size(57, 17);
 			this->lblImageBumpmapScaleLabel->TabIndex = 16;
-			this->lblImageBumpmapScaleLabel->Text = L"Bumpmap:";
+			this->lblImageBumpmapScaleLabel->Text = L"凹凸面:";
 			// 
 			// lblImageStartFrameLabel
 			// 
@@ -1283,7 +1302,7 @@ namespace VTFEdit
 			this->lblImageStartFrameLabel->Name = L"lblImageStartFrameLabel";
 			this->lblImageStartFrameLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageStartFrameLabel->TabIndex = 8;
-			this->lblImageStartFrameLabel->Text = L"Start:";
+			this->lblImageStartFrameLabel->Text = L"开始:";
 			// 
 			// lblImageMipmaps
 			// 
@@ -1317,7 +1336,7 @@ namespace VTFEdit
 			this->lblImageFacesLabel->Name = L"lblImageFacesLabel";
 			this->lblImageFacesLabel->Size = System::Drawing::Size(46, 18);
 			this->lblImageFacesLabel->TabIndex = 10;
-			this->lblImageFacesLabel->Text = L"Faces:";
+			this->lblImageFacesLabel->Text = L"面数:";
 			// 
 			// lblImageFrames
 			// 
@@ -1334,7 +1353,7 @@ namespace VTFEdit
 			this->lblImageFramesLabel->Name = L"lblImageFramesLabel";
 			this->lblImageFramesLabel->Size = System::Drawing::Size(46, 17);
 			this->lblImageFramesLabel->TabIndex = 6;
-			this->lblImageFramesLabel->Text = L"Frames:";
+			this->lblImageFramesLabel->Text = L"帧数:";
 			// 
 			// lblImageFormat
 			// 
@@ -1351,7 +1370,7 @@ namespace VTFEdit
 			this->lblImageFormatLabel->Name = L"lblImageFormatLabel";
 			this->lblImageFormatLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageFormatLabel->TabIndex = 4;
-			this->lblImageFormatLabel->Text = L"Format:";
+			this->lblImageFormatLabel->Text = L"格式:";
 			// 
 			// lblImageHeight
 			// 
@@ -1368,7 +1387,7 @@ namespace VTFEdit
 			this->lblImageHeightLabel->Name = L"lblImageHeightLabel";
 			this->lblImageHeightLabel->Size = System::Drawing::Size(46, 19);
 			this->lblImageHeightLabel->TabIndex = 2;
-			this->lblImageHeightLabel->Text = L"Height:";
+			this->lblImageHeightLabel->Text = L"高度:";
 			// 
 			// lblImageWidth
 			// 
@@ -1385,7 +1404,7 @@ namespace VTFEdit
 			this->lblImageWidthLabel->Name = L"lblImageWidthLabel";
 			this->lblImageWidthLabel->Size = System::Drawing::Size(46, 17);
 			this->lblImageWidthLabel->TabIndex = 0;
-			this->lblImageWidthLabel->Text = L"Width:";
+			this->lblImageWidthLabel->Text = L"宽度:";
 			// 
 			// grpThumbnailInfo
 			// 
@@ -1403,7 +1422,7 @@ namespace VTFEdit
 			this->grpThumbnailInfo->Size = System::Drawing::Size(198, 82);
 			this->grpThumbnailInfo->TabIndex = 2;
 			this->grpThumbnailInfo->TabStop = false;
-			this->grpThumbnailInfo->Text = L"Thumbnail Info:";
+			this->grpThumbnailInfo->Text = L"缩略图信息:";
 			// 
 			// lblThumbnailFormat
 			// 
@@ -1420,7 +1439,7 @@ namespace VTFEdit
 			this->lblThumbnailFormatLabel->Name = L"lblThumbnailFormatLabel";
 			this->lblThumbnailFormatLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailFormatLabel->TabIndex = 4;
-			this->lblThumbnailFormatLabel->Text = L"Format:";
+			this->lblThumbnailFormatLabel->Text = L"格式:";
 			// 
 			// lblThumbnailHeight
 			// 
@@ -1437,7 +1456,7 @@ namespace VTFEdit
 			this->lblThumbnailHeightLabel->Name = L"lblThumbnailHeightLabel";
 			this->lblThumbnailHeightLabel->Size = System::Drawing::Size(46, 19);
 			this->lblThumbnailHeightLabel->TabIndex = 2;
-			this->lblThumbnailHeightLabel->Text = L"Height:";
+			this->lblThumbnailHeightLabel->Text = L"高度:";
 			// 
 			// lblThumbnailWidth
 			// 
@@ -1454,7 +1473,7 @@ namespace VTFEdit
 			this->lblThumbnailWidthLabel->Name = L"lblThumbnailWidthLabel";
 			this->lblThumbnailWidthLabel->Size = System::Drawing::Size(46, 17);
 			this->lblThumbnailWidthLabel->TabIndex = 0;
-			this->lblThumbnailWidthLabel->Text = L"Width:";
+			this->lblThumbnailWidthLabel->Text = L"宽度:";
 			// 
 			// grpFileInfo
 			// 
@@ -1470,7 +1489,7 @@ namespace VTFEdit
 			this->grpFileInfo->Size = System::Drawing::Size(198, 64);
 			this->grpFileInfo->TabIndex = 0;
 			this->grpFileInfo->TabStop = false;
-			this->grpFileInfo->Text = L"File Info:";
+			this->grpFileInfo->Text = L"文件信息:";
 			// 
 			// lblFileSize
 			// 
@@ -1487,7 +1506,7 @@ namespace VTFEdit
 			this->lblFileSizeLabel->Name = L"lblFileSizeLabel";
 			this->lblFileSizeLabel->Size = System::Drawing::Size(46, 19);
 			this->lblFileSizeLabel->TabIndex = 2;
-			this->lblFileSizeLabel->Text = L"Size:";
+			this->lblFileSizeLabel->Text = L"尺寸:";
 			// 
 			// lblFileVersion
 			// 
@@ -1504,7 +1523,7 @@ namespace VTFEdit
 			this->lblFileVersionLabel->Name = L"lblFileVersionLabel";
 			this->lblFileVersionLabel->Size = System::Drawing::Size(46, 17);
 			this->lblFileVersionLabel->TabIndex = 0;
-			this->lblFileVersionLabel->Text = L"Version:";
+			this->lblFileVersionLabel->Text = L"版本:";
 			// 
 			// tabResources
 			// 
@@ -1514,7 +1533,7 @@ namespace VTFEdit
 			this->tabResources->Name = L"tabResources";
 			this->tabResources->Size = System::Drawing::Size(208, 481);
 			this->tabResources->TabIndex = 3;
-			this->tabResources->Text = L"Resources";
+			this->tabResources->Text = L"资源";
 			// 
 			// grpResources
 			// 
@@ -1528,16 +1547,16 @@ namespace VTFEdit
 			this->grpResources->Size = System::Drawing::Size(198, 422);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
-			this->grpResources->Text = L"Resources:";
+			this->grpResources->Text = L"资源:";
 			// 
 			// treResources
 			// 
 			this->treResources->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->treResources->Location = System::Drawing::Point(7, 12);
+			this->treResources->Location = System::Drawing::Point(7, 19);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(186, 404);
+			this->treResources->Size = System::Drawing::Size(186, 397);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
@@ -1552,7 +1571,7 @@ namespace VTFEdit
 			this->grpResourceInfo->Size = System::Drawing::Size(198, 44);
 			this->grpResourceInfo->TabIndex = 1;
 			this->grpResourceInfo->TabStop = false;
-			this->grpResourceInfo->Text = L"Resource Info:";
+			this->grpResourceInfo->Text = L"资源信息:";
 			// 
 			// lblResourceCount
 			// 
@@ -1569,7 +1588,7 @@ namespace VTFEdit
 			this->lblResourceCountLabel->Name = L"lblResourceCountLabel";
 			this->lblResourceCountLabel->Size = System::Drawing::Size(61, 17);
 			this->lblResourceCountLabel->TabIndex = 0;
-			this->lblResourceCountLabel->Text = L"Resources:";
+			this->lblResourceCountLabel->Text = L"资源:";
 			// 
 			// tmrAnimate
 			// 
@@ -1578,13 +1597,13 @@ namespace VTFEdit
 			// 
 			// dlgSaveVTFFile
 			// 
-			this->dlgSaveVTFFile->Filter = L"VTF Files (*.vtf)|*.vtf";
-			this->dlgSaveVTFFile->Title = L"Save VTF File";
+			this->dlgSaveVTFFile->Filter = L"VTF 文件 (*.vtf)|*.vtf";
+			this->dlgSaveVTFFile->Title = L"保存 VTF 文件";
 			// 
 			// dlgSaveVMTFile
 			// 
-			this->dlgSaveVMTFile->Filter = L"VMT Files (*.vmt)|*.vmt";
-			this->dlgSaveVMTFile->Title = L"Save VMT File";
+			this->dlgSaveVMTFile->Filter = L"VMT 文件 (*.vmt)|*.vmt";
+			this->dlgSaveVMTFile->Title = L"保存 VMT 文件";
 			// 
 			// pnlMain
 			// 
@@ -1626,13 +1645,13 @@ namespace VTFEdit
 			// btnVTFFileZoomIn
 			// 
 			this->btnVTFFileZoomIn->Index = 0;
-			this->btnVTFFileZoomIn->Text = L"Zoom &In";
+			this->btnVTFFileZoomIn->Text = L"放&大";
 			this->btnVTFFileZoomIn->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVTFFileZoomIn_Click);
 			// 
 			// btnVTFFileZoomOut
 			// 
 			this->btnVTFFileZoomOut->Index = 1;
-			this->btnVTFFileZoomOut->Text = L"Zoom &Out";
+			this->btnVTFFileZoomOut->Text = L"缩&小";
 			this->btnVTFFileZoomOut->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVTFFileZoomOut_Click);
 			// 
 			// btnVTFFileSpace1
@@ -1643,7 +1662,7 @@ namespace VTFEdit
 			// btnVTFFileZoomReset
 			// 
 			this->btnVTFFileZoomReset->Index = 3;
-			this->btnVTFFileZoomReset->Text = L"&Reset";
+			this->btnVTFFileZoomReset->Text = L"&重置";
 			this->btnVTFFileZoomReset->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVTFFileZoomReset_Click);
 			// 
 			// btnVTFFileSpace2
@@ -1654,7 +1673,7 @@ namespace VTFEdit
 			// btnVTFFileCopy
 			// 
 			this->btnVTFFileCopy->Index = 5;
-			this->btnVTFFileCopy->Text = L"&Copy";
+			this->btnVTFFileCopy->Text = L"&复制";
 			this->btnVTFFileCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVTFFileCopy_Click);
 			// 
 			// picVTFFileBL
@@ -1730,7 +1749,7 @@ namespace VTFEdit
 			// 
 			this->btnVMTFileUndo->Enabled = false;
 			this->btnVMTFileUndo->Index = 0;
-			this->btnVMTFileUndo->Text = L"&Undo";
+			this->btnVMTFileUndo->Text = L"&撤消";
 			this->btnVMTFileUndo->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileUndo_Click);
 			// 
 			// btnVMTFileSpace1
@@ -1742,28 +1761,28 @@ namespace VTFEdit
 			// 
 			this->btnVMTFileCut->Enabled = false;
 			this->btnVMTFileCut->Index = 2;
-			this->btnVMTFileCut->Text = L"&Cut";
+			this->btnVMTFileCut->Text = L"&剪切";
 			this->btnVMTFileCut->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileCut_Click);
 			// 
 			// btnVMTFileCopy
 			// 
 			this->btnVMTFileCopy->Enabled = false;
 			this->btnVMTFileCopy->Index = 3;
-			this->btnVMTFileCopy->Text = L"&Copy";
+			this->btnVMTFileCopy->Text = L"&复制";
 			this->btnVMTFileCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileCopy_Click);
 			// 
 			// btnVMTFilePaste
 			// 
 			this->btnVMTFilePaste->Enabled = false;
 			this->btnVMTFilePaste->Index = 4;
-			this->btnVMTFilePaste->Text = L"&Paste";
+			this->btnVMTFilePaste->Text = L"&粘贴";
 			this->btnVMTFilePaste->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFilePaste_Click);
 			// 
 			// btnVMTFileDelete
 			// 
 			this->btnVMTFileDelete->Enabled = false;
 			this->btnVMTFileDelete->Index = 5;
-			this->btnVMTFileDelete->Text = L"&Delete";
+			this->btnVMTFileDelete->Text = L"&删除";
 			this->btnVMTFileDelete->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileDelete_Click);
 			// 
 			// btnVMTFileSpace2
@@ -1775,7 +1794,7 @@ namespace VTFEdit
 			// 
 			this->btnVMTFileSelectAll->Enabled = false;
 			this->btnVMTFileSelectAll->Index = 7;
-			this->btnVMTFileSelectAll->Text = L"Select &All";
+			this->btnVMTFileSelectAll->Text = L"选择 &全部";
 			this->btnVMTFileSelectAll->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVMTFileSelectAll_Click);
 			// 
 			// btnVMTFileSpace3
@@ -1821,6 +1840,7 @@ namespace VTFEdit
 			this->toolStripView->Size = System::Drawing::Size(784, 43);
 			this->toolStripView->TabIndex = 6;
 			this->toolStripView->Text = L"toolStpView";
+			this->toolStripView->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &CVTFEdit::toolStripView_ItemClicked);
 			// 
 			// toolStripOpen
 			// 
@@ -1831,7 +1851,7 @@ namespace VTFEdit
 			this->toolStripOpen->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripOpen->Name = L"toolStripOpen";
 			this->toolStripOpen->Size = System::Drawing::Size(40, 40);
-			this->toolStripOpen->Text = L"Open";
+			this->toolStripOpen->Text = L"打开";
 			this->toolStripOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripOpen_Click);
 			// 
 			// toolStripClose
@@ -1844,8 +1864,8 @@ namespace VTFEdit
 			this->toolStripClose->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripClose->Name = L"toolStripClose";
 			this->toolStripClose->Size = System::Drawing::Size(40, 40);
-			this->toolStripClose->Text = L"Close";
-			this->toolStripClose->ToolTipText = L"Close";
+			this->toolStripClose->Text = L"关闭";
+			this->toolStripClose->ToolTipText = L"关闭";
 			this->toolStripClose->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripClose_Click);
 			// 
 			// toolStripImport
@@ -1857,7 +1877,7 @@ namespace VTFEdit
 			this->toolStripImport->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripImport->Name = L"toolStripImport";
 			this->toolStripImport->Size = System::Drawing::Size(40, 40);
-			this->toolStripImport->Text = L"Import";
+			this->toolStripImport->Text = L"导入";
 			this->toolStripImport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripImport_Click);
 			// 
 			// toolStripExport
@@ -1870,7 +1890,7 @@ namespace VTFEdit
 			this->toolStripExport->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripExport->Name = L"toolStripExport";
 			this->toolStripExport->Size = System::Drawing::Size(40, 40);
-			this->toolStripExport->Text = L"Export";
+			this->toolStripExport->Text = L"导出";
 			this->toolStripExport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripExport_Click);
 			// 
 			// toolStripSave
@@ -1883,7 +1903,7 @@ namespace VTFEdit
 			this->toolStripSave->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripSave->Name = L"toolStripSave";
 			this->toolStripSave->Size = System::Drawing::Size(40, 40);
-			this->toolStripSave->Text = L"Save";
+			this->toolStripSave->Text = L"保存";
 			this->toolStripSave->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripSave_Click);
 			// 
 			// toolStripCopy
@@ -1896,7 +1916,7 @@ namespace VTFEdit
 			this->toolStripCopy->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripCopy->Name = L"toolStripCopy";
 			this->toolStripCopy->Size = System::Drawing::Size(40, 40);
-			this->toolStripCopy->Text = L"Copy";
+			this->toolStripCopy->Text = L"复制";
 			this->toolStripCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripCopy_Click);
 			// 
 			// toolStripPaste
@@ -1909,7 +1929,7 @@ namespace VTFEdit
 			this->toolStripPaste->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripPaste->Name = L"toolStripPaste";
 			this->toolStripPaste->Size = System::Drawing::Size(40, 40);
-			this->toolStripPaste->Text = L"Paste";
+			this->toolStripPaste->Text = L"粘贴";
 			this->toolStripPaste->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripPaste_Click);
 			// 
 			// toolStripSeparator2
@@ -1929,8 +1949,8 @@ namespace VTFEdit
 			this->toolStripRGB->ImageTransparentColor = System::Drawing::Color::SpringGreen;
 			this->toolStripRGB->Name = L"toolStripRGB";
 			this->toolStripRGB->Size = System::Drawing::Size(40, 40);
-			this->toolStripRGB->Text = L"Red Green and Blue Channels";
-			this->toolStripRGB->ToolTipText = L"Red Green and Blue Channels";
+			this->toolStripRGB->Text = L"Red Green 和 Blue 通道";
+			this->toolStripRGB->ToolTipText = L"Red Green 和 Blue 通道";
 			this->toolStripRGB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripRGB_Click);
 			// 
 			// toolStripR
@@ -1944,8 +1964,8 @@ namespace VTFEdit
 			this->toolStripR->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripR->Name = L"toolStripR";
 			this->toolStripR->Size = System::Drawing::Size(40, 40);
-			this->toolStripR->Text = L"Red Channel";
-			this->toolStripR->ToolTipText = L"Red Channel";
+			this->toolStripR->Text = L"Red 通道";
+			this->toolStripR->ToolTipText = L"Red 通道";
 			this->toolStripR->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripR_Click);
 			// 
 			// toolStripG
@@ -1959,8 +1979,8 @@ namespace VTFEdit
 			this->toolStripG->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripG->Name = L"toolStripG";
 			this->toolStripG->Size = System::Drawing::Size(40, 40);
-			this->toolStripG->Text = L"Green Channel";
-			this->toolStripG->ToolTipText = L"Green Channel";
+			this->toolStripG->Text = L"Green 通道";
+			this->toolStripG->ToolTipText = L"Green 通道";
 			this->toolStripG->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripG_Click);
 			// 
 			// toolStripB
@@ -1974,8 +1994,8 @@ namespace VTFEdit
 			this->toolStripB->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripB->Name = L"toolStripB";
 			this->toolStripB->Size = System::Drawing::Size(40, 40);
-			this->toolStripB->Text = L"Blue Channel";
-			this->toolStripB->ToolTipText = L"Blue Channel";
+			this->toolStripB->Text = L"Blue 通道";
+			this->toolStripB->ToolTipText = L"Blue 通道";
 			this->toolStripB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripB_Click);
 			// 
 			// toolStripA
@@ -1989,8 +2009,8 @@ namespace VTFEdit
 			this->toolStripA->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripA->Name = L"toolStripA";
 			this->toolStripA->Size = System::Drawing::Size(40, 40);
-			this->toolStripA->Text = L"Alpha Channel";
-			this->toolStripA->ToolTipText = L"Alpha Channel";
+			this->toolStripA->Text = L"Alpha 通道";
+			this->toolStripA->ToolTipText = L"Alpha 通道";
 			this->toolStripA->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripA_Click);
 			// 
 			// toolStripSeparator3
@@ -2009,8 +2029,8 @@ namespace VTFEdit
 			this->toolStripMask->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripMask->Name = L"toolStripMask";
 			this->toolStripMask->Size = System::Drawing::Size(40, 40);
-			this->toolStripMask->Text = L"Toggle Alpha Mask";
-			this->toolStripMask->ToolTipText = L"Toggle Alpha Mask";
+			this->toolStripMask->Text = L"切换 Alpha 遮罩";
+			this->toolStripMask->ToolTipText = L"切换 Alpha 遮罩";
 			this->toolStripMask->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripMask_Click);
 			// 
 			// toolStripTile
@@ -2024,22 +2044,22 @@ namespace VTFEdit
 			this->toolStripTile->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripTile->Name = L"toolStripTile";
 			this->toolStripTile->Size = System::Drawing::Size(40, 40);
-			this->toolStripTile->Text = L"Toggle Image Tiling";
-			this->toolStripTile->ToolTipText = L"Toggle Image Tiling";
+			this->toolStripTile->Text = L"切换图像平铺";
+			this->toolStripTile->ToolTipText = L"切换图像平铺";
 			this->toolStripTile->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripTile_Click);
 			// 
 			// dlgImportFile
 			// 
 			this->dlgImportFile->Filter = resources->GetString(L"dlgImportFile.Filter");
 			this->dlgImportFile->Multiselect = true;
-			this->dlgImportFile->Title = L"Import File";
+			this->dlgImportFile->Title = L"导入文件";
 			// 
 			// dlgExportFile
 			// 
-			this->dlgExportFile->Filter = L"BMP Files (*.bmp)|*.bmp|JPEG Files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG Files (*.png)|"
-				L"*.png|TGA Files (*.tga)|*.tga";
+			this->dlgExportFile->Filter = L"BMP 文件 (*.bmp)|*.bmp|JPEG 文件 (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG 文件 (*.png)|*.png|TGA"
+				L" 文件 (*.tga)|*.tga";
 			this->dlgExportFile->FilterIndex = 4;
-			this->dlgExportFile->Title = L"Export File";
+			this->dlgExportFile->Title = L"导出文件";
 			// 
 			// imgTool
 			// 
@@ -2065,26 +2085,7 @@ namespace VTFEdit
 			// 
 			// dlgExtractDirectoryItem
 			// 
-			this->dlgExtractDirectoryItem->Description = L"Extract directory item to:";
-			// 
-			// lblHDRKey
-			// 
-			this->lblHDRKey->Location = System::Drawing::Point(7, 214);
-			this->lblHDRKey->Name = L"lblHDRKey";
-			this->lblHDRKey->Size = System::Drawing::Size(60, 19);
-			this->lblHDRKey->TabIndex = 20;
-			this->lblHDRKey->Text = L"Exposure:";
-			// 
-			// trkHDRExposure
-			// 
-			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->trkHDRExposure->AutoSize = false;
-			this->trkHDRExposure->ContextMenu = this->mnuHDR;
-			this->trkHDRExposure->Location = System::Drawing::Point(68, 214);
-			this->trkHDRExposure->Name = L"trkHDRExposure";
-			this->trkHDRExposure->Size = System::Drawing::Size(116, 16);
-			this->trkHDRExposure->TabIndex = 21;
+			this->dlgExtractDirectoryItem->Description = L"将目录项目提取到:";
 			// 
 			// CVTFEdit
 			// 
@@ -2123,6 +2124,7 @@ namespace VTFEdit
 			this->grpFlags->ResumeLayout(false);
 			this->tabInfo->ResumeLayout(false);
 			this->grpImageInfo->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkHDRExposure))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numImageBumpmapScale))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numImageStartFrame))->EndInit();
 			this->grpThumbnailInfo->ResumeLayout(false);
@@ -2137,7 +2139,6 @@ namespace VTFEdit
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picVTFFileTL))->EndInit();
 			this->toolStripView->ResumeLayout(false);
 			this->toolStripView->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkHDRExposure))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -2245,7 +2246,7 @@ namespace VTFEdit
 
 					this->Text = gcnew System::String(DirectoryItem->GetName());
 
-					this->ImageIndex = this->DirectoryItemInfoManager->GetFolderTypeInfo("Folder")->IconIndex;
+					this->ImageIndex = this->DirectoryItemInfoManager->GetFolderTypeInfo("文件夹")->IconIndex;
 					this->SelectedImageIndex = this->ImageIndex;
 
 					// Add a dummy node so we can expand the node.
@@ -2522,7 +2523,7 @@ namespace VTFEdit
 				}
 				else
 				{
-					this->ImageIndex = this->DirectoryItemInfoManager->GetFolderTypeInfo("Folder")->IconIndex;
+					this->ImageIndex = this->DirectoryItemInfoManager->GetFolderTypeInfo("文件夹")->IconIndex;
 				}
 				this->SelectedImageIndex = this->ImageIndex;
 
@@ -3365,7 +3366,7 @@ namespace VTFEdit
 				this->lblAlpha->Text = "Eight Bit Alpha";
 			}
 			else {
-				this->lblAlpha->Text = "None";
+				this->lblAlpha->Text = "无";
 			}
 
 			this->lstFlags->BeginUpdate();
@@ -3440,32 +3441,32 @@ namespace VTFEdit
 			{
 				vlUInt uiResource = VTFFile->GetResourceType(i);
 
-				System::String ^sName = "Unknown";
+				System::String ^sName = "未知";
 				switch(uiResource)
 				{
 				case VTF_LEGACY_RSRC_LOW_RES_IMAGE:
-					sName = "Thumbnail Image";
+					sName = "缩略图";
 					break;
 				case VTF_LEGACY_RSRC_IMAGE:
-					sName = "Image";
+					sName = "图片";
 					break;
 				case VTF_RSRC_SHEET:
 					sName = "Sheet";
 					break;
 				case VTF_RSRC_CRC:
-					sName = "Cyclic Redundancy Check";
+					sName = "循环冗余校验";
 					break;
 				case VTF_RSRC_TEXTURE_LOD_SETTINGS:
-					sName = "LOD Settings";
+					sName = "LOD 设置";
 					break;
 				case VTF_RSRC_TEXTURE_SETTINGS_EX:
-					sName = "Extended Texture Settings";
+					sName = "扩展纹理设置";
 					break;
 				case VTF_RSRC_KEY_VALUE_DATA:
-					sName = "Key/Value Data";
+					sName = "键/值数据";
 					break;
 				default:
-					sName = "Unknown";
+					sName = "未知";
 					break;
 				}
 
@@ -3501,11 +3502,11 @@ namespace VTFEdit
 				default:
 					if(lpData && uiSize == sizeof(vlUInt))
 					{
-						pNode->Nodes->Add(System::String::Concat("Data: 0x", (*(vlUInt *)lpData).ToString("X8")));
+						pNode->Nodes->Add(System::String::Concat("数据: 0x", (*(vlUInt *)lpData).ToString("X8")));
 					}
 					else
 					{
-						pNode->Nodes->Add(System::String::Concat("Size: ", uiSize.ToString("#,##0"), " B"));
+						pNode->Nodes->Add(System::String::Concat("尺寸: ", uiSize.ToString("#,##0"), " B"));
 					}
 					break;
 				}
@@ -3620,7 +3621,7 @@ namespace VTFEdit
 
 			if (!bResult)
 			{
-				MessageBox::Show(System::String::Concat("Error parsing VMT:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(System::String::Concat("解析 VMT 出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 
 			return bResult != 0;
@@ -3695,7 +3696,7 @@ namespace VTFEdit
 				{
 					delete VTFFile;
 
-					MessageBox::Show(System::String::Concat("Error loading VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("加载 VTF 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 			else if(sFileName->ToLower()->EndsWith(".vmt"))
@@ -3712,7 +3713,7 @@ namespace VTFEdit
 					{
 						delete VMTFile;
 
-						MessageBox::Show(System::String::Concat("Error loading VMT texture:\n\n", e->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+						MessageBox::Show(System::String::Concat("加载 VMT 纹理时出错:\n\n", e->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 						return;
 					}
 
@@ -3741,7 +3742,7 @@ namespace VTFEdit
 				{
 					delete VMTFile;
 
-					MessageBox::Show(System::String::Concat("Error loading VMT texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("加载 VMT 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 		}
@@ -3774,7 +3775,7 @@ namespace VTFEdit
 				}
 				else
 				{
-					MessageBox::Show(System::String::Concat("Error saving VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("保存 VTF 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 			else if(this->VMTFile != 0)
@@ -3804,7 +3805,7 @@ namespace VTFEdit
 				}
 				catch(Exception ^e)
 				{
-					MessageBox::Show(System::String::Concat("Error saving VMT texture:\n\n", e->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("保存 VMT 纹理错误:\n\n", e->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 		}
@@ -3872,7 +3873,7 @@ namespace VTFEdit
 								delete VTFFile;
 								VTFFile = 0;
 
-								MessageBox::Show("Error loading image:\n\nAll frames and faces must be the same size.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+								MessageBox::Show("加载图像出错:\n\n所有帧和面的尺寸必须相同.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 
 								break;
 							}
@@ -3887,7 +3888,7 @@ namespace VTFEdit
 						delete VTFFile;
 						VTFFile = 0;
 
-						MessageBox::Show("Error converting image.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+						MessageBox::Show("图像转换错误.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 
 						break;
 					}
@@ -3897,7 +3898,7 @@ namespace VTFEdit
 					delete VTFFile;
 					VTFFile = 0;
 
-					MessageBox::Show("Error loading image.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show("加载图像出错.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 
 					break;
 				}
@@ -3941,7 +3942,7 @@ namespace VTFEdit
 				{
 					delete VTFFile;
 
-					MessageBox::Show(System::String::Concat("Error creating VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("创建 VTF 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 
@@ -3983,7 +3984,7 @@ namespace VTFEdit
 
 			if(!(ilTexImage(uiWidth, uiHeight, 1, 4, IL_RGBA, IL_UNSIGNED_BYTE, lpImageData) && ilSaveImage(cPath)))
 			{
-				MessageBox::Show("Error saving image.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("保存图像出错.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 
 			delete []lpImageData;
@@ -4042,7 +4043,7 @@ namespace VTFEdit
 						sprintf(cInsert, "_%.2u_%.2u_%.2u%s", i, j, k, cExt);
 						if(!(ilTexImage(uiWidth, uiHeight, 1, 4, IL_RGBA, IL_UNSIGNED_BYTE, lpImageData) && ilSaveImage(cPath)))
 						{
-							MessageBox::Show("Error saving image.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+							MessageBox::Show("保存图像出错.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 						}
 					}
 				}
@@ -4071,7 +4072,7 @@ namespace VTFEdit
 
 			this->trkHDRExposure->Enabled = false;
 
-			this->btnAnimate->Text = "&Play";
+			this->btnAnimate->Text = "&播放";
 			this->btnAnimate->Enabled = false;
 			this->tmrAnimate->Enabled = false;
 
@@ -4241,7 +4242,7 @@ namespace VTFEdit
 			}
 			else
 			{
-				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("不支持操作.\n\nVTFEdit已确定当前线程状态\n不支持此操作. 这是 .NET 的设计缺陷.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 
@@ -4310,14 +4311,14 @@ namespace VTFEdit
 				{
 					delete VTFFile;
 
-					MessageBox::Show(System::String::Concat("Error creating VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("创建 VTF 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 
 				delete []lpImageData;
 			}
 			else
 			{
-				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("不支持操作.\n\nVTFEdit已确定当前线程状态\n不支持此操作. 这是 .NET 的设计缺陷.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 
@@ -4410,12 +4411,12 @@ namespace VTFEdit
 			if(this->tmrAnimate->Enabled)
 			{
 				this->tmrAnimate->Enabled = false;
-				this->btnAnimate->Text = "&Play";
+				this->btnAnimate->Text = "&播放";
 			}
 			else
 			{
 				this->tmrAnimate->Enabled = true;
-				this->btnAnimate->Text = "&Stop";
+				this->btnAnimate->Text = "&停止";
 			}
 		}
 
@@ -4437,7 +4438,7 @@ namespace VTFEdit
 			if(this->VTFFile == 0)
 				return;
 
-			if(e->Index == 12 || e->Index == 13 || e->Index == 14 || static_cast<System::String ^>(this->lstFlags->Items[e->Index]) == "Unused")
+			if(e->Index == 12 || e->Index == 13 || e->Index == 14 || static_cast<System::String ^>(this->lstFlags->Items[e->Index]) == "未使用")
 			{
 				e->NewValue = e->CurrentValue;
 			}
@@ -4591,11 +4592,11 @@ namespace VTFEdit
 			char *cText = (char *)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(this->txtVMTFile->Text).ToPointer();
 			if(VMTFile->Load( cText, this->txtVMTFile->Text->Length))
 			{
-				MessageBox::Show("VMT validation successful.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Information);
+				MessageBox::Show("VMT 验证成功.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 			else
 			{
-				MessageBox::Show(System::String::Concat("Error validating VMT:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(System::String::Concat("验证 VMT 出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 			System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cText);
 		}
@@ -4880,7 +4881,7 @@ namespace VTFEdit
 				}
 				catch(Exception ^ex)
 				{
-					MessageBox::Show(System::String::Concat("Error shell executing directory item:\n\n", ex->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("shell 执行目录项出错:\n\n", ex->Message), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 			}
 		}
@@ -4953,14 +4954,14 @@ namespace VTFEdit
 
 				try
 				{
-					if(MessageBox::Show(System::String::Concat("Are you sure you want to permanently delete '", Node->Text, "'?"), Application::ProductName, System::Windows::Forms::MessageBoxButtons::YesNo, System::Windows::Forms::MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+					if(MessageBox::Show(System::String::Concat("你确定要永久删除 '", Node->Text, "'?"), Application::ProductName, System::Windows::Forms::MessageBoxButtons::YesNo, System::Windows::Forms::MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 					{
 						System::IO::File::Delete(Node->ItemPath);
 					}
 				}
 				catch(Exception ^e)
 				{
-					MessageBox::Show(System::String::Concat("Error deleting '", Node->Text, "':\n\n", e->Message), Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("删除错误 '", Node->Text, "':\n\n", e->Message), Application::ProductName, System::Windows::Forms::MessageBoxButtons::OK, System::Windows::Forms::MessageBoxIcon::Error);
 				}
 			}
 		}
@@ -5064,8 +5065,8 @@ namespace VTFEdit
 					ConfigFile->WriteLine(System::String::Concat("VTFEdit.Goto = ", static_cast<System::String ^>(this->cboGoto->Items[i])));
 				}
 
-				ConfigFile->WriteLine("");
-				ConfigFile->WriteLine("[Forms]");
+				ConfigFile->WriteLine(""); 
+				ConfigFile->WriteLine("[表格]");
 				ConfigFile->WriteLine("");
 
 				ConfigFile->WriteLine(System::String::Concat("Forms.VTFEdit.Location.X = ", this->FormSaveLocation.X.ToString()));
@@ -5096,7 +5097,7 @@ namespace VTFEdit
 				ConfigFile->WriteLine(System::String::Concat("Forms.WADConvert.CreateVMTFiles = ", this->WADConvert->CreateVMTFiles.ToString()));
 
 				ConfigFile->WriteLine("");
-				ConfigFile->WriteLine("[VTF Options]");
+				ConfigFile->WriteLine("[VTF 选项]");
 				ConfigFile->WriteLine("");
 
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.NormalFormat = ", Convert::ToInt32(this->Options->NormalFormat).ToString()));
@@ -5141,7 +5142,7 @@ namespace VTFEdit
 				ConfigFile->WriteLine(System::String::Concat("VTFOptions.InformationComments = ", this->Options->InformationComments));
 
 				ConfigFile->WriteLine("");
-				ConfigFile->WriteLine("[Recent Files]");
+				ConfigFile->WriteLine("[最近的文件]");
 				ConfigFile->WriteLine("");
 
 				ConfigFile->WriteLine(System::String::Concat("RecentFiles.Maximum = ", this->uiMaximumRecentFiles.ToString()));
@@ -5651,7 +5652,7 @@ namespace VTFEdit
 		private: System::Void toolStripClose_Click(System::Object^ sender, System::EventArgs^ e) 
 		{
 			System::Media::SystemSounds::Asterisk->Play();
-			if (MessageBox::Show("Are you sure you want to close the current file?", "Confirm Close", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
+			if (MessageBox::Show("你确定要关闭当前文件吗?", "确认关闭", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
 
 				this->Close();
 			}
@@ -5668,7 +5669,7 @@ namespace VTFEdit
 			}
 			else
 			{
-				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("不支持操作.\n\nVTFEdit已确定当前线程状态\n不支持此操作. 这是 .NET 的设计缺陷.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 
@@ -5735,14 +5736,14 @@ namespace VTFEdit
 				{
 					delete VTFFile;
 
-					MessageBox::Show(System::String::Concat("Error creating VTF texture:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show(System::String::Concat("创建 VTF 纹理时出错:\n\n", gcnew System::String(vlGetLastError())), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				}
 
 				delete[]lpImageData;
 			}
 			else
 			{
-				MessageBox::Show("Operation not supported.\n\nVTFEdit has determined that the current thread apartment state does not\nsupport this operation. This is a .NET design flaw.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("不支持操作.\n\nVTFEdit已确定当前线程状态\n不支持此操作. 这是 .NET 的设计缺陷.", Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 
@@ -5777,10 +5778,14 @@ namespace VTFEdit
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) 
 		{
 			System::Media::SystemSounds::Asterisk->Play();
-			if (MessageBox::Show("Are you sure you want to close the current file?", "Confirm Close", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
+			if (MessageBox::Show("你确定要关闭当前文件吗?", "确认关闭", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
 
 				this->Close();
 			}
 		}
-	};
+	private: System::Void toolStripView_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e) {
+	}
+private: System::Void lstFlags_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }

@@ -119,9 +119,9 @@ namespace VTFEdit
 			this->btnOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->btnOptions->Location = System::Drawing::Point(6, 334);
 			this->btnOptions->Name = L"btnOptions";
-			this->btnOptions->Size = System::Drawing::Size(60, 22);
+			this->btnOptions->Size = System::Drawing::Size(82, 22);
 			this->btnOptions->TabIndex = 5;
-			this->btnOptions->Text = L"&Options";
+			this->btnOptions->Text = L"&选项";
 			this->btnOptions->Click += gcnew System::EventHandler(this, &CBatchConvert::btnOptions_Click);
 			// 
 			// grpProgress
@@ -135,7 +135,7 @@ namespace VTFEdit
 			this->grpProgress->Size = System::Drawing::Size(372, 41);
 			this->grpProgress->TabIndex = 3;
 			this->grpProgress->TabStop = false;
-			this->grpProgress->Text = L"Progress:";
+			this->grpProgress->Text = L"进度:";
 			// 
 			// barProgress
 			// 
@@ -145,6 +145,7 @@ namespace VTFEdit
 			this->barProgress->Name = L"barProgress";
 			this->barProgress->Size = System::Drawing::Size(360, 19);
 			this->barProgress->TabIndex = 0;
+			this->barProgress->Click += gcnew System::EventHandler(this, &CBatchConvert::barProgress_Click);
 			// 
 			// btnClose
 			// 
@@ -155,7 +156,7 @@ namespace VTFEdit
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 1;
-			this->btnClose->Text = L"&Close";
+			this->btnClose->Text = L"&关闭";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CBatchConvert::btnClose_Click);
 			// 
 			// btnConvert
@@ -163,11 +164,11 @@ namespace VTFEdit
 			this->btnConvert->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnConvert->Enabled = false;
 			this->btnConvert->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnConvert->Location = System::Drawing::Point(252, 334);
+			this->btnConvert->Location = System::Drawing::Point(215, 334);
 			this->btnConvert->Name = L"btnConvert";
-			this->btnConvert->Size = System::Drawing::Size(60, 22);
+			this->btnConvert->Size = System::Drawing::Size(97, 22);
 			this->btnConvert->TabIndex = 0;
-			this->btnConvert->Text = L"Con&vert";
+			this->btnConvert->Text = L"开始转&换";
 			this->btnConvert->Click += gcnew System::EventHandler(this, &CBatchConvert::btnConvert_Click);
 			// 
 			// grpOptions
@@ -193,16 +194,16 @@ namespace VTFEdit
 			this->grpOptions->Size = System::Drawing::Size(372, 114);
 			this->grpOptions->TabIndex = 2;
 			this->grpOptions->TabStop = false;
-			this->grpOptions->Text = L"Options:";
+			this->grpOptions->Text = L"选项:";
 			// 
 			// cboFromVTFFormat
 			// 
 			this->cboFromVTFFormat->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cboFromVTFFormat->Enabled = false;
 			this->cboFromVTFFormat->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"bmp", L"jpg", L"png", L"tga" });
-			this->cboFromVTFFormat->Location = System::Drawing::Point(41, 67);
+			this->cboFromVTFFormat->Location = System::Drawing::Point(9, 88);
 			this->cboFromVTFFormat->Name = L"cboFromVTFFormat";
-			this->cboFromVTFFormat->Size = System::Drawing::Size(59, 21);
+			this->cboFromVTFFormat->Size = System::Drawing::Size(91, 21);
 			this->cboFromVTFFormat->TabIndex = 9;
 			this->cboFromVTFFormat->SelectedIndexChanged += gcnew System::EventHandler(this, &CBatchConvert::cboFromVTFFormat_SelectedIndexChanged);
 			// 
@@ -210,9 +211,9 @@ namespace VTFEdit
 			// 
 			this->radFromVTF->Location = System::Drawing::Point(6, 70);
 			this->radFromVTF->Name = L"radFromVTF";
-			this->radFromVTF->Size = System::Drawing::Size(48, 18);
+			this->radFromVTF->Size = System::Drawing::Size(94, 18);
 			this->radFromVTF->TabIndex = 8;
-			this->radFromVTF->Text = L"To";
+			this->radFromVTF->Text = L"转换为 *";
 			this->radFromVTF->CheckedChanged += gcnew System::EventHandler(this, &CBatchConvert::radToFormat_CheckedChanged);
 			// 
 			// txtFromVTFFilter
@@ -225,7 +226,7 @@ namespace VTFEdit
 			this->txtFromVTFFilter->Size = System::Drawing::Size(236, 20);
 			this->txtFromVTFFilter->TabIndex = 10;
 			this->txtFromVTFFilter->Text = L"*.vtf";
-			this->tipMain->SetToolTip(this->txtFromVTFFilter, L"Wildcard filter.  Examples include *.* or *.vtf.");
+			this->tipMain->SetToolTip(this->txtFromVTFFilter, L"通配符过滤器.  例子包括 *.* 或者 *.vtf.");
 			this->txtFromVTFFilter->TextChanged += gcnew System::EventHandler(this, &CBatchConvert::txtFromVTFFilter_TextChanged);
 			// 
 			// radToVTF
@@ -233,10 +234,10 @@ namespace VTFEdit
 			this->radToVTF->Checked = true;
 			this->radToVTF->Location = System::Drawing::Point(6, 51);
 			this->radToVTF->Name = L"radToVTF";
-			this->radToVTF->Size = System::Drawing::Size(60, 19);
+			this->radToVTF->Size = System::Drawing::Size(94, 19);
 			this->radToVTF->TabIndex = 6;
 			this->radToVTF->TabStop = true;
-			this->radToVTF->Text = L"To VTF";
+			this->radToVTF->Text = L"转换为 VTF";
 			this->radToVTF->CheckedChanged += gcnew System::EventHandler(this, &CBatchConvert::radToFormat_CheckedChanged);
 			// 
 			// txtToVTFFilter
@@ -248,7 +249,7 @@ namespace VTFEdit
 			this->txtToVTFFilter->Size = System::Drawing::Size(236, 20);
 			this->txtToVTFFilter->TabIndex = 7;
 			this->txtToVTFFilter->Text = L"*.tga";
-			this->tipMain->SetToolTip(this->txtToVTFFilter, L"Wildcard filter.  Examples include *.* or *.tga or *.bmp;*.tga.");
+			this->tipMain->SetToolTip(this->txtToVTFFilter, L"通配符过滤器.  例子包括 *.* 或 *.tga 或者 *.bmp;*.tga.");
 			this->txtToVTFFilter->TextChanged += gcnew System::EventHandler(this, &CBatchConvert::txtToVTFFilter_TextChanged);
 			// 
 			// chkRecursive
@@ -260,8 +261,8 @@ namespace VTFEdit
 			this->chkRecursive->Name = L"chkRecursive";
 			this->chkRecursive->Size = System::Drawing::Size(66, 19);
 			this->chkRecursive->TabIndex = 11;
-			this->chkRecursive->Text = L"&Recursive";
-			this->tipMain->SetToolTip(this->chkRecursive, L"Include subdirectories.");
+			this->chkRecursive->Text = L"&递归";
+			this->tipMain->SetToolTip(this->chkRecursive, L"包含子目录.");
 			// 
 			// chkCreateVMTFiles
 			// 
@@ -272,8 +273,8 @@ namespace VTFEdit
 			this->chkCreateVMTFiles->Name = L"chkCreateVMTFiles";
 			this->chkCreateVMTFiles->Size = System::Drawing::Size(100, 19);
 			this->chkCreateVMTFiles->TabIndex = 12;
-			this->chkCreateVMTFiles->Text = L"Create &VMT Files";
-			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"Generate .vmt files for .vtf files. Ouput folder should be a material folder.");
+			this->chkCreateVMTFiles->Text = L"创建 &VMT 文件";
+			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"为 .vtf 文件生成 .vmt 文件. 输出文件夹应为材质文件夹.");
 			// 
 			// btnOutputFolderBrowse
 			// 
@@ -294,7 +295,7 @@ namespace VTFEdit
 			this->txtOutputFolder->Name = L"txtOutputFolder";
 			this->txtOutputFolder->Size = System::Drawing::Size(236, 20);
 			this->txtOutputFolder->TabIndex = 4;
-			this->tipMain->SetToolTip(this->txtOutputFolder, L"Destination image folder.");
+			this->tipMain->SetToolTip(this->txtOutputFolder, L"目标图像文件夹.");
 			this->txtOutputFolder->TextChanged += gcnew System::EventHandler(this, &CBatchConvert::txtOutputFolder_TextChanged);
 			// 
 			// lblOutputFolder
@@ -304,7 +305,7 @@ namespace VTFEdit
 			this->lblOutputFolder->Name = L"lblOutputFolder";
 			this->lblOutputFolder->Size = System::Drawing::Size(105, 19);
 			this->lblOutputFolder->TabIndex = 3;
-			this->lblOutputFolder->Text = L"Output Folder:";
+			this->lblOutputFolder->Text = L"输出文件夹:";
 			// 
 			// btnInputFolderBrowse
 			// 
@@ -325,7 +326,7 @@ namespace VTFEdit
 			this->txtInputFolder->Name = L"txtInputFolder";
 			this->txtInputFolder->Size = System::Drawing::Size(236, 20);
 			this->txtInputFolder->TabIndex = 1;
-			this->tipMain->SetToolTip(this->txtInputFolder, L"Source image folder.");
+			this->tipMain->SetToolTip(this->txtInputFolder, L"源图像文件夹.");
 			this->txtInputFolder->TextChanged += gcnew System::EventHandler(this, &CBatchConvert::txtInputFolder_TextChanged);
 			// 
 			// lblWADFile
@@ -333,9 +334,9 @@ namespace VTFEdit
 			this->lblWADFile->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->lblWADFile->Location = System::Drawing::Point(6, 15);
 			this->lblWADFile->Name = L"lblWADFile";
-			this->lblWADFile->Size = System::Drawing::Size(60, 19);
+			this->lblWADFile->Size = System::Drawing::Size(94, 19);
 			this->lblWADFile->TabIndex = 0;
-			this->lblWADFile->Text = L"Input Folder:";
+			this->lblWADFile->Text = L"输入文件夹:";
 			// 
 			// grpLog
 			// 
@@ -349,7 +350,7 @@ namespace VTFEdit
 			this->grpLog->Size = System::Drawing::Size(372, 160);
 			this->grpLog->TabIndex = 4;
 			this->grpLog->TabStop = false;
-			this->grpLog->Text = L"Log:";
+			this->grpLog->Text = L"日志:";
 			// 
 			// txtLog
 			// 
@@ -366,7 +367,7 @@ namespace VTFEdit
 			// 
 			// dlgOpenFolder
 			// 
-			this->dlgOpenFolder->Description = L"Select a folder:";
+			this->dlgOpenFolder->Description = L"选择文件夹:";
 			// 
 			// tipMain
 			// 
@@ -394,7 +395,7 @@ namespace VTFEdit
 			this->Name = L"CBatchConvert";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = L"Batch Convert";
+			this->Text = L"批量转换";
 			this->Load += gcnew System::EventHandler(this, &CBatchConvert::CBatchConvert_Load);
 			this->grpProgress->ResumeLayout(false);
 			this->grpOptions->ResumeLayout(false);
@@ -587,7 +588,7 @@ namespace VTFEdit
 
 			System::IO::DirectoryInfo ^Folder = gcnew System::IO::DirectoryInfo(sInputFolder);
 
-			this->Log(String::Concat("Entering ", sInputFolder, "..."), System::Drawing::Color::Green);
+			this->Log(String::Concat("输入 ", sInputFolder, "..."), System::Drawing::Color::Green);
 
 			if (bRecursive)
 			{
@@ -610,7 +611,7 @@ namespace VTFEdit
 				{
 					bool bIsVTF = String::Compare(Files[j]->Extension, ".vtf", true) == 0;
 
-					this->Log(String::Concat("Processing ", Files[j]->Name, "..."), System::Drawing::Color::Gray);
+					this->Log(String::Concat("转换 ", Files[j]->Name, "..."), System::Drawing::Color::Gray);
 
 					if(this->radToVTF->Checked && !bIsVTF) // Convert to .vtf.
 					{
@@ -646,36 +647,36 @@ namespace VTFEdit
 									char *cVTFFile = (char *)(System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(sVTFFile)).ToPointer();
 									if(VTFFile.Save(cVTFFile))
 									{
-										this->Log(String::Concat("Wrote ", sVTFFile, "."), System::Drawing::Color::Green);
+										this->Log(String::Concat("写入 ", sVTFFile, "."), System::Drawing::Color::Green);
 										if(this->chkCreateVMTFiles->Checked && CVMTFileUtility::CreateDefaultMaterial(sVTFFile, "LightmappedGeneric", bHasAlpha))
 										{
-											this->Log(String::Concat("Wrote ", sVMTFile, "."), System::Drawing::Color::Green);
+											this->Log(String::Concat("写入 ", sVMTFile, "."), System::Drawing::Color::Green);
 										}
 									}
 									else
 									{
-										this->Log(String::Concat("Error writing ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+										this->Log(String::Concat("写入错误 ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 									}
 									System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cVTFFile);
 								}
 								else
 								{
-									this->Log(String::Concat("Error creating ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+									this->Log(String::Concat("创建错误 ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 								}
 							}
 							else
 							{
-								this->Log(String::Concat("Error converting ", Files[j]->Name, "."), System::Drawing::Color::Red);
+								this->Log(String::Concat("转换错误 ", Files[j]->Name, "."), System::Drawing::Color::Red);
 							}
 						}
 						else
 						{
-							this->Log(String::Concat("Error loading ", Files[j]->Name, "."), System::Drawing::Color::Red);
+							this->Log(String::Concat("加载错误 ", Files[j]->Name, "."), System::Drawing::Color::Red);
 						}
 
 						System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cFile);
 
-						this->Log(String::Concat(Files[j]->Name, " processed."), System::Drawing::Color::Gray);
+						this->Log(String::Concat(Files[j]->Name, " 已转换."), System::Drawing::Color::Gray);
 					}
 					else if(bIsVTF)  // Convert from .vtf.
 					{
@@ -712,38 +713,38 @@ namespace VTFEdit
 									char *cOtherFile = (char *)(System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(sOtherFile)).ToPointer();
 									if(ilSaveImage(cOtherFile))
 									{
-										this->Log(String::Concat("Wrote ", sOtherFile, "."), System::Drawing::Color::Green);
+										this->Log(String::Concat("写入 ", sOtherFile, "."), System::Drawing::Color::Green);
 									}
 									else
 									{
-										this->Log(String::Concat("Error writing ", Files[j]->Name, "."), System::Drawing::Color::Red);
+										this->Log(String::Concat("写入错误 ", Files[j]->Name, "."), System::Drawing::Color::Red);
 									}
 									System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cOtherFile);
 								}
 								else
 								{
-									this->Log(String::Concat("Error creating ", Files[j]->Name, "."), System::Drawing::Color::Red);
+									this->Log(String::Concat("创建错误 ", Files[j]->Name, "."), System::Drawing::Color::Red);
 								}
 							}
 							else
 							{
-								this->Log(String::Concat("Error converting ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+								this->Log(String::Concat("转换错误 ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 							}
 
 							delete []lpImageData;
 						}
 						else
 						{
-							this->Log(String::Concat("Error loading ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+							this->Log(String::Concat("加载错误 ", Files[j]->Name, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 						}
 
 						System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cFile);
 
-						this->Log(String::Concat(Files[j]->Name, " processed."), System::Drawing::Color::Gray);
+						this->Log(String::Concat(Files[j]->Name, " 已转换."), System::Drawing::Color::Gray);
 					}
 					else
 					{
-						this->Log(String::Concat(Files[j]->Name, " skipped."), System::Drawing::Color::Gray);
+						this->Log(String::Concat(Files[j]->Name, " 已跳过."), System::Drawing::Color::Gray);
 					}
 
 					this->barProgress->Value++;
@@ -751,7 +752,7 @@ namespace VTFEdit
 				}
 			}
 
-			this->Log(String::Concat("Exiting ", sInputFolder, "."), System::Drawing::Color::Green);
+			this->Log(String::Concat("退出 ", sInputFolder, "."), System::Drawing::Color::Green);
 		}
 
 		private: System::Void btnConvert_Click(System::Object ^  sender, System::EventArgs ^  e)
@@ -801,6 +802,8 @@ private: System::Void txtFromVTFFilter_TextChanged(System::Object^ sender, Syste
 private: System::Void txtOutputFolder_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void cboFromVTFFormat_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void barProgress_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

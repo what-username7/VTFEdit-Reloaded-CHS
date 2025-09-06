@@ -264,12 +264,12 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpMiscellaneous->Controls->Add(this->chkThumbnail);
 			this->grpMiscellaneous->Controls->Add(this->chkSphereMap);
 			this->grpMiscellaneous->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpMiscellaneous->Location = System::Drawing::Point(6, 133);
+			this->grpMiscellaneous->Location = System::Drawing::Point(6, 156);
 			this->grpMiscellaneous->Name = L"grpMiscellaneous";
-			this->grpMiscellaneous->Size = System::Drawing::Size(204, 76);
+			this->grpMiscellaneous->Size = System::Drawing::Size(204, 79);
 			this->grpMiscellaneous->TabIndex = 1;
 			this->grpMiscellaneous->TabStop = false;
-			this->grpMiscellaneous->Text = L"Miscellaneous:";
+			this->grpMiscellaneous->Text = L"杂项:";
 			// 
 			// mnuReset
 			// 
@@ -278,39 +278,38 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			// btnReset
 			// 
 			this->btnReset->Index = 0;
-			this->btnReset->Text = L"&Reset";
+			this->btnReset->Text = L"&重置";
 			this->btnReset->Click += gcnew System::EventHandler(this, &CVTFOptions::btnReset_Click);
 			// 
 			// chkReflectivity
 			// 
 			this->chkReflectivity->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkReflectivity->Location = System::Drawing::Point(6, 12);
+			this->chkReflectivity->Location = System::Drawing::Point(6, 16);
 			this->chkReflectivity->Name = L"chkReflectivity";
 			this->chkReflectivity->Size = System::Drawing::Size(192, 19);
 			this->chkReflectivity->TabIndex = 0;
-			this->chkReflectivity->Text = L"Compute Reflectivity";
-			this->tipMain->SetToolTip(this->chkReflectivity, L"Compute input image reflectivity.");
+			this->chkReflectivity->Text = L"计算反射率";
+			this->tipMain->SetToolTip(this->chkReflectivity, L"计算输入图像的反射率.");
 			// 
 			// chkThumbnail
 			// 
 			this->chkThumbnail->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkThumbnail->Location = System::Drawing::Point(6, 31);
+			this->chkThumbnail->Location = System::Drawing::Point(6, 35);
 			this->chkThumbnail->Name = L"chkThumbnail";
 			this->chkThumbnail->Size = System::Drawing::Size(192, 20);
 			this->chkThumbnail->TabIndex = 1;
-			this->chkThumbnail->Text = L"Generate Thumbnail";
-			this->tipMain->SetToolTip(this->chkThumbnail, L"Generate a thumbnail image off of the mipmaps.  The Source engine uses this thumb"
-				L"nail for image color sampling.");
+			this->chkThumbnail->Text = L"生成缩略图";
+			this->tipMain->SetToolTip(this->chkThumbnail, L"根据 mipmaps 生成缩略图.  起源引擎使用该缩略图进行图像颜色采样.");
 			// 
 			// chkSphereMap
 			// 
 			this->chkSphereMap->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkSphereMap->Location = System::Drawing::Point(6, 51);
+			this->chkSphereMap->Location = System::Drawing::Point(6, 55);
 			this->chkSphereMap->Name = L"chkSphereMap";
 			this->chkSphereMap->Size = System::Drawing::Size(192, 15);
 			this->chkSphereMap->TabIndex = 2;
-			this->chkSphereMap->Text = L"Generate Sphere Map";
-			this->tipMain->SetToolTip(this->chkSphereMap, L"Generate a sphere map off of the six cube map faces.");
+			this->chkSphereMap->Text = L"生成球面图";
+			this->tipMain->SetToolTip(this->chkSphereMap, L"根据六个立方体贴图面生成球面贴图.");
 			// 
 			// cboTextureType
 			// 
@@ -321,7 +320,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboTextureType->Name = L"cboTextureType";
 			this->cboTextureType->Size = System::Drawing::Size(120, 21);
 			this->cboTextureType->TabIndex = 5;
-			this->tipMain->SetToolTip(this->cboTextureType, L"The output image type.");
+			this->tipMain->SetToolTip(this->cboTextureType, L"输出图像类型.");
 			this->cboTextureType->SelectedIndexChanged += gcnew System::EventHandler(this, &CVTFOptions::cboTextureType_SelectedIndexChanged);
 			// 
 			// lblTextureType
@@ -332,7 +331,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblTextureType->Name = L"lblTextureType";
 			this->lblTextureType->Size = System::Drawing::Size(66, 13);
 			this->lblTextureType->TabIndex = 4;
-			this->lblTextureType->Text = L"Texture Type:";
+			this->lblTextureType->Text = L"纹理类型:";
 			// 
 			// cboMipmapFilter
 			// 
@@ -346,7 +345,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboMipmapFilter->Name = L"cboMipmapFilter";
 			this->cboMipmapFilter->Size = System::Drawing::Size(120, 21);
 			this->cboMipmapFilter->TabIndex = 2;
-			this->tipMain->SetToolTip(this->cboMipmapFilter, L"The filter for resampling image data.");
+			this->tipMain->SetToolTip(this->cboMipmapFilter, L"图像数据重采样滤波器.");
 			// 
 			// lblMipmapFilter
 			// 
@@ -356,7 +355,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblMipmapFilter->Name = L"lblMipmapFilter";
 			this->lblMipmapFilter->Size = System::Drawing::Size(66, 13);
 			this->lblMipmapFilter->TabIndex = 1;
-			this->lblMipmapFilter->Text = L"Mipmap Filter:";
+			this->lblMipmapFilter->Text = L"Mipmap 过滤器:";
 			// 
 			// chkMipmaps
 			// 
@@ -366,9 +365,8 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkMipmaps->Name = L"chkMipmaps";
 			this->chkMipmaps->Size = System::Drawing::Size(121, 19);
 			this->chkMipmaps->TabIndex = 0;
-			this->chkMipmaps->Text = L"Generate Mipmaps";
-			this->tipMain->SetToolTip(this->chkMipmaps, L"Generate mipmaps. Without mipmaps your texture will have no LOD scaling, but will"
-				L" also be smaller (memory wise).");
+			this->chkMipmaps->Text = L"生成 Mipmaps";
+			this->tipMain->SetToolTip(this->chkMipmaps, L"生成 mipmaps. 如果没有 mipmaps，纹理将无法进行 LOD 缩放，但体积也会变小（内存方面).");
 			this->chkMipmaps->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkMipmaps_CheckedChanged);
 			// 
 			// cboFormat
@@ -385,8 +383,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboFormat->Name = L"cboFormat";
 			this->cboFormat->Size = System::Drawing::Size(120, 21);
 			this->cboFormat->TabIndex = 1;
-			this->tipMain->SetToolTip(this->cboFormat, L"The output image format for textures with no alpha channel. Common values are DXT"
-				L"1, BGR888 and UV88.");
+			this->tipMain->SetToolTip(this->cboFormat, L"无 Alpha 通道纹理的输出图像格式. 常用值为 DXT1, BGR888 和 UV88.");
 			// 
 			// lblFormat
 			// 
@@ -394,9 +391,9 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblFormat->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->lblFormat->Location = System::Drawing::Point(6, 19);
 			this->lblFormat->Name = L"lblFormat";
-			this->lblFormat->Size = System::Drawing::Size(66, 12);
+			this->lblFormat->Size = System::Drawing::Size(66, 17);
 			this->lblFormat->TabIndex = 0;
-			this->lblFormat->Text = L"Color Format:";
+			this->lblFormat->Text = L"颜色格式:";
 			// 
 			// btnOK
 			// 
@@ -406,7 +403,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->btnOK->Name = L"btnOK";
 			this->btnOK->Size = System::Drawing::Size(60, 22);
 			this->btnOK->TabIndex = 0;
-			this->btnOK->Text = L"&OK";
+			this->btnOK->Text = L"&确定";
 			this->btnOK->Click += gcnew System::EventHandler(this, &CVTFOptions::btnOK_Click);
 			// 
 			// btnCancel
@@ -418,7 +415,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(60, 22);
 			this->btnCancel->TabIndex = 1;
-			this->btnCancel->Text = L"&Cancel";
+			this->btnCancel->Text = L"&取消";
 			this->btnCancel->Click += gcnew System::EventHandler(this, &CVTFOptions::btnCancel_Click);
 			// 
 			// grpGeneral
@@ -437,7 +434,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpGeneral->Size = System::Drawing::Size(205, 98);
 			this->grpGeneral->TabIndex = 0;
 			this->grpGeneral->TabStop = false;
-			this->grpGeneral->Text = L"General:";
+			this->grpGeneral->Text = L"常规:";
 			// 
 			// chkSrgb
 			// 
@@ -447,9 +444,9 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkSrgb->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
 			this->chkSrgb->Location = System::Drawing::Point(8, 76);
 			this->chkSrgb->Name = L"chkSrgb";
-			this->chkSrgb->Size = System::Drawing::Size(115, 17);
+			this->chkSrgb->Size = System::Drawing::Size(105, 17);
 			this->chkSrgb->TabIndex = 6;
-			this->chkSrgb->Text = L"sRGB Color Space";
+			this->chkSrgb->Text = L"sRGB 色彩空间";
 			this->chkSrgb->UseVisualStyleBackColor = true;
 			// 
 			// cboAlphaFormat
@@ -466,8 +463,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboAlphaFormat->Name = L"cboAlphaFormat";
 			this->cboAlphaFormat->Size = System::Drawing::Size(120, 21);
 			this->cboAlphaFormat->TabIndex = 3;
-			this->tipMain->SetToolTip(this->cboAlphaFormat, L"The output image format for textures with an alpha channel. Common values are DXT"
-				L"5 and BGRA888.");
+			this->tipMain->SetToolTip(this->cboAlphaFormat, L"带有 alpha 通道的纹理的输出图像格式. 常见值为 DXT5 和 BGRA888.");
 			// 
 			// lblAlphaFormat
 			// 
@@ -477,7 +473,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblAlphaFormat->Name = L"lblAlphaFormat";
 			this->lblAlphaFormat->Size = System::Drawing::Size(66, 13);
 			this->lblAlphaFormat->TabIndex = 2;
-			this->lblAlphaFormat->Text = L"Alpha Format:";
+			this->lblAlphaFormat->Text = L"Alpha 格式:";
 			// 
 			// grpMipmaps
 			// 
@@ -502,12 +498,12 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpGammaCorrection->Controls->Add(this->lblGammaCorrection);
 			this->grpGammaCorrection->Controls->Add(this->chkGammaCorrection);
 			this->grpGammaCorrection->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpGammaCorrection->Location = System::Drawing::Point(6, 63);
+			this->grpGammaCorrection->Location = System::Drawing::Point(6, 79);
 			this->grpGammaCorrection->Name = L"grpGammaCorrection";
-			this->grpGammaCorrection->Size = System::Drawing::Size(204, 64);
+			this->grpGammaCorrection->Size = System::Drawing::Size(204, 71);
 			this->grpGammaCorrection->TabIndex = 3;
 			this->grpGammaCorrection->TabStop = false;
-			this->grpGammaCorrection->Text = L"Gamma Correction:";
+			this->grpGammaCorrection->Text = L"伽玛校正:";
 			// 
 			// numGammaCorrection
 			// 
@@ -517,7 +513,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->numGammaCorrection->Name = L"numGammaCorrection";
 			this->numGammaCorrection->Size = System::Drawing::Size(120, 20);
 			this->numGammaCorrection->TabIndex = 2;
-			this->tipMain->SetToolTip(this->numGammaCorrection, L"The amount of gamma correction to apply.");
+			this->tipMain->SetToolTip(this->numGammaCorrection, L"要应用的伽玛校正量.");
 			// 
 			// lblGammaCorrection
 			// 
@@ -526,17 +522,17 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblGammaCorrection->Name = L"lblGammaCorrection";
 			this->lblGammaCorrection->Size = System::Drawing::Size(66, 13);
 			this->lblGammaCorrection->TabIndex = 1;
-			this->lblGammaCorrection->Text = L"Correction:";
+			this->lblGammaCorrection->Text = L"更正:";
 			// 
 			// chkGammaCorrection
 			// 
 			this->chkGammaCorrection->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->chkGammaCorrection->Location = System::Drawing::Point(6, 12);
+			this->chkGammaCorrection->Location = System::Drawing::Point(6, 16);
 			this->chkGammaCorrection->Name = L"chkGammaCorrection";
 			this->chkGammaCorrection->Size = System::Drawing::Size(192, 19);
 			this->chkGammaCorrection->TabIndex = 0;
-			this->chkGammaCorrection->Text = L"Correct Gamma";
-			this->tipMain->SetToolTip(this->chkGammaCorrection, L"Correct input image gamma.");
+			this->chkGammaCorrection->Text = L"更正伽马值";
+			this->tipMain->SetToolTip(this->chkGammaCorrection, L"纠正输入图像伽马值.");
 			this->chkGammaCorrection->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkGammaCorrection_CheckedChanged);
 			// 
 			// grpGeneralOptions
@@ -550,7 +546,8 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpGeneralOptions->Size = System::Drawing::Size(220, 273);
 			this->grpGeneralOptions->TabIndex = 2;
 			this->grpGeneralOptions->TabStop = false;
-			this->grpGeneralOptions->Text = L"General Options:";
+			this->grpGeneralOptions->Text = L"常规选项:";
+			this->grpGeneralOptions->Enter += gcnew System::EventHandler(this, &CVTFOptions::grpGeneralOptions_Enter);
 			// 
 			// grpResize
 			// 
@@ -571,7 +568,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpResize->Size = System::Drawing::Size(203, 146);
 			this->grpResize->TabIndex = 1;
 			this->grpResize->TabStop = false;
-			this->grpResize->Text = L"Resize:";
+			this->grpResize->Text = L"调整大小:";
 			// 
 			// cboMaximumHeight
 			// 
@@ -585,7 +582,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboMaximumHeight->Name = L"cboMaximumHeight";
 			this->cboMaximumHeight->Size = System::Drawing::Size(120, 21);
 			this->cboMaximumHeight->TabIndex = 11;
-			this->tipMain->SetToolTip(this->cboMaximumHeight, L"Maximum height.");
+			this->tipMain->SetToolTip(this->cboMaximumHeight, L"最大高度.");
 			// 
 			// lblMaximumHeight
 			// 
@@ -595,7 +592,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblMaximumHeight->Name = L"lblMaximumHeight";
 			this->lblMaximumHeight->Size = System::Drawing::Size(66, 13);
 			this->lblMaximumHeight->TabIndex = 10;
-			this->lblMaximumHeight->Text = L"Height:";
+			this->lblMaximumHeight->Text = L"高度:";
 			// 
 			// cboMaximumWidth
 			// 
@@ -609,7 +606,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboMaximumWidth->Name = L"cboMaximumWidth";
 			this->cboMaximumWidth->Size = System::Drawing::Size(120, 21);
 			this->cboMaximumWidth->TabIndex = 9;
-			this->tipMain->SetToolTip(this->cboMaximumWidth, L"Maximum width.");
+			this->tipMain->SetToolTip(this->cboMaximumWidth, L"最大宽度.");
 			// 
 			// lblMaximumWidth
 			// 
@@ -619,7 +616,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblMaximumWidth->Name = L"lblMaximumWidth";
 			this->lblMaximumWidth->Size = System::Drawing::Size(66, 13);
 			this->lblMaximumWidth->TabIndex = 8;
-			this->lblMaximumWidth->Text = L"Width:";
+			this->lblMaximumWidth->Text = L"宽度:";
 			// 
 			// chkResizeClamp
 			// 
@@ -630,22 +627,19 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkResizeClamp->Size = System::Drawing::Size(66, 19);
 			this->chkResizeClamp->TabIndex = 7;
 			this->chkResizeClamp->Text = L"Clamp";
-			this->tipMain->SetToolTip(this->chkResizeClamp, L"Clamp the resized image\'s size.");
+			this->tipMain->SetToolTip(this->chkResizeClamp, L"调整图像\'大小.");
 			this->chkResizeClamp->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkResizeClamp_CheckedChanged);
 			// 
 			// cboResizeMethod
 			// 
 			this->cboResizeMethod->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cboResizeMethod->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
-			this->cboResizeMethod->Items->AddRange(gcnew cli::array< System::Object^  >(3) {
-				L"Nearest Power Of 2", L"Biggest Power Of 2",
-					L"Smallest Power Of 2"
-			});
+			this->cboResizeMethod->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"最近的 2 的幂", L"2 的最大幂", L"2 的最小幂" });
 			this->cboResizeMethod->Location = System::Drawing::Point(78, 38);
 			this->cboResizeMethod->Name = L"cboResizeMethod";
 			this->cboResizeMethod->Size = System::Drawing::Size(120, 21);
 			this->cboResizeMethod->TabIndex = 2;
-			this->tipMain->SetToolTip(this->cboResizeMethod, L"The method for choosing which power of 2 to use.");
+			this->tipMain->SetToolTip(this->cboResizeMethod, L"选择使用哪个 2 的幂的方法.");
 			// 
 			// lblResizeMethod
 			// 
@@ -655,7 +649,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblResizeMethod->Name = L"lblResizeMethod";
 			this->lblResizeMethod->Size = System::Drawing::Size(66, 13);
 			this->lblResizeMethod->TabIndex = 1;
-			this->lblResizeMethod->Text = L"Method:";
+			this->lblResizeMethod->Text = L"方法:";
 			// 
 			// cboResizeFilter
 			// 
@@ -669,7 +663,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->cboResizeFilter->Name = L"cboResizeFilter";
 			this->cboResizeFilter->Size = System::Drawing::Size(120, 21);
 			this->cboResizeFilter->TabIndex = 4;
-			this->tipMain->SetToolTip(this->cboResizeFilter, L"The filter for resampling image data.");
+			this->tipMain->SetToolTip(this->cboResizeFilter, L"图像数据重采样滤波器.");
 			// 
 			// lblResizeFilter
 			// 
@@ -679,7 +673,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblResizeFilter->Name = L"lblResizeFilter";
 			this->lblResizeFilter->Size = System::Drawing::Size(66, 13);
 			this->lblResizeFilter->TabIndex = 3;
-			this->lblResizeFilter->Text = L"Filter:";
+			this->lblResizeFilter->Text = L"过滤器:";
 			// 
 			// chkResize
 			// 
@@ -689,8 +683,8 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkResize->Name = L"chkResize";
 			this->chkResize->Size = System::Drawing::Size(66, 19);
 			this->chkResize->TabIndex = 0;
-			this->chkResize->Text = L"Resize";
-			this->tipMain->SetToolTip(this->chkResize, L"Resize the input image to be a power of 2 (if necessary).");
+			this->chkResize->Text = L"调整大小";
+			this->tipMain->SetToolTip(this->chkResize, L"将输入图像的大小调整为 2 的幂次（如有必要）.");
 			this->chkResize->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkResize_CheckedChanged);
 			// 
 			// tipMain
@@ -703,12 +697,11 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			// 
 			this->cboVersion->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cboVersion->Items->AddRange(gcnew cli::array< System::Object^  >(6) { L"7.5", L"7.4", L"7.3", L"7.2", L"7.1", L"7.0" });
-			this->cboVersion->Location = System::Drawing::Point(78, 19);
+			this->cboVersion->Location = System::Drawing::Point(78, 22);
 			this->cboVersion->Name = L"cboVersion";
 			this->cboVersion->Size = System::Drawing::Size(120, 21);
 			this->cboVersion->TabIndex = 1;
-			this->tipMain->SetToolTip(this->cboVersion, L"VTF Version number. Higher versions support more features but are less compatible"
-				L" with older games.");
+			this->tipMain->SetToolTip(this->cboVersion, L"VTF 版本号. 高版本支持更多功能，但与旧版游戏的兼容性较差.");
 			// 
 			// chkCreateLODControlResource
 			// 
@@ -717,8 +710,8 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkCreateLODControlResource->Name = L"chkCreateLODControlResource";
 			this->chkCreateLODControlResource->Size = System::Drawing::Size(192, 19);
 			this->chkCreateLODControlResource->TabIndex = 0;
-			this->chkCreateLODControlResource->Text = L"Create LOD Control Resource";
-			this->tipMain->SetToolTip(this->chkCreateLODControlResource, L"Clamp texture LODs on the U and V axes.");
+			this->chkCreateLODControlResource->Text = L"创建 LOD 控制资源";
+			this->tipMain->SetToolTip(this->chkCreateLODControlResource, L"将纹理 LOD 夹在 U 轴和 V 轴上.");
 			this->chkCreateLODControlResource->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkCreateLODControlResource_CheckedChanged);
 			// 
 			// chkCreateInformationResource
@@ -728,8 +721,8 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->chkCreateInformationResource->Name = L"chkCreateInformationResource";
 			this->chkCreateInformationResource->Size = System::Drawing::Size(192, 19);
 			this->chkCreateInformationResource->TabIndex = 0;
-			this->chkCreateInformationResource->Text = L"Create Information Resource";
-			this->tipMain->SetToolTip(this->chkCreateInformationResource, L"Embed texture metadata.\r\nNote: Creates an unofficial KVF resource.");
+			this->chkCreateInformationResource->Text = L"创建信息资源";
+			this->tipMain->SetToolTip(this->chkCreateInformationResource, L"嵌入纹理元数据.\r\n注：创建非官方的 KVF 资源.");
 			this->chkCreateInformationResource->CheckedChanged += gcnew System::EventHandler(this, &CVTFOptions::chkCreateInformationResource_CheckedChanged);
 			// 
 			// numLuminanceWeightsR
@@ -782,7 +775,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->tabGeneral->Name = L"tabGeneral";
 			this->tabGeneral->Size = System::Drawing::Size(225, 350);
 			this->tabGeneral->TabIndex = 0;
-			this->tabGeneral->Text = L"General";
+			this->tabGeneral->Text = L"常规";
 			// 
 			// tabAdvanced
 			// 
@@ -792,7 +785,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->tabAdvanced->Name = L"tabAdvanced";
 			this->tabAdvanced->Size = System::Drawing::Size(225, 350);
 			this->tabAdvanced->TabIndex = 1;
-			this->tabAdvanced->Text = L"Advanced";
+			this->tabAdvanced->Text = L"高级";
 			// 
 			// grpAdvancedOptions
 			// 
@@ -802,10 +795,11 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpAdvancedOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpAdvancedOptions->Location = System::Drawing::Point(6, 6);
 			this->grpAdvancedOptions->Name = L"grpAdvancedOptions";
-			this->grpAdvancedOptions->Size = System::Drawing::Size(217, 217);
+			this->grpAdvancedOptions->Size = System::Drawing::Size(217, 241);
 			this->grpAdvancedOptions->TabIndex = 0;
 			this->grpAdvancedOptions->TabStop = false;
-			this->grpAdvancedOptions->Text = L"Advanced Options:";
+			this->grpAdvancedOptions->Text = L"高级选项:";
+			this->grpAdvancedOptions->Enter += gcnew System::EventHandler(this, &CVTFOptions::grpAdvancedOptions_Enter);
 			// 
 			// grpVersion
 			// 
@@ -813,21 +807,21 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpVersion->Controls->Add(this->cboVersion);
 			this->grpVersion->Controls->Add(this->lblVersion);
 			this->grpVersion->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpVersion->Location = System::Drawing::Point(6, 12);
+			this->grpVersion->Location = System::Drawing::Point(6, 19);
 			this->grpVersion->Name = L"grpVersion";
-			this->grpVersion->Size = System::Drawing::Size(204, 45);
+			this->grpVersion->Size = System::Drawing::Size(204, 54);
 			this->grpVersion->TabIndex = 0;
 			this->grpVersion->TabStop = false;
-			this->grpVersion->Text = L"Version:";
+			this->grpVersion->Text = L"版本:";
 			// 
 			// lblVersion
 			// 
 			this->lblVersion->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->lblVersion->Location = System::Drawing::Point(6, 19);
+			this->lblVersion->Location = System::Drawing::Point(6, 22);
 			this->lblVersion->Name = L"lblVersion";
-			this->lblVersion->Size = System::Drawing::Size(66, 12);
+			this->lblVersion->Size = System::Drawing::Size(66, 21);
 			this->lblVersion->TabIndex = 0;
-			this->lblVersion->Text = L"Version:";
+			this->lblVersion->Text = L"版本:";
 			// 
 			// grpLuminanceWeights
 			// 
@@ -839,12 +833,12 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpLuminanceWeights->Controls->Add(this->numLuminanceWeightsR);
 			this->grpLuminanceWeights->Controls->Add(this->lblLuminanceWeightsR);
 			this->grpLuminanceWeights->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpLuminanceWeights->Location = System::Drawing::Point(12, 227);
+			this->grpLuminanceWeights->Location = System::Drawing::Point(12, 253);
 			this->grpLuminanceWeights->Name = L"grpLuminanceWeights";
-			this->grpLuminanceWeights->Size = System::Drawing::Size(204, 82);
+			this->grpLuminanceWeights->Size = System::Drawing::Size(204, 85);
 			this->grpLuminanceWeights->TabIndex = 4;
 			this->grpLuminanceWeights->TabStop = false;
-			this->grpLuminanceWeights->Text = L"Luminance Weights:";
+			this->grpLuminanceWeights->Text = L"亮度权重:";
 			// 
 			// lblLuminanceWeightsB
 			// 
@@ -880,7 +874,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->tabResources->Name = L"tabResources";
 			this->tabResources->Size = System::Drawing::Size(225, 350);
 			this->tabResources->TabIndex = 2;
-			this->tabResources->Text = L"Resources";
+			this->tabResources->Text = L"资源";
 			// 
 			// grpResourceOptions
 			// 
@@ -889,10 +883,10 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpResourceOptions->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->grpResourceOptions->Location = System::Drawing::Point(6, 6);
 			this->grpResourceOptions->Name = L"grpResourceOptions";
-			this->grpResourceOptions->Size = System::Drawing::Size(426, 272);
+			this->grpResourceOptions->Size = System::Drawing::Size(426, 292);
 			this->grpResourceOptions->TabIndex = 0;
 			this->grpResourceOptions->TabStop = false;
-			this->grpResourceOptions->Text = L"Resource Options:";
+			this->grpResourceOptions->Text = L"资源选项:";
 			// 
 			// grpInformationResource
 			// 
@@ -911,12 +905,12 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpInformationResource->Controls->Add(this->lblInformationAuthor);
 			this->grpInformationResource->Controls->Add(this->chkCreateInformationResource);
 			this->grpInformationResource->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpInformationResource->Location = System::Drawing::Point(6, 99);
+			this->grpInformationResource->Location = System::Drawing::Point(6, 121);
 			this->grpInformationResource->Name = L"grpInformationResource";
-			this->grpInformationResource->Size = System::Drawing::Size(204, 158);
+			this->grpInformationResource->Size = System::Drawing::Size(204, 165);
 			this->grpInformationResource->TabIndex = 1;
 			this->grpInformationResource->TabStop = false;
-			this->grpInformationResource->Text = L"Information Resource:";
+			this->grpInformationResource->Text = L"信息资源:";
 			// 
 			// txtInformationComments
 			// 
@@ -939,9 +933,9 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblInformationComments->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->lblInformationComments->Location = System::Drawing::Point(6, 135);
 			this->lblInformationComments->Name = L"lblInformationComments";
-			this->lblInformationComments->Size = System::Drawing::Size(66, 12);
+			this->lblInformationComments->Size = System::Drawing::Size(66, 17);
 			this->lblInformationComments->TabIndex = 11;
-			this->lblInformationComments->Text = L"Comments:";
+			this->lblInformationComments->Text = L"评论:";
 			// 
 			// lblInformationDescription
 			// 
@@ -950,7 +944,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblInformationDescription->Name = L"lblInformationDescription";
 			this->lblInformationDescription->Size = System::Drawing::Size(66, 13);
 			this->lblInformationDescription->TabIndex = 9;
-			this->lblInformationDescription->Text = L"Description:";
+			this->lblInformationDescription->Text = L"说明:";
 			// 
 			// txtInformationModification
 			// 
@@ -975,16 +969,16 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblInformationModification->Name = L"lblInformationModification";
 			this->lblInformationModification->Size = System::Drawing::Size(66, 13);
 			this->lblInformationModification->TabIndex = 7;
-			this->lblInformationModification->Text = L"Modification:";
+			this->lblInformationModification->Text = L"修改:";
 			// 
 			// lblInformationVersion
 			// 
 			this->lblInformationVersion->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->lblInformationVersion->Location = System::Drawing::Point(6, 78);
 			this->lblInformationVersion->Name = L"lblInformationVersion";
-			this->lblInformationVersion->Size = System::Drawing::Size(66, 12);
+			this->lblInformationVersion->Size = System::Drawing::Size(66, 18);
 			this->lblInformationVersion->TabIndex = 5;
-			this->lblInformationVersion->Text = L"Version:";
+			this->lblInformationVersion->Text = L"版本:";
 			// 
 			// txtInformationContact
 			// 
@@ -1009,16 +1003,16 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->lblInformationContact->Name = L"lblInformationContact";
 			this->lblInformationContact->Size = System::Drawing::Size(66, 13);
 			this->lblInformationContact->TabIndex = 3;
-			this->lblInformationContact->Text = L"Contact:";
+			this->lblInformationContact->Text = L"联系方式:";
 			// 
 			// lblInformationAuthor
 			// 
 			this->lblInformationAuthor->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->lblInformationAuthor->Location = System::Drawing::Point(6, 40);
 			this->lblInformationAuthor->Name = L"lblInformationAuthor";
-			this->lblInformationAuthor->Size = System::Drawing::Size(66, 13);
+			this->lblInformationAuthor->Size = System::Drawing::Size(66, 19);
 			this->lblInformationAuthor->TabIndex = 1;
-			this->lblInformationAuthor->Text = L"Author:";
+			this->lblInformationAuthor->Text = L"作者:";
 			// 
 			// grpLODControlResource
 			// 
@@ -1029,12 +1023,12 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->grpLODControlResource->Controls->Add(this->lblLODControlClampU);
 			this->grpLODControlResource->Controls->Add(this->chkCreateLODControlResource);
 			this->grpLODControlResource->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpLODControlResource->Location = System::Drawing::Point(6, 12);
+			this->grpLODControlResource->Location = System::Drawing::Point(6, 19);
 			this->grpLODControlResource->Name = L"grpLODControlResource";
-			this->grpLODControlResource->Size = System::Drawing::Size(204, 82);
+			this->grpLODControlResource->Size = System::Drawing::Size(204, 96);
 			this->grpLODControlResource->TabIndex = 0;
 			this->grpLODControlResource->TabStop = false;
-			this->grpLODControlResource->Text = L"LOD Control Resource:";
+			this->grpLODControlResource->Text = L"LOD 控制资源:";
 			// 
 			// numLODControlClampV
 			// 
@@ -1087,7 +1081,7 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 			this->Name = L"CVTFOptions";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = L"VTF Options";
+			this->Text = L"VTF 选项";
 			this->Load += gcnew System::EventHandler(this, &CVTFOptions::CVTFOptions_Load);
 			this->grpMiscellaneous->ResumeLayout(false);
 			this->grpGeneral->ResumeLayout(false);
@@ -1690,5 +1684,9 @@ private: System::Windows::Forms::CheckBox^ chkSrgb;
 	}
 	private: System::Void grpMipmaps_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void grpGeneralOptions_Enter(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void grpAdvancedOptions_Enter(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

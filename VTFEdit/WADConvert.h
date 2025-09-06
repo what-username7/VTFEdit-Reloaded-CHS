@@ -121,7 +121,7 @@ namespace VTFEdit
 			this->grpOptions->Size = System::Drawing::Size(370, 76);
 			this->grpOptions->TabIndex = 2;
 			this->grpOptions->TabStop = false;
-			this->grpOptions->Text = L"Options:";
+			this->grpOptions->Text = L"选项:";
 			// 
 			// chkCreateVMTFiles
 			// 
@@ -132,8 +132,8 @@ namespace VTFEdit
 			this->chkCreateVMTFiles->Name = L"chkCreateVMTFiles";
 			this->chkCreateVMTFiles->Size = System::Drawing::Size(101, 19);
 			this->chkCreateVMTFiles->TabIndex = 6;
-			this->chkCreateVMTFiles->Text = L"Create &VMT Files";
-			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"Generate .vmt files for .vtf files. Ouput folder should be a material folder.");
+			this->chkCreateVMTFiles->Text = L"创建 &VMT 文件";
+			this->tipMain->SetToolTip(this->chkCreateVMTFiles, L"为 .vtf 文件生成 .vmt 文件. 输出文件夹应为材质文件夹.");
 			// 
 			// btnOutputFolderBrowse
 			// 
@@ -154,7 +154,7 @@ namespace VTFEdit
 			this->txtOutputFolder->Name = L"txtOutputFolder";
 			this->txtOutputFolder->Size = System::Drawing::Size(260, 20);
 			this->txtOutputFolder->TabIndex = 4;
-			this->tipMain->SetToolTip(this->txtOutputFolder, L"Destination image folder.");
+			this->tipMain->SetToolTip(this->txtOutputFolder, L"目标图像文件夹.");
 			// 
 			// lblOutputFolder
 			// 
@@ -163,7 +163,7 @@ namespace VTFEdit
 			this->lblOutputFolder->Name = L"lblOutputFolder";
 			this->lblOutputFolder->Size = System::Drawing::Size(75, 20);
 			this->lblOutputFolder->TabIndex = 3;
-			this->lblOutputFolder->Text = L"Output Folder:";
+			this->lblOutputFolder->Text = L"输出文件夹:";
 			// 
 			// btnWADFileBrowse
 			// 
@@ -184,7 +184,7 @@ namespace VTFEdit
 			this->txtWADFile->Name = L"txtWADFile";
 			this->txtWADFile->Size = System::Drawing::Size(260, 20);
 			this->txtWADFile->TabIndex = 1;
-			this->tipMain->SetToolTip(this->txtWADFile, L"Source .wad file.");
+			this->tipMain->SetToolTip(this->txtWADFile, L"源 .wad 文件.");
 			this->txtWADFile->TextChanged += gcnew System::EventHandler(this, &CWADConvert::txtWADFile_TextChanged);
 			// 
 			// lblWADFile
@@ -194,7 +194,7 @@ namespace VTFEdit
 			this->lblWADFile->Name = L"lblWADFile";
 			this->lblWADFile->Size = System::Drawing::Size(60, 19);
 			this->lblWADFile->TabIndex = 0;
-			this->lblWADFile->Text = L"WAD File:";
+			this->lblWADFile->Text = L"WAD 文件:";
 			// 
 			// btnClose
 			// 
@@ -205,7 +205,7 @@ namespace VTFEdit
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 1;
-			this->btnClose->Text = L"&Close";
+			this->btnClose->Text = L"&关闭";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CWADConvert::btnClose_Click);
 			// 
 			// btnConvert
@@ -213,11 +213,11 @@ namespace VTFEdit
 			this->btnConvert->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btnConvert->Enabled = false;
 			this->btnConvert->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnConvert->Location = System::Drawing::Point(252, 334);
+			this->btnConvert->Location = System::Drawing::Point(225, 334);
 			this->btnConvert->Name = L"btnConvert";
-			this->btnConvert->Size = System::Drawing::Size(60, 22);
+			this->btnConvert->Size = System::Drawing::Size(87, 22);
 			this->btnConvert->TabIndex = 0;
-			this->btnConvert->Text = L"Con&vert";
+			this->btnConvert->Text = L"开始转&换";
 			this->btnConvert->Click += gcnew System::EventHandler(this, &CWADConvert::btnConvert_Click);
 			// 
 			// grpProgress
@@ -231,7 +231,7 @@ namespace VTFEdit
 			this->grpProgress->Size = System::Drawing::Size(370, 41);
 			this->grpProgress->TabIndex = 3;
 			this->grpProgress->TabStop = false;
-			this->grpProgress->Text = L"Progress:";
+			this->grpProgress->Text = L"进度:";
 			// 
 			// barProgress
 			// 
@@ -244,12 +244,12 @@ namespace VTFEdit
 			// 
 			// dlgOpenWADFile
 			// 
-			this->dlgOpenWADFile->Filter = L"WAD Files (*.wad)|*.wad";
-			this->dlgOpenWADFile->Title = L"Open WAD File";
+			this->dlgOpenWADFile->Filter = L"WAD 文件 (*.wad)|*.wad";
+			this->dlgOpenWADFile->Title = L"打开 WAD 文件";
 			// 
 			// dlgOpenFolder
 			// 
-			this->dlgOpenFolder->Description = L"Select a folder:";
+			this->dlgOpenFolder->Description = L"选择文件夹:";
 			// 
 			// btnOptions
 			// 
@@ -259,7 +259,7 @@ namespace VTFEdit
 			this->btnOptions->Name = L"btnOptions";
 			this->btnOptions->Size = System::Drawing::Size(60, 22);
 			this->btnOptions->TabIndex = 5;
-			this->btnOptions->Text = L"&Options";
+			this->btnOptions->Text = L"&选项";
 			this->btnOptions->Click += gcnew System::EventHandler(this, &CWADConvert::btnOptions_Click);
 			// 
 			// grpLog
@@ -274,7 +274,7 @@ namespace VTFEdit
 			this->grpLog->Size = System::Drawing::Size(370, 196);
 			this->grpLog->TabIndex = 4;
 			this->grpLog->TabStop = false;
-			this->grpLog->Text = L"Log:";
+			this->grpLog->Text = L"日志:";
 			// 
 			// txtLog
 			// 
@@ -315,7 +315,8 @@ namespace VTFEdit
 			this->Name = L"CWADConvert";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = L"Convert WAD File";
+			this->Text = L"转换 WAD 文件";
+			this->Load += gcnew System::EventHandler(this, &CWADConvert::CWADConvert_Load);
 			this->grpOptions->ResumeLayout(false);
 			this->grpOptions->PerformLayout();
 			this->grpProgress->ResumeLayout(false);
@@ -408,7 +409,7 @@ namespace VTFEdit
 
 				this->Cursor = System::Windows::Forms::Cursors::Default;
 
-				MessageBox::Show(String::Concat("Error loading WAD file:\n\n", gcnew String(hlGetString(HL_ERROR_LONG_FORMATED))), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(String::Concat("加载 WAD 文件出错:\n\n", gcnew String(hlGetString(HL_ERROR_LONG_FORMATED))), Application::ProductName, MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}
 
@@ -427,7 +428,7 @@ namespace VTFEdit
 				String ^sVTFFile = String::Concat(this->txtOutputFolder->Text, "\\", sVTFName, ".vtf");
 				String ^sVMTFile = String::Concat(this->txtOutputFolder->Text, "\\", sVTFName, ".vmt");
 
-				this->Log(String::Concat("Processing ", sVTFName, "..."), System::Drawing::Color::Gray);
+				this->Log(String::Concat("转换 ", sVTFName, "..."), System::Drawing::Color::Gray);
 
 				hlUInt dwPaletteSize, dwPixelSize, dwWidth, dwHeight;
 				if(WADFile.GetImageSize(File, dwPaletteSize, dwPixelSize))
@@ -492,28 +493,28 @@ namespace VTFEdit
 							char *cVTFFile = (char *)(System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(sVTFFile)).ToPointer();
 							if(VTFFile.Save(cVTFFile))
 							{
-								this->Log(String::Concat("Wrote ", sVTFFile, "."), System::Drawing::Color::Green);
+								this->Log(String::Concat("写入 ", sVTFFile, "."), System::Drawing::Color::Green);
 								if(this->chkCreateVMTFiles->Checked && CVMTFileUtility::CreateDefaultMaterial(sVTFFile, "LightmappedGeneric", bHasAlpha))
 								{
-									this->Log(String::Concat("Wrote ", sVMTFile, "."), System::Drawing::Color::Green);
+									this->Log(String::Concat("写入 ", sVMTFile, "."), System::Drawing::Color::Green);
 								}
 							}
 							else
 							{
-								this->Log(String::Concat("Error writing ", sVTFName, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+								this->Log(String::Concat("写入错误 ", sVTFName, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 							}
 							System::Runtime::InteropServices::Marshal::FreeHGlobal((IntPtr)cVTFFile);
 						}
 						else
 						{
-							this->Log(String::Concat("Error creating ", sVTFName, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
+							this->Log(String::Concat("创建错误 ", sVTFName, ".", (gcnew String(vlGetLastError()))->Replace("\n", " ")), System::Drawing::Color::Red);
 						}
 
 						delete []lpImageData;
 					}
 					else
 					{
-						this->Log(String::Concat("Error processing ", sVTFName, ":\n\n", (gcnew String(hlGetString(HL_ERROR_LONG_FORMATED)))->Replace("\n", " ")), System::Drawing::Color::Red);
+						this->Log(String::Concat("处理错误 ", sVTFName, ":\n\n", (gcnew String(hlGetString(HL_ERROR_LONG_FORMATED)))->Replace("\n", " ")), System::Drawing::Color::Red);
 					}
 
 					delete []lpPaletteData;
@@ -521,10 +522,10 @@ namespace VTFEdit
 				}
 				else
 				{
-					this->Log(String::Concat("Error processing ", sVTFName, ":\n\n", (gcnew String(hlGetString(HL_ERROR_LONG_FORMATED)))->Replace("\n", " ")), System::Drawing::Color::Red);
+					this->Log(String::Concat("处理错误 ", sVTFName, ":\n\n", (gcnew String(hlGetString(HL_ERROR_LONG_FORMATED)))->Replace("\n", " ")), System::Drawing::Color::Red);
 				}
 
-				this->Log(String::Concat(sVTFName, " processed."), System::Drawing::Color::Gray);
+				this->Log(String::Concat(sVTFName, " 已转换."), System::Drawing::Color::Gray);
 
 				this->barProgress->Value = i;
 				this->barProgress->Refresh();
@@ -553,5 +554,7 @@ namespace VTFEdit
 			this->txtLog->AppendText(String::Concat(sString, "\n"));
 			this->txtLog->Refresh();
 		}
-	};
+	private: System::Void CWADConvert_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

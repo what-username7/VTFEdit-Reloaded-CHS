@@ -218,7 +218,7 @@ namespace VTFEdit
 			this->grpTextures->Size = System::Drawing::Size(311, 209);
 			this->grpTextures->TabIndex = 0;
 			this->grpTextures->TabStop = false;
-			this->grpTextures->Text = L"Textures:";
+			this->grpTextures->Text = L"纹理:";
 			// 
 			// btnNormalTexture
 			// 
@@ -303,7 +303,7 @@ namespace VTFEdit
 			this->lblBumpTexture2->Name = L"lblBumpTexture2";
 			this->lblBumpTexture2->Size = System::Drawing::Size(83, 18);
 			this->lblBumpTexture2->TabIndex = 9;
-			this->lblBumpTexture2->Text = L"Bump Map 2:";
+			this->lblBumpTexture2->Text = L"凹凸面 2:";
 			// 
 			// btnBaseTexture2
 			// 
@@ -331,7 +331,7 @@ namespace VTFEdit
 			this->lblBaseTexture2->Name = L"lblBaseTexture2";
 			this->lblBaseTexture2->Size = System::Drawing::Size(83, 17);
 			this->lblBaseTexture2->TabIndex = 6;
-			this->lblBaseTexture2->Text = L"Base Texture 2:";
+			this->lblBaseTexture2->Text = L"基础纹理 2:";
 			// 
 			// btnToolTexture
 			// 
@@ -359,7 +359,7 @@ namespace VTFEdit
 			this->lblToolTexture->Name = L"lblToolTexture";
 			this->lblToolTexture->Size = System::Drawing::Size(83, 19);
 			this->lblToolTexture->TabIndex = 21;
-			this->lblToolTexture->Text = L"Tool Texture:";
+			this->lblToolTexture->Text = L"工具纹理:";
 			// 
 			// btnDetailTexture
 			// 
@@ -387,7 +387,7 @@ namespace VTFEdit
 			this->lblDetailTexture->Name = L"lblDetailTexture";
 			this->lblDetailTexture->Size = System::Drawing::Size(83, 17);
 			this->lblDetailTexture->TabIndex = 18;
-			this->lblDetailTexture->Text = L"Detail Texture:";
+			this->lblDetailTexture->Text = L"细节纹理:";
 			// 
 			// btnEnviromentMaskTexture
 			// 
@@ -415,7 +415,7 @@ namespace VTFEdit
 			this->lblEnviromentMaskTexture->Name = L"lblEnviromentMaskTexture";
 			this->lblEnviromentMaskTexture->Size = System::Drawing::Size(92, 18);
 			this->lblEnviromentMaskTexture->TabIndex = 15;
-			this->lblEnviromentMaskTexture->Text = L"Enviroment Mask:";
+			this->lblEnviromentMaskTexture->Text = L"环境遮罩:";
 			// 
 			// btnEnviromentTexture
 			// 
@@ -443,7 +443,7 @@ namespace VTFEdit
 			this->lblEnviromentTexture->Name = L"lblEnviromentTexture";
 			this->lblEnviromentTexture->Size = System::Drawing::Size(83, 19);
 			this->lblEnviromentTexture->TabIndex = 12;
-			this->lblEnviromentTexture->Text = L"Enviroment:";
+			this->lblEnviromentTexture->Text = L"环境:";
 			// 
 			// btnBumpTexture1
 			// 
@@ -471,7 +471,7 @@ namespace VTFEdit
 			this->lblBumpTexture1->Name = L"lblBumpTexture1";
 			this->lblBumpTexture1->Size = System::Drawing::Size(83, 19);
 			this->lblBumpTexture1->TabIndex = 3;
-			this->lblBumpTexture1->Text = L"Bump Map 1:";
+			this->lblBumpTexture1->Text = L"凹凸面 1:";
 			// 
 			// btnBaseTexture1
 			// 
@@ -500,12 +500,12 @@ namespace VTFEdit
 			this->lblBaseTexture1->Name = L"lblBaseTexture1";
 			this->lblBaseTexture1->Size = System::Drawing::Size(83, 19);
 			this->lblBaseTexture1->TabIndex = 0;
-			this->lblBaseTexture1->Text = L"Base Texture 1:";
+			this->lblBaseTexture1->Text = L"基础纹理 1:";
 			// 
 			// dlgOpenVTFFile
 			// 
-			this->dlgOpenVTFFile->Filter = L"VTF Files (*.vtf)|*.vtf";
-			this->dlgOpenVTFFile->Title = L"Open VTF File";
+			this->dlgOpenVTFFile->Filter = L"VTF 文件 (*.vtf)|*.vtf";
+			this->dlgOpenVTFFile->Title = L"打开 VTF 文件";
 			// 
 			// tabMain
 			// 
@@ -524,7 +524,7 @@ namespace VTFEdit
 			this->tabTextures->Name = L"tabTextures";
 			this->tabTextures->Size = System::Drawing::Size(316, 210);
 			this->tabTextures->TabIndex = 0;
-			this->tabTextures->Text = L"Textures";
+			this->tabTextures->Text = L"纹理";
 			// 
 			// tabOptions
 			// 
@@ -533,7 +533,7 @@ namespace VTFEdit
 			this->tabOptions->Name = L"tabOptions";
 			this->tabOptions->Size = System::Drawing::Size(316, 210);
 			this->tabOptions->TabIndex = 1;
-			this->tabOptions->Text = L"Options";
+			this->tabOptions->Text = L"选项";
 			// 
 			// grpOptions
 			// 
@@ -561,7 +561,7 @@ namespace VTFEdit
 			this->grpOptions->Size = System::Drawing::Size(301, 220);
 			this->grpOptions->TabIndex = 0;
 			this->grpOptions->TabStop = false;
-			this->grpOptions->Text = L"Options:";
+			this->grpOptions->Text = L"选项:";
 			this->grpOptions->Enter += gcnew System::EventHandler(this, &CVMTCreate::grpOptions_Enter);
 			// 
 			// chkDecal
@@ -571,7 +571,7 @@ namespace VTFEdit
 			this->chkDecal->Name = L"chkDecal";
 			this->chkDecal->Size = System::Drawing::Size(51, 19);
 			this->chkDecal->TabIndex = 19;
-			this->chkDecal->Text = L"Decal";
+			this->chkDecal->Text = L"贴花";
 			this->tipMain->SetToolTip(this->chkDecal, L"$decal");
 			this->chkDecal->UseVisualStyleBackColor = true;
 			// 
@@ -582,7 +582,7 @@ namespace VTFEdit
 			this->chkModel->Name = L"chkModel";
 			this->chkModel->Size = System::Drawing::Size(51, 18);
 			this->chkModel->TabIndex = 18;
-			this->chkModel->Text = L"Model";
+			this->chkModel->Text = L"模型";
 			this->tipMain->SetToolTip(this->chkModel, L"$model");
 			this->chkModel->UseVisualStyleBackColor = true;
 			// 
@@ -601,7 +601,7 @@ namespace VTFEdit
 			this->chkVertexAlpha->Name = L"chkVertexAlpha";
 			this->chkVertexAlpha->Size = System::Drawing::Size(81, 18);
 			this->chkVertexAlpha->TabIndex = 16;
-			this->chkVertexAlpha->Text = L"Vertex Alpha";
+			this->chkVertexAlpha->Text = L"顶点 Alpha";
 			this->tipMain->SetToolTip(this->chkVertexAlpha, L"$vertexalpha");
 			// 
 			// chkVertexColor
@@ -611,7 +611,7 @@ namespace VTFEdit
 			this->chkVertexColor->Name = L"chkVertexColor";
 			this->chkVertexColor->Size = System::Drawing::Size(81, 19);
 			this->chkVertexColor->TabIndex = 17;
-			this->chkVertexColor->Text = L"Vertex Color";
+			this->chkVertexColor->Text = L"顶点颜色";
 			this->tipMain->SetToolTip(this->chkVertexColor, L"$vertexcolor");
 			// 
 			// chkNoDecal
@@ -621,7 +621,7 @@ namespace VTFEdit
 			this->chkNoDecal->Name = L"chkNoDecal";
 			this->chkNoDecal->Size = System::Drawing::Size(66, 19);
 			this->chkNoDecal->TabIndex = 13;
-			this->chkNoDecal->Text = L"No Decal";
+			this->chkNoDecal->Text = L"无贴花";
 			this->tipMain->SetToolTip(this->chkNoDecal, L"$nodecal");
 			// 
 			// chkNoLOD
@@ -631,7 +631,7 @@ namespace VTFEdit
 			this->chkNoLOD->Name = L"chkNoLOD";
 			this->chkNoLOD->Size = System::Drawing::Size(62, 19);
 			this->chkNoLOD->TabIndex = 14;
-			this->chkNoLOD->Text = L"No LOD";
+			this->chkNoLOD->Text = L"无 LOD";
 			this->tipMain->SetToolTip(this->chkNoLOD, L"$nolod");
 			// 
 			// chkAlphaTest
@@ -641,8 +641,9 @@ namespace VTFEdit
 			this->chkAlphaTest->Name = L"chkAlphaTest";
 			this->chkAlphaTest->Size = System::Drawing::Size(75, 20);
 			this->chkAlphaTest->TabIndex = 9;
-			this->chkAlphaTest->Text = L"Alpha Test";
+			this->chkAlphaTest->Text = L"Alpha 测试";
 			this->tipMain->SetToolTip(this->chkAlphaTest, L"$alphatest");
+			this->chkAlphaTest->CheckedChanged += gcnew System::EventHandler(this, &CVMTCreate::chkAlphaTest_CheckedChanged);
 			// 
 			// chkNoCull
 			// 
@@ -651,7 +652,7 @@ namespace VTFEdit
 			this->chkNoCull->Name = L"chkNoCull";
 			this->chkNoCull->Size = System::Drawing::Size(57, 19);
 			this->chkNoCull->TabIndex = 12;
-			this->chkNoCull->Text = L"No Cull";
+			this->chkNoCull->Text = L"无 Cull";
 			this->tipMain->SetToolTip(this->chkNoCull, L"$nocull");
 			// 
 			// chkAdditive
@@ -673,6 +674,7 @@ namespace VTFEdit
 			this->chkTranslucent->TabIndex = 15;
 			this->chkTranslucent->Text = L"Translucent";
 			this->tipMain->SetToolTip(this->chkTranslucent, L"$translucent");
+			this->chkTranslucent->CheckedChanged += gcnew System::EventHandler(this, &CVMTCreate::chkTranslucent_CheckedChanged);
 			// 
 			// lblKeywords
 			// 
@@ -681,7 +683,7 @@ namespace VTFEdit
 			this->lblKeywords->Name = L"lblKeywords";
 			this->lblKeywords->Size = System::Drawing::Size(66, 18);
 			this->lblKeywords->TabIndex = 6;
-			this->lblKeywords->Text = L"Keywords:";
+			this->lblKeywords->Text = L"关键词:";
 			// 
 			// cboSurface2
 			// 
@@ -715,7 +717,7 @@ namespace VTFEdit
 			this->lblSurface2->Name = L"lblSurface2";
 			this->lblSurface2->Size = System::Drawing::Size(66, 17);
 			this->lblSurface2->TabIndex = 4;
-			this->lblSurface2->Text = L"Surface 2:";
+			this->lblSurface2->Text = L"表面材质 2:";
 			// 
 			// cboSurface1
 			// 
@@ -749,7 +751,7 @@ namespace VTFEdit
 			this->lblSurface1->Name = L"lblSurface1";
 			this->lblSurface1->Size = System::Drawing::Size(66, 19);
 			this->lblSurface1->TabIndex = 2;
-			this->lblSurface1->Text = L"Surface 1:";
+			this->lblSurface1->Text = L"表面材质 1:";
 			// 
 			// cboShader
 			// 
@@ -775,7 +777,7 @@ namespace VTFEdit
 			this->lblShader->Name = L"lblShader";
 			this->lblShader->Size = System::Drawing::Size(66, 19);
 			this->lblShader->TabIndex = 0;
-			this->lblShader->Text = L"Shader:";
+			this->lblShader->Text = L"着色:";
 			// 
 			// btnClose
 			// 
@@ -785,7 +787,7 @@ namespace VTFEdit
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(60, 22);
 			this->btnClose->TabIndex = 2;
-			this->btnClose->Text = L"&Close";
+			this->btnClose->Text = L"&关闭";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClose_Click);
 			// 
 			// btnCreate
@@ -795,7 +797,7 @@ namespace VTFEdit
 			this->btnCreate->Name = L"btnCreate";
 			this->btnCreate->Size = System::Drawing::Size(60, 22);
 			this->btnCreate->TabIndex = 1;
-			this->btnCreate->Text = L"C&reate";
+			this->btnCreate->Text = L"创&建";
 			this->btnCreate->Click += gcnew System::EventHandler(this, &CVMTCreate::btnCreate_Click);
 			// 
 			// btnClear
@@ -805,13 +807,13 @@ namespace VTFEdit
 			this->btnClear->Name = L"btnClear";
 			this->btnClear->Size = System::Drawing::Size(60, 22);
 			this->btnClear->TabIndex = 3;
-			this->btnClear->Text = L"C&lear";
+			this->btnClear->Text = L"清&除";
 			this->btnClear->Click += gcnew System::EventHandler(this, &CVMTCreate::btnClear_Click);
 			// 
 			// dlgSaveVMTFile
 			// 
-			this->dlgSaveVMTFile->Filter = L"VMT Files (*.vmt)|*.vmt";
-			this->dlgSaveVMTFile->Title = L"Save VMT File";
+			this->dlgSaveVMTFile->Filter = L"VMT 文件 (*.vmt)|*.vmt";
+			this->dlgSaveVMTFile->Title = L"保存 VMT 文件";
 			// 
 			// CVMTCreate
 			// 
@@ -831,7 +833,8 @@ namespace VTFEdit
 			this->Name = L"CVMTCreate";
 			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
-			this->Text = L"Create VMT File";
+			this->Text = L"创建 VMT 文件";
+			this->Load += gcnew System::EventHandler(this, &CVMTCreate::CVMTCreate_Load);
 			this->grpTextures->ResumeLayout(false);
 			this->grpTextures->PerformLayout();
 			this->tabMain->ResumeLayout(false);
@@ -1053,6 +1056,12 @@ namespace VTFEdit
 	private: System::Void grpOptions_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void txtNormalTexture_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void CVMTCreate_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void chkTranslucent_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void chkAlphaTest_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
